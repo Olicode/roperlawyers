@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :passport_number, :email, :sf_contact_id)
+      params.require(:user).permit(:first_name, :last_name, :passport_number, :nie_number, :email, :sf_contact_id)
     end
 
     def sf_attrs_map(user)
@@ -76,7 +76,8 @@ class UsersController < ApplicationController
         FirstName: user.first_name,
         LastName: user.last_name,
         Email: user.email,
-        Passport_Number__c: user.passport_number
+        Passport_Number__c: user.passport_number,
+        NIE_Number__c: user.nie_number
       }
     end
 end
