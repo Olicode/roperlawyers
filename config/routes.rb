@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   root to: 'pages#home'
   get 'lanzarote', to: 'pages#lanzarote'
   get 'tenerife', to: 'pages#tenerife'
