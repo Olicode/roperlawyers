@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
       LastName: user.last_name || user.email,
       Email: user.email,
       Passport_Number__c: user.passport_number,
-      NIE_Number__c: user.nie_number
+      NIE_Number__c: user.nie_number,
+      Date_of_Birth__c: user.date_of_birth,
+      Expiry_Date__c: user.expiry_date
     }
   end
 end
