@@ -40,7 +40,12 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        SalesforceService.update_contact(sf_attrs_map(@user).merge!(Id: @user.sf_contact_id))
+        if @user.sf_contact_id.blank?
+          sf_contact_id = SalesforceService.create_contact(sf_attrs_map(@user))
+          @user.update!(sf_contact_id: sf_contact_id)
+        else
+          SalesforceService.update_contact(sf_attrs_map(@user).merge!(Id: @user.sf_contact_id))
+        end
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -69,15 +74,5 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:first_name, :last_name, :passport_number, :nie_number, :email, :sf_contact_id)
-    end
-
-    def sf_attrs_map(user)
-      {
-        FirstName: user.first_name,
-        LastName: user.last_name,
-        Email: user.email,
-        Passport_Number__c: user.passport_number,
-        NIE_Number__c: user.nie_number
-      }
     end
 end
