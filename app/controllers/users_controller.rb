@@ -77,7 +77,9 @@ class UsersController < ApplicationController
         .require(:user)
         .permit(
           :first_name, :last_name, :passport_number,
-          :nie_number, :email, :sf_contact_id, :date_of_birth, :expiry_date
+          :nie_number, :email, :sf_contact_id, :date_of_birth, :expiry_date,
+          :mobile_phone, :here_till, :full_name_on_passport, :nationality,
+          :profession, :marital_status, :spouse, :mailing_address
         )
     end
 end

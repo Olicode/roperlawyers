@@ -31,6 +31,16 @@
 </p>
 
 <p>
+  <strong>Full name on passport:</strong>
+  <%= @user.full_name_on_passport %>
+</p>
+
+<p>
+  <strong>Nationality:</strong>
+  <%= @user.nationality %>
+</p>
+
+<p>
   <strong>Date of Birth:</strong>
   <%= @user.date_of_birth.strftime("%d/%m/%Y") %>
 </p>
@@ -39,6 +49,17 @@
   <strong>Expiry Date </strong>
   <%= @user.expiry_date.strftime("%d/%m/%Y") %>
 </p>
+
+<p>
+  <strong>Profession:</strong>
+  <%= @user.profession %>
+</p>
+
+<p>
+  <strong>Marital status:</strong>
+  <%= @user.marital_status %>
+</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
