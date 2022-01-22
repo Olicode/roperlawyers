@@ -1,3 +1,14 @@
+<div class="row justify-content-center">
+<div class="col-12 col-md-10 col-lg-6">
+
+<h1>Your submited information</h1>
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Thank you!</strong> Remember you can always sign in to add more information.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="card p-5 mb-3 card-shadow">
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -11,23 +22,13 @@
 </p>
 
 <p>
-  <strong>Passport number:</strong>
-  <%= @user.passport_number %>
-</p>
-
-<p>
-  <strong>NIE Number:</strong>
-  <%= @user.nie_number %>
-</p>
-
-<p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
 
 <p>
-  <strong>Sf contact:</strong>
-  <%= @user.sf_contact_id %>
+  <strong>Mobile:</strong>
+  <%= @user.mobile_phone %>
 </p>
 
 <p>
@@ -36,8 +37,8 @@
 </p>
 
 <p>
-  <strong>Nationality:</strong>
-  <%= @user.nationality %>
+  <strong>Passport number:</strong>
+  <%= @user.passport_number %>
 </p>
 
 <p>
@@ -51,6 +52,11 @@
 </p>
 
 <p>
+  <strong>Nationality:</strong>
+  <%= @user.nationality %>
+</p>
+
+<p>
   <strong>Profession:</strong>
   <%= @user.profession %>
 </p>
@@ -60,6 +66,63 @@
   <%= @user.marital_status %>
 </p>
 
+<p>
+  <strong>Spouse full name:</strong>
+  <%= @user.spouse %>
+</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p>
+  <strong>Here till:</strong>
+  <%= @user.here_till.strftime("%d/%m/%Y") %>
+</p>
+
+<p>
+  <strong>NIE Number:</strong>
+  <%= @user.nie_number %>
+</p>
+
+<p>
+  <strong>Father's first name:</strong>
+  <%= @user.father_s_first_name %>
+</p>
+
+<p>
+  <strong>mother's first name:</strong>
+  <%= @user.mother_s_first_name %>
+</p>
+
+<p>
+  <strong>Reservation origin bank:</strong>
+  <%= @user.r_origin_bank_details %>
+</p>
+
+<p>
+  <strong>Private Contract origin bank:</strong>
+  <%= @user.otb_origin_bank_details %>
+</p>
+
+<p>
+  <strong>Balance origin bank:</strong>
+  <%= @user.balance_bank_details %>
+</p>
+
+<p>
+  <strong>Utilities standing orders bank:</strong>
+  <%= @user.standing_orders_bank_details %>
+</p>
+
+</div>
+
+<div class="form-actions d-grid gap-2" >
+  <button type="button" class="btn btn-outline-primary btn-lg nounderline ">
+    <%= link_to 'Edit' , edit_user_path(@user)%>
+  </button>
+</div>
+
+</div>
+</div>
+
+<p>
+  <strong>Sf contact:</strong>
+  <%= @user.sf_contact_id %>
+</p>

@@ -13,5 +13,24 @@
  *= require_tree .
  *= require_self
  */
+ // variable overrides
+
  @import "bootstrap/scss/bootstrap";
 
+.form-control {
+  background-color: rgb(245, 245, 245) !important;
+  border: none;
+}
+
+.form-control:hover {
+  background-color: rgb(195, 18, 18);
+   }
+
+
+
+   
+
+.card-shadow {
+box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+border: none;
+}

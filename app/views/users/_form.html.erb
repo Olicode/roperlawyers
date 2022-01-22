@@ -1,4 +1,14 @@
 <%= form_with(model: user) do |form| %>
+<div class="row justify-content-center">
+<div class="col-12 col-md-10 col-lg-6">
+
+<h1>Information required</h1>
+<h6>In order to draw up contracts and title deed we need you to fill in the following information </h6>
+<div class="card p-5 mb-5 card-shadow">
+<h4>Personal details</h4>
+<p>
+</p>
+
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -11,77 +21,142 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-floating mb-3">
+    <%= form.text_field :first_name, class:"form-control" %>
     <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
   </div>
 
-  <div class="field">
+  <div class="form-floating mb-3">
+    <%= form.text_field :last_name, class:"form-control" %>
     <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :passport_number %>
-    <%= form.text_field :passport_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :nie_number %>
-    <%= form.text_field :nie_number %>
-  </div>
-
-  <div class="field">
+  <div class="form-floating mb-3">
+    <%= form.text_field :email, class:"form-control" %>
     <%= form.label :email %>
-    <%= form.text_field :email %>
   </div>
 
-  <div class="field">
-    <%= form.label :date_of_birth %>
-    <%= form.date_field :date_of_birth %>
-  </div>
-
-  <div class="field">
-    <%= form.label :expiry_date %>
-    <%= form.date_field :expiry_date %>
-  </div>
-
-  <div class="field">
+  <div class="form-floating mb-3">
+    <%= form.text_field :mobile_phone, class:"form-control" %>
     <%= form.label :mobile_phone %>
-    <%= form.text_field :mobile_phone %>
   </div>
 
-  <div class="field">
-    <%= form.label :here_till %>
-    <%= form.date_field :here_till %>
-  </div>
-
-  <div class="field">
+  <div class="form-floating mb-3">
+    <%= form.text_field :full_name_on_passport, class:"form-control" %>
     <%= form.label :full_name_on_passport %>
-    <%= form.text_field :full_name_on_passport %>
   </div>
 
-   <div class="field">
+  <div class="form-floating mb-3">
+    <%= form.text_field :passport_number, class:"form-control" %>
+    <%= form.label :passport_number %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.date_field :date_of_birth, class:"form-control" %>
+    <%= form.label :date_of_birth %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.date_field :expiry_date, class:"form-control" %>
+    <%= form.label :expiry_date %>
+  </div>
+
+   <div class="form-floating mb-3">
+    <%= form.text_field :nationality, class:"form-control" %>
     <%= form.label :nationality %>
-    <%= form.text_field :nationality %>
    </div>
 
-   <div class="field">
+   <div class="form-floating mb-3">
+    <%= form.text_field :profession, class:"form-control" %>
     <%= form.label :profession %>
-    <%= form.text_field :profession %>
    </div>
 
-     <div class="field">
+     <div class="form-floating mb-3">
+    <%= form.text_field :marital_status, class:"form-control" %>
     <%= form.label :marital_status %>
-    <%= form.text_field :marital_status %>
    </div>
 
-     <div class="field">
-    <%= form.label :spouse %>
-    <%= form.text_field :spouse %>
-   </div>
+    <div class="form-floating mb-3">
+    <%= form.text_field :spouse, class:"form-control" %>
+    <%= form.label :spouse_full_name %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <%# Are you a Spanish tax resident?%>
+
+    <%# mailing address missing, try MailingStreet%>
+
+    <div class="form-floating mb-3">
+
+    <%= form.date_field :here_till, class:"form-control" %>
+   <%= form.label :here_till do %>
+   In Lanzarote until
+   <% end %>
+   </div>
+</div>
+
+  <div class="card p-5 mb-5 card-shadow">
+  <h4>NIE Number</h4>
+  <p>Do you have an NIE number? If so, fill in the field and upload a photo of it. If not please fill in the following fields.</p>
+  <div class="form-floating mb-3">
+    <%= form.text_field :nie_number, class:"form-control"  %>
+    <%= form.label :nie_number%>
   </div>
-<% end %>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :father_s_first_name, class:"form-control"  %>
+    <%= form.label :father_s_first_name %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :mother_s_first_name, class:"form-control"  %>
+    <%= form.label :mother_s_first_name %>
+
+  </div>
+</div>
+
+
+
+<div class="card p-5 mb-5 card-shadow">
+<h4>Bank details</h4>
+<p class="mb-3">If you are transferring all amounts from same bank fill in the first field and type same in second and third fields.
+</p>
+
+<h6>Where are you transfering the reservation amount from?</h6>
+  <div class="form-floating mb-3">
+    <%= form.text_field :r_origin_bank_details, class:"form-control"  %>
+    <%= form.label :bank_name_and_account_number %>
+  </div>
+
+<h6>What bank account have you sent the private contract amount from?</h6>
+  <div class="form-floating mb-3">
+    <%= form.text_field :otb_origin_bank_details, class:"form-control"  %>
+    <%= form.label :private_contract_origin_bank_details%>
+  </div>
+
+<h6>What bank account have you sent the balance amount to purchase from?</h6>
+<p>If you are transfering the balance funds to my account please type Roper Lawyers in the field.</p>
+  <div class="form-floating mb-3">
+    <%= form.text_field :balance_bank_details, class:"form-control"  %>
+    <%= form.label :balance_bank_details %>
+  </div>
+
+  <h6>What account do you want your utilities standing orders on? </h6>
+  <p>It must be a Spanish account, if you do not yet have one, leave  this field blank. </p>
+  <div class="form-floating mb-3">
+    <%= form.text_field :standing_orders_bank_details, class:"form-control"  %>
+    <%= form.label :standing_orders_account %>
+  </div>
+
+</div>
+
+  <div class="d-grid gap-2 mb-3">
+    <%= form.submit "Submit", class:"btn btn-primary btn-lg mb-3" %>
+  </div>
+
+ <div class="mb-5">
+ Have any questions? <a href="wa.me/+34649948377">Send me a WhatsApp</a>
+   </div>
+ </div >
+  </div>
+  </div>
+   <% end %>

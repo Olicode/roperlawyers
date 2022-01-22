@@ -79,7 +79,9 @@ class UsersController < ApplicationController
           :first_name, :last_name, :passport_number,
           :nie_number, :email, :sf_contact_id, :date_of_birth, :expiry_date,
           :mobile_phone, :here_till, :full_name_on_passport, :nationality,
-          :profession, :marital_status, :spouse, :mailing_address
+          :profession, :marital_status, :spouse, :mailing_address,
+          :father_s_first_name, :mother_s_first_name,
+          :r_origin_bank_details, :otb_origin_bank_details, :balance_bank_details, :standing_orders_bank_details
         )
     end
 end
