@@ -20,17 +20,31 @@
 .form-control {
   background-color: rgb(245, 245, 245) !important;
   border: none;
+
 }
 
 .form-control:hover {
   background-color: rgb(195, 18, 18);
    }
 
+.p-gray {
+  color: gray;
+   }
+
+   .img {
+ border-radius: 15px;
+   }
 
 
-   
 
 .card-shadow {
-box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+box-shadow: rgba(131, 131, 131, 0.12) 0px 6px 16px;
 border: none;
+border-radius: 15px;
+}
+
+.img-home {
+ max-width: 100% ;
+height: 500px;
+
 }
