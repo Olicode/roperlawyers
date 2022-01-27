@@ -15,7 +15,10 @@
  */
  // variable overrides
 
- @import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 .form-control {
   background-color: rgb(245, 245, 245) !important;
@@ -31,20 +34,30 @@
   color: gray;
    }
 
-   .img {
+.img {
  border-radius: 15px;
    }
 
 
 
 .card-shadow {
-box-shadow: rgba(131, 131, 131, 0.12) 0px 6px 16px;
+box-shadow: rgba(8, 15, 52, 0.06) 0 3px 20px 0;
 border: none;
-border-radius: 15px;
+border-radius: 20px;
 }
 
+
+
 .img-home {
- max-width: 100% ;
+
+max-width: 100% ;
 height: 500px;
+}
+
+.gray-bg{
+    background-color:#1d1d1d;
+
+    background-clip: content-box;
+
 
 }
