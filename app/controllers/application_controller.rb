@@ -26,4 +26,14 @@ class ApplicationController < ActionController::Base
       Standing_orders_Bank_details__c: user.standing_orders_bank_details
     }
   end
+
+  def sf_file_upload_attrs_map(user, document, doc_type)
+    {
+      Name: "#{doc_type} #{user.first_name} #{user.last_name}",
+      ParentId: user.sf_contact_id,
+      description: "Uploaded by #{user.first_name} #{user.last_name}",
+      Body: Base64::encode64(File.read(document))
+    }
+  end
 end
+

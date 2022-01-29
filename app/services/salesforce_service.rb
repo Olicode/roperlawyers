@@ -13,6 +13,10 @@ class SalesforceService
     new.client.update!('Contact', attrs)
   end
 
+  def self.upload_file(file_attrs)
+    new.client.create!('Attachment', file_attrs)
+  end
+
   def client
     @client ||= Restforce.new(
       # host: ENV['SALESFORCE_HOST'],

@@ -66,12 +66,14 @@ background: #cbbd98;
 }
 .gold-bg{
   background: #cbbd98;
+  border: none;
 }
 
 .gold-bg:hover{
   background: none;
   color: #cbbd98;
   box-shadow: rgba(20, 20, 43, 0.07) 0 2px 12px 0;
+  border: none;
 
 }
 
@@ -86,6 +88,7 @@ color: #cbbd98;
 .button-super-white {
 box-shadow: rgba(20, 20, 43, 0.07) 0 2px 12px 0;
 color: #000000;
+border: none;
 
 }
 
@@ -93,6 +96,10 @@ color: #000000;
 background-color: #cbbd98;
 }
 
-.btn {
-  border: none;
+.white-text {
+  color: white;
+}
+
+.gray-text {
+  color:gray;
 }

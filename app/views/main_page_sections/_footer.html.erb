@@ -1,0 +1,39 @@
+
+<section class="bg-dark">
+<div class="container-fluid">
+
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3">
+    <p class="col-md-4 mb-0 text-muted">Roper Lawyers Lanzarote &copy; 2022</p>
+
+    <ul class="nav justify-content-end ">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash_#{name}", class:" m-1" %>
+      <% end %>
+
+        <% if user_signed_in? %>
+          <p class="text-muted">Logged in as <strong><%= current_user.email %></strong></p>
+          <div class="pull-right">
+          <%= link_to 'Edit profile', edit_user_registration_path, class:"btn btn-outline-secondary m-1" %>
+          </div>
+          <%= link_to "Logout", destroy_user_session_path, class:"btn btn-outline-secondary m-1", method: :delete %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, class:"btn btn-outline-secondary m-1" %>
+          <%= link_to "Login", new_user_session_path, class:"btn btn-outline-secondary m-1" %>
+        <% end %>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+    </ul>
+  </footer>
+</div>
+</section>

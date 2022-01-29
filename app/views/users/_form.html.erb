@@ -102,6 +102,10 @@
     <%= form.label :nie_number%>
   </div>
 
+
+
+
+
   <div class="form-floating mb-3">
     <%= form.text_field :father_s_first_name, class:"form-control"  %>
     <%= form.label :father_s_first_name %>
@@ -111,6 +115,15 @@
     <%= form.text_field :mother_s_first_name, class:"form-control"  %>
     <%= form.label :mother_s_first_name %>
 
+    <div class="form-floating mb-3">
+        NIE Document:
+      <%= form.file_field :nie_document %>
+    </div>
+
+  <div class="form-floating mb-3">
+    Passport Document:
+      <%= form.file_field :passport_document %>
+    </div>
   </div>
 </div>
 

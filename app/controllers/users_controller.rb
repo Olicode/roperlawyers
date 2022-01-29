@@ -45,6 +45,14 @@ class UsersController < ApplicationController
           @user.update!(sf_contact_id: sf_contact_id)
         else
           SalesforceService.update_contact(sf_attrs_map(@user).merge!(Id: @user.sf_contact_id))
+
+          if user_params[:nie_document].present?
+            SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:nie_document], "NIE"))
+          end
+
+          if user_params[:passport_document].present?
+            SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:passport_document], "Passport"))
+          end
         end
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
@@ -81,7 +89,8 @@ class UsersController < ApplicationController
           :mobile_phone, :here_till, :full_name_on_passport, :nationality,
           :profession, :marital_status, :spouse, :mailing_address,
           :father_s_first_name, :mother_s_first_name,
-          :r_origin_bank_details, :otb_origin_bank_details, :balance_bank_details, :standing_orders_bank_details
+          :r_origin_bank_details, :otb_origin_bank_details,
+          :balance_bank_details, :standing_orders_bank_details, :nie_document, :passport_document
         )
     end
 end
