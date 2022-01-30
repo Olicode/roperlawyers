@@ -13,7 +13,7 @@
         <% if user_signed_in? %>
           <p class="text-muted">Logged in as <strong><%= current_user.email %></strong></p>
           <div class="pull-right">
-          <%= link_to 'Edit profile', edit_user_registration_path, class:"btn btn-outline-secondary m-1" %>
+          <%= link_to 'Dashboard', edit_user_path(current_user), class:"btn btn-outline-secondary m-1" %>
           </div>
           <%= link_to "Logout", destroy_user_session_path, class:"btn btn-outline-secondary m-1", method: :delete %>
         <% else %>

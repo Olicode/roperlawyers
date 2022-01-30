@@ -7,13 +7,25 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta content='maximum-scale=1.0, initial-scale=1.0, width=device-width' name='viewport'>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/features/">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
 
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
   </head>
 
   <body>
   <%= yield %>
-   
+
   </body>
 </html>
