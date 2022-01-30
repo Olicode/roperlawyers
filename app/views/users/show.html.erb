@@ -1,12 +1,8 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center m-5">
 <div class="col-12 col-md-10 col-lg-6">
 
-<h1>Your submited information</h1>
+<h1 class="mt-5 text-center">Your submited information</h1>
 
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Thank you!</strong> Remember you can always sign in to add more information.
-  <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-</div>
 <div class="card p-5 mb-3 card-shadow">
 
 <p id="notice"><%= notice %></p>
@@ -72,7 +68,7 @@
 </p>
 
 <p>
-  <strong>Here till:</strong>
+  <strong>In Lanzarote until:</strong>
   <%= @user.here_till.strftime("%d/%m/%Y") %>
 </p>
 
@@ -81,19 +77,6 @@
   <%= @user.nie_number %>
 </p>
 
-<p>
-<% if @user.nie_document.attached? %>
-    <strong>NIE Document:</strong>
-    <%= image_tag @user.nie_document %>
-<% end %>
-</p>
-
-<p>
-<% if @user.passport_document.attached? %>
-  <strong>Passport Document:</strong>
-  <%= image_tag @user.passport_document %>
-<% end %>
-</p>
 
 <p>
   <strong>Father's first name:</strong>
@@ -101,7 +84,7 @@
 </p>
 
 <p>
-  <strong>mother's first name:</strong>
+  <strong>Mother's first name:</strong>
   <%= @user.mother_s_first_name %>
 </p>
 
@@ -124,19 +107,36 @@
   <strong>Utilities standing orders bank:</strong>
   <%= @user.standing_orders_bank_details %>
 </p>
+</div>
+
+<p class="h1 text-center">Uploaded documents</p>
+<div class="container card p-5 mb-3 card-shadow">
+<p>
+<% if @user.nie_document.attached? %>
+    <p>NIE Document:</strong><p>
+    <%= image_tag @user.nie_document %>
+<% end %>
+</p>
+
+<p>
+<% if @user.passport_document.attached? %>
+  <p>Passport Document:</p><br>
+  <%= image_tag @user.passport_document %>
+<% end %>
+</p>
 
 </div>
 
 <div class="form-actions d-grid gap-2" >
-  <button type="button" class="btn btn-outline-primary btn-lg nounderline ">
-    <%= link_to 'Edit' , edit_user_path(@user)%>
-  </button>
+    <%= link_to 'Edit' , edit_user_path(@user),  class:"btn btn-outline-primary btn-lg "%>
+    <%= link_to 'Log out' , destroy_user_session_path(@user),  class:"btn btn-primary btn-lg "%>
 </div>
 
+<p class="mt-5 mb-3 text-muted text-center">Roper Lawyers &copy; 2022</p>
 </div>
 </div>
 
-<p>
+<p class="p-3">
   <strong>Sf contact:</strong>
   <%= @user.sf_contact_id %>
 </p>

@@ -1,13 +1,13 @@
 <%= form_with(model: user) do |form| %>
 <div class="row justify-content-center">
 <div class="col-12 col-md-10 col-lg-6">
+<div class="text-center mt-5 mb-3">
+  <h1>Information required</h1>
+  <h6>In order to draw up contracts and title deed we need you to<br>fill in the following information </h6>
+</div>
 
-<h1>Information required</h1>
-<h6>In order to draw up contracts and title deed we need you to fill in the following information </h6>
 <div class="card p-5 mb-5 card-shadow">
-<h4>Personal details</h4>
-<p>
-</p>
+  <h4>Personal details</h4>
 
   <% if user.errors.any? %>
     <div id="error_explanation">
@@ -22,62 +22,70 @@
   <% end %>
 
   <div class="form-floating mb-3">
-    <%= form.text_field :first_name, class:"form-control" %>
+    <%= form.text_field :first_name, class:"form-control", placeholder:"First name" %>
     <%= form.label :first_name %>
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.text_field :last_name, class:"form-control" %>
+    <%= form.text_field :last_name, class:"form-control", placeholder:"Last name" %>
     <%= form.label :last_name %>
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.text_field :email, class:"form-control" %>
+    <%= form.text_field :email, class:"form-control", placeholder:"Email" %>
     <%= form.label :email %>
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.text_field :mobile_phone, class:"form-control" %>
+    <%= form.text_field :mobile_phone, class:"form-control", placeholder:"Mobile phone" %>
     <%= form.label :mobile_phone %>
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.text_field :full_name_on_passport, class:"form-control" %>
+    <%= form.text_field :full_name_on_passport, class:"form-control", placeholder:"Full name on passport" %>
     <%= form.label :full_name_on_passport %>
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.text_field :passport_number, class:"form-control" %>
+    <%= form.text_field :passport_number, class:"form-control", placeholder:"Passport number" %>
     <%= form.label :passport_number %>
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.date_field :date_of_birth, class:"form-control" %>
+    <%= form.date_field :date_of_birth, class:"form-control", placeholder:"Date of birth" %>
     <%= form.label :date_of_birth %>
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.date_field :expiry_date, class:"form-control" %>
+    <%= form.date_field :expiry_date, class:"form-control", placeholder:"Expiry date" %>
     <%= form.label :expiry_date %>
   </div>
 
    <div class="form-floating mb-3">
-    <%= form.text_field :nationality, class:"form-control" %>
+    <%= form.text_field :nationality, class:"form-control", placeholder:"Nationality" %>
     <%= form.label :nationality %>
    </div>
 
+      <div class="rounded p-3 mb-3 bg-light">
+        <p>Upload a copy of your passport</p>
+        <div class="form-floating">
+          <%= form.file_field :passport_document%>
+        </div>
+      </div>
+
+
    <div class="form-floating mb-3">
-    <%= form.text_field :profession, class:"form-control" %>
+    <%= form.text_field :profession, class:"form-control", placeholder:"Profession" %>
     <%= form.label :profession %>
    </div>
 
      <div class="form-floating mb-3">
-    <%= form.text_field :marital_status, class:"form-control" %>
+    <%= form.text_field :marital_status, class:"form-control", placeholder:"Marital status" %>
     <%= form.label :marital_status %>
    </div>
 
     <div class="form-floating mb-3">
-    <%= form.text_field :spouse, class:"form-control" %>
+    <%= form.text_field :spouse, class:"form-control", placeholder:"Spouse" %>
     <%= form.label :spouse_full_name %>
     </div>
 
@@ -87,88 +95,81 @@
 
     <div class="form-floating mb-3">
 
-    <%= form.date_field :here_till, class:"form-control" %>
+    <%= form.date_field :here_till, class:"form-control", placeholder:"Here until" %>
    <%= form.label :here_till do %>
-   In Lanzarote until
-   <% end %>
-   </div>
-</div>
+    In Lanzarote until
+      <% end %>
+      </div>
+    </div>
 
   <div class="card p-5 mb-5 card-shadow">
-  <h4>NIE Number</h4>
-  <p>Do you have an NIE number? If so, fill in the field and upload a photo of it. If not please fill in the following fields.</p>
-  <div class="form-floating mb-3">
-    <%= form.text_field :nie_number, class:"form-control"  %>
-    <%= form.label :nie_number%>
+    <h4>NIE Number</h4>
+    <p class="mb-5">Do you have an NIE number? If so, fill in the field and upload a photo of it. If not please fill in the following fields.</p>
+      <div class="form-floating mb-3">
+        <%= form.text_field :nie_number, class:"form-control", placeholder:"NIE number"  %>
+        <%= form.label :nie_number%>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :father_s_first_name, class:"form-control", placeholder:"Father's first name" %>
+        <%= form.label :father_s_first_name %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :mother_s_first_name, class:"form-control", placeholder:"Mother's first name"  %>
+        <%= form.label :mother_s_first_name %>
+      </div>
+
+      <div class="rounded p-3 mb-3 bg-light">
+          <div class="form-floating">
+          <p>Upload a copy of your passport</p>
+            <%= form.file_field :nie_document %>
+          </div>
+      </div>
+
   </div>
-
-
-
-
-
-  <div class="form-floating mb-3">
-    <%= form.text_field :father_s_first_name, class:"form-control"  %>
-    <%= form.label :father_s_first_name %>
-  </div>
-
-  <div class="form-floating mb-3">
-    <%= form.text_field :mother_s_first_name, class:"form-control"  %>
-    <%= form.label :mother_s_first_name %>
-
-    <div class="form-floating mb-3">
-        NIE Document:
-      <%= form.file_field :nie_document %>
-    </div>
-
-  <div class="form-floating mb-3">
-    Passport Document:
-      <%= form.file_field :passport_document %>
-    </div>
-  </div>
-</div>
-
-
 
 <div class="card p-5 mb-5 card-shadow">
 <h4>Bank details</h4>
-<p class="mb-3">If you are transferring all amounts from same bank fill in the first field and type same in second and third fields.
+<p class="mb-5">If you are transferring all amounts from same bank fill in the first field and type same in second and third fields.
 </p>
 
 <h6>Where are you transfering the reservation amount from?</h6>
-  <div class="form-floating mb-3">
-    <%= form.text_field :r_origin_bank_details, class:"form-control"  %>
-    <%= form.label :bank_name_and_account_number %>
+  <div class="form-floating mb-4">
+    <%= form.text_field :r_origin_bank_details, class:"form-control", placeholder:"Bank details"  %>
+    <%= form.label :reservation_origin_bank_details %>
   </div>
 
 <h6>What bank account have you sent the private contract amount from?</h6>
-  <div class="form-floating mb-3">
-    <%= form.text_field :otb_origin_bank_details, class:"form-control"  %>
+  <div class="form-floating mb-4">
+    <%= form.text_field :otb_origin_bank_details, class:"form-control", class:"form-control", placeholder:"Bank details"  %>
     <%= form.label :private_contract_origin_bank_details%>
   </div>
 
 <h6>What bank account have you sent the balance amount to purchase from?</h6>
-<p>If you are transfering the balance funds to my account please type Roper Lawyers in the field.</p>
-  <div class="form-floating mb-3">
-    <%= form.text_field :balance_bank_details, class:"form-control"  %>
+<p class="text-muted">If you are transfering the balance funds to my account please type Roper Lawyers in the field.</p>
+  <div class="form-floating mb-4">
+    <%= form.text_field :balance_bank_details, class:"form-control", class:"form-control", placeholder:"Bank details"  %>
     <%= form.label :balance_bank_details %>
   </div>
 
   <h6>What account do you want your utilities standing orders on? </h6>
-  <p>It must be a Spanish account, if you do not yet have one, leave  this field blank. </p>
+  <p class="text-muted">It must be a Spanish account, if you do not yet have one, leave  this field blank. </p>
   <div class="form-floating mb-3">
-    <%= form.text_field :standing_orders_bank_details, class:"form-control"  %>
-    <%= form.label :standing_orders_account %>
+    <%= form.text_field :standing_orders_bank_details, class:"form-control", class:"form-control", placeholder:"Bank details"  %>
+    <%= form.label :standing_orders_bank_details %>
   </div>
 
 </div>
 
   <div class="d-grid gap-2 mb-3">
-    <%= form.submit "Submit", class:"btn btn-primary btn-lg mb-3" %>
+    <%= form.submit "Submit", class:"btn btn-primary btn-lg mb-2" %>
   </div>
 
  <div class="mb-5">
  Have any questions? <a href="wa.me/+34649948377">Send me a WhatsApp</a>
-   </div>
+  </div>
+  <p class="mt-5 mb-3 text-muted text-center">Roper Lawyers &copy; 2022</p>
  </div >
   </div>
   </div>
