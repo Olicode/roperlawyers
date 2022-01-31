@@ -3,7 +3,7 @@
   <%= render 'main_page_sections/why_us' %>
   <%= render 'main_page_sections/about_us' %>
   <%= render 'main_page_sections/features' %>
-  <%= render 'main_page_sections/reviews' %>
+  <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
   <%= render 'main_page_sections/costs' %>
   <%= render 'main_page_sections/logos' %>
   <%= render 'main_page_sections/footer' %>
