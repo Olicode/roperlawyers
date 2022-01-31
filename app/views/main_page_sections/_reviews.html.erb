@@ -19,13 +19,17 @@
             <p>
               <div class="comment-box">
                 <% if review["comment"].length > 50 %>
-                <%= truncate(review["comment"], length: 50) %>
-                  <%= link_to 'Read more', '', class: "read-more-#{review["id"]} review-text"%>
-                  <%= link_to 'Hide', '', class: "read-less-#{review["id"]} review-text hide" %>
+                  <%= truncate(review["comment"], length: 50) %><br />
+                  <%= link_to 'Read', '', class: "read-more-#{review["id"]} review-text"%>
+                  
                   <script>
                     $('.read-more-<%= review["id"] %>').on('click', function(e) {
                       e.preventDefault();
-                      $(this).parent().html('<%= escape_javascript review["comment"] %>')
+                      $(this).parent().html('<%= escape_javascript review["comment"] %><br /><%= link_to 'Hide', '', class: "read-less-#{review["id"]} review-text"%>')
+                    })
+                    $('.read-less-<%= review["id"] %>').on('click', function(e) {
+                      e.preventDefault();
+                      $(this).parent().html('<%= escape_javascript truncate(review["comment"], length: 50) %>')
                     })
                   </script>
                 <% else %>
