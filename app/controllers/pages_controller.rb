@@ -9,5 +9,6 @@ class PagesController < ApplicationController
   end
 
   def home
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 end
