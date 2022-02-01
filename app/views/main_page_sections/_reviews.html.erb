@@ -1,62 +1,45 @@
-<section class="bg-light">
-<div class="container px-4 py-5">
-<div class="  ">
-<h2 class="pb-4 m-3 text-center">We pride ourselves in provinding the best service.</h2>
+<div class="container px-4 py-5 bg-light">
+  <div class="  ">
+    <h2 class="pb-4 m-3 text-center">We pride ourselves in provinding the best service.</h2>
+  </div>
+  <div class="row px-4 ">
+    <% @reviews["records"].each do |review|%>
+      <div class="col-sm-3 px-2 py-2 d-flex align-items-stretch ">
+        <div class="card card-shadow">
+          <div class="card-body review-data">
+          <div class="review-header">
+            <h5 class="card-title"><%= review["name"] %></h5>
+            <p class="review-rating">
+                <% review["rating"].to_i.times do %>
+                  <i class="fa fa-star"></i>
+                <% end %>
+              </p>
+              <h6 class="review-date"><%= review["Date"] %> </h6>
+              </div>
+            <p>
+              <div class="comment-box">
+                <% if review["comment"].length > 50 %>
+                  <%= truncate(review["comment"], length: 50) %><br />
+                  <%= link_to 'Read', '', class: "read-more-#{review["id"]} review-text"%>
+                  
+                  <script>
+                   $(document).delegate(".read-more-<%= review["id"] %>", "click", function(e){
+                      e.preventDefault();
+                      $(this).parent().html('<%= escape_javascript review["comment"] %><br /><%= link_to 'Hide', '', class: "read-less-#{review["id"]} review-text"%>')
+                    });
+                    $(document).delegate(".read-less-<%= review["id"] %>", "click", function(e){
+                      e.preventDefault();
+                      $(this).parent().html('<%= escape_javascript truncate(review["comment"], length: 50) %><br /><%= link_to 'Read', '', class: "read-more-#{review["id"]} review-text"%>')
+                    });
+                  </script>
+                <% else %>
+                  <%= review["comment"]  %>
+                <% end %>
+              </div>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% end%> 
+  </div>
 </div>
-<div class="row px-4 ">
-
-  <div class="col-sm-3 px-2 py-2 d-flex align-items-stretch ">
-    <div class="card card-shadow">
-      <div class="card-body">
-        <h5 class="card-title">Louis Farrell</h5>
-        <p class="text-warning">★★★★★</p>
-        <p class="card-text"> Firstly I am reviewing as a family of 4 who have just made our first move out of the uk and to Lanzarote.
-          Olivier, Alexi and the team at roper lawyers genuinely made this possible for us. without their information, advice ...</p>
-      <p><%= link_to "more", review_page_path %></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-3 px-2 py-2 d-flex align-items-stretch">
-    <div class="card card-shadow">
-      <div class="card-body">
-        <h5 class="card-title">Ali Elliott</h5>
-        <p class="text-warning">★★★★★</p>
-        <p class="card-text">Olivier and Alexi at Roper Lawyers are absolutely fabulous,
-        we purchased a house in Gran Canaria (so not just limited to Lanzarote) and the service
-        we received was second to none, it was efficient, knowledgeable, and ...</p>
-        <p><%= link_to "more", review_page_path %></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-3 px-2 py-2 d-flex align-items-stretch">
-    <div class="card card-shadow">
-      <div class="card-body">
-        <h5 class="card-title">Nick N</h5>
-        <p class="text-warning">★★★★★</p>
-        <p class="card-text">Myself and my partner purchased a property in puerto del carmen and wanted to use a local lawyer who specialises in property-
-After some research we chose Roper lawyers and were glad we did- A very pleasant ...</p>
-<p><%= link_to "more", review_page_path %></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-3 px-2 py-2 d-flex align-items-stretch">
-    <div class="card card-shadow">
-      <div class="card-body">
-        <h5 class="card-title">Marek Wietlicki</h5>
-        <p class="text-warning">★★★★★</p>
-        <p class="card-text">Top legal service from Roper Lawyers. I would highly recommend them for professional help.
-        As first time buyer of house in Spain, without knowlegde of Spanish language and local rules, it seemed very stressful to me and ...</p>
-        <p><%= link_to "more", review_page_path %></p>
-      </div>
-    </div>
-  </div>
-
-
-
-
-</div>
-</div>
-</section>
