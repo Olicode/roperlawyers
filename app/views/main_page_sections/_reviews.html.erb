@@ -21,7 +21,7 @@
                 <% if review["comment"].length > 50 %>
                   <%= truncate(review["comment"], length: 50) %><br />
                   <%= link_to 'Read', '', class: "read-more-#{review["id"]} review-text"%>
-                  
+
                   <script>
                    $(document).delegate(".read-more-<%= review["id"] %>", "click", function(e){
                       e.preventDefault();
@@ -40,6 +40,6 @@
           </div>
         </div>
       </div>
-      <% end%> 
+      <% end%>
   </div>
 </div>

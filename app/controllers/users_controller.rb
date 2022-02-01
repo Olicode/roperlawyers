@@ -1,88 +1,88 @@
-class sController < ApplicationController
-  before_action :set_, only: %i[ show edit update destroy ]
+class UsersController < ApplicationController
+  before_action :set_user, only: %i[ show edit update destroy ]
 
-  # GET /s or /s.json
+  # GET /users or /users.json
   def index
-    @s = .all
+    @users = User.all
   end
 
-  # GET /s/1 or /s/1.json
+  # GET /users/1 or /users/1.json
   def show
   end
 
-  # GET /s/new
+  # GET /users/new
   def new
-    @ = .new
+    @user = User.new
   end
 
-  # GET /s/1/edit
+  # GET /users/1/edit
   def edit
   end
 
-  # POST /s or /s.json
+  # POST /users or /users.json
   def create
-    @ = .new(_params)
+    @user = User.new(user_params)
 
     respond_to do |format|
-      if @.save
-        sf_contact_id = SalesforceService.create_contact(sf_attrs_map(@))
-        @.update!(sf_contact_id: sf_contact_id)
-        format.html { redirect_to _url(@), notice: " was successfully created." }
-        format.json { render :show, status: :created, location: @ }
+      if @user.save
+        sf_contact_id = SalesforceService.create_contact(sf_attrs_map(@user))
+        @user.update!(sf_contact_id: sf_contact_id)
+        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /s/1 or /s/1.json
+  # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if @.update(_params)
-        if @.sf_contact_id.blank?
-          sf_contact_id = SalesforceService.create_contact(sf_attrs_map(@))
-          @.update!(sf_contact_id: sf_contact_id)
+      if @user.update(user_params)
+        if @user.sf_contact_id.blank?
+          sf_contact_id = SalesforceService.create_contact(sf_attrs_map(@user))
+          @user.update!(sf_contact_id: sf_contact_id)
         else
-          SalesforceService.update_contact(sf_attrs_map(@).merge!(Id: @.sf_contact_id))
+          SalesforceService.update_contact(sf_attrs_map(@user).merge!(Id: @user.sf_contact_id))
 
-          if _params[:nie_document].present?
-            SalesforceService.upload_file(sf_file_upload_attrs_map(@, _params[:nie_document], "NIE"))
+          if user_params[:nie_document].present?
+            SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:nie_document], "NIE"))
           end
 
-          if _params[:passport_document].present?
-            SalesforceService.upload_file(sf_file_upload_attrs_map(@, _params[:passport_document], "Passport"))
+          if user_params[:passport_document].present?
+            SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:passport_document], "Passport"))
           end
         end
-        format.html { redirect_to _url(@), notice: " was successfully updated." }
-        format.json { render :show, status: :ok, location: @ }
+        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
+        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /s/1 or /s/1.json
+  # DELETE /users/1 or /users/1.json
   def destroy
-    @.destroy
+    @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to s_url, notice: " was successfully destroyed." }
+      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_
-      @ = .find(params[:id])
+    def set_user
+      @user = User.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def _params
+    def user_params
       params
-        .require(:)
+        .require(:user)
         .permit(
           :first_name, :last_name, :passport_number,
           :nie_number, :email, :sf_contact_id, :date_of_birth, :expiry_date,
@@ -91,7 +91,8 @@ class sController < ApplicationController
           :father_s_first_name, :mother_s_first_name,
           :r_origin_bank_details, :otb_origin_bank_details,
           :balance_bank_details, :standing_orders_bank_details, :nie_document, :passport_document, :needs_poa,
-          :name_of_the_present_spouse__c, :name_of_the_previous_spouses__c, :date_of_divorce, :date_of_decease
+          :name_of_the_present_spouse__c, :name_of_the_previous_spouses__c, :date_of_divorce, :date_of_decease,
+          :tax_resident
         )
     end
 end

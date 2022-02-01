@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_01_063847) do
+ActiveRecord::Schema.define(version: 2022_02_01_144044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,11 @@ ActiveRecord::Schema.define(version: 2022_02_01_063847) do
     t.string "standing_orders_bank_details"
     t.date "here_till"
     t.string "needs_poa"
+    t.string "name_of_the_present_spouse"
+    t.string "name_of_the_previous_spouses"
+    t.date "date_of_divorce"
+    t.date "date_of_decease"
+    t.boolean "tax_resident", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -62,7 +62,26 @@
   </div>
 
    <div class="form-floating mb-3">
-    <%= form.text_field :nationality, class:"form-control", placeholder:"Nationality" %>
+   <%= form.select "nationality", options_for_select(%w[
+      Belgian
+      British
+      Chinese
+      Danish
+      Dutch
+      Finnish
+      French
+      German
+      Greek
+      Indian
+      Irish
+      Italian
+      Norwegian
+      Polish
+      Spanish
+      Swedish
+      Swiss
+      Romanian
+    ], ""), { include_blank: true }, { class:"form-control", placeholder:"Nationality" } %>
     <%= form.label :nationality %>
    </div>
 
@@ -88,6 +107,10 @@
     <%= form.label :spouse_full_name %>
     </div>
 
+    <div class="form-check mb-3">
+      <%= form.check_box :tax_resident, class:"form-check-input", placeholder:"tax_resident" %>
+      <%= form.label :tax_resident %>
+    </div>
     <%# Are you a Spanish tax resident?%>
 
     <%# mailing address missing, try MailingStreet%>
