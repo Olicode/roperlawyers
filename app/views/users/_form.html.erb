@@ -22,7 +22,7 @@
   <% end %>
 
   <div class="form-floating mb-3">
-    <%= form.text_field :first_name, class:"form-control", placeholder:"First name" %>
+    <%= form.text_field :first_name, class:"form-control bg-gray", placeholder:"" %>
     <%= form.label :first_name %>
   </div>
 
@@ -66,13 +66,12 @@
     <%= form.label :nationality %>
    </div>
 
-      <div class="rounded p-3 mb-3 bg-light">
-        <p>Upload a copy of your passport</p>
-        <div class="form-floating">
-          <%= form.file_field :passport_document%>
-        </div>
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload a copy of your passport</p>
+      <div class="form-floating" >
+       <%= form.file_field :passport_document%>
       </div>
-
+    </div>
 
    <div class="form-floating mb-3">
     <%= form.text_field :profession, class:"form-control", placeholder:"Profession" %>
@@ -102,6 +101,21 @@
       </div>
     </div>
 
+
+    <%# PoA section %>
+  <div class="card p-5 mb-5 card-shadow">
+    <h4>Power of Attorney</h4>
+    <p class="mb-5">Do you want to give Roper Lawyers a power of attorney so we can do everything for you, including applying for your NIE number, opening a Spanish bank account, etc? You can make one either in Lanzarote if you are here or the country you live in and be sent to us.</p>
+      <div class="form-floating mb-3">
+        <%= form.text_field :needs_poa__c, class:"form-control", placeholder:"Power of Attorney"  %>
+        <%= form.label :Apply_for_Power_of_Attorney %>
+      </div>
+  </div>
+
+
+
+
+<%# NIE section %>
   <div class="card p-5 mb-5 card-shadow">
     <h4>NIE Number</h4>
     <p class="mb-5">Do you have an NIE number? If so, fill in the field and upload a photo of it. If not please fill in the following fields.</p>
@@ -111,24 +125,26 @@
       </div>
 
       <div class="form-floating mb-3">
-        <%= form.text_field :father_s_first_name, class:"form-control", placeholder:"Father's first name" %>
+        <%= form.text_field :father_s_first_name, class:"form-control", placeholder:"Father's " %>
         <%= form.label :father_s_first_name %>
       </div>
 
       <div class="form-floating mb-3">
-        <%= form.text_field :mother_s_first_name, class:"form-control", placeholder:"Mother's first name"  %>
+        <%= form.text_field :mother_s_first_name, class:"form-control", placeholder:"Mother's "  %>
         <%= form.label :mother_s_first_name %>
       </div>
 
       <div class="rounded p-3 mb-3 bg-light">
           <div class="form-floating">
-          <p>Upload a copy of your passport</p>
+          <p >Upload a copy of your NIE document</p>
             <%= form.file_field :nie_document %>
           </div>
       </div>
 
   </div>
 
+
+<%# Bank details section %>
 <div class="card p-5 mb-5 card-shadow">
 <h4>Bank details</h4>
 <p class="mb-5">If you are transferring all amounts from same bank fill in the first field and type same in second and third fields.
@@ -161,6 +177,33 @@
   </div>
 
 </div>
+
+<%# Will section %>
+  <div class="card p-5 mb-5 card-shadow">
+    <h4>Will & Last Testament</h4>
+    <p class="mb-5">Do you want a Will & Last Testament? If so, fill in the field below. The costs per Will is 150€ (Translator approx. 100€, Notary approx. 50€)</p>
+      <div class="form-floating mb-3">
+        <%= form.text_field :name_of_the_present_spouse, class:"form-control", placeholder:"Name of the present spouse"  %>
+        <%= form.label :name_of_the_present_spouse %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :name_of_the_previous_spouses, class:"form-control", placeholder:"Name of the previous spouse" %>
+        <%= form.label :name_of_the_previous_spouses %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :date_of_divorce, class:"form-control", placeholder:"Date of divorce"  %>
+        <%= form.label :date_of_divorce %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :date_of_decease, class:"form-control", placeholder:"Date of decease"  %>
+        <%= form.label :date_of_decease %>
+      </div>
+
+  </div>
+
 
   <div class="d-grid gap-2 mb-3">
     <%= form.submit "Submit", class:"btn btn-primary btn-lg mb-2" %>

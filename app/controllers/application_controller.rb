@@ -17,13 +17,19 @@ class ApplicationController < ActionController::Base
       Profesi_n__c: user.profession,
       Estado_Civil__c: user.marital_status,
       Here_till__c: user.here_till,
+      Needs_PoA__c: user.needs_poa,
       NIE_Number__c: user.nie_number,
       Father_s_First_Name__c: user.father_s_first_name,
       Mother_s_First_Name__c: user.mother_s_first_name,
       R_origin_Bank_details__c: user.r_origin_bank_details,
       OTB_origin_Bank_details__c: user.otb_origin_bank_details,
       Balance_Bank_details__c: user.balance_bank_details,
-      Standing_orders_Bank_details__c: user.standing_orders_bank_details
+      Standing_orders_Bank_details__c: user.standing_orders_bank_details,
+      Name_of_the_present_spouse__c: user.name_of_the_present_spouse,
+      Name_of_the_previous_spouses__c: user.name_of_the_previous_spouses,
+      Date_of_divorce__c: user.date_of_divorce,
+      Date_of_decease__c: user.date_of_decease
+
     }
   end
 
@@ -36,4 +42,3 @@ class ApplicationController < ActionController::Base
     }
   end
 end
-
