@@ -85,14 +85,16 @@ class UsersController < ApplicationController
         .require(:user)
         .permit(
           :first_name, :last_name, :passport_number,
-          :nie_number, :email, :sf_contact_id, :date_of_birth, :expiry_date,
+          :nie_number, :email, :sf_contact_id, :date_of_, :expiry_date,
           :mobile_phone, :here_till, :full_name_on_passport, :nationality,
           :profession, :marital_status, :spouse, :mailing_address,
           :father_s_first_name, :mother_s_first_name,
           :r_origin_bank_details, :otb_origin_bank_details,
           :balance_bank_details, :standing_orders_bank_details, :nie_document, :passport_document, :needs_poa,
           :name_of_the_present_spouse__c, :name_of_the_previous_spouses__c, :date_of_divorce, :date_of_decease,
-          :tax_resident
+          :tax_resident, :father_s_full_name, :father_s_vital_status, :mother_s_full_name, :mother_s_vital_status,
+          :children,
+          :outline_of_bequests_and_oder_of_success, :inheritance_to_be_governed_by
         )
     end
 end

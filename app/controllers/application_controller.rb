@@ -28,7 +28,14 @@ class ApplicationController < ActionController::Base
       Name_of_the_present_spouse__c: user.name_of_the_present_spouse,
       Name_of_the_previous_spouses__c: user.name_of_the_previous_spouses,
       Date_of_divorce__c: user.date_of_divorce,
-      Date_of_decease__c: user.date_of_decease
+      Date_of_decease__c: user.date_of_decease,
+      Father_s_Full_Name__c: user.father_s_full_name,
+      Father_s_Vital_Status__c: user.father_s_vital_status,
+      Mother_s_Full_Name__c: user.mother_s_full_name,
+      Mother_s_Vital_Status__c: user.mother_s_vital_status,
+      Children__c: user.children,
+      Outline_of_bequests_and_order_of_success__c: user.outline_of_bequests_and_oder_of_success,
+      Inheritance_to_be_governed_by__c: user.inheritance_to_be_governed_by
 
     }
   end

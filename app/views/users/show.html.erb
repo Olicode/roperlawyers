@@ -113,7 +113,70 @@
   <%= @user.standing_orders_bank_details %>
 </p>
 </div>
+<%# will  %>
+<p class="h1 text-center">Last Will and Testament</p>
+<div class="container card p-5 mb-3 card-shadow">
 
+<p>
+  <strong>Name of the present spouse:</strong>
+  <%= @user.name_of_the_present_spouse %>
+</p>
+
+<p>
+  <strong>Name of the previous spouses:</strong>
+  <%= @user.name_of_the_previous_spouses %>
+</p>
+
+<p>
+  <strong>Date of divorce:</strong>
+  <%= @user.date_of_divorce %>
+</p>
+
+<p>
+  <strong>Date of decease:</strong>
+  <%= @user.date_of_decease %>
+</p>
+
+<p>
+  <strong>Father's full name:</strong>
+  <%= @user.father_s_full_name %>
+</p>
+
+<p>
+  <strong>Father's vital status:</strong>
+  <%= @user.father_s_vital_status %>
+</p>
+
+<p>
+  <strong>Mother's vital status:</strong>
+  <%= @user.mother_s_vital_status %>
+</p>
+
+<p>
+  <strong>Mother's full name:</strong>
+  <%= @user.mother_s_full_name %>
+</p>
+
+<p>
+  <strong>Children:</strong>
+  <%= @user.children %>
+</p>
+
+<p>
+  <strong>Outline of Bequests and Order of Success:</strong>
+  <%= @user.outline_of_bequests_and_oder_of_success %>
+</p>
+
+<p>
+  <strong>Inheritance to be governed by:</strong>
+  <%= @user.inheritance_to_be_governed_by %>
+</p>
+
+
+
+</div>
+
+<%# uploaded docuemnts section  %>
 <p class="h1 text-center">Uploaded documents</p>
 <div class="container card p-5 mb-3 card-shadow">
 <p>
@@ -140,7 +203,3 @@
 </div>
 </div>
 
-<p class="p-3">
-  <strong>Sf contact:</strong>
-  <%= @user.sf_contact_id %>
-</p>
