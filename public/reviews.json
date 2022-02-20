@@ -1,44 +1,65 @@
 {
-    "records": [ 
+    "records": [
         {
 
             "id": 1,
-            "name": "Alice",
+            "name": "Louis Farrell",
             "Date": "3 days ago",
-            "rating": 3,
-            "comment":  "Firstly I am reviewing as a family of 4 who have just made our first move out of the uk and to Lanzarote Olivier, Alexi and the team at roper lawyers genuinely made this possible for us. without their information, advice"
+            "rating": 5,
+            "comment":  "Firstly I am ing as a family of 4 who have just made our first move out of the uk and to Lanzarote. Olivier, Alexi and the team at roper lawyers genuinely made this possible for us. without their information, advice and guidance through the process we wouldn't have been able to make our dream move. I can say without doubt that if we hadn't used their services we would have spent thousands more after making mistake after mistake. from the military permission required to purchase our home that we were unaware of, to translating documents and accompanying us to the notary and also assisting us in navigating issues that presented themselves along the way they made the move as stress free as I imagine it could be."
         },
         {
 
             "id": 2,
-            "name": "Alice",
+            "name": "Ali Elliott",
             "Date": "3 days ago",
-            "rating": 3,
-            "comment":  "Firstly I am reviewing as a family of 4 who have just made our first move out of the uk and to Lanzarote Olivier, Alexi and the team at roper lawyers genuinely made this possible for us. without their information, advice"
+            "rating": 5,
+            "comment":  "Olivier and Alexi at Roper Lawyers are absolutely fabulous, we purchased a house in Gran Canaria (so not just limited to Lanzarote) and the service we received was second to none, it was efficient, knowledgeable, and very reasonably priced, we are using them as our Spanish Lawyers from now on and can not recommend them highly enough!"
         },
         {
 
             "id": 3,
-            "name": "Alice",
+            "name": "Nick N",
             "Date": "3 days ago",
-            "rating": 3,
-            "comment":  "Firstly I am reviewing as a family of 4 who have just made our first move out of the uk and to Lanzarote Olivier, Alexi and the team at roper lawyers genuinely made this possible for us. without their information, advice"
+            "rating": 5,
+            "comment":  "Myself and my partner purchased a property in puerto del carmen and wanted to use a local lawyer who specialises in property - After some research we chose Roper lawyers and were glad we did - A very pleasant hassle free purchase with all of our utilities and Spanish bank account set up for us by ropers whilst we were in the U.K - All we had to do was pick up the key to our place in the sun! A Big Thankyou  to Olivier and Alexi at Ropers lawyers for a professional service."
         },
         {
 
             "id": 4,
-            "name": "Alice",
+            "name": "Marek Wietlicki",
             "Date": "3 days ago",
-            "rating": 3,
-            "comment":  "Firstly I am reviewing as a family of 4 who have just made our first move out of the uk and to Lanzarote Olivier, Alexi and the team at roper lawyers genuinely made this possible for us. without their information, advice"
+            "rating": 5,
+            "comment":  "Top legal service from Roper Lawyers. I would highly recommend them for professional help. As first time buyer of house in Spain, without knowlegde of Spanish language and local rules, it seemed very stressful to me and my wife to navigate through usually complexed process of negotiations, agreement,  purchase and property transafer. Oliver and Alexi made these tasks easier than expected and made us feel more comfortable with every next step. I have a lot of experience with lawyers in Poland, where I live and work, and was quite surprised receiving an e-mail response from Alexi within single minutes. Oliver perfectly adviced me in core matters especially by negotiations of purchase agreements. It is worth to admit we negotiated another property first until, as result of strange seller requirements, we had to quit before we turned to buy our second choice in Fuertaventura. But after receiving final bill we were again positively surprised not to find surcharge for missed transaction. Thank you Oliver and Alexi, for sure we will come back anytime we like to buy/sell property in Spain."
         },
         {
 
             "id": 5,
-            "name": "Alice",
+            "name": "Gill Hough",
             "Date": "3 days ago",
-            "rating": 3,
-            "comment":  "Firstly I am reviewing as a family of 4 who have just made our first move out of the uk and to Lanzarote Olivier, Alexi and the team at roper lawyers genuinely made this possible for us. without their information, advice"
+            "rating": 5,
+            "comment":  "Olivier and his team have just guided and supported us through the legal process of our first ever purchase abroad. The process was completely new to us and they were so patient and responsive to all our questions and nothing was ever too much trouble. They provide a first class service from start to finish and I honestly can't recommend them enough. Thank you Olivier and Alexi for making the process completely stress free and so much easier.  Gill Hough and Ken Gardner"
+        },
+        {
+          "id": 5,
+          "name": "ACS 72",
+          "Date": "3 days ago",
+          "rating": 5,
+          "comment": "A pleasure to do business with. We came across Roper Lawyers after the experience we were having with our now previous lawyer (taking too long to respond to email requests, not appearing too bothered about doing the work for us) caused us to look around.... We were buying a property on the island, and due to the travel restrictions in the UK, and the ever changing guidelines of CV-19, we needed a firm that could do all of the 'heavy lifting' for us, appreciating that things were going to be pretty fluid, due to our inability to be on the island to conclude business. Olivier and Alexi were (and still are!) superb - nothing was too much trouble, ever. Olivier even gave us his personal whatsapp number, and would call and leave voice messages on a regular basis, with updates and options in terms of getting things done. Alexi even facilitated 'key access' to various contractors, to allow for quotes for works to be done, whilst we were unable to get to the island to do it ourselves. The contract signing process was easy - as it is all done by Docusign, and the transfer of utilities/community of owners/registration at town hall etc, were all done with ease and with updates at every step of the way. This is the third property that I have bought on the island and I wish I had found Roper Lawyers before - I cannot recommend them highly enough and would definitely use them again, without any hesitation. Olivier and Alexi made was is normally a very stressful process as easy as it could possibly have been. If you are looking for a legal team to make buying/selling easy and pain free, then don't look any further than Roper Lawyers."
+        },
+        {
+          "id": 5,
+          "name": "David Malone",
+          "Date": "3 days ago",
+          "rating": 5,
+          "comment": "Excellent experience with Roper Lawyers. Purchasing a property in a foreign country can be an intimidating experience but Olivier and his team made it so easy with everything taken care of from the legalities involved in the purchase, NIE number, bank account, utility bill transfer, insurance, tax payment etc. I would highly recommend Roper Lawyers."
+        },
+        {
+          "id": 5,
+          "name": "Tony O Driscoll",
+          "Date": "3 days ago",
+          "rating": 5,
+          "comment": "I recently purchased a property in lanzarote PDC old town and i decided to choose roper lawyers because they have extensive experience with dealing with property! Roper lawyers are highly trained and skilled and very attentive while dealing with clients, i was a client from overseas and to say the interaction and just the whole experience was less stressful than i originally thought! So in my experience Roper Lawyers are the real.deal when it comes to finalising a properly closure in speedy time and not once was there an issue. I would Highly recommend this company to anyone. Kind regards tony from Ireland."
         }
-    ]    
+    ]
 }

@@ -6,11 +6,44 @@
       </div>
       <div class="col-lg-6">
         <h1 class="display-5 fw-bold lh-1 mb-3">Property Conveyancing Solicitors in <span class="blue-text">Lanzarote</span></h1>
-        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+        <p class="">Roper Lawyers is a well-respected firm of solicitors offering practical and expert legal advice on buying and selling property. We have been featured twice on Channel 4's A Place in the Sun and help people purchase property safely and easily with tailored conveyancing. Our solicitors are approachable and responsive to your needs and always strive to provide a high-quality legal service. No matter what sort of property transaction you’re looking to complete, our bilingual English/Spanish-speaking solicitors will guide you through the entire process from start to finish.
+</p>
         <div class="d-grid gap-3 d-md-flex justify-content-md-start">
+        <a href="mailto:info@roperlawyers.com">
           <button type="button" class="btn btn-primary btn-lg px-4 p-3 me-md-2 my-3 gold-bg">Contact</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-3 my-3 button-super-white">Free Consultation with Olivier Roper</button>
+        </a>
+
+          <%# <button type="button" class="btn btn-primary btn-lg px-4 p-3 me-md-2 my-3 gold-bg" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</button> %>
+<!-- Calendly link widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<button type="button" class="btn btn-outline-secondary btn-lg px-4 p-3 my-3 button-super-white" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">Free consultation with Olivier Roper</button>
+<!-- Calendly link widget end -->
+          <%#  <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-3 my-3 button-super-white"></button>%>
         </div>
       </div>
     </div>
   </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form id='contactUsForm'>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id='submitButton' class="btn btn-primary">Save</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

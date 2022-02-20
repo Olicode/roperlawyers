@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   root to: 'pages#home'
+  post 'contact_us', to: 'pages#contact_us'
   get 'lanzarote', to: 'pages#lanzarote'
   get 'tenerife', to: 'pages#tenerife'
   get 'review_page', to: 'pages#review_page'
