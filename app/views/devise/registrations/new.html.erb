@@ -4,16 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="author" content="Roper Lawyers">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Features · Bootstrap v5.1</title>
+    <title>Roper Lawyers</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/features/">
 
-<div class="container mt-4">
+<div class="container m-4 p-5">
 <div class="row justify-content-center">
 <div class="col-12 col-md-10 col-lg-6">
-<h2>Sign up</h2>
+<h2>Welcome to Roper Lawyers</h2>
+<p>Create an account or <%= link_to "Login", new_user_session_path%></p>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -51,10 +52,13 @@
       <% end %>
   </div>
 
-  <div class="form-actions d-grid gap-2 form-group ">
+  <div class="form-actions d-grid gap-2 mb-3 form-group">
     <%= f.button :submit, "Sign up", class: "btn-primary btn-lg "  %>
   </div>
 <% end %>
+<div class="mb-5">
+ Have any questions? <a href="wa.me/+34649948377">Send me a WhatsApp</a>
+  </div>
 </div>
 </div>
 </div>
