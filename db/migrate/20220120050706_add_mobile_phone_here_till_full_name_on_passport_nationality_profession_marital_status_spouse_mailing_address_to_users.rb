@@ -2,7 +2,7 @@ class AddMobilePhoneHereTillFullNameOnPassportNationalityProfessionMaritalStatus
   def change
     add_column :users, :mobile_phone, :string
     add_column :users, :here_till, :date
-    
+
     add_column :users, :full_name_on_passport, :string
     add_column :users, :nationality, :string
     add_column :users, :profession, :string

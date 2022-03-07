@@ -44,7 +44,7 @@
 
 <p>
   <strong>Expiry Date </strong>
-  <%= @user.expiry_date.strftime("%d/%m/%Y") %>
+  <%= @user.expiry_date&.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
@@ -69,7 +69,7 @@
 
 <p>
   <strong>In Lanzarote until:</strong>
-  <%= @user.here_till.strftime("%d/%m/%Y") %>
+  <%= @user.here_till&.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
@@ -129,12 +129,12 @@
 
 <p>
   <strong>Date of divorce:</strong>
-  <%= @user.date_of_divorce %>
+  <%= @user.date_of_divorce&.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
   <strong>Date of decease:</strong>
-  <%= @user.date_of_decease %>
+  <%= @user.date_of_decease&.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
@@ -202,4 +202,3 @@
 <p class="mt-5 mb-3 text-muted text-center">Roper Lawyers &copy; 2022</p>
 </div>
 </div>
-
