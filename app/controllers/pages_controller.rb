@@ -2,16 +2,21 @@ class PagesController < ApplicationController
   before_action :set_reviews, except: %i[contact_us]
 
   def lanzarote
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
   end
 
   def tenerife
     @reviews = JSON.parse(File.read(File.join('public', 'tenerife_reviews.json')))
   end
 
+  def tenerife
+    @reviews = JSON.parse(File.read(File.join('public', 'grancanaria_reviews.json')))
+  end
   def review_page
   end
 
   def fuerteventura
+   @reviews = JSON.parse(File.read(File.join('public', 'fuerteventura_reviews.json')))
   end
 
   def home

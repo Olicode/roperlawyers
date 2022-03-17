@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'contact_us', to: 'pages#contact_us'
   get 'lanzarote', to: 'pages#lanzarote'
   get 'tenerife', to: 'pages#tenerife'
+  get 'grancanaria', to: 'pages#grancanaria'
   get 'fuerteventura', to: 'pages#fuerteventura'
   get 'review_page', to: 'pages#review_page'
 
