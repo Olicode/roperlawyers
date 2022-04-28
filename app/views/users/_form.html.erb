@@ -221,12 +221,12 @@
       </div>
 
       <div class="form-floating mb-3">
-        <%= form.text_field :date_of_divorce, class:"form-control", placeholder:"Date of divorce"  %>
+        <%= form.date_field :date_of_divorce, class:"form-control", placeholder:"Date of divorce"  %>
         <%= form.label :date_of_divorce %>
       </div>
 
       <div class="form-floating mb-3">
-        <%= form.text_field :date_of_decease, class:"form-control", placeholder:"Date of decease"  %>
+        <%= form.date_field :date_of_decease, class:"form-control", placeholder:"Date of decease"  %>
         <%= form.label :date_of_decease %>
       </div>
 
@@ -236,7 +236,9 @@
       </div>
 
       <div class="form-floating mb-3">
-        <%= form.text_field :father_s_vital_status, class:"form-control", placeholder:"Father's vital status"  %>
+        <%= form.select "father_s_vital_status", options_for_select([
+        "Deceased", "Living"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder:"Father's vital status" } %>
         <%= form.label :father_s_vital_status %>
       </div>
 
@@ -246,7 +248,9 @@
       </div>
 
       <div class="form-floating mb-3">
-        <%= form.text_field :mother_s_vital_status, class:"form-control", placeholder:"Mother's vital status"  %>
+         <%= form.select "mother_s_vital_status", options_for_select([
+        "Deceased", "Living"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder:"Mother's vital status" } %>
         <%= form.label :mother_s_vital_status %>
       </div>
 
