@@ -68,6 +68,25 @@
 </p>
 
 <p>
+  <strong>Home Address:</strong>
+  <%= @user.home_address %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @user.currency %>
+</p>
+<p>
+  <strong>Mortgage application:</strong>
+  <%= @user.needs_mortgage %>
+</p>
+
+<p>
+  <strong>Holiday Let:</strong>
+  <%= @user.wants_to_holiday_let %>
+</p>
+
+<p>
   <strong>In Lanzarote until:</strong>
   <%= @user.here_till&.strftime("%d/%m/%Y") %>
 </p>
@@ -75,6 +94,16 @@
 <p>
   <strong>Power of Attorney:</strong>
   <%= @user.needs_poa %>
+</p>
+
+<p>
+  <strong>PoA made in Spain:</strong>
+  <%= @user.poa_made_in_spain %>
+</p>
+
+<p>
+  <strong>PoA For:</strong>
+  <%= @user.poa_for %>
 </p>
 
 <p>
@@ -106,6 +135,11 @@
 <p>
   <strong>Balance origin bank:</strong>
   <%= @user.balance_bank_details %>
+</p>
+
+<p>
+  <strong>Do you have a Spanish Bank account:</strong>
+  <%= @user.has_a_spanish_bank_account %>
 </p>
 
 <p>
@@ -172,15 +206,6 @@
   <%= @user.inheritance_to_be_governed_by %>
 </p>
 
-<p>
-  <strong>PoA made in Spain:</strong>
-  <%= @user.poa_made_in_spain %>
-</p>
-
-<p>
-  <strong>PoA For:</strong>
-  <%= @user.poa_for %>
-</p>
 
 
 
