@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_15_182742) do
+ActiveRecord::Schema.define(version: 2022_06_15_204507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,12 @@ ActiveRecord::Schema.define(version: 2022_06_15_182742) do
     t.string "inheritance_to_be_governed_by"
     t.string "poa_made_in_spain"
     t.string "poa_for"
+    t.string "home_address"
+    t.string "currency"
+    t.string "needs_nie"
+    t.string "needs_mortgage"
+    t.string "wants_to_holiday_let"
+    t.string "has_a_spanish_bank_account"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -106,11 +106,12 @@ class UsersController < ApplicationController
           :father_s_first_name, :mother_s_first_name,
           :r_origin_bank_details, :otb_origin_bank_details,
           :balance_bank_details, :standing_orders_bank_details, :nie_document, :passport_document, :needs_poa,
-          :name_of_the_present_spouse__c, :name_of_the_previous_spouses__c, :date_of_divorce, :date_of_decease,
+          :name_of_the_present_spouse, :name_of_the_previous_spouses, :date_of_divorce, :date_of_decease,
           :tax_resident, :father_s_full_name, :father_s_vital_status, :mother_s_full_name, :mother_s_vital_status,
           :children,
           :outline_of_bequests_and_oder_of_success, :inheritance_to_be_governed_by,
-          :poa_made_in_spain, :poa_for
+          :poa_made_in_spain, :poa_for, :needs_nie, :home_address, :currency, :needs_mortgage, :wants_to_holiday_let,
+          :has_a_spanish_bank_account
         )
     end
 end

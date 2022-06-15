@@ -22,7 +22,7 @@
   <% end %>
 
   <div class="form-floating mb-3">
-    <%= form.text_field :first_name, class:"form-control bg-gray", placeholder:"" %>
+    <%= form.text_field :first_name, class:"form-control bg-gray", placeholder:"First name" %>
     <%= form.label :first_name %>
   </div>
 
@@ -108,9 +108,18 @@
     <%= form.label :spouse_full_name %>
     </div>
 
+    <div class="form-floating mb-3">
+    <%= form.text_field :home_address, class:"form-control", placeholder:"Home Address" %>
+    <%= form.label :home_address %>
+    </div>
 
-
-    <%# mailing address missing, try MailingStreet%>
+    <p class="mt-3">Please state what currency you have the funds to purchase in order to send you instructions on the best way to transfer.</p>
+      <div class="form-floating mb-3">
+        <%= form.select "currency", options_for_select([
+        "EUR", "GBP"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder: "currency" } %>
+        <%= form.label :currency %>
+     </div>
 
     <div class="form-floating mb-3">
 
@@ -119,6 +128,22 @@
     In Lanzarote until
       <% end %>
       </div>
+
+  <p class="mt-3">Are you currently or wanting to apply for a mortgage?</p>
+    <div class="form-floating mb-3">
+      <%= form.select "needs_mortgage", options_for_select([
+      "Yes", "No"
+      ], ""), { include_blank: true}, { class:"form-control", placeholder: "needs_mortgage" } %>
+      <%= form.label :apply_for_mortgage %>
+    </div>
+
+  <p class="mt-3">Are you going to holiday let your property? If so, we can apply for a tourist license.</p>
+    <div class="form-floating mb-3">
+      <%= form.select "wants_to_holiday_let", options_for_select([
+      "Yes", "No"
+      ], ""), { include_blank: true}, { class:"form-control", placeholder: "wants_to_holiday_let" } %>
+      <%= form.label :holiday_let %>
+    </div>
 
     <div class="form-check mb-3">
       <%= form.check_box :tax_resident, class:"form-check-input", placeholder:"tax_resident" %>
@@ -131,22 +156,45 @@
     <%# PoA section %>
   <div class="card p-5 mb-5 card-shadow">
     <h4>Power of Attorney</h4>
-    <p class="mb-5">Do you want to give Roper Lawyers a power of attorney so we can do everything for you, including applying for your NIE number, opening a Spanish bank account, etc? You can make one either in Lanzarote if you are here or the country you live in and be sent to us.</p>
-     <div class="form-floating mb-3">
-     <%= form.select "needs_poa", options_for_select([
-     "Yes", "No", "I've already given power to someone"
-    ], ""), { include_blank: true }, { class:"form-control", placeholder:"Needs PoA" } %>
-    <%= form.label :power_of_attorney %>
-   </div>
+    <p>Do you want to give Roper Lawyers a power of attorney so we can do everything for you, including applying for your NIE number, opening a Spanish bank account, apply for a mortgage, etc? You can make one either in Lanzarote if you are here or the country you live in and be sent to us.</p>
+      <div class="form-floating mb-3">
+        <%= form.select "needs_poa", options_for_select([
+        "Yes", "No", "I've already given power to someone"
+        ], ""), { include_blank: true }, { class:"form-control", placeholder:"Needs PoA" } %>
+        <%= form.label :I_would_like_to_give_a_power_of_attorney %>
+      </div>
+      <p class="mt-3">Please state if you want to give us power to buy, sell, apply for a mortgage or all the above. We recommend choosing Buying, Selling & Mortgage for any future conveyancing.</p>
+      <div class="form-floating mb-3">
+        <%= form.select "poa_for", options_for_select([
+        "Buying", "Selling", "Buying & Selling", "Buying, Selling & Mortgage"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder: "poa_for" } %>
+        <%= form.label :power_of_attorney_for %>
+     </div>
+
+
+    <p class="mt-3">Please state if you want us to obtain the Power of Attorney in Spain or your home cournty? If its in your home cournty, we will be sending a draft to the closest notary where you live, you will have to sign it there, and the Notary will post the Power of Attorney to us.</p>
+      <div class="form-floating mb-3">
+        <%= form.select "poa_made_in_spain", options_for_select([
+        "Yes", "No"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder: "poa_made_in_spain" } %>
+        <%= form.label :Power_of_attorney_to_be_made_in_Spain? %>
+     </div>
+
+
   </div>
-
-
-
 
 <%# NIE section %>
   <div class="card p-5 mb-5 card-shadow">
     <h4>NIE Number</h4>
     <p class="mb-5">Do you have an NIE number? If so, fill in the field and upload a photo of it. If not please fill in the following fields.</p>
+
+      <div class="form-floating mb-3">
+        <%= form.select "needs_nie", options_for_select([
+        "Yes", "No"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder: "needs_nie" } %>
+        <%= form.label :Do_you_want_us_to_apply_for_an_NIE_number? %>
+     </div>
+
       <div class="form-floating mb-3">
         <%= form.text_field :nie_number, class:"form-control", placeholder:"NIE number"  %>
         <%= form.label :nie_number%>
@@ -197,6 +245,14 @@
     <%= form.label :balance_bank_details %>
   </div>
 
+  <h6>Do you have a Spanish Bank account?</h6>
+  <div class="form-floating mb-3">
+    <%= form.select "has_a_spanish_bank_account", options_for_select([
+    "Yes", "No"
+    ], ""), { include_blank: true}, { class:"form-control", placeholder: "has_a_spanish_bank_account" } %>
+    <%= form.label :spanish_bank_account %>
+  </div>
+  
   <h6>Where do you want your utility company standing orders to come from?</h6>
   <p class="text-muted">It must be a Spanish account. If you don't have one yet, please leave this field blank.</p>
   <div class="form-floating mb-3">
@@ -266,24 +322,13 @@
 
       <div class="form-floating mb-3">
         <%= form.select "inheritance_to_be_governed_by", options_for_select([
-        "Law of country of current nationality", "Nationality at the time of death", "Habitual place of residence at the time of death"
+          "Law of country of current nationality", "Nationality at the time of death", "Habitual place of residence at the time of death"
         ], ""), { include_blank: true}, { class:"form-control", placeholder:"Inheritance to be governed by" } %>
         <%= form.label :inheritance_to_be_governed_by %>
+      <p class="mb-5">Most clients choose "Law of country of current nationality" </p>
       </div>
 
-      <div class="form-floating mb-3">
-        <%= form.select "poa_made_in_spain", options_for_select([
-        "Yes", "No"
-        ], ""), { include_blank: true}, { class:"form-control", placeholder: "poa_made_in_spain" } %>
-        <%= form.label :poa_made_in_spain %>
-      </div>
 
-      <div class="form-floating mb-3">
-        <%= form.select "poa_for", options_for_select([
-        "Buying", "Selling", "Buying & Selling", "Buying, Selling & Mortgage"
-        ], ""), { include_blank: true}, { class:"form-control", placeholder: "poa_for" } %>
-        <%= form.label :poa_for %>
-      </div>
   </div>
 
 
