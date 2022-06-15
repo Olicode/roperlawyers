@@ -17,8 +17,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @sf_contact = SalesforceService.find_contact(@user.sf_contact_id)
-    if @sf_contact.present?
+    if @user.sf_contact_id.present?
+      @sf_contact = SalesforceService.find_contact(@user.sf_contact_id)
       @user.update!(
         first_name: @sf_contact.FirstName,
         last_name: @sf_contact.LastName,
