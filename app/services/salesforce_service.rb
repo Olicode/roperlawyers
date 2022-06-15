@@ -14,11 +14,15 @@ class SalesforceService
   end
 
   def self.create_or_update_contact(attrs)
-    new.client.upsert('Contact', 'Email', attrs)
+    new.client.upsert!('Contact', 'Email', attrs)
   end
 
   def self.upload_file(file_attrs)
     new.client.create!('Attachment', file_attrs)
+  end
+
+  def self.find_contact(sf_contact_id)
+    new.client.find('Contact', sf_contact_id)
   end
 
   def client

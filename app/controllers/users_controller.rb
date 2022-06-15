@@ -17,7 +17,21 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @sf_contact = SalesforceService.find_contact(@user.sf_contact_id)
+    if @sf_contact.present?
+      @user.update!(
+        first_name: @sf_contact.FirstName,
+        last_name: @sf_contact.LastName,
+        email: @sf_contact.Email,
+        passport_number: @sf_contact.Passport_Number__c,
+        mobile_phone: @sf_contact.MobilePhone,
+        full_name_on_passport: @sf_contact.Full_name_on_passport__c
+      )
+    end
   end
+
+  # PoA_made_in_Spain__c
+  # PoA_for__c
 
   # POST /users or /users.json
   def create
@@ -40,9 +54,10 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        # binding.pry
         if @user.sf_contact_id.blank?
           sf_contact_id = SalesforceService.create_or_update_contact(sf_attrs_map(@user))
-          @user.update!(sf_contact_id: sf_contact_id)
+          @user.update!(sf_contact_id: sf_contact_id) unless sf_contact_id == false
         else
           SalesforceService.update_contact(sf_attrs_map(@user).merge!(Id: @user.sf_contact_id))
 
@@ -94,7 +109,8 @@ class UsersController < ApplicationController
           :name_of_the_present_spouse__c, :name_of_the_previous_spouses__c, :date_of_divorce, :date_of_decease,
           :tax_resident, :father_s_full_name, :father_s_vital_status, :mother_s_full_name, :mother_s_vital_status,
           :children,
-          :outline_of_bequests_and_oder_of_success, :inheritance_to_be_governed_by
+          :outline_of_bequests_and_oder_of_success, :inheritance_to_be_governed_by,
+          :poa_made_in_spain, :poa_for
         )
     end
 end

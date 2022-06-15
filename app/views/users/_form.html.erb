@@ -271,6 +271,19 @@
         <%= form.label :inheritance_to_be_governed_by %>
       </div>
 
+      <div class="form-floating mb-3">
+        <%= form.select "poa_made_in_spain", options_for_select([
+        "Yes", "No"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder: "poa_made_in_spain" } %>
+        <%= form.label :poa_made_in_spain %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.select "poa_for", options_for_select([
+        "Buying", "Selling", "Buying & Selling", "Buying, Selling & Mortgage"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder: "poa_for" } %>
+        <%= form.label :poa_for %>
+      </div>
   </div>
 
 
