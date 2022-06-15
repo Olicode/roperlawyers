@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        sf_contact_id = SalesforceService.create_contact(sf_attrs_map(@user))
+        sf_contact_id = SalesforceService.create_or_update_contact(sf_attrs_map(@user))
         @user.update!(sf_contact_id: sf_contact_id)
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         if @user.sf_contact_id.blank?
-          sf_contact_id = SalesforceService.create_contact(sf_attrs_map(@user))
+          sf_contact_id = SalesforceService.create_or_update_contact(sf_attrs_map(@user))
           @user.update!(sf_contact_id: sf_contact_id)
         else
           SalesforceService.update_contact(sf_attrs_map(@user).merge!(Id: @user.sf_contact_id))
