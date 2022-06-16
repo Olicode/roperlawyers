@@ -36,7 +36,7 @@ class UsersController < ApplicationController
         here_till: @sf_contact.Here_till__c,
         needs_mortgage: @sf_contact.Needs_Mortgage__c,
         wants_to_holiday_let: @sf_contact.Wants_to_holiday_let__c,
-        tax_resident: @sf_contact.Tax_Resident__c,
+        tax_resident: @sf_contact.Tax_Resident__c || false,
         needs_poa: @sf_contact.Needs_PoA__c,
         poa_for: @sf_contact.PoA_for__c,
         poa_made_in_spain: @sf_contact.PoA_made_in_Spain__c,
@@ -60,11 +60,6 @@ class UsersController < ApplicationController
         children: @sf_contact.Children__c,
         outline_of_bequests_and_oder_of_success: @sf_contact.Outline_of_bequests_and_order_of_success__c,
         inheritance_to_be_governed_by: @sf_contact.Inheritance_to_be_governed_by__c
-
-
-
-
-
       )
     end
   end
@@ -150,7 +145,7 @@ class UsersController < ApplicationController
           :children,
           :outline_of_bequests_and_oder_of_success, :inheritance_to_be_governed_by,
           :poa_made_in_spain, :poa_for, :needs_nie, :home_address, :currency, :needs_mortgage, :wants_to_holiday_let,
-          :has_a_spanish_bank_account
+          :has_a_spanish_bank_account, :date_of_birth, :outline_of_bequests_and_order_of_success__c
         )
     end
 end
