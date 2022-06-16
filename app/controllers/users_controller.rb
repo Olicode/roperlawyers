@@ -23,9 +23,48 @@ class UsersController < ApplicationController
         first_name: @sf_contact.FirstName,
         last_name: @sf_contact.LastName,
         email: @sf_contact.Email,
-        passport_number: @sf_contact.Passport_Number__c,
         mobile_phone: @sf_contact.MobilePhone,
-        full_name_on_passport: @sf_contact.Full_name_on_passport__c
+        full_name_on_passport: @sf_contact.Full_name_on_passport__c,
+        passport_number: @sf_contact.Passport_Number__c,
+        date_of_birth: @sf_contact.Date_of_Birth__c,
+        nationality: @sf_contact.Nationality__c,
+        profession: @sf_contact.Profesi_n__c,
+        marital_status: @sf_contact.Estado_Civil__c,
+        spouse: @sf_contact.Spouse__c,
+        home_address: @sf_contact.Home_Address_del__c,
+        currency: @sf_contact.Currency__c,
+        here_till: @sf_contact.Here_till__c,
+        needs_mortgage: @sf_contact.Needs_Mortgage__c,
+        wants_to_holiday_let: @sf_contact.Wants_to_holiday_let__c,
+        tax_resident: @sf_contact.Tax_Resident__c,
+        needs_poa: @sf_contact.Needs_PoA__c,
+        poa_for: @sf_contact.PoA_for__c,
+        poa_made_in_spain: @sf_contact.PoA_made_in_Spain__c,
+        needs_nie: @sf_contact.Needs_NIE__c,
+        nie_number: @sf_contact.NIE_Number__c,
+        father_s_first_name: @sf_contact.Father_s_First_Name__c,
+        mother_s_first_name: @sf_contact.Mother_s_First_Name__c,
+        r_origin_bank_details: @sf_contact.R_origin_Bank_details__c,
+        otb_origin_bank_details: @sf_contact.OTB_origin_Bank_details__c,
+        balance_bank_details: @sf_contact.Balance_Bank_details__c,
+        has_a_spanish_bank_account: @sf_contact.Has_a_Spanish_Bank_Account__c,
+        standing_orders_bank_details: @sf_contact.Standing_orders_Bank_details__c,
+        name_of_the_present_spouse: @sf_contact.Name_of_the_present_spouse__c,
+        name_of_the_previous_spouses: @sf_contact.Name_of_the_previous_spouses__c,
+        date_of_divorce: @sf_contact.Date_of_divorce__c,
+        date_of_decease: @sf_contact.Date_of_decease__c,
+        father_s_full_name: @sf_contact.Father_s_Full_Name__c,
+        father_s_vital_status: @sf_contact.Father_s_Vital_Status__c,
+        mother_s_full_name: @sf_contact.Mother_s_Full_Name__c,
+        mother_s_vital_status: @sf_contact.Mother_s_Vital_Status__c,
+        children: @sf_contact.Children__c,
+        outline_of_bequests_and_oder_of_success: @sf_contact.Outline_of_bequests_and_order_of_success__c,
+        inheritance_to_be_governed_by: @sf_contact.Inheritance_to_be_governed_by__c
+
+
+
+
+
       )
     end
   end
