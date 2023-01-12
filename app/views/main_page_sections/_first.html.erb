@@ -15,12 +15,20 @@
         <!-- Calendly link widget begin -->
           <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
           <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-3  button-super-white" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">Free consultation with Olivier Roper</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-2  button-super-white" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
+          <%= image_tag("Olivier Roper Solicitor Roper Lawyers head.jpeg", class:"olivier-head")  %>
+          <p>Schedule a free consultation with Olivier Roper</p>
+          </button>
         </div>
 <div>
 
-          <a class="d-grid gap-2 btn btn-primary btn-lg p-3 px-5 me-md-2 gold-bg" href="https://wa.me/+34649948377">WhatsApp
-          </a>
+
+           <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank">
+           <div class="red-dot"></div>
+           <i class="fa-brands fa-whatsapp"></i>
+           </a>
+
+          <script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
         </div>
 
 <!-- Calendly link widget end -->
