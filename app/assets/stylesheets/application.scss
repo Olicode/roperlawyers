@@ -125,6 +125,7 @@
   color: #373737;
   display: flex;
   align-items: center;
+  border-color: lightgray;
 
   p {
     margin: 0;
@@ -136,7 +137,8 @@
 }
 
 .button-super-white:hover {
-  background-color: #373737;
+  background-color: rgb(244, 244, 244);
+  color: #373737;
 
 }
 
