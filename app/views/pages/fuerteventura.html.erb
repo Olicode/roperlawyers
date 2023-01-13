@@ -13,28 +13,38 @@
 </header>
 
 <main>
+<section class="">
 <div class="container px-4">
     <div class="row flex-lg-row-reverse align-items-center g-5">
       <div class="col-md-10 mx-auto col-lg-5">
-        <%= image_tag("OlivierRoperConveyancingSolicitors.jpg", class:"d-none d-sm-block mx-lg-auto img-fluid rounded img-home mt-5")  %>
+        <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers.jpg", class:"d-none d-sm-block mx-lg-auto img-fluid rounded img-home mt-5")  %>
       </div>
       <div class="col-lg-6">
-        <h1 class="display-5 fw-bold lh-1 mb-3">Property Conveyancing Solicitors in <span class="gradient-text">Fuerteventura</span></h1>
-        <p class="">Roper Lawyers is a well-respected firm of solicitors offering practical and expert legal advice on buying and selling property. We have been featured twice on Channel 4's A Place in the Sun and help people purchase property safely and easily with tailored conveyancing. Our solicitors are approachable and responsive to your needs and always strive to provide a high-quality legal service. No matter what sort of property transaction you’re looking to complete, our bilingual English/Spanish-speaking solicitors will guide you through the entire process from start to finish.
+        <h1 class="display-5 fw-bold lh-1 mb-3">Property Conveyancing Solicitors in <span class="gradient-text">Fuerteventura</span>.</h1>
+        <p class="">We pride ourselves in giving straigfrowards trustworthy legal advice making purchasing a property a stress-free process for over 12 years.
 </p>
         <div class="d-grid gap-2 d-md-flex my-4 justify-content-md-start">
 
           <%# <button type="button" class="btn btn-primary btn-lg px-4 p-3 me-md-2 my-3 gold-bg" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</button> %>
         <div class="d-grid gap-2">
+
         <!-- Calendly link widget begin -->
           <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
           <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-3  button-super-white" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">Free consultation with Olivier Roper</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-2  button-super-white" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
+          <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", class:"olivier-head")  %>
+          <p>Schedule a free consultation with Olivier Roper →</p>
+          </button>
         </div>
 <div>
 
-          <a class="d-grid gap-2 btn btn-primary btn-lg p-3 px-5 me-md-2 gold-bg" href="https://wa.me/+34649948377">WhatsApp
-          </a>
+
+           <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank">
+           <div class="red-dot"></div>
+           <i class="fa-brands fa-whatsapp"></i>
+           </a>
+
+          <script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
         </div>
 
 <!-- Calendly link widget end -->
@@ -70,6 +80,8 @@
     </div>
   </div>
 </div>
+</section>
+
 
   <%= render 'main_page_sections/why_us' %>
   <%= render 'main_page_sections/about_us' %>
