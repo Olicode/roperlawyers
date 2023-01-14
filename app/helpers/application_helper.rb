@@ -2,7 +2,7 @@ module ApplicationHelper
   def pick_random_number_based_on_month
     month = Date.current.month
 
-    if month == 2
+    if month == 1
       3
     elsif month == 2
       5
