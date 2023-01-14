@@ -15,7 +15,7 @@
 <main>
 <section class="">
 <div class="flash flash-warning alert alert-dismissible fade show" role="alert">
-  <span>Due to wanting to give all our clients the best service possible we are only taking 3 more clients this month.</span>
+  <span>Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.</span>
   <a data-bs-dismiss="alert" aria-label="Close">
     <i class="fas fa-times"></i>
   </a>
