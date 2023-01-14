@@ -3,7 +3,7 @@ module ApplicationHelper
     month = Date.current.month
 
     if month == 2
-      8
+      3
     elsif month == 2
       5
     elsif month == 3
@@ -25,7 +25,7 @@ module ApplicationHelper
     elsif month == 11
       5
     elsif month == 12
-      4
+      2
     end
   end
 end
