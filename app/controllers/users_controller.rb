@@ -145,7 +145,7 @@ class UsersController < ApplicationController
           :children,
           :outline_of_bequests_and_oder_of_success, :inheritance_to_be_governed_by,
           :poa_made_in_spain, :poa_for, :needs_nie, :home_address, :currency, :needs_mortgage, :wants_to_holiday_let,
-          :has_a_spanish_bank_account, :date_of_birth, :outline_of_bequests_and_order_of_success__c
+          :has_a_spanish_bank_account, :date_of_birth
         )
     end
 end
