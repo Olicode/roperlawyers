@@ -1,4 +1,9 @@
-
+<html>
+<section>
+<div class="row justify-content-center">
+<div class="col-10 col-md-10 col-lg-3">
+<div class="text-center mt-5 mb-3">
+<h3>Contact</h3>
 <%= simple_form_for(@contact) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -8,7 +13,12 @@
     <%= f.input :message %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, 'Send Contact' %>
+  <div class="form-actions btn btn-primary">
+    <%= f.button :submit, 'Send' %>
+  </div>
+  </div>
+  </div>
   </div>
 <% end %>
+</section>
+</html>
