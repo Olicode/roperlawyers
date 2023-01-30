@@ -1,50 +1,50 @@
 <%= form_with(model: user) do |form| %>
 <div class="row justify-content-center">
-<div class="col-12 col-md-10 col-lg-6">
-<div class="text-center mt-5 mb-3">
-  <h1>Information required</h1>
-  <h6>In order to draw up contracts and title deed we need you to<br>fill in the following information </h6>
-</div>
-
-<div class="card p-5 mb-5 card-shadow">
-  <h4>Personal details</h4>
-
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <div class="col-12 col-md-10 col-lg-6">
+    <div class="text-center mt-5 mb-3">
+      <h1>Information required</h1>
+      <h6>In order to draw up contracts and title deed we need you to<br>fill in the following information </h6>
     </div>
-  <% end %>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :first_name, class:"form-control bg-gray", placeholder:"First name" %>
-    <%= form.label :first_name %>
-  </div>
+    <div class="card p-5 mb-5 card-shadow">
+      <h4>Personal details</h4>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :last_name, class:"form-control", placeholder:"Last name" %>
-    <%= form.label :last_name %>
-  </div>
+      <% if user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+            <ul>
+              <% user.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+        </div>
+    <% end %>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :email, class:"form-control", placeholder:"Email" %>
-    <%= form.label :email %>
-  </div>
+      <div class="form-row align-items-center ">
+        <div class="form-floating mb-3 col-auto">
+          <%= form.text_field :first_name, class:"form-control", placeholder:"First name" %>
+          <%= form.label :first_name %>
+        </div>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :mobile_phone, class:"form-control", placeholder:"Mobile phone" %>
-    <%= form.label :mobile_phone %>
-  </div>
+        <div class="form-floating mb-3 col-auto">
+          <%= form.text_field :last_name, class:"form-control", placeholder:"Last name" %>
+          <%= form.label :last_name %>
+        </div>
+      </div>
+          <div class="form-floating mb-3 ">
+            <%= form.text_field :email, class:"form-control", placeholder:"Email" %>
+            <%= form.label :email %>
+          </div>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :full_name_on_passport, class:"form-control", placeholder:"Full name on passport" %>
-    <%= form.label :full_name_on_passport %>
-  </div>
+        <div class="form-floating mb-3">
+          <%= form.text_field :mobile_phone, class:"form-control", placeholder:"Mobile phone" %>
+          <%= form.label :mobile_phone %>
+        </div>
+
+        <div class="form-floating mb-3">
+          <%= form.text_field :full_name_on_passport, class:"form-control", placeholder:"Full name on passport" %>
+          <%= form.label :full_name_on_passport %>
+        </div>
 
   <div class="form-floating mb-3">
     <%= form.text_field :passport_number, class:"form-control", placeholder:"Passport number" %>
@@ -332,14 +332,14 @@
   </div>
 
 
-  <div class="d-grid gap-2 mb-3">
+  <div class="d-grid  mb-3">
     <%= form.submit "Submit", class:"btn btn-primary btn-lg mb-2" %>
   </div>
 
  <div class="mb-5">
  Have any questions? <a href="wa.me/+34649948377">Send me a WhatsApp</a>
   </div>
-  <p class="mt-5 mb-3 text-muted text-center">Roper Lawyers &copy; 2022</p>
+  <p class="mt-5 mb-3 text-muted text-center">Roper Lawyers &copy; 2010-<%= Date.today.year %></p>
  </div >
   </div>
   </div>
