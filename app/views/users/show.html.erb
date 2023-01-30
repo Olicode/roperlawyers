@@ -4,8 +4,7 @@
     <h1 class="mt-5 text-center">Your submited information</h1>
 
     <div class="container card p-5 mb-3 card-shadow">
-
-    <p id="notice"><%= notice %></p>
+ <h4 class="mb-3">Personal details</h4>
 
     <p>
       <strong>First name:</strong>
@@ -90,7 +89,10 @@
       <strong>In Lanzarote until:</strong>
       <%= @user.here_till&.strftime("%d/%m/%Y") %>
     </p>
+</div>
 
+<div class="card p-5 mb-5 card-shadow">
+  <h4 class="mb-3">Power of Attorney</h4>
     <p>
       <strong>Power of Attorney:</strong>
       <%= @user.needs_poa %>
@@ -105,7 +107,10 @@
       <strong>PoA For:</strong>
       <%= @user.poa_for %>
     </p>
+</div>
 
+ <div class="card p-5 mb-5 card-shadow">
+    <h4 class="mb-3">NIE</h4>
     <p>
       <strong>NIE Number:</strong>
       <%= @user.nie_number %>
@@ -121,7 +126,9 @@
       <strong>Mother's first name:</strong>
       <%= @user.mother_s_first_name %>
     </p>
-
+  </div>
+<div class="card p-5 mb-5 card-shadow">
+<h4 class="mb-3">Bank details</h4>
     <p>
       <strong>Reservation origin bank:</strong>
       <%= @user.r_origin_bank_details %>
@@ -148,8 +155,8 @@
     </p>
 </div>
     <%# will  %>
-    <p class="h1 text-center">Last Will and Testament</p>
-    <div class="container card p-5 mb-3 card-shadow">
+    <div class="card p-5 mb-5 card-shadow">
+<h4 class="mb-3">Last Will & Testament</h4>
 
     <p>
       <strong>Name of the present spouse:</strong>
@@ -212,21 +219,23 @@
     </div>
 
     <%# uploaded docuemnts section  %>
-    <p class="h1 text-center">Uploaded documents</p>
-      <div class="container card p-5 mb-3 card-shadow">
-        <p>
-          <% if @user.nie_document.attached? %>
-              <p><strong>NIE:</strong><p><br>
-              <%= image_tag @user.nie_document %>
-          <% end %>
-        </p>
 
-        <p>
-          <% if @user.passport_document.attached? %>
-            <p><strong>Passport:</strong></p><br>
-            <%= image_tag @user.passport_document %>
-          <% end %>
-        </p>
+      <div class="card p-5 mb-3 card-shadow">
+          <h4 class=" mb-3">Uploaded documents</h4>
+
+            <p>
+              <% if @user.nie_document.attached? %>
+                  <p><strong>NIE:</strong><p><br>
+                  <%= image_tag @user.nie_document %>
+              <% end %>
+            </p>
+
+            <p>
+              <% if @user.passport_document.attached? %>
+                <p><strong>Passport:</strong></p><br>
+                <%= image_tag @user.passport_document %>
+              <% end %>
+            </p>
       </div>
 
     <div class="row justify-content-center" >
