@@ -20,7 +20,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Roepr Lawyers Marbella</a>
+    <a class="navbar-brand" href="www.roperlawyers.com/marbella">Roepr Lawyers Marbella</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -32,7 +32,7 @@
 </ul>
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
           <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <button type="button" class="btn btn-outline-secondary  m-1 " href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
+          <button type="button" class="btn btn-light m-1 " href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
           Free consultation
           </button>
       <% flash.each do |name, msg| %>
@@ -75,15 +75,21 @@
         <div class="d-grid gap-2 d-md-flex my-4 justify-content-md-start">
 
           <%# <button type="button" class="btn btn-primary btn-lg px-4 p-3 me-md-2 my-3 gold-bg" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</button> %>
-        <div class="d-grid gap-2">
+        <div class="d-grid gap-2 d-flex w-100">
 
         <!-- Calendly link widget begin -->
           <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
           <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-2  button-super-white" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
+          <button type="button" class="btn btn-outline-secondary btn-lg px-3  button-super-white" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
           <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", class:"olivier-head")  %>
-          <p>Schedule your free consultation with Olivier Roper →</p>
+          <p>Schedule a free consultation with Olivier Roper →</p>
           </button>
+
+          <button type="button" class="btn btn-outline-secondary w-75 btn-lg justify-content-center  button-super-white" href="">
+          Call us today
+          </button>
+
+
         </div>
 <div>
 
