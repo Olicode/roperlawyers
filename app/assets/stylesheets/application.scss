@@ -18,9 +18,14 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import url("http://fonts.googleapis.com/css?family=Oswald:400,300,700");
 
 
-
+.logo {
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+  font-size: 24px;
+}
 .form-control {
   background-color: rgb(245, 245, 245);
   border: none;
@@ -176,13 +181,6 @@ font-size: 20px;
 .gray-text {
   color: #373737;
 }
-
-.logo {
-  color: #373737;
-  font-family: "Times New Roman", Times, serif;
-}
-
-
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
