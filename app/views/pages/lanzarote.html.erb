@@ -14,6 +14,42 @@
 
 <main>
 <section class="">
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="www.roperlawyers.com/marbella">Roepr Lawyers Lanzarote</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="nav-link" href="tel:+34 928 97 42 41">+34 928 97 42 41<span class="sr-only">(current)</span></a>
+      </li>
+</ul>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+          <button type="button" class="btn btn-light m-1 " href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
+          Free consultation
+          </button>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash_#{name}", class:" m-1" %>
+      <% end %>
+
+        <% if user_signed_in? %>
+          <p class="text-muted">Logged in as <strong><%= current_user.email %></strong></p>
+          <div class="pull-right">
+          <%= link_to 'Dashboard', edit_user_path(current_user), class:"btn btn-outline-secondary m-1" %>
+          </div>
+          <%= link_to "Logout", destroy_user_session_path, class:"btn btn-outline-secondary m-1", method: :delete %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, class:"btn btn-outline-secondary m-1" %>
+          <%= link_to "Login", new_user_session_path, class:"btn btn-outline-secondary m-1" %>
+        <% end %>
+
+  </div>
+</nav>
+
 <div class="flash flash-warning alert alert-dismissible fade show" role="alert">
   <span>Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.</span>
   <a data-bs-dismiss="alert" aria-label="Close">
