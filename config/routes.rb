@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'fuerteventura', to: 'pages#fuerteventura'
   get 'marbella', to: 'pages#marbella'
   get 'review_page', to: 'pages#review_page'
+  get 'madrid', to: 'pages#madrid'
+  get 'ibiza', to: 'pages#ibiza'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

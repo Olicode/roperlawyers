@@ -23,6 +23,16 @@ class PagesController < ApplicationController
     @reviews = JSON.parse(File.read(File.join('public', 'marbella_reviews.json')))
   end
 
+  def mardrid
+    @reviews = JSON.parse(File.read(File.join('public', 'madrid_reviews.json')))
+  end
+
+  def ibizq
+    @reviews = JSON.parse(File.read(File.join('public', 'ibiza_reviews.json')))
+  end
+
+
+
   def home
   end
 
