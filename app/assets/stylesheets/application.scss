@@ -148,6 +148,22 @@ font-size: 20px;
 
 }
 
+.call-button {
+  box-shadow: rgba(20, 20, 43, 0.07) 0 2px 12px 0;
+  color: #373737;
+  border-color: lightgray;
+  width: 100%;
+
+
+}
+
+.button-super-white:hover {
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+
+}
+
+
 .button-super-white {
   box-shadow: rgba(20, 20, 43, 0.07) 0 2px 12px 0;
   color: #373737;
