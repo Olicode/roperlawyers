@@ -17,6 +17,7 @@ class User < ApplicationRecord
     puts "*" * 100
     puts "sending email to admin"
     puts "*" * 100
-    AdminMailer.send_user_updates(self).deliver_now
+    # TODO: uncomment when sendgrid email starts working.
+    # AdminMailer.send_user_updates(self).deliver_now
   end
 end
