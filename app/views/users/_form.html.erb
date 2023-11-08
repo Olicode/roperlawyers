@@ -52,8 +52,10 @@
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.date_field :date_of_birth, class:"form-control", placeholder:"Date of birth" %>
+    <%= form.date_field :date_of_birth, class: "form-control", placeholder: "Date of birth",
+                        id: "dateOfBirthField", pattern: "\\d{4}-\\d{2}-\\d{2}" %>
     <%= form.label :date_of_birth %>
+    <div class="text-danger" id="dateOfBirthError"></div>
   </div>
 
   <div class="form-floating mb-3">
@@ -344,3 +346,30 @@
   </div>
   </div>
    <% end %>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dateOfBirthField = document.getElementById("dateOfBirthField");
+            const dateOfBirthError = document.getElementById("dateOfBirthError");
+
+            dateOfBirthField.addEventListener("input", function() {
+                const inputDate = dateOfBirthField.value;
+                const isValidFormat = dateOfBirthField.checkValidity();
+
+                if (isValidFormat) {
+                    const dateParts = inputDate.split("-");
+                    const year = parseInt(dateParts[0]);
+                    const month = parseInt(dateParts[1]);
+                    const day = parseInt(dateParts[2]);
+
+                    if (year >= 1900 && year <= 2020 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+                        dateOfBirthError.textContent = ""; // Clear the error message
+                    } else {
+                        dateOfBirthError.textContent = "Invalid date. Please choose a valid date for your date of birth!";
+                    }
+                } else {
+                    dateOfBirthError.textContent = "Please use the format YYYY-MM-DD.";
+                }
+            });
+        });
+    </script>
