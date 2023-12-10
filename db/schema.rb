@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_18_191153) do
+ActiveRecord::Schema.define(version: 2023_12_10_223506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,13 @@ ActiveRecord::Schema.define(version: 2023_01_18_191153) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "leads", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -79,11 +86,11 @@ ActiveRecord::Schema.define(version: 2023_01_18_191153) do
     t.string "balance_bank_details"
     t.string "standing_orders_bank_details"
     t.date "here_till"
-    t.string "needs_poa"
     t.string "name_of_the_present_spouse"
     t.string "name_of_the_previous_spouses"
     t.date "date_of_divorce"
     t.date "date_of_decease"
+    t.string "needs_poa"
     t.boolean "tax_resident", default: false, null: false
     t.string "father_s_full_name"
     t.string "father_s_vital_status"

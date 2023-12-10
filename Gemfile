@@ -40,6 +40,7 @@ gem "aws-sdk-s3", require: false
 
 gem "sentry-ruby"
 gem "sentry-rails"
+gem 'bootstrap'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  get 'leads/new'
+  get 'leads/create'
   resources :contacts, only: %i[new create]
+  # config/routes.rb
+  resources :leads, only: [:new, :create]
+
   devise_for :users
   resources :users
   root to: 'pages#home'
