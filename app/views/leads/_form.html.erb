@@ -1,0 +1,13 @@
+<% @lead ||= Lead.new %>
+<%= form_for @lead, url: leads_path, html: { class: 'mb-8' } do |f| %>
+  <div class="mb-4">
+    <%= f.label :name, 'Name (Required)' %>
+    <%= f.text_field :name, class: 'w-full p-2 border rounded-md', placeholder: 'Enter your Name (Required)', required: true, style: 'color: black;' %>
+  </div>
+  <div class="mb-4">
+    <%= f.label :email, 'Email Address (Required)' %>
+    <%= f.email_field :email, class: 'w-full p-2 border rounded-md', placeholder: 'Enter your Email Address (Required)', required: true, style: 'color: black;' %>
+  </div>
+    <%= f.submit 'Go', class: 'bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white rounded-md hover:bg-indigo-500' %>
+  </div>
+<% end %>
