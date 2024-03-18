@@ -51,8 +51,7 @@ class PagesController < ApplicationController
   end
 
   def contact_us
-    # TODO
-    TransactionalMailer.contact_us('info@roperlawyers.com').deliver
+    TransactionalMailer.contact_us(ENV['MAILER_TO'] || "rcvdtest@yopmail.com", params[:email], params[:message]).deliver!
     render json: { success: true }
   end
 
