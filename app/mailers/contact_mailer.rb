@@ -8,7 +8,7 @@ class ContactMailer < ApplicationMailer
   def send_email(contact)
     @contact = contact
 
-    mail to: "info@roperlawyers.com"
+    mail to: ENV['CONTACT_MAILER_ADDRESS']
   end
 
   def send_email_to_client(contact)
