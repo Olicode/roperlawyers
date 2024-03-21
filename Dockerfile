@@ -1,7 +1,6 @@
 # Use Ruby 2.7 as the base image
 FROM ruby:2.7.4
 
-ENV NODE_VERSION=18.12.0
 
 # Install dependencies
 # For a standard Rails app, you might need nodejs and yarn for JavaScript execution and asset compilation
@@ -20,12 +19,14 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 
 COPY package.json /myapp/package.json
-COPY package-lock.json /myapp/package-lock.json
+COPY yarn.lock /myapp/yarn.lock
 
 
 RUN apt install -y curl
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ENV NVM_DIR=/root/.nvm
+ENV NODE_VERSION=16.20.0
+
 RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
@@ -34,7 +35,7 @@ RUN npm install -g yarn
 RUN yarn install
 
 
-ENV NODE_OPTIONS=--openssl-legacy-provider
+#ENV NODE_OPTIONS=--openssl-legacy-provider
 
 ENV MAILER_FROM=
 ENV MAILER_TO=contactreceiver@yopmail.com
