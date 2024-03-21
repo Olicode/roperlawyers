@@ -17,7 +17,7 @@
                   Email
                   <% end %>
                   
-                  <div class='text-danger'><%=resource.errors[:email].first || ""%></div>
+                  <div class='text-danger'><%=resource.errors.full_messages_for(:email).first %></div>
 
             </div>
 
@@ -30,7 +30,7 @@
             <%= f.label :password do %>
                 Password
               <% end %>
-              <div class='text-danger'><%=resource.errors[:password].first || ""%></div>
+              <div class='text-danger'><%=resource.errors.full_messages_for(:password).first %></div>
 
           </div>
 
@@ -42,7 +42,7 @@
                           <%= f.label :password_confirmation do %>
                 Password confirmation
               <% end %>
-              <div class='text-danger'><%=resource.errors[:password_confirmation].first || ""%></div>
+              <div class='text-danger'><%=resource.errors.full_messages_for(:password_confirmation).first || ""%></div>
 
           </div>
 
