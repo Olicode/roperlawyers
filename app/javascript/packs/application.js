@@ -25,13 +25,15 @@ $(document).ready(function () {
     $form.find("button[type=submit]").attr("disabled", "disabled")
     const email = $form.find("[name=email]").val()
     const message = $form.find("[name=message]").val()
+    const url = $form.find("[name=url]").val()
     $.ajax({
       url: "/contact_us",
       beforeSend: function (xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
       type: "POST",
       data: {
         email: email,
-        message: message
+        message: message,
+        url
       },
     }).fail(function (data) {
 

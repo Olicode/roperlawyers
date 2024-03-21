@@ -11,6 +11,7 @@
         </div>
         <div class="modal-body" id ="contactFormBody">
           <div class="form-floating mb-3">
+            <input type="hidden" name="url" value="<%= request.original_url %>"/>
             <input type="email" name="email" class="form-control" id="floatingEmail" required placeholder="name@example.com">
             <label for="floatingInput">Your Email address</label>
           </div>

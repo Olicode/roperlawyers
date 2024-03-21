@@ -19,7 +19,8 @@ services:
     environment:
       RAILS_ENV: development
       NODE_ENV: development
-
+      POSTMARK_API_KEY: 79410341-0e91-469f-82e6-d2b5606dabf9
+      MAILER_FROM: postmark<mail@bytespill.com>
       DATABASE_URL: postgresql://myappuser:myapppassword@db/myapp_development
     depends_on:
       - db
