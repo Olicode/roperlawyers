@@ -22,6 +22,9 @@ default: &default
 development:
   <<: *default
   database: roperlawyers_development
+  user: roperlawyers_development
+  password: roperlawyers_development
+  host: localhost
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
