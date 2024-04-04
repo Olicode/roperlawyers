@@ -1,0 +1,376 @@
+<%= form_with(model: user) do |form| %>
+<div class="row justify-content-center">
+  <div class="col-12 col-md-10 col-lg-6">
+    <div class="text-center mt-5 mb-3">
+      <h1>Information required</h1>
+      <h6>In order to draw up contracts and title deed we need you to<br>fill in the following information </h6>
+    </div>
+
+    <div class="card p-5 mb-5 card-shadow">
+      <h4>Personal details</h4>
+
+      <% if user.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger">
+         <%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:<br/>
+            <ul>
+              <% user.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+
+      <div class="form-row align-items-center ">
+        <div class="form-floating mb-3 col-auto">
+          <%= form.text_field :first_name, class:"form-control", placeholder:"First name" %>
+          <%= form.label :first_name %>
+        </div>
+
+        <div class="form-floating mb-3 col-auto">
+          <%= form.text_field :last_name, class:"form-control", placeholder:"Last name" %>
+          <%= form.label :last_name %>
+          <div class="text-danger"><%= user.errors.full_messages_for(:last_name).first %></div>
+        </div>
+      </div>
+          <div class="form-floating mb-3 ">
+            <%= form.text_field :email, class:"form-control", placeholder:"Email" %>
+            <%= form.label :email %>
+          </div>
+
+        <div class="form-floating mb-3">
+          <%= form.text_field :mobile_phone, class:"form-control", placeholder:"Mobile phone" %>
+          <%= form.label :mobile_phone %>
+        </div>
+
+        <div class="form-floating mb-3">
+          <%= form.text_field :full_name_on_passport, class:"form-control", placeholder:"Full name on passport" %>
+          <%= form.label :full_name_on_passport %>
+        </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :passport_number, class:"form-control", placeholder:"Passport number" %>
+    <%= form.label :passport_number %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.date_field :date_of_birth, class: "form-control", placeholder: "Date of birth",
+                        id: "dateOfBirthField", pattern: "\\d{4}-\\d{2}-\\d{2}" %>
+    <%= form.label :date_of_birth %>
+    <div class="text-danger" id="dateOfBirthError"></div>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.date_field :expiry_date, class:"form-control", placeholder:"Expiry date" %>
+    <%= form.label :expiry_date %>
+  </div>
+
+   <div class="form-floating mb-3">
+   <%= form.select "nationality", options_for_select(%w[
+
+      Belgian
+      British
+      Chinese
+      Danish
+      Dutch
+      Finnish
+      French
+      German
+      Greek
+      Indian
+      Irish
+      Italian
+      Norwegian
+      Polish
+      Spanish
+      Swedish
+      Swiss
+      Romanian
+    ], ""), { include_blank: true }, { class:"form-control", placeholder:"Nationality" } %>
+    <%= form.label :nationality %>
+   </div>
+
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload a copy of your passport</p>
+      <div class="form-floating" >
+       <%= form.file_field :passport_document%>
+      </div>
+    </div>
+
+   <div class="form-floating mb-3">
+    <%= form.text_field :profession, class:"form-control", placeholder:"Profession" %>
+    <%= form.label :profession %>
+   </div>
+
+     <div class="form-floating mb-3">
+    <%= form.text_field :marital_status, class:"form-control", placeholder:"Marital status" %>
+    <%= form.label :marital_status %>
+   </div>
+
+    <div class="form-floating mb-3">
+    <%= form.text_field :spouse, class:"form-control", placeholder:"Spouse" %>
+    <%= form.label :spouse_full_name %>
+    </div>
+
+    <div class="form-floating mb-3">
+    <%= form.text_field :home_address, class:"form-control", placeholder:"Home Address" %>
+    <%= form.label :home_address %>
+    </div>
+
+    <p class="mt-3">Please state what currency you have the funds to purchase in order to send you instructions on the best way to transfer.</p>
+      <div class="form-floating mb-3">
+        <%= form.select "currency", options_for_select([
+        "EUR", "GBP"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder: "currency" } %>
+        <%= form.label :currency %>
+     </div>
+
+    <div class="form-floating mb-3">
+
+    <%= form.date_field :here_till, class:"form-control", placeholder:"Here until" %>
+   <%= form.label :here_till do %>
+    If you are here currently please let us know until what date
+      <% end %>
+      </div>
+
+  <p class="mt-3">Are you currently or wanting to apply for a mortgage?</p>
+    <div class="form-floating mb-3">
+      <%= form.select "needs_mortgage", options_for_select([
+      "Yes", "No"
+      ], ""), { include_blank: true}, { class:"form-control", placeholder: "needs_mortgage" } %>
+      <%= form.label :apply_for_mortgage %>
+    </div>
+
+  <p class="mt-3">Are you going to holiday let your property? If so, we can apply for a tourist license.</p>
+    <div class="form-floating mb-3">
+      <%= form.select "wants_to_holiday_let", options_for_select([
+      "Yes", "No"
+      ], ""), { include_blank: true}, { class:"form-control", placeholder: "wants_to_holiday_let" } %>
+      <%= form.label :holiday_let %>
+    </div>
+  <p class="mt-3">Are you a tax resident in Spain?</p>
+    <div class="form-check mb-3">
+      <%= form.check_box :tax_resident, class:"form-check-input", placeholder:"tax_resident" %>
+      <%= form.label :spanish_tax_resident %>
+    </div>
+
+    </div>
+
+
+    <%# PoA section %>
+  <div class="card p-5 mb-5 card-shadow">
+    <h4>Power of Attorney</h4>
+    <p>Do you want to give Roper Lawyers a power of attorney so we can do everything for you, including applying for your NIE number, opening a Spanish bank account, apply for a mortgage, etc? You can make one either in Lanzarote if you are here or the country you live in and be sent to us.</p>
+      <div class="form-floating mb-3">
+        <%= form.select "needs_poa", options_for_select([
+        "Yes", "No", "I've already given power to someone"
+        ], ""), { include_blank: true }, { class:"form-control", placeholder:"Needs PoA" } %>
+        <%= form.label :I_would_like_to_give_a_power_of_attorney %>
+      </div>
+      <p class="mt-3">Please state if you want to give us power to buy, sell, apply for a mortgage or all the above. We recommend choosing Buying, Selling & Mortgage for any future conveyancing.</p>
+      <div class="form-floating mb-3">
+        <%= form.select "poa_for", options_for_select([
+        "Buying", "Selling", "Buying & Selling", "Buying, Selling & Mortgage"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder: "poa_for" } %>
+        <%= form.label :power_of_attorney_for %>
+     </div>
+
+
+    <p class="mt-3">Please state if you want us to obtain the Power of Attorney in Spain or your home cournty? If its in your home cournty, we will be sending a draft to the closest notary where you live, you will have to sign it there, and the Notary will post the Power of Attorney to us.</p>
+      <div class="form-floating mb-3">
+        <%= form.select "poa_made_in_spain", options_for_select([
+        "Yes", "No"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder: "poa_made_in_spain" } %>
+        <%= form.label :Power_of_attorney_to_be_made_in_Spain? %>
+     </div>
+
+
+  </div>
+
+<%# NIE section %>
+  <div class="card p-5 mb-5 card-shadow">
+    <h4>NIE Number</h4>
+    <p class="mb-5">Do you have an NIE number? If so, fill in the field and upload a photo of it. If not please fill in the following fields.</p>
+
+      <div class="form-floating mb-3">
+        <%= form.select "needs_nie", options_for_select([
+        "Yes", "No"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder: "needs_nie" } %>
+        <%= form.label :Do_you_want_us_to_apply_for_an_NIE_number? %>
+     </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :nie_number, class:"form-control", placeholder:"NIE number"  %>
+        <%= form.label :nie_number%>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :father_s_first_name, class:"form-control", placeholder:"Father's " %>
+        <%= form.label :father_s_first_name %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :mother_s_first_name, class:"form-control", placeholder:"Mother's "  %>
+        <%= form.label :mother_s_first_name %>
+      </div>
+
+      <div class="rounded p-3 mb-3 bg-light">
+          <div class="form-floating">
+          <p >Upload a copy of your NIE document</p>
+            <%= form.file_field :nie_document %>
+          </div>
+      </div>
+
+  </div>
+
+
+<%# Bank details section %>
+<div class="card p-5 mb-5 card-shadow">
+<h4>Bank details</h4>
+<p class="mb-5">Where do you want to send funds from? If transferring amounts from the same bank, fill in the first field with your bank details and type "same" in fields two and three.
+</p>
+
+<h6>Please state from which bank account you are transferring the reservation fee.</h6>
+  <div class="form-floating mb-4">
+    <%= form.text_field :r_origin_bank_details, class:"form-control", placeholder:"Bank details"  %>
+    <%= form.label :reservation_origin_bank_details %>
+  </div>
+
+<h6>Please state from which bank account you are transferring the private contract.</h6>
+  <div class="form-floating mb-4">
+    <%= form.text_field :otb_origin_bank_details, class:"form-control", class:"form-control", placeholder:"Bank details"  %>
+    <%= form.label :private_contract_origin_bank_details%>
+  </div>
+
+<h6>Please state from which bank account you are transferring the balance.</h6>
+<p class="text-muted">If you transfer the balance to my account, please type "Roper Lawyers" in this field.</p>
+  <div class="form-floating mb-4">
+    <%= form.text_field :balance_bank_details, class:"form-control", class:"form-control", placeholder:"Bank details"  %>
+    <%= form.label :balance_bank_details %>
+  </div>
+
+  <h6>Do you have a Spanish Bank account?</h6>
+  <div class="form-floating mb-3">
+    <%= form.select "has_a_spanish_bank_account", options_for_select([
+    "Yes", "No"
+    ], ""), { include_blank: true}, { class:"form-control", placeholder: "has_a_spanish_bank_account" } %>
+    <%= form.label :spanish_bank_account %>
+  </div>
+
+  <h6>Where do you want your utility company standing orders to come from?</h6>
+  <p class="text-muted">It must be a Spanish account. If you don't have one yet, please leave this field blank.</p>
+  <div class="form-floating mb-3">
+    <%= form.text_field :standing_orders_bank_details, class:"form-control", class:"form-control", placeholder:"Bank details"  %>
+    <%= form.label :standing_orders_bank_details %>
+  </div>
+
+</div>
+
+<%# Will section %>
+  <div class="card p-5 mb-5 card-shadow">
+    <h4>Last Will and Testament</h4>
+    <p class="mb-5">Do you want a Will & Last Testament? If so, please fill in the fields below. The costs per Will is 200€ (Translator approx. 100€, Notary approx. 50€)</p>
+      <div class="form-floating mb-3">
+        <%= form.text_field :name_of_the_present_spouse, class:"form-control", placeholder:"Name of the present spouse"  %>
+        <%= form.label :name_of_the_present_spouse %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :name_of_the_previous_spouses, class:"form-control", placeholder:"Name of the previous spouse" %>
+        <%= form.label :name_of_the_previous_spouses %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.date_field :date_of_divorce, class:"form-control", placeholder:"Date of divorce"  %>
+        <%= form.label :date_of_divorce %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.date_field :date_of_decease, class:"form-control", placeholder:"Date of decease"  %>
+        <%= form.label :date_of_decease %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :father_s_full_name, class:"form-control", placeholder:"Father's full name"  %>
+        <%= form.label :father_s_full_name %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.select "father_s_vital_status", options_for_select([
+        "Deceased", "Living"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder:"Father's vital status" } %>
+        <%= form.label :father_s_vital_status %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :mother_s_full_name, class:"form-control", placeholder:"Mother's full name"  %>
+        <%= form.label :mother_s_full_name %>
+      </div>
+
+      <div class="form-floating mb-3">
+         <%= form.select "mother_s_vital_status", options_for_select([
+        "Deceased", "Living"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder:"Mother's vital status" } %>
+        <%= form.label :mother_s_vital_status %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :children, class:"form-control", placeholder:"Children"  %>
+        <%= form.label :children %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.text_field :outline_of_bequests_and_order_of_success, class:"form-control", placeholder:"Outline of Bequests and Order of Success"  %>
+        <%= form.label :outline_of_bequests_and_order_of_success %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= form.select "inheritance_to_be_governed_by", options_for_select([
+          "Law of country of current nationality", "Nationality at the time of death", "Habitual place of residence at the time of death"
+        ], ""), { include_blank: true}, { class:"form-control", placeholder:"Inheritance to be governed by" } %>
+        <%= form.label :inheritance_to_be_governed_by %>
+      <p class="m-2 small-text">Most clients choose "Law of country of current nationality". </p>
+      </div>
+
+
+  </div>
+
+
+  <div class="d-grid  mb-3">
+    <%= form.submit "Submit", class:"btn btn-primary btn-lg mb-2" %>
+  </div>
+
+ <div class="mb-5">
+ Have any questions? <a href="wa.me/+34649948377">Send me a WhatsApp</a>
+  </div>
+  <p class="mt-5 mb-3 text-muted text-center">Roper Lawyers &copy; 2010-<%= Date.today.year %></p>
+ </div >
+  </div>
+  </div>
+   <% end %>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dateOfBirthField = document.getElementById("dateOfBirthField");
+            const dateOfBirthError = document.getElementById("dateOfBirthError");
+
+            dateOfBirthField.addEventListener("input", function() {
+                const inputDate = dateOfBirthField.value;
+                const isValidFormat = dateOfBirthField.checkValidity();
+
+                if (isValidFormat) {
+                    const dateParts = inputDate.split("-");
+                    const year = parseInt(dateParts[0]);
+                    const month = parseInt(dateParts[1]);
+                    const day = parseInt(dateParts[2]);
+
+                    if (year >= 1900 && year <= 2020 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+                        dateOfBirthError.textContent = ""; // Clear the error message
+                    } else {
+                        dateOfBirthError.textContent = "Invalid date. Please choose a valid date for your date of birth!";
+                    }
+                } else {
+                    dateOfBirthError.textContent = "Please use the format YYYY-MM-DD.";
+                }
+            });
+        });
+    </script>

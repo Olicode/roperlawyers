@@ -1,0 +1,26 @@
+.review-data {
+  text-align: left;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+}
+.review-header {
+  line-height: 0px;
+}
+.review-rating {
+  color: orange;
+}
+.review-date{
+  color: rgba(0, 10, 18, 0.5);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 0.1;
+  min-width: 0px;
+}
+.review-text{
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.hide {
+  visibility: hidden;
+}

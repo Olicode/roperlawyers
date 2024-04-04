@@ -1,0 +1,48 @@
+<section id="reviews" class="bg-light">
+<div class="container px-4 py-5 ">
+  <div class="">
+    <h2 class="pb-4 m-3 text-center">We pride ourselves in providing the best service</h2>
+  </div>
+  <div class="row px-4 ">
+    <% @reviews["records"].each do |review|%>
+      <div class="col-sm-3 px-2 py-2 d-flex align-items-stretch ">
+        <div class="card p-2 card-shadow">
+          <div class="card-body review-data text-start">
+          <div class="review-header">
+            <h5 class="card-title"><%= review["name"] %></h5>
+            <p class="review-rating">
+                <% review["rating"].to_i.times do %>
+                  <i class="fa fa-star"></i>
+                <% end %>
+              </p>
+             <%# <h6 class="review-date"><%= review["Date"] %>
+              </div>
+            <p>
+              <div class="comment-box">
+                <% if review["comment"].length > 50 %>
+                  <%= truncate(review["comment"], length: 180) %><br />
+                  <%= link_to 'More', '', class: "read-more-#{review["id"]} review-text"%>
+
+                  <script>
+                   $(document).delegate(".read-more-<%= review["id"] %>", "click", function(e){
+                      e.preventDefault();
+                      $(this).parent().html('<%= escape_javascript review["comment"] %><br /><%= link_to 'Less', '', class: "read-less-#{review["id"]} review-text"%>')
+                    });
+                    $(document).delegate(".read-less-<%= review["id"] %>", "click", function(e){
+                      e.preventDefault();
+                      $(this).parent().html('<%= escape_javascript truncate(review["comment"], length: 180) %><br /><%= link_to 'Read', '', class: "read-more-#{review["id"]} review-text"%>')
+                    });
+                  </script>
+                <% else %>
+                  <%= review["comment"]  %>
+                <% end %>
+              </div>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% end%>
+     <%# <p class="text-center p-4">Read all our <%= link_to "Google Reviews", "https://www.google.com/search?q=roper+lawyers&rlz=1C5CHFA_enES966ES966&sxsrf=APq-WBvJz2NNLzA2k47YSbSrWOvzUVB1Dw%3A1645761985203&ei=wVUYYr2DDITfkwX_9o1o&ved=0ahUKEwj954yU_Zn2AhWE76QKHX97Aw0Q4dUDCA4&uact=5&oq=google+reviews+roper+lawyers+lanzarote&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABOgcIIxCwAxAnOgcIABBHELADOgoIABBHELADEMkDOggIABCSAxCwA0oECEEYAEoECEYYAFCfBFj1DWD7DmgBcAF4AIABqgOIAd0TkgEFMy02LjGYAQCgAQHIAQfAAQE&sclient=gws-wiz#lrd=0xc4625151db852d7:0x4e4d25ec171214f4,1,,,", target: :_blank %>
+  </div>
+</div>
+</section>
