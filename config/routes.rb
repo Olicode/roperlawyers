@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :contacts, only: %i[new create]
+  devise_for :users
+  resources :users
+  root to: 'pages#home'
+  post 'contact_us', to: 'pages#contact_us'
+  get 'lanzarote', to: 'pages#lanzarote'
+  get 'tenerife', to: 'pages#tenerife'
+  get 'grancanaria', to: 'pages#grancanaria'
+  get 'fuerteventura', to: 'pages#fuerteventura'
+  get 'marbella', to: 'pages#marbella'
+  get 'review_page', to: 'pages#review_page'
+  get 'madrid', to: 'pages#madrid'
+  get 'ibiza', to: 'pages#ibiza'
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
