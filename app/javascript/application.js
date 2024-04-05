@@ -1,11 +1,11 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
-import "controllers"
-import './node_modules/bootstrap'
-import Rails from "./node_modules/@rails/ujs"
-import Turbolinks from "./node_modules/turbolinks"
+//import "./controllers"
+import 'bootstrap'
+import Rails from "@rails/ujs"
+import Turbolinks from "turbolinks"
 import "./channels"
-require('jquery')
+import $ from 'jquery'
 
 
 

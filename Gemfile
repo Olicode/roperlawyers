@@ -82,3 +82,4 @@ gem "aws-sdk-s3", require: false
 gem "sentry-ruby"
 gem "sentry-rails"
 gem 'sass-rails'
+gem "jsbundling-rails", "~> 1.3"
