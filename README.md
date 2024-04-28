@@ -1,12 +1,5 @@
 # README
 
-
-ENV Variables
-
-POSTMARK_API_KEY <API KEY>
-NODE_OPTIONS --opessl-legacy-provider
-MAILER_FROM mailer@roperlawyers.com
-
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
