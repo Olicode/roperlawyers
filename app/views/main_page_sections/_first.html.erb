@@ -15,6 +15,7 @@
         <button type="button" class="btn btn-light m-1" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
           Free consultation
         </button>
+        <%=link_to "Spain Property Selling and Buying Guide", "/spain-property-guide", class: "btn btn-outline-secondary m-1" %>
         <% flash.each do |name, msg| %>
           <%= content_tag :div, msg, id: "flash_#{name}", class: "m-1" %>
         <% end %>
@@ -55,7 +56,11 @@
               <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", alt: "Olivier Roper", class: "olivier-head") %>
               <p>Schedule your free consultation with Olivier Roper →</p>
             </button>
+           
           </div>
+          <button type="button" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#contactModal">
+            Email Us
+          </button>
           <div>
             <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank">
               <div class="red-dot"></div>
@@ -66,9 +71,7 @@
           <!-- Calendly link widget end -->
           <%#  <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-3 my-3 button-super-white"></button>%>
         </div>
-        <button type="button" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#contactModal">
-          Contact Us
-        </button>
+        
         <div>
           Read our
           <a class="reviews-link" href="#reviews"><strong>Google Reviews</strong>

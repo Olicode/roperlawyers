@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'review_page', to: 'pages#review_page'
   get 'madrid', to: 'pages#madrid'
   get 'ibiza', to: 'pages#ibiza'
+  get 'spain-property-guide', to: 'pages#spain-property-guide'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
