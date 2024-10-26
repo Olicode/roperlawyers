@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_18_191153) do
-
+ActiveRecord::Schema[7.1].define(version: 2023_01_18_191153) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +19,7 @@ ActiveRecord::Schema.define(version: 2023_01_18_191153) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -33,7 +32,7 @@ ActiveRecord::Schema.define(version: 2023_01_18_191153) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -46,8 +45,8 @@ ActiveRecord::Schema.define(version: 2023_01_18_191153) do
   create_table "contacts", force: :cascade do |t|
     t.string "email"
     t.text "message"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,13 +55,13 @@ ActiveRecord::Schema.define(version: 2023_01_18_191153) do
     t.string "passport_number"
     t.string "email"
     t.string "sf_contact_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "nie_number"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.date "date_of_birth"
     t.date "expiry_date"
     t.string "mobile_phone"
@@ -79,11 +78,11 @@ ActiveRecord::Schema.define(version: 2023_01_18_191153) do
     t.string "balance_bank_details"
     t.string "standing_orders_bank_details"
     t.date "here_till"
-    t.string "needs_poa"
     t.string "name_of_the_present_spouse"
     t.string "name_of_the_previous_spouses"
     t.date "date_of_divorce"
     t.date "date_of_decease"
+    t.string "needs_poa"
     t.boolean "tax_resident", default: false, null: false
     t.string "father_s_full_name"
     t.string "father_s_vital_status"

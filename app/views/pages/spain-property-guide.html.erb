@@ -1,0 +1,53 @@
+<header>
+<!-- Hotjar Tracking Code for www.roperlawyers.com -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2564836,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+</header>
+
+<main>
+<section class="">
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/fuerteventura">Roper Lawyers Fuerteventura</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
+         <ul class="navbar-nav">
+            <a class="nav-link text-white" href="tel:+44 20 8135 8218">🇬🇧 +44 20 8135 8218<span class="sr-only">(current)</span></a>
+            <a class="nav-link text-white" href="tel:+34 928 97 42 41">🇪🇸 +34 928 97 42 41<span class="sr-only">(current)</span></a>
+        </ul>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+          <button type="button" class="btn btn-light m-1 " href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
+          Free consultation
+          </button>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash_#{name}", class:" m-1" %>
+      <% end %>
+
+        <% if user_signed_in? %>
+          <p class="text-muted">Logged in as <strong><%= current_user.email %></strong></p>
+          <div class="pull-right">
+          <%= link_to 'Dashboard', edit_user_path(current_user), class:"btn btn-outline-secondary m-1" %>
+          </div>
+          <%= link_to "Logout", destroy_user_session_path, class:"btn btn-outline-secondary m-1", method: :delete %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, class:"btn btn-outline-secondary m-1" %>
+          <%= link_to "Login", new_user_session_path, class:"btn btn-outline-secondary m-1" %>
+        <% end %>
+
+  </div>
+</nav>
+</section>
+
+</main>
