@@ -21,12 +21,12 @@ default: &default
 
 development:
   <<: *default
-  # database: roperlawyers_development
+  database: roperlawyers_development
   # user: roperlawyers_development
   # password: roperlawyers_development
-  # host: localhost
+  host: localhost
 
-  url: postgres://default:OL9bDkVFBt6N@ep-weathered-glitter-a4fwvji5.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require
+  # url: postgres://default:OL9bDkVFBt6N@ep-weathered-glitter-a4fwvji5.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
