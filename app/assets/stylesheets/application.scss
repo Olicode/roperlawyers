@@ -21,6 +21,10 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,300,700");
 
 
+.left-links .nav-link:hover {
+  color: grey !important;
+}
+
 .logo {
   font-family: 'Times New Roman', Times, serif;
   color: white;
@@ -165,13 +169,14 @@
 }
 
 
+
 .button-super-white {
-  box-shadow: rgba(20, 20, 43, 0.07) 0 2px 12px 0;
+  box-shadow: rgba(0, 0, 0, 0.07) 0 2px 12px 0;
   color: #373737;
   display: flex;
   align-items: center;
   border-color: lightgray;
-  max-width: 350px;
+  max-width: 350px; /* Restricts width on larger screens */
   width: 100%;
   font-size: 16px;
 
@@ -179,17 +184,18 @@
     margin: 0;
     padding-left: 10px;
     text-align: left;
-
+    line-height: 1.2;
   }
-
-
 }
 
-.button-super-white:hover {
-  background-color: rgb(255, 255, 255);
-  color: #000000;
-
+/* Override the max-width on smaller devices */
+@media (max-width: 767.98px) {
+  .button-super-white {
+    max-width: 100% !important;
+  }
 }
+
+
 
 .white-text {
   color: white;
