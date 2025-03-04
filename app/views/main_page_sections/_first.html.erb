@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="https://www.roperlawyers.com/">Roper Lawyers</a>
@@ -67,85 +65,91 @@
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </nav>
 
+<div class="flash flash-warning alert alert-dismissible fade show" role="alert">
+  <span>
+    Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.
+  </span>
+  <a data-bs-dismiss="alert" aria-label="Close">
+    <i class="fas fa-times"></i>
+  </a>
+</div>
 
+<div class="container py-4">
+  <div class="row flex-lg-row-reverse align-items-center g-5">
+    <!-- Image Column -->
+    <div class="col-md-10 mx-auto col-lg-5">
+      <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers.jpg", 
+          alt: "Olivier Roper", 
+          class: "d-none d-sm-block mx-lg-auto img-fluid rounded img-home") %>
+    </div>
 
-  <div class="flash flash-warning alert alert-dismissible fade show" role="alert">
-    <span>
-      Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.
-    </span>
-    <a data-bs-dismiss="alert" aria-label="Close">
-      <i class="fas fa-times"></i>
-    </a>
-  </div>
-
-  <div class="container px-4">
-    <div class="row flex-lg-row-reverse align-items-center g-5">
-      <div class="col-md-10 mx-auto col-lg-5">
-        <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers.jpg", alt: "Olivier Roper", class: "d-none d-sm-block mx-lg-auto img-fluid rounded img-home mt-5") %>
-      </div>
-      <div class="col-lg-6">
-              <div>
-          
-          <a class="reviews-link" href="#reviews">
-            <strong>Google Reviews</strong>
-            <span class="stars">5.0</span>
-            <i class="fa-sharp fa-solid fa-star stars"></i>
-            <i class="fa-sharp fa-solid fa-star stars"></i>
-            <i class="fa-sharp fa-solid fa-star stars"></i>
-            <i class="fa-sharp fa-solid fa-star stars"></i>
-            <i class="fa-sharp fa-solid fa-star stars"></i>
-          </a>
-        </div>
-        <h1 class="display-4 fw-bold lh-1 my-4">
+    <!-- Text Column (make it a flex container to center content vertically) -->
+    <div class="col-lg-6 d-flex align-items-center">
+      <div>
+        <a class="reviews-link" href="#reviews">
+          <strong>Google Reviews</strong>
+          <span class="stars">5.0</span>
+          <i class="fa-sharp fa-solid fa-star stars"></i>
+          <i class="fa-sharp fa-solid fa-star stars"></i>
+          <i class="fa-sharp fa-solid fa-star stars"></i>
+          <i class="fa-sharp fa-solid fa-star stars"></i>
+          <i class="fa-sharp fa-solid fa-star stars"></i>
+        </a>
+        <h1 class="display-4 fw-bold lh-1 my-3">
           <span class="gradient-text">Expert Property Lawyers in Spain: </span> Conveyancing Solicitors
         </h1>
         <p class="value-proposition">
           Providing Clear, Trusted Legal Advice for Stress-Free Property Buying &amp; Selling in Spain – With Over 14 Years of Expertise.
         </p>
-        <div class="d-grid gap-2 d-md-flex my-4 justify-content-md-start">
+        <div class="d-grid gap-2 d-md-flex mt-3 justify-content-md-start">
           <div class="d-grid gap-2">
             <!-- Calendly link widget begin -->
             <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
             <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-2 button-super-white" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
-              <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", alt: "Olivier Roper", class: "olivier-head") %>
-              <p>Book a Free Consultation<br>with Olivier Roper</p>
+            <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-2 button-super-white"
+                    onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
+              <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
+                  alt: "Olivier Roper", 
+                  class: "olivier-head") %>
+              <p class="mb-0">Book a Free Consultation<br>with Olivier Roper</p>
             </button>
             <!-- Calendly link widget end -->
-          
-
-
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form id="contactUsForm">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="email" placeholder="name@example.com">
-              <label for="floatingInput">Email address</label>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" id="submitButton" class="btn btn-primary">Save</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div>
-      <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank">
-        <div class="red-dot"></div>
-          <i class="fa-brands fa-whatsapp"></i>
-      </a>
-        <script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
         </div>
-</section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="contactUsForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="submitButton" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp Button -->
+<div>
+  <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank">
+    <div class="red-dot"></div>
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  <script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
+</div>
