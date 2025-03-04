@@ -172,13 +172,15 @@
 
 .button-super-white {
   box-shadow: rgba(0, 0, 0, 0.07) 0 2px 12px 0;
-  color: #373737;
+  background: linear-gradient(90deg, rgba(203, 189, 152, 1) 0%, rgba(177, 161, 117, 1) 100%);
+  color: white;
   display: flex;
   align-items: center;
   border-color: lightgray;
-  max-width: 350px; /* Restricts width on larger screens */
+  max-width: 300px; /* Restricts width on larger screens */
   width: 100%;
   font-size: 16px;
+  
 
   p {
     margin: 0;
