@@ -65,57 +65,104 @@
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </nav>
 
-
-<div class="flash flash-warning alert alert-dismissible fade show" role="alert">
-  <span>
-    Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.
-  </span>
-  <a data-bs-dismiss="alert" aria-label="Close">
-    <i class="fas fa-times"></i>
-  </a>
-</div>
-
-<div class="container py-4">
-  <div class="row flex-lg-row-reverse align-items-center g-5">
-    <!-- Image Column -->
-    <div class="col-md-10 mx-auto col-lg-5">
-      <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers.jpg", 
-          alt: "Olivier Roper", 
-          class: "d-none d-sm-block mx-lg-auto img-fluid rounded img-home") %>
-    </div>
-
-    <!-- Text Column (make it a flex container to center content vertically) -->
-    <div class="col-lg-6 d-flex align-items-center">
-      <div>
-        <a class="reviews-link" href="#reviews">
-          <strong>Google Reviews</strong>
-          <span class="stars">5.0</span>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-        </a>
-        <h1 class="display-4 fw-bold lh-1 my-3">
-          <span class="gradient-text">Expert Property Lawyers in Spain: </span> Conveyancing Solicitors
-        </h1>
-        <p class="value-proposition">
-          Providing Clear, Trusted Legal Advice for Stress-Free Property Buying &amp; Selling in Spain – With Over 14 Years of Expertise.
-        </p>
-        <div class="d-grid gap-2 d-md-flex mt-3 justify-content-md-start">
-          <div class="d-grid gap-2">
-<%= link_to '/free-consultation', class: "btn btn-outline-secondary btn-lg px-4 p-2 button-super-white" do %>
-  <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
-      alt: "Olivier Roper", 
-      class: "olivier-head") %>
-  <p class="mb-0">Book a Free Consultation<br>with Olivier Roper</p>
-<% end %>
-
-          </div>
+<!-- Add extra top padding to account for the fixed navbar -->
+<div class="container-fluid" style="padding-top: 80px;">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="text-center mb-4">
+        
+      </div>
+      <!-- Calendly widget displayed full-width, outside of any card container -->
+      <div class="w-100">
+        <div class="calendly-inline-widget" 
+             data-url="https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1" 
+             style="min-width:320px;height:calc(100vh - 150px);">
         </div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </div>
     </div>
   </div>
+</div>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://www.roperlawyers.com/">Roper Lawyers</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Left aligned items -->
+      <ul class="navbar-nav me-auto left-links">
+        <li class="nav-item mx-2">
+          <a class="nav-link text-white text-decoration-none" href="tel:+44 20 8135 8218">
+            🇬🇧 +44 20 8135 8218
+          </a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link text-white text-decoration-none" href="tel:+34 928 97 42 41">
+            🇪🇸 +34 928 97 42 41
+          </a>
+        </li>
+        <li class="nav-item mx-2">
+          <%= link_to "Spain Property Selling and Buying Guide", "/spain-property-guide", 
+                      class: "nav-link text-white text-decoration-none" %>
+        </li>
+        <li class="nav-item mx-2">
+          <!-- Link now points to /free-consultation -->
+          <a class="nav-link text-white text-decoration-none" href="/free-consultation">
+            Free consultation
+          </a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link text-white text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+            Contact Our Team
+          </a>
+        </li>
+      </ul>
+
+      <!-- Right aligned items: Buttons for auth-related links -->
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <p class="nav-link text-muted mb-0">
+              Logged in as <strong><%= current_user.email %></strong>
+            </p>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Dashboard', edit_user_path(current_user), class: "btn btn-outline-secondary m-1" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-secondary m-1", method: :delete %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary m-1" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary m-1" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <!-- Calendly widget assets (best placed in your head, if possible) -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</nav>
+
+
+
+
+<div class="container py-4">
+ <!-- Calendly widget displayed full-width, outside of any card container -->
+      <div class="w-100">
+        <div class="calendly-inline-widget" 
+             data-url="https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1" 
+             style="min-width:320px;height:calc(100vh - 150px);">
+        </div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      </div>
 </div>
 
 <!-- Contact Modal -->

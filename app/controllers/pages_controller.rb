@@ -60,4 +60,11 @@ class PagesController < ApplicationController
   def set_reviews
     @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
+
+
+  def free_consultation
+    # Static page; no logic is required here.
+  end
+  
 end
+

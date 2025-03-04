@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get 'madrid', to: 'pages#madrid'
   get 'ibiza', to: 'pages#ibiza'
   get 'spain-property-guide', to: 'pages#spain-property-guide'
+  get 'free-consultation', to: 'pages#free_consultation'
+
+  
+  
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -17,37 +17,71 @@
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Roper Lawyers</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="https://www.roperlawyers.com/">Roper Lawyers</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
-         <ul class="navbar-nav">
-            <a class="nav-link text-white" href="tel:+44 20 8135 8218">🇬🇧 +44 20 8135 8218<span class="sr-only">(current)</span></a>
-            <a class="nav-link text-white" href="tel:+34 928 97 42 41">🇪🇸 +34 928 97 42 41<span class="sr-only">(current)</span></a>
-        </ul>
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <button type="button" class="btn btn-light m-1 " href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
-          Free consultation
-          </button>
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, id: "flash_#{name}", class:" m-1" %>
-      <% end %>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Left aligned items -->
+      <ul class="navbar-nav me-auto left-links">
+        <li class="nav-item mx-2">
+          <a class="nav-link text-white text-decoration-none" href="tel:+44 20 8135 8218">
+            🇬🇧 +44 20 8135 8218
+          </a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link text-white text-decoration-none" href="tel:+34 928 97 42 41">
+            🇪🇸 +34 928 97 42 41
+          </a>
+        </li>
+        <li class="nav-item mx-2">
+          <%= link_to "Spain Property Selling and Buying Guide", "/spain-property-guide", 
+                      class: "nav-link text-white text-decoration-none" %>
+        </li>
+        <li class="nav-item mx-2">
+          <!-- Link now points to /free-consultation -->
+          <a class="nav-link text-white text-decoration-none" href="/free-consultation">
+            Free consultation
+          </a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link text-white text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+            Contact Our Team
+          </a>
+        </li>
+      </ul>
 
+      <!-- Right aligned items: Buttons for auth-related links -->
+      <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
-          <p class="text-muted">Logged in as <strong><%= current_user.email %></strong></p>
-          <div class="pull-right">
-          <%= link_to 'Dashboard', edit_user_path(current_user), class:"btn btn-outline-secondary m-1" %>
-          </div>
-          <%= link_to "Logout", destroy_user_session_path, class:"btn btn-outline-secondary m-1", method: :delete %>
+          <li class="nav-item">
+            <p class="nav-link text-muted mb-0">
+              Logged in as <strong><%= current_user.email %></strong>
+            </p>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Dashboard', edit_user_path(current_user), class: "btn btn-outline-secondary m-1" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-secondary m-1", method: :delete %>
+          </li>
         <% else %>
-          <%= link_to "Sign up", new_user_registration_path, class:"btn btn-outline-secondary m-1" %>
-          <%= link_to "Login", new_user_session_path, class:"btn btn-outline-secondary m-1" %>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary m-1" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary m-1" %>
+          </li>
         <% end %>
-
+      </ul>
+    </div>
   </div>
+  <!-- Calendly widget assets (best placed in your head, if possible) -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </nav>
+
 <div class="container mt-4">
         <div class="row">
             <div class="col-md-8">
@@ -146,7 +180,39 @@ Throughout this process, having professional guidance from qualified estate agen
             </div>
         </div>
     </div>
+    <!-- Contact Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="contactUsForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="submitButton" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp Button -->
+<div>
+  <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank">
+    <div class="red-dot"></div>
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  <script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
+</div>
+
 </section>
 
 </main>
-
