@@ -13,8 +13,7 @@ import $ from 'jquery'
 Rails.start()
 Turbolinks.start()
 
-
-$(document).ready(function () {
+function activateContactForm () {
   $("#contactModal #successMessageBody, #contactModal #errorMessageBody, #contactModal .ct-spinner").hide()
   $("#contactForm").on("submit", (e) => {
     e.preventDefault();
@@ -69,5 +68,10 @@ $(document).ready(function () {
         console.log('data', data)
       });
   })
-});
+}
+
+
+$(document).on("turbo:load", activateContactForm);
+$(document).on("turbo:load", ()=>{console.log("Ready")});
+$(document).ready(()=>{console.log("doc Ready")});
 
