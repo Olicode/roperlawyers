@@ -451,3 +451,10 @@ main {
   }
 }
 
+
+  /* Increase mobile title size */
+  @media (max-width: 767.98px) {
+    .mobile-title {
+      font-size: 3.5rem; /* Adjust as needed for larger mobile display */
+    }
+  }
