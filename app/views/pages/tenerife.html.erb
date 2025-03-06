@@ -68,8 +68,13 @@
 
 
 <div class="flash flash-warning alert alert-dismissible fade show" role="alert">
-  <span>
-    Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.
+  <!-- Desktop alert text -->
+  <span class="d-none d-md-inline">
+    This <%= Date.current.strftime("%B") %>, we’re accepting only <%= pick_random_number_based_on_month %> new property law clients to ensure every client receives the expert, personalised service they deserve.
+  </span>
+  <!-- Mobile alert text -->
+  <span class="d-inline d-md-none">
+    Accepting <%= pick_random_number_based_on_month %> new clients this <%= Date.current.strftime("%B") %>.
   </span>
   <a data-bs-dismiss="alert" aria-label="Close">
     <i class="fas fa-times"></i>

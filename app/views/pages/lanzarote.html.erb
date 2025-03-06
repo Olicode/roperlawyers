@@ -2,17 +2,17 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="https://www.roperlawyers.com/">Roper Lawyers</a>
-<div class="d-flex align-items-center">
-  <!-- Call button visible on mobile only -->
-  <a href="tel:+34928974241" class="btn btn-light d-lg-none me-2">
-    Call Now
-  </a>
-  <!-- Hamburger menu button -->
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-</div>
+    <div class="d-flex align-items-center">
+      <!-- Call button visible on mobile only -->
+      <a href="tel:+34928974241" class="btn btn-light d-lg-none me-2">
+        Call Now
+      </a>
+      <!-- Hamburger menu button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <!-- Left aligned items -->
@@ -74,10 +74,14 @@
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </nav>
 
-
 <div class="flash flash-warning alert alert-dismissible fade show" role="alert">
-  <span>
-    Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.
+  <!-- Desktop alert text -->
+  <span class="d-none d-md-inline">
+    This <%= Date.current.strftime("%B") %>, we’re accepting only <%= pick_random_number_based_on_month %> new property law clients to ensure every client receives the expert, personalised service they deserve.
+  </span>
+  <!-- Mobile alert text -->
+  <span class="d-inline d-md-none">
+    Accepting <%= pick_random_number_based_on_month %> new clients this <%= Date.current.strftime("%B") %>.
   </span>
   <a data-bs-dismiss="alert" aria-label="Close">
     <i class="fas fa-times"></i>
@@ -106,19 +110,33 @@
           <i class="fa-sharp fa-solid fa-star stars"></i>
         </a>
         <h1 class="display-4 fw-bold lh-1 my-3">
-          <span class="gradient-text">Trusted Property Lawyers in Lanzarote:</span> Expert Conveyancing Services
+          <!-- Desktop title -->
+          <span class="d-none d-md-inline">
+            <span class="gradient-text">Trusted Property Lawyers in Lanzarote:</span> Expert Conveyancing &amp; Property Law Services
+          </span>
+          <!-- Mobile title -->
+          <span class="d-inline d-md-none">
+            <span class="gradient-text">Lanzarote Property Law Experts</span>
+          </span>
         </h1>
         <p class="value-proposition">
-Get expert conveyancing and legal support for a smooth, hassle-free property purchase in Lanzarote. With 14+ years of experience, we assist international buyers with trusted guidance every step of the way.        </p>
+          <!-- Desktop subtitle -->
+          <span class="d-none d-md-inline">
+            Expert conveyancing and property law advice in Lanzarote. With over 14 years of experience, we ensure smooth property transactions for international buyers.
+          </span>
+          <!-- Mobile subtitle -->
+          <span class="d-inline d-md-none">
+            Expert property law &amp; conveyancing in Lanzarote. 14+ years experience.
+          </span>
+        </p>
         <div class="d-grid gap-2 d-md-flex mt-3 justify-content-md-start">
           <div class="d-grid gap-2">
-<%= link_to '/free-consultation', class: "btn btn-outline-secondary btn-lg px-4 p-2 button-super-white" do %>
-  <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
-      alt: "Olivier Roper", 
-      class: "olivier-head") %>
-  <p class="mb-0">Book a Free Consultation<br>with Olivier Roper</p>
-<% end %>
-
+            <%= link_to '/free-consultation', class: "btn btn-outline-secondary btn-lg px-4 p-2 button-super-white" do %>
+              <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
+                  alt: "Olivier Roper", 
+                  class: "olivier-head") %>
+              <p class="mb-0">Book a Free Consultation<br>with Olivier Roper</p>
+            <% end %>
           </div>
         </div>
       </div>
@@ -126,6 +144,7 @@ Get expert conveyancing and legal support for a smooth, hassle-free property pur
   </div>
 </div>
 </main>
+
 <!-- Contact Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
