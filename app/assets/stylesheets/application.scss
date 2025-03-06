@@ -191,13 +191,19 @@
 }
 
 /* Override the max-width on smaller devices */
+
+
 @media (max-width: 767.98px) {
   .button-super-white {
+    
     max-width: 100% !important;
+    max-height: 100%;
+    width: 65%;
+   
+    margin-left: auto;
+    margin-right: auto;
   }
 }
-
-
 
 .white-text {
   color: white;

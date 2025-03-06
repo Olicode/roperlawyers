@@ -139,8 +139,8 @@
           </p>
 
           <!-- Book a Consultation Button (center on mobile) -->
-          <div class="d-grid gap-2 mt-3 text-center text-md-start">
-            <%= link_to '/free-consultation', class: "btn btn-outline-secondary btn-lg px-3 p-2 button-super-white rounded-pill" do %>
+          <div class="d-grid gap-2 mt-3 text-md-start">
+            <%= link_to '/free-consultation', class: "btn btn-outline-secondary btn-lg button-super-white rounded-pill justify-content-center" do %>
               <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
                   alt: "Olivier Roper", 
                   class: "olivier-head") %>
@@ -153,18 +153,7 @@
   </div>
 </main>
 
-<!-- Custom styles -->
-<style>
-  /* Narrow the consultation button on mobile */
-  @media (max-width: 767.98px) {
-    .button-super-white {
-      max-width: 180px; /* Adjust width as needed */
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-</style>
+
 
 
 <!-- Contact Modal -->
