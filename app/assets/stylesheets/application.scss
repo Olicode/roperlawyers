@@ -464,3 +464,17 @@ main {
       font-size: 3rem; /* Adjust as needed for larger mobile display */
     }
   }
+
+  /* Remove outer card shadow and borders on Calendly widget */
+  .calendly-inline-widget > div,
+  .calendly-inline-widget > div > div {
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Remove all background, if needed */
+  .calendly-inline-widget * {
+    background: transparent !important;
+  }
+

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'ibiza', to: 'pages#ibiza'
   get 'spain-property-guide', to: 'pages#spain-property-guide'
   get 'free-consultation', to: 'pages#free_consultation'
+  get 'consultation', to: 'pages#consultation'
 
   
   

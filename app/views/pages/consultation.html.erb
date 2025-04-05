@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Consultation | Roper Lawyers</title>
+    <style>
+      body {
+        padding-top: 80px; /* Prevent content from being hidden under the fixed navbar */
+        background-color: #f7f7f7; /* Very light grey background */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="https://www.roperlawyers.com/">
+          Roper Lawyers
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Left aligned items -->
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="tel:+442081358218">
+                🇬🇧 +44 20 8135 8218
+              </a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="tel:+34928974241">
+                🇪🇸 +34 928 97 42 41
+              </a>
+            </li>
+            <li class="nav-item mx-2">
+              <%= link_to "Spain Property Selling and Buying Guide", "/spain-property-guide", class: "nav-link" %>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="/free-consultation">
+                Free Consultation
+              </a>
+            </li>
+            <li class="nav-item mx-2">
+              <a
+                class="nav-link"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#contactModal"
+              >
+                Contact Our Team
+              </a>
+            </li>
+          </ul>
+          <!-- Right aligned items: Buttons for auth-related links -->
+          <ul class="navbar-nav ms-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <span class="navbar-text text-muted">
+                  Logged in as <strong><%= current_user.email %></strong>
+                </span>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Dashboard', edit_user_path(current_user), class: "btn btn-outline-secondary m-1" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-secondary m-1", method: :delete %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary m-1" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary m-1" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Consultation Page Content -->
+    <div class="container my-5">
+      <div class="">
+        <div class="card-header text-center">
+          <h2 class="mb-0">Free Consultation</h2>
+        </div>
+        <div class="card-body">
+          <p class="lead text-center">
+            Please select a suitable date and time for your consultation.
+          </p>
+          <!-- Calendly inline widget begin -->
+          <div
+            class="calendly-inline-widget"
+            data-url="https://calendly.com/roperlawyers/consultation?hide_gdpr_banner=1&primary_color=b29c84"
+            style="min-width: 320px; height: 800px;"
+          ></div>
+          <script
+            type="text/javascript"
+            src="https://assets.calendly.com/assets/external/widget.js"
+            async
+          ></script>
+          <!-- Calendly inline widget end -->
+
+          <!-- WhatsApp Button Section -->
+          <div class="text-center my-4">
+            <p class="mb-2">
+              Your consultation call will be conducted via WhatsApp at
+              <strong>+34 649 948 377</strong>.
+            </p>
+            <a href="https://wa.me/34649948377" target="_blank" style="text-decoration: none;">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoYz1HIyN0jv9J4cYfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+

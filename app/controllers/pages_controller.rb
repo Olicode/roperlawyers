@@ -65,6 +65,9 @@ class PagesController < ApplicationController
   def free_consultation
     # Static page; no logic is required here.
   end
+
+  def consultation
+  end
   
 end
 
