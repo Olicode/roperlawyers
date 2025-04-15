@@ -3,12 +3,22 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
   validates :email, presence: true
-
   validates :last_name, presence: true, on: :update
+
   has_one_attached :nie_document
   has_one_attached :passport_document
+  has_one_attached :igic_registration_modelo_400_document
+  has_many_attached :nota_simple_documents
+  has_many_attached :title_deed_documents
+  has_many_attached :vv_license_documents
+  has_many_attached :first_occupation_license_documents
+  has_many_attached :cee_documents
+  has_many_attached :civil_liability_insurance_policy_documents
+ 
 
+  # These callbacks will send emails to info@roperlawyers.com
   after_create_commit :send_updates_to_admin
   after_update_commit :send_updates_to_admin
 

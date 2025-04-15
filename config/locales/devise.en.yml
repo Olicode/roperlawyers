@@ -1,0 +1,4 @@
+en:
+  devise:
+    failure:
+      invalid: 'Incorrect email or password, please try again.'

@@ -330,10 +330,63 @@
         <%= form.label :inheritance_to_be_governed_by %>
       <p class="m-2 small-text">Most clients choose "Law of country of current nationality". </p>
       </div>
-
-
   </div>
 
+<%# VV License section %>
+  <div class="card p-5 mb-5 card-shadow">
+    <h4>VV License documents</h4>
+    <p class="mb-5">VV license documents need to be uploaded in the following order:</p>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload Nota Simple</p>
+      <p class="text-muted">This is the document that proves you have a property in Lanzarote.</p>
+      <div class="form-floating" >
+        <%= form.file_field :nota_simple_document %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload Title Deed (Escritura)</p>
+      <div class="form-floating" >
+        <%= form.file_field :title_deed_documents, multiple: true %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload VV License</p>
+      <div class="form-floating" >
+        <%= form.file_field :vv_license_documents, multiple: true %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload First Occupation License</p>
+      <div class="form-floating" >
+        <%= form.file_field :first_occupation_license_documents, multiple: true %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload Energy Efficiency Certificate (CEE)</p>
+      <div class="form-floating" >
+        <%= form.file_field :cee_documents, multiple: true %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload Civil Liability Insurance Policy</p>
+      <div class="form-floating" >
+        <%= form.file_field :civil_liability_insurance_policy_documents, multiple: true %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload IGIC Registration (Modelo 400)</p>
+      <div class="form-floating" >
+        <%= form.file_field :igic_registration_modelo_400_document %>
+      </div>
+    </div>
+  </div>
 
   <div class="d-grid  mb-3">
     <%= form.submit "Submit", class:"btn btn-primary btn-lg mb-2" %>

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'spain-property-guide', to: 'pages#spain-property-guide'
   get 'free-consultation', to: 'pages#free_consultation'
   get 'consultation', to: 'pages#consultation'
+  get 'vv-license', to: 'pages#vv_license'
 
   
   
