@@ -68,10 +68,6 @@ class PagesController < ApplicationController
 
   end
 
-  def vv_license
-    # Vacation rental license page
-  end
-
   def consultation
     
   end
