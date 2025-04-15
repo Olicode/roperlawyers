@@ -3,13 +3,13 @@ class PagesController < ApplicationController
 
   def lanzarote
     @mtitle = "Property solicitors Lanzarote, find Lanzarote property lawyers"
-    @mdescription = "If you’re looking for English-speaking real estate lawyers in Lanzarote, look no further. Contact our property lawyers for legal advice now."
+    @mdescription = "If you're looking for English-speaking real estate lawyers in Lanzarote, look no further. Contact our property lawyers for legal advice now."
     @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
   end
 
   def tenerife
     @mtitle = "Tenerife estate agents, find property lawyers in Tenerife"
-    @mdescription = "If you need advice for buying a property in Tenerife or you’re looking to sell your property in Spain, contact our team. We can guide you through the process today."
+    @mdescription = "If you need advice for buying a property in Tenerife or you're looking to sell your property in Spain, contact our team. We can guide you through the process today."
     @reviews = JSON.parse(File.read(File.join('public', 'tenerife_reviews.json')))
   end
 
@@ -63,10 +63,17 @@ class PagesController < ApplicationController
 
 
   def free_consultation
-    # Static page; no logic is required here.
+    # respond to turbo_stream with notice
+    
+
+  end
+
+  def vv_license
+    # Vacation rental license page
   end
 
   def consultation
+    
   end
   
 end
