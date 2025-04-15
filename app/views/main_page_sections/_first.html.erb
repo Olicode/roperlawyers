@@ -141,17 +141,11 @@
           <!-- Book a Consultation Button (center on mobile) -->
           <div class="d-grid gap-2 mt-3 text-md-start">
             <!-- Consultation button -->
-            <%= link_to '/free-consultation', class: "btn btn-outline-secondary button-super-white rounded-pill justify-content-center mb-2" do %>
+            <%= link_to '/free-consultation', class: "btn btn-outline-secondary btn-lg button-super-white rounded-pill justify-content-center mb-2" do %>
               <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
                   alt: "Olivier Roper", 
                   class: "olivier-head") %>
               <p class="mb-0">Book a Free Consultation<br>with Olivier Roper</p>
-            <% end %>
-            
-            <!-- VV License button -->
-            <%= link_to vv_license_path, class: "btn btn-outline-secondary button-super-white rounded-pill justify-content-center" do %>
-              <i class="fas fa-home olivier-head"></i>
-              <p class="mb-0">Legalise your VV license<br>New Requirements</p>
             <% end %>
           </div>
         </div>
