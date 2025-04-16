@@ -1,5 +1,292 @@
-<h1>Admin#send_user_updates</h1>
+<h2>User Update Notification</h2>
 
 <p>
-  <%= @user.email %>, We just got your updates!
+  New update from user: <%= @user.full_name %> <%= @user.email %>
+</p>
+
+<h3>User details</h3>
+
+<table border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+  <tr>
+    <th align="left" style="background-color: #f2f2f2;">Attribute</th>
+    <th align="left" style="background-color: #f2f2f2;">Value</th>
+  </tr>
+  
+  <tr>
+    <td>First Name</td>
+    <td><%= @user.first_name.present? ? @user.first_name : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Last Name</td>
+    <td><%= @user.last_name.present? ? @user.last_name : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Email</td>
+    <td><%= @user.email.present? ? @user.email : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Mobile Phone</td>
+    <td><%= @user.mobile_phone.present? ? @user.mobile_phone : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Full Name on Passport</td>
+    <td><%= @user.full_name_on_passport.present? ? @user.full_name_on_passport : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Passport Number</td>
+    <td><%= @user.passport_number.present? ? @user.passport_number : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Date of Birth</td>
+    <td><%= @user.date_of_birth.present? ? @user.date_of_birth.strftime("%d/%m/%Y") : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Expiry Date</td>
+    <td><%= @user.expiry_date.present? ? @user.expiry_date.strftime("%d/%m/%Y") : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Nationality</td>
+    <td><%= @user.nationality.present? ? @user.nationality : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Profession</td>
+    <td><%= @user.profession.present? ? @user.profession : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Marital Status</td>
+    <td><%= @user.marital_status.present? ? @user.marital_status : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Spouse</td>
+    <td><%= @user.spouse.present? ? @user.spouse : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Home Address</td>
+    <td><%= @user.home_address.present? ? @user.home_address : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Currency</td>
+    <td><%= @user.currency.present? ? @user.currency : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Here Until</td>
+    <td><%= @user.here_till.present? ? @user.here_till.strftime("%d/%m/%Y") : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Needs Mortgage</td>
+    <td><%= @user.needs_mortgage.present? ? @user.needs_mortgage : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Wants to Holiday Let</td>
+    <td><%= @user.wants_to_holiday_let.present? ? @user.wants_to_holiday_let : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Tax Resident</td>
+    <td><%= @user.tax_resident == true ? "Yes" : "No" %></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2" style="background-color: #f2f2f2;"><strong>Power of Attorney</strong></td>
+  </tr>
+  
+  <tr>
+    <td>Needs PoA</td>
+    <td><%= @user.needs_poa.present? ? @user.needs_poa : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>PoA For</td>
+    <td><%= @user.poa_for.present? ? @user.poa_for : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>PoA Made in Spain</td>
+    <td><%= @user.poa_made_in_spain.present? ? @user.poa_made_in_spain : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2" style="background-color: #f2f2f2;"><strong>NIE Information</strong></td>
+  </tr>
+  
+  <tr>
+    <td>Needs NIE</td>
+    <td><%= @user.needs_nie.present? ? @user.needs_nie : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>NIE Number</td>
+    <td><%= @user.nie_number.present? ? @user.nie_number : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Father's First Name</td>
+    <td><%= @user.father_s_first_name.present? ? @user.father_s_first_name : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Mother's First Name</td>
+    <td><%= @user.mother_s_first_name.present? ? @user.mother_s_first_name : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2" style="background-color: #f2f2f2;"><strong>Bank Details</strong></td>
+  </tr>
+  
+  <tr>
+    <td>Reservation Origin Bank Details</td>
+    <td><%= @user.r_origin_bank_details.present? ? @user.r_origin_bank_details : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Private Contract Origin Bank Details</td>
+    <td><%= @user.otb_origin_bank_details.present? ? @user.otb_origin_bank_details : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Balance Bank Details</td>
+    <td><%= @user.balance_bank_details.present? ? @user.balance_bank_details : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Has Spanish Bank Account</td>
+    <td><%= @user.has_a_spanish_bank_account.present? ? @user.has_a_spanish_bank_account : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Standing Orders Bank Details</td>
+    <td><%= @user.standing_orders_bank_details.present? ? @user.standing_orders_bank_details : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2" style="background-color: #f2f2f2;"><strong>Last Will & Testament</strong></td>
+  </tr>
+  
+  <tr>
+    <td>Name of Present Spouse</td>
+    <td><%= @user.name_of_the_present_spouse.present? ? @user.name_of_the_present_spouse : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Name of Previous Spouses</td>
+    <td><%= @user.name_of_the_previous_spouses.present? ? @user.name_of_the_previous_spouses : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Date of Divorce</td>
+    <td><%= @user.date_of_divorce.present? ? @user.date_of_divorce.strftime("%d/%m/%Y") : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Date of Decease</td>
+    <td><%= @user.date_of_decease.present? ? @user.date_of_decease.strftime("%d/%m/%Y") : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Father's Full Name</td>
+    <td><%= @user.father_s_full_name.present? ? @user.father_s_full_name : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Father's Vital Status</td>
+    <td><%= @user.father_s_vital_status.present? ? @user.father_s_vital_status : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Mother's Full Name</td>
+    <td><%= @user.mother_s_full_name.present? ? @user.mother_s_full_name : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Mother's Vital Status</td>
+    <td><%= @user.mother_s_vital_status.present? ? @user.mother_s_vital_status : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Children</td>
+    <td><%= @user.children.present? ? @user.children : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Outline of Bequests and Order of Success</td>
+    <td><%= @user.outline_of_bequests_and_oder_of_success.present? ? @user.outline_of_bequests_and_oder_of_success : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td>Inheritance to be Governed By</td>
+    <td><%= @user.inheritance_to_be_governed_by.present? ? @user.inheritance_to_be_governed_by : "-" %></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2" style="background-color: #f2f2f2;"><strong>Document Uploads</strong></td>
+  </tr>
+  
+  <tr>
+    <td>NIE Document</td>
+    <td><%= @user.nie_document.attached? ? "Yes" : "No" %></td>
+  </tr>
+  
+  <tr>
+    <td>Passport Document</td>
+    <td><%= @user.passport_document.attached? ? "Yes" : "No" %></td>
+  </tr>
+  
+  <tr>
+    <td>Nota Simple Documents</td>
+    <td><%= @user.nota_simple_documents.attached? ? "Yes (#{@user.nota_simple_documents.count} files)" : "No" %></td>
+  </tr>
+  
+  <tr>
+    <td>Title Deed Documents</td>
+    <td><%= @user.title_deed_documents.attached? ? "Yes (#{@user.title_deed_documents.count} files)" : "No" %></td>
+  </tr>
+  
+  <tr>
+    <td>VV License Documents</td>
+    <td><%= @user.vv_license_documents.attached? ? "Yes (#{@user.vv_license_documents.count} files)" : "No" %></td>
+  </tr>
+  
+  <tr>
+    <td>First Occupation License Documents</td>
+    <td><%= @user.first_occupation_license_documents.attached? ? "Yes (#{@user.first_occupation_license_documents.count} files)" : "No" %></td>
+  </tr>
+  
+  <tr>
+    <td>CEE Documents</td>
+    <td><%= @user.cee_documents.attached? ? "Yes (#{@user.cee_documents.count} files)" : "No" %></td>
+  </tr>
+  
+  <tr>
+    <td>Civil Liability Insurance Policy Documents</td>
+    <td><%= @user.civil_liability_insurance_policy_documents.attached? ? "Yes (#{@user.civil_liability_insurance_policy_documents.count} files)" : "No" %></td>
+  </tr>
+  
+  <tr>
+    <td>IGIC Registration (Modelo 400) Document</td>
+    <td><%= @user.igic_registration_modelo_400_document.attached? ? "Yes" : "No" %></td>
+  </tr>
+</table>
+
+<p>
+  <strong>Salesforce Contact ID:</strong> <%= @user.sf_contact_id.present? ? @user.sf_contact_id : "Not yet created" %>
+</p>
+
+<p>
+  <a href="<%= edit_user_url(@user) %>">View User Profile</a>
 </p>

@@ -22,6 +22,11 @@ class User < ApplicationRecord
   after_create_commit :send_updates_to_admin
   after_update_commit :send_updates_to_admin
 
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def send_updates_to_admin
@@ -29,6 +34,6 @@ class User < ApplicationRecord
     puts "sending email to admin"
     puts "*" * 100
     # TODO: uncomment when sendgrid email starts working.
-    # AdminMailer.send_user_updates(self).deliver_now
+    AdminMailer.send_user_updates(self).deliver_now
   end
 end
