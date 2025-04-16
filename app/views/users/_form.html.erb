@@ -319,8 +319,8 @@
       </div>
 
       <div class="form-floating mb-3">
-        <%= form.text_field :outline_of_bequests_and_order_of_success, class:"form-control", placeholder:"Outline of Bequests and Order of Success"  %>
-        <%= form.label :outline_of_bequests_and_order_of_success %>
+        <%= form.text_field :outline_of_bequests_and_oder_of_success, class:"form-control", placeholder:"Outline of Bequests and Order of Success"  %>
+        <%= form.label :outline_of_bequests_and_oder_of_success %>
       </div>
 
       <div class="form-floating mb-3">
@@ -341,7 +341,7 @@
       <p>Upload Nota Simple</p>
       <p class="text-muted">This is the document that proves property ownership in the Land Registry. If you do not have one, please leave this field blank.</p>
       <div class="form-floating" >
-        <%= form.file_field :nota_simple_document %>
+        <%= form.file_field :nota_simple_documents, multiple: true %>
       </div>
     </div>
     

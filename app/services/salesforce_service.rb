@@ -27,7 +27,8 @@ class SalesforceService
 
   def client
     @client ||= Restforce.new(
-      # host: ENV['SALESFORCE_HOST'],
+      # 
+      host: ENV['SALESFORCE_HOST'],
       api_version: '51.0',
       username: ENV['SALESFORCE_USER_NAME'],
       password: ENV['SALESFORCE_PASSWORD'],

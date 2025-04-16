@@ -221,21 +221,109 @@
     <%# uploaded docuemnts section  %>
 
       <div class="card p-5 mb-3 card-shadow">
-          <h4 class=" mb-3">Uploaded documents</h4>
+          <h4 class="mb-3">Uploaded documents</h4>
 
-            <p>
+            <div class="mb-4">
               <% if @user.nie_document.attached? %>
-                  <p><strong>NIE:</strong><p><br>
-                  <%= image_tag @user.nie_document %>
+                  <h5 class="mt-3">NIE document</h5>
+                  <div class="mb-3">
+                    <%= image_tag @user.nie_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+                  </div>
               <% end %>
-            </p>
+            </div>
 
-            <p>
+            <div class="mb-4">
               <% if @user.passport_document.attached? %>
-                <p><strong>Passport:</strong></p><br>
-                <%= image_tag @user.passport_document %>
+                <h5 class="mt-3">Passport</h5>
+                <div class="mb-3">
+                  <%= image_tag @user.passport_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+                </div>
               <% end %>
-            </p>
+            </div>
+
+            <% if @user.nota_simple_documents.attached? || 
+                  @user.title_deed_documents.attached? ||
+                  @user.vv_license_documents.attached? ||
+                  @user.first_occupation_license_documents.attached? ||
+                  @user.cee_documents.attached? ||
+                  @user.civil_liability_insurance_policy_documents.attached? ||
+                  @user.igic_registration_modelo_400_document.attached? %>
+              
+              <h5 class="mt-4 mb-3">VV License related documents</h5>
+              
+              <% if @user.nota_simple_documents.attached? %>
+                <p><strong>Nota Simple:</strong></p>
+                <div class="row mb-4">
+                  <% @user.nota_simple_documents.each do |document| %>
+                    <div class="col-md-4 mb-3">
+                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <% if @user.title_deed_documents.attached? %>
+                <p><strong>Title Deed (Escritura):</strong></p>
+                <div class="row mb-4">
+                  <% @user.title_deed_documents.each do |document| %>
+                    <div class="col-md-4 mb-3">
+                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <% if @user.vv_license_documents.attached? %>
+                <p><strong>VV License:</strong></p>
+                <div class="row mb-4">
+                  <% @user.vv_license_documents.each do |document| %>
+                    <div class="col-md-4 mb-3">
+                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <% if @user.first_occupation_license_documents.attached? %>
+                <p><strong>First Occupation License:</strong></p>
+                <div class="row mb-4">
+                  <% @user.first_occupation_license_documents.each do |document| %>
+                    <div class="col-md-4 mb-3">
+                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <% if @user.cee_documents.attached? %>
+                <p><strong>Energy Efficiency Certificate (CEE):</strong></p>
+                <div class="row mb-4">
+                  <% @user.cee_documents.each do |document| %>
+                    <div class="col-md-4 mb-3">
+                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <% if @user.civil_liability_insurance_policy_documents.attached? %>
+                <p><strong>Civil Liability Insurance Policy:</strong></p>
+                <div class="row mb-4">
+                  <% @user.civil_liability_insurance_policy_documents.each do |document| %>
+                    <div class="col-md-4 mb-3">
+                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <% if @user.igic_registration_modelo_400_document.attached? %>
+                <p><strong>IGIC Registration (Modelo 400):</strong></p>
+                <div class="mb-4">
+                  <%= image_tag @user.igic_registration_modelo_400_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+                </div>
+              <% end %>
+            <% end %>
       </div>
 
     <div class="row justify-content-center" >

@@ -88,13 +88,13 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        # binding.pry
+        
         if @user.sf_contact_id.blank?
           sf_contact_id = SalesforceService.create_or_update_contact(sf_attrs_map(@user))
           @user.update!(sf_contact_id: sf_contact_id) unless sf_contact_id == false
         else
           SalesforceService.update_contact(sf_attrs_map(@user).merge!(Id: @user.sf_contact_id))
-
+          #binding.pry
           if user_params[:nie_document].present?
             SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:nie_document], "NIE"))
           end
@@ -103,38 +103,39 @@ class UsersController < ApplicationController
             SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:passport_document], "Passport"))
           end
           
-          if user_params[:nota_simple_documents].present?
-            user_params[:nota_simple_documents].each do |document|
+          if user_params[:nota_simple_documents].reject(&:blank?).present?
+            
+            user_params[:nota_simple_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Nota Simple"))
             end
           end
           
-          if user_params[:title_deed_documents].present?
-            user_params[:title_deed_documents].each do |document|
+          if user_params[:title_deed_documents].reject(&:blank?).present?
+            user_params[:title_deed_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Title Deed"))
             end
           end
           
-          if user_params[:vv_license_documents].present?
-            user_params[:vv_license_documents].each do |document|
+          if user_params[:vv_license_documents].reject(&:blank?).present?
+            user_params[:vv_license_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "VV License"))
             end
           end
           
-          if user_params[:first_occupation_license_documents].present?
-            user_params[:first_occupation_license_documents].each do |document|
+          if user_params[:first_occupation_license_documents].reject(&:blank?).present?
+            user_params[:first_occupation_license_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "First Occupation License"))
             end
           end
           
-          if user_params[:cee_documents].present?
-            user_params[:cee_documents].each do |document|
+          if user_params[:cee_documents].reject(&:blank?).present?
+            user_params[:cee_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "CEE"))
             end
           end
           
-          if user_params[:civil_liability_insurance_policy_documents].present?
-            user_params[:civil_liability_insurance_policy_documents].each do |document|
+          if user_params[:civil_liability_insurance_policy_documents].reject(&:blank?).present?
+            user_params[:civil_liability_insurance_policy_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Civil Liability Insurance Policy"))
             end
           end
