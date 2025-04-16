@@ -19,7 +19,7 @@ class User < ApplicationRecord
  
 
   # These callbacks will send emails to info@roperlawyers.com
-  after_create_commit :send_updates_to_admin
+  #after_create_commit :send_updates_to_admin
   after_update_commit :send_updates_to_admin
 
 

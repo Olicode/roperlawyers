@@ -187,83 +187,243 @@
   </div>
 
 <%# NIE section %>
-  <div class="card p-5 mb-5 card-shadow">
-    <h4>NIE Number</h4>
-    <p class="mb-5">Do you have an NIE number? If so, fill in the field and upload a photo of it. If not please fill in the following fields.</p>
+<div class="card p-5 mb-5 card-shadow">
+  <h4>NIE Number</h4>
+  <p class="mb-3">
+    If you already have an NIE, select “No” below, then enter it and upload a copy.  
+    If you don’t have one, select “Yes” and we’ll apply on your behalf.
+  </p>
 
-      <div class="form-floating mb-3">
-        <%= form.select "needs_nie", options_for_select([
-        "Yes", "No"
-        ], ""), { include_blank: true}, { class:"form-control", placeholder: "needs_nie" } %>
-        <%= form.label :Do_you_want_us_to_apply_for_an_NIE_number? %>
-     </div>
+  <fieldset class="mb-3">
+    <legend class="col-form-label">Would you like us to apply for your NIE?</legend>
+    <div class="form-check">
+      <%= form.radio_button :needs_nie, 'yes',
+            id: 'needs_nie_yes',
+            class: 'form-check-input' %>
+      <%= form.label :needs_nie_yes,
+            'Yes – please apply on my behalf',
+            class: 'form-check-label' %>
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :needs_nie, 'no',
+            id: 'needs_nie_no',
+            class: 'form-check-input' %>
+      <%= form.label :needs_nie_no,
+            'No – I already have an NIE',
+            class: 'form-check-label' %>
+    </div>
+  </fieldset>
 
-      <div class="form-floating mb-3">
-        <%= form.text_field :nie_number, class:"form-control", placeholder:"NIE number"  %>
-        <%= form.label :nie_number%>
-      </div>
-
-      <div class="form-floating mb-3">
-        <%= form.text_field :father_s_first_name, class:"form-control", placeholder:"Father's " %>
-        <%= form.label :father_s_first_name %>
-      </div>
-
-      <div class="form-floating mb-3">
-        <%= form.text_field :mother_s_first_name, class:"form-control", placeholder:"Mother's "  %>
-        <%= form.label :mother_s_first_name %>
-      </div>
-
-      <div class="rounded p-3 mb-3 bg-light">
-          <div class="form-floating">
-          <p >Upload a copy of your NIE document</p>
-            <%= form.file_field :nie_document %>
-          </div>
-      </div>
-
+  <div id="nie_fields">
+    <div class="form-floating mb-3">
+      <%= form.text_field :nie_number,
+            class: "form-control",
+            placeholder: "NIE number" %>
+      <%= form.label :nie_number, "NIE number" %>
+    </div>
+    <div class="mb-3">
+      <p class="mb-1">Upload a copy of your NIE document</p>
+      <%= form.file_field :nie_document, class: "form-control" %>
+    </div>
   </div>
+
+  <div id="parent_fields">
+    <p class="mb-3">
+      Please enter your parents’ first names so we can apply for your NIE:
+    </p>
+    <div class="form-floating mb-3">
+      <%= form.text_field :father_s_first_name,
+            class: "form-control",
+            placeholder: "Father’s first name" %>
+      <%= form.label :father_s_first_name, "Father’s first name" %>
+    </div>
+    <div class="form-floating mb-3">
+      <%= form.text_field :mother_s_first_name,
+            class: "form-control",
+            placeholder: "Mother’s first name" %>
+      <%= form.label :mother_s_first_name, "Mother’s first name" %>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const yesRadio    = document.getElementById("needs_nie_yes");
+    const noRadio     = document.getElementById("needs_nie_no");
+    const nieFields   = document.getElementById("nie_fields");
+    const parentFields= document.getElementById("parent_fields");
+
+    function toggleFields() {
+      if (yesRadio.checked) {
+        parentFields.style.display = "block";
+        nieFields.style.display    = "none";
+      } else {
+        parentFields.style.display = "none";
+        nieFields.style.display    = "block";
+      }
+    }
+
+    // initialize on load
+    toggleFields();
+
+    // listen for changes
+    yesRadio.addEventListener("change", toggleFields);
+    noRadio .addEventListener("change", toggleFields);
+  });
+</script>
+
 
 
 <%# Bank details section %>
+<style>
+  /* Grey out read‑only fields so they look disabled, but still submit */
+  .form-control[readonly] {
+    background-color: #e9ecef;
+  }
+</style>
+
 <div class="card p-5 mb-5 card-shadow">
-<h4>Bank details</h4>
-<p class="mb-5">Where do you want to send funds from? If transferring amounts from the same bank, fill in the first field with your bank details and type "same" in fields two and three.
-</p>
+  <h4>Bank details</h4>
 
-<h6>Please state from which bank account you are transferring the reservation fee.</h6>
-  <div class="form-floating mb-4">
-    <%= form.text_field :r_origin_bank_details, class:"form-control", placeholder:"Bank details"  %>
-    <%= form.label :reservation_origin_bank_details %>
+  <!-- 1) Will you pay a reservation deposit? -->
+  <fieldset class="mb-4">
+    <legend class="col-form-label">Will you pay a reservation deposit?</legend>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :will_pay_reservation, 'yes',
+            id: 'pay_res_yes',
+            class: 'form-check-input' %>
+      <%= form.label :pay_res_yes, 'Yes', class: 'form-check-label me-3' %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :will_pay_reservation, 'no',
+            id: 'pay_res_no',
+            class: 'form-check-input' %>
+      <%= form.label :pay_res_no, 'No', class: 'form-check-label' %>
+    </div>
+  </fieldset>
+
+  <!-- 2) Reservation (optional) -->
+  <div id="reservation_container" class="mb-4">
+    <h6>Reservation deposit – bank account details</h6>
+    <div class="form-floating mb-3">
+      <%= form.text_field :r_origin_bank_details,
+            class: "form-control",
+            id: "reservation_bank",
+            placeholder: "Bank account details" %>
+      <%= form.label :r_origin_bank_details, "Reservation deposit" %>
+    </div>
   </div>
 
-<h6>Please state from which bank account you are transferring the private contract.</h6>
-  <div class="form-floating mb-4">
-    <%= form.text_field :otb_origin_bank_details, class:"form-control", class:"form-control", placeholder:"Bank details"  %>
-    <%= form.label :private_contract_origin_bank_details%>
+  <!-- 3) Same‑account checkbox -->
+  <div class="form-check mb-4">
+    <%= form.check_box :use_same_account,
+          { class: "form-check-input", id: "use_same_account" },
+          "1", "0" %>
+    <%= form.label :use_same_account,
+          "Use the same bank account for all payments",
+          class: "form-check-label" %>
   </div>
 
-<h6>Please state from which bank account you are transferring the balance.</h6>
-<p class="text-muted">If you transfer the balance to my account, please type "Roper Lawyers" in this field.</p>
+  <!-- Private contract payment -->
+  <h6>Private contract payment – bank account details</h6>
   <div class="form-floating mb-4">
-    <%= form.text_field :balance_bank_details, class:"form-control", class:"form-control", placeholder:"Bank details"  %>
-    <%= form.label :balance_bank_details %>
+    <%= form.text_field :otb_origin_bank_details,
+          class: "form-control",
+          id: "contract_bank",
+          placeholder: "Bank account details" %>
+    <%= form.label :otb_origin_bank_details, "Private contract payment" %>
   </div>
 
-  <h6>Do you have a Spanish Bank account?</h6>
+  <!-- Remaining balance -->
+  <h6>Remaining balance – bank account details</h6>
+  <p class="text-muted mb-2">
+    If paying into our account, type “Roper Lawyers” here.
+  </p>
+  <div class="form-floating mb-4">
+    <%= form.text_field :balance_bank_details,
+          class: "form-control",
+          id: "balance_bank",
+          placeholder: "Bank account details" %>
+    <%= form.label :balance_bank_details, "Remaining balance" %>
+  </div>
+
+  <!-- Spanish account question -->
+  <h6>Do you have a Spanish bank account?</h6>
+  <div class="mb-3">
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :has_a_spanish_bank_account, 'yes',
+            id: 'spanish_yes',
+            class: 'form-check-input' %>
+      <%= form.label :spanish_yes, 'Yes', class: 'form-check-label me-3' %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :has_a_spanish_bank_account, 'no',
+            id: 'spanish_no',
+            class: 'form-check-input' %>
+      <%= form.label :spanish_no, 'No', class: 'form-check-label' %>
+    </div>
+  </div>
+
+  <!-- Utility standing order -->
+  <h6>Utility standing order – bank account details</h6>
+  <p class="text-muted mb-2">
+    Must be a Spanish account. Leave blank if you don’t have one yet.
+  </p>
   <div class="form-floating mb-3">
-    <%= form.select "has_a_spanish_bank_account", options_for_select([
-    "Yes", "No"
-    ], ""), { include_blank: true}, { class:"form-control", placeholder: "has_a_spanish_bank_account" } %>
-    <%= form.label :spanish_bank_account %>
+    <%= form.text_field :standing_orders_bank_details,
+          class: "form-control",
+          placeholder: "Bank account details" %>
+    <%= form.label :standing_orders_bank_details, "Utility standing order" %>
   </div>
-
-  <h6>Where do you want your utility company standing orders to come from?</h6>
-  <p class="text-muted">It must be a Spanish account. If you don't have one yet, please leave this field blank.</p>
-  <div class="form-floating mb-3">
-    <%= form.text_field :standing_orders_bank_details, class:"form-control", class:"form-control", placeholder:"Bank details"  %>
-    <%= form.label :standing_orders_bank_details %>
-  </div>
-
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const payYes       = document.getElementById("pay_res_yes");
+    const payNo        = document.getElementById("pay_res_no");
+    const resContainer = document.getElementById("reservation_container");
+    const sameCB       = document.getElementById("use_same_account");
+    const reservation  = document.getElementById("reservation_bank");
+    const contract     = document.getElementById("contract_bank");
+    const balance      = document.getElementById("balance_bank");
+
+    function toggleReservation() {
+      resContainer.style.display = payYes.checked ? "block" : "none";
+      syncFields();
+    }
+
+    function syncFields() {
+      // choose master field: reservation if visible, else contract
+      const master = resContainer.style.display === "block"
+                     ? reservation
+                     : contract;
+
+      if (sameCB.checked) {
+        // copy into others and make read‑only
+        contract.value = master.value;
+        balance.value  = master.value;
+        contract.readOnly = true;
+        balance.readOnly  = true;
+      } else {
+        // allow editing
+        contract.readOnly = false;
+        balance.readOnly  = false;
+      }
+    }
+
+    // initialize
+    toggleReservation();
+
+    // event listeners
+    payYes.addEventListener("change",  toggleReservation);
+    payNo .addEventListener("change",  toggleReservation);
+    sameCB.addEventListener("change", syncFields);
+    [reservation, contract].forEach(el =>
+      el.addEventListener("input", syncFields)
+    );
+  });
+</script>
+
 
 <%# Will section %>
   <div class="card p-5 mb-5 card-shadow">
