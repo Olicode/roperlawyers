@@ -1,14 +1,10 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
-//import "./controllers"
-import 'bootstrap'
+import "form"                // ← loads your NIE & bank‐sync logic
+import "bootstrap"
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import "./channels"
-import $ from 'jquery'
-
-
-
+import $ from "jquery"
 
 Rails.start()
 Turbolinks.start()
