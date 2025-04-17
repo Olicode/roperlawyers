@@ -5,155 +5,143 @@
       <h1>Information required</h1>
       <h6>In order to draw up contracts and title deed we need you to<br>fill in the following information </h6>
     </div>
+<div class="card p-5 mb-5 card-shadow">
+  <h4 class="mb-3">Personal details</h4>
 
-    <div class="card p-5 mb-5 card-shadow">
-      <h4>Personal details</h4>
+  <% if user.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <%= pluralize(user.errors.count, "error") %> prohibited this form from being saved:
+      <ul>
+        <% user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-      <% if user.errors.any? %>
-        <div id="error_explanation" class="alert alert-danger">
-         <%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:<br/>
-            <ul>
-              <% user.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
-        </div>
-      <% end %>
-
-      <div class="form-row align-items-center ">
-        <div class="form-floating mb-3 col-auto">
-          <%= form.text_field :first_name, class:"form-control", placeholder:"First name" %>
-          <%= form.label :first_name %>
-        </div>
-
-        <div class="form-floating mb-3 col-auto">
-          <%= form.text_field :last_name, class:"form-control", placeholder:"Last name" %>
-          <%= form.label :last_name %>
-          <div class="text-danger"><%= user.errors.full_messages_for(:last_name).first %></div>
-        </div>
-      </div>
-          <div class="form-floating mb-3 ">
-            <%= form.text_field :email, class:"form-control", placeholder:"Email" %>
-            <%= form.label :email %>
-          </div>
-
-        <div class="form-floating mb-3">
-          <%= form.text_field :mobile_phone, class:"form-control", placeholder:"Mobile phone" %>
-          <%= form.label :mobile_phone %>
-        </div>
-
-        <div class="form-floating mb-3">
-          <%= form.text_field :full_name_on_passport, class:"form-control", placeholder:"Full name on passport" %>
-          <%= form.label :full_name_on_passport %>
-        </div>
-
-  <div class="form-floating mb-3">
-    <%= form.text_field :passport_number, class:"form-control", placeholder:"Passport number" %>
-    <%= form.label :passport_number %>
+  <div class="form-row align-items-center">
+    <div class="form-floating mb-3 col-md-6">
+      <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
+      <%= form.label :first_name, "First name" %>
+    </div>
+    <div class="form-floating mb-3 col-md-6">
+      <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+      <%= form.label :last_name, "Last name" %>
+    </div>
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.date_field :date_of_birth, class: "form-control", placeholder: "Date of birth",
-                        id: "dateOfBirthField", pattern: "\\d{4}-\\d{2}-\\d{2}" %>
-    <%= form.label :date_of_birth %>
-    <div class="text-danger" id="dateOfBirthError"></div>
+    <%= form.text_field :email, class: "form-control", placeholder: "Email address" %>
+    <%= form.label :email, "Email address" %>
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.date_field :expiry_date, class:"form-control", placeholder:"Expiry date" %>
-    <%= form.label :expiry_date %>
+    <%= form.text_field :mobile_phone, class: "form-control", placeholder: "Mobile phone number" %>
+    <%= form.label :mobile_phone, "Mobile phone number" %>
   </div>
 
-   <div class="form-floating mb-3">
-   <%= form.select "nationality", options_for_select(%w[
+  <div class="form-floating mb-3">
+    <%= form.text_field :full_name_on_passport, class: "form-control", placeholder: "Full name on passport" %>
+    <%= form.label :full_name_on_passport, "Full name on passport" %>
+  </div>
 
-      Belgian
-      British
-      Chinese
-      Danish
-      Dutch
-      Finnish
-      French
-      German
-      Greek
-      Indian
-      Irish
-      Italian
-      Norwegian
-      Polish
-      Spanish
-      Swedish
-      Swiss
-      Romanian
-    ], ""), { include_blank: true }, { class:"form-control", placeholder:"Nationality" } %>
-    <%= form.label :nationality %>
-   </div>
+  <div class="form-floating mb-3">
+    <%= form.text_field :passport_number, class: "form-control", placeholder: "Passport number" %>
+    <%= form.label :passport_number, "Passport number" %>
+  </div>
 
-    <div class="rounded p-3 mb-3 bg-light">
-      <p>Upload a copy of your passport</p>
-      <div class="form-floating" >
-       <%= form.file_field :passport_document%>
-      </div>
+  <div class="form-floating mb-3">
+    <%= form.date_field :date_of_birth, class: "form-control", placeholder: "YYYY-MM-DD" %>
+    <%= form.label :date_of_birth, "Date of birth (YYYY‑MM‑DD)" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.date_field :expiry_date, class: "form-control", placeholder: "Passport expiry date" %>
+    <%= form.label :expiry_date, "Passport expiry date" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.select :nationality,
+          options_for_select(%w[Belgian British Chinese Danish Dutch Finnish French German Greek Indian Irish Italian Norwegian Polish Spanish Swedish Swiss Romanian], user.nationality),
+          { include_blank: true },
+          class: "form-control" %>
+    <%= form.label :nationality, "Nationality" %>
+  </div>
+
+  <div class="mb-3">
+    <p class="mb-1">Upload a copy of your passport</p>
+    <%= form.file_field :passport_document, class: "form-control" %>
+  </div>
+</div>
+<div class="card p-5 mb-5 card-shadow"> 
+  <h4 class="mb-3">Additional Information</h4>
+  <div class="form-floating mb-3">
+    <%= form.text_field :profession, class: "form-control", placeholder: "Profession" %>
+    <%= form.label :profession, "Profession" %>
+  </div>
+
+  <div class="form-row">
+    <div class="form-floating mb-3 col-md-6">
+      <%= form.text_field :marital_status, class: "form-control", placeholder: "Marital status" %>
+      <%= form.label :marital_status, "Marital status" %>
     </div>
-
-   <div class="form-floating mb-3">
-    <%= form.text_field :profession, class:"form-control", placeholder:"Profession" %>
-    <%= form.label :profession %>
-   </div>
-
-     <div class="form-floating mb-3">
-    <%= form.text_field :marital_status, class:"form-control", placeholder:"Marital status" %>
-    <%= form.label :marital_status %>
-   </div>
-
-    <div class="form-floating mb-3">
-    <%= form.text_field :spouse, class:"form-control", placeholder:"Spouse" %>
-    <%= form.label :spouse_full_name %>
+    <div class="form-floating mb-3 col-md-6">
+      <%= form.text_field :spouse, class: "form-control", placeholder: "Spouse full name" %>
+      <%= form.label :spouse, "Spouse full name" %>
     </div>
+  </div>
 
-    <div class="form-floating mb-3">
-    <%= form.text_field :home_address, class:"form-control", placeholder:"Home Address" %>
-    <%= form.label :home_address %>
+  <div class="form-floating mb-3">
+    <%= form.text_field :home_address, class: "form-control", placeholder: "Home address" %>
+    <%= form.label :home_address, "Home address" %>
+  </div>
+
+  <p class="mt-3">What currency are your funds in?</p>
+  <fieldset class="mb-3">
+    <legend class="visually-hidden">Currency</legend>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :currency, 'EUR', id: 'currency_eur', class: 'form-check-input' %>
+      <%= form.label :currency_eur, 'EUR (€)', class: 'form-check-label ms-1 me-4' %>
     </div>
-
-    <p class="mt-3">Please state what currency you have the funds to purchase in order to send you instructions on the best way to transfer.</p>
-      <div class="form-floating mb-3">
-        <%= form.select "currency", options_for_select([
-        "EUR", "GBP"
-        ], ""), { include_blank: true}, { class:"form-control", placeholder: "currency" } %>
-        <%= form.label :currency %>
-     </div>
-
-    <div class="form-floating mb-3">
-
-    <%= form.date_field :here_till, class:"form-control", placeholder:"Here until" %>
-   <%= form.label :here_till do %>
-    If you are here currently please let us know until what date
-      <% end %>
-      </div>
-
-  <p class="mt-3">Are you currently or wanting to apply for a mortgage?</p>
-    <div class="form-floating mb-3">
-      <%= form.select "needs_mortgage", options_for_select([
-      "Yes", "No"
-      ], ""), { include_blank: true}, { class:"form-control", placeholder: "needs_mortgage" } %>
-      <%= form.label :apply_for_mortgage %>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :currency, 'GBP', id: 'currency_gbp', class: 'form-check-input' %>
+      <%= form.label :currency_gbp, 'GBP (£)', class: 'form-check-label ms-1' %>
     </div>
+  </fieldset>
 
-  <p class="mt-3">Are you going to holiday let your property? If so, we can apply for a tourist license.</p>
-    <div class="form-floating mb-3">
-      <%= form.select "wants_to_holiday_let", options_for_select([
-      "Yes", "No"
-      ], ""), { include_blank: true}, { class:"form-control", placeholder: "wants_to_holiday_let" } %>
-      <%= form.label :holiday_let %>
+  <p class="mt-3">Will you need a mortgage?</p>
+  <fieldset class="mb-3">
+    <legend class="visually-hidden">Apply for mortgage</legend>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :needs_mortgage, 'Yes', id: 'mortgage_yes', class: 'form-check-input' %>
+      <%= form.label :mortgage_yes, 'Yes', class: 'form-check-label ms-1 me-3' %>
     </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :needs_mortgage, 'No', id: 'mortgage_no', class: 'form-check-input' %>
+      <%= form.label :mortgage_no, 'No', class: 'form-check-label ms-1' %>
+    </div>
+  </fieldset>
+
+  <p class="mt-3">Do you plan to rent the property as a holiday let?</p>
+  <fieldset class="mb-3">
+    <legend class="visually-hidden">Holiday let property</legend>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :wants_to_holiday_let, 'Yes', id: 'holiday_let_yes', class: 'form-check-input' %>
+      <%= form.label :holiday_let_yes, 'Yes', class: 'form-check-label ms-1 me-3' %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :wants_to_holiday_let, 'No', id: 'holiday_let_no', class: 'form-check-input' %>
+      <%= form.label :holiday_let_no, 'No', class: 'form-check-label ms-1' %>
+    </div>
+  </fieldset>
+
   <p class="mt-3">Are you a tax resident in Spain?</p>
-    <div class="form-check mb-3">
-      <%= form.check_box :tax_resident, class:"form-check-input", placeholder:"tax_resident" %>
-      <%= form.label :spanish_tax_resident %>
-    </div>
+  <div class="form-check mb-3">
+    <%= form.check_box :tax_resident, class: "form-check-input", id: "tax_resident" %>
+    <%= form.label :tax_resident, "Yes – I am a tax resident in Spain", class: "form-check-label" %>
+  </div>
+</div>
 
-    </div>
 
 
     <%# PoA section %>
@@ -563,71 +551,161 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
 
 
 <%# Will section %>
-  <div class="card p-5 mb-5 card-shadow">
-    <h4>Last Will and Testament</h4>
-    <p class="mb-5">Do you want a Will & Last Testament? If so, please fill in the fields below. The costs per Will is 400€ (Translator approx. 100€, Notary approx. 50€)</p>
-      <div class="form-floating mb-3">
-        <%= form.text_field :name_of_the_present_spouse, class:"form-control", placeholder:"Name of the present spouse"  %>
-        <%= form.label :name_of_the_present_spouse %>
-      </div>
+<%# Will section %>
+<div class="card p-5 mb-5 card-shadow">
+  <h4>Last Will and Testament</h4>
+  <p class="mb-5">
+    Do you want a Will & Last Testament? If so, please fill in the fields below.<br>
+    <strong>Cost per Will:</strong> €400 (Translator ~€100 · Notary ~€50)
+  </p>
 
-      <div class="form-floating mb-3">
-        <%= form.text_field :name_of_the_previous_spouses, class:"form-control", placeholder:"Name of the previous spouse" %>
-        <%= form.label :name_of_the_previous_spouses %>
-      </div>
-
-      <div class="form-floating mb-3">
-        <%= form.date_field :date_of_divorce, class:"form-control", placeholder:"Date of divorce"  %>
-        <%= form.label :date_of_divorce %>
-      </div>
-
-      <div class="form-floating mb-3">
-        <%= form.date_field :date_of_decease, class:"form-control", placeholder:"Date of decease"  %>
-        <%= form.label :date_of_decease %>
-      </div>
-
-      <div class="form-floating mb-3">
-        <%= form.text_field :father_s_full_name, class:"form-control", placeholder:"Father's full name"  %>
-        <%= form.label :father_s_full_name %>
-      </div>
-
-      <div class="form-floating mb-3">
-        <%= form.select "father_s_vital_status", options_for_select([
-        "Deceased", "Living"
-        ], ""), { include_blank: true}, { class:"form-control", placeholder:"Father's vital status" } %>
-        <%= form.label :father_s_vital_status %>
-      </div>
-
-      <div class="form-floating mb-3">
-        <%= form.text_field :mother_s_full_name, class:"form-control", placeholder:"Mother's full name"  %>
-        <%= form.label :mother_s_full_name %>
-      </div>
-
-      <div class="form-floating mb-3">
-         <%= form.select "mother_s_vital_status", options_for_select([
-        "Deceased", "Living"
-        ], ""), { include_blank: true}, { class:"form-control", placeholder:"Mother's vital status" } %>
-        <%= form.label :mother_s_vital_status %>
-      </div>
-
-      <div class="form-floating mb-3">
-        <%= form.text_field :children, class:"form-control", placeholder:"Children"  %>
-        <%= form.label :children %>
-      </div>
-
-      <div class="form-floating mb-3">
-        <%= form.text_field :outline_of_bequests_and_oder_of_success, class:"form-control", placeholder:"Outline of Bequests and Order of Success"  %>
-        <%= form.label :outline_of_bequests_and_oder_of_success %>
-      </div>
-
-      <div class="form-floating mb-3">
-        <%= form.select "inheritance_to_be_governed_by", options_for_select([
-          "Law of country of current nationality", "Nationality at the time of death", "Habitual place of residence at the time of death"
-        ], ""), { include_blank: true}, { class:"form-control", placeholder:"Inheritance to be governed by" } %>
-        <%= form.label :inheritance_to_be_governed_by %>
-      <p class="m-2 small-text">Most clients choose "Law of country of current nationality". </p>
-      </div>
+  <!-- 1) Are you currently married? -->
+  <div class="mb-3">
+    <%= form.label :currently_married, "Are you currently married?" %><br>
+    <%= form.radio_button :currently_married, true,  id: "currently_married_true"  %>
+    <%= form.label         :currently_married_true, "Yes", class: "form-check-label" %>
+    &nbsp;
+    <%= form.radio_button :currently_married, false, id: "currently_married_false" %>
+    <%= form.label         :currently_married_false, "No",  class: "form-check-label" %>
   </div>
+
+  <!-- If married, show this: -->
+  <div id="current_spouse_section" style="display:none;">
+    <div class="form-floating mb-3">
+      <%= form.text_field :name_of_the_present_spouse,
+           class: "form-control",
+           placeholder: "Name of present spouse" %>
+      <%= form.label :name_of_the_present_spouse, "Name of present spouse" %>
+    </div>
+  </div>
+
+  <!-- 2) Were you married before? -->
+  <div class="mb-3">
+    <%= form.label :previously_married, "Have you been married before?" %><br>
+    <%= form.radio_button :previously_married, true,  id: "previously_married_true"  %>
+    <%= form.label         :previously_married_true, "Yes", class: "form-check-label" %>
+    &nbsp;
+    <%= form.radio_button :previously_married, false, id: "previously_married_false" %>
+    <%= form.label         :previously_married_false, "No",  class: "form-check-label" %>
+  </div>
+
+  <!-- If previously married, show this: -->
+  <div id="previous_spouse_section" style="display:none;">
+    <div class="form-floating mb-3">
+      <%= form.text_field :name_of_the_previous_spouses,
+           class: "form-control",
+           placeholder: "Name of previous spouse(s)" %>
+      <%= form.label :name_of_the_previous_spouses, "Name of previous spouse(s)" %>
+    </div>
+    <div class="form-floating mb-3">
+      <%= form.date_field :date_of_divorce,
+           class: "form-control",
+           placeholder: "Date of divorce (DD/MM/YYYY)" %>
+      <%= form.label :date_of_divorce, "Date of divorce" %>
+    </div>
+    <div class="form-floating mb-3">
+      <%= form.date_field :date_of_decease,
+           class: "form-control",
+           placeholder: "Date of death (DD/MM/YYYY)" %>
+      <%= form.label :date_of_decease, "Date of death" %>
+    </div>
+  </div>
+
+  <!-- 3) Parental Details -->
+  <!-- Father’s Vital Status -->
+<div class="mb-3">
+  <%= form.label :father_s_vital_status, "Is your father alive?" %><br>
+
+  <div class="form-check form-check-inline">
+    <%= form.radio_button :father_s_vital_status, "Living",
+         id: "father_vital_status_living",
+         class: "form-check-input" %>
+    <%= form.label "father_vital_status_living", "Living",
+         class: "form-check-label" %>
+  </div>
+
+  <div class="form-check form-check-inline">
+    <%= form.radio_button :father_s_vital_status, "Deceased",
+         id: "father_vital_status_deceased",
+         class: "form-check-input" %>
+    <%= form.label "father_vital_status_deceased", "Deceased",
+         class: "form-check-label" %>
+  </div>
+</div>
+
+<!-- Mother’s Vital Status -->
+<div class="mb-3">
+  <%= form.label :mother_s_vital_status, "Is your mother alive?" %><br>
+
+  <div class="form-check form-check-inline">
+    <%= form.radio_button :mother_s_vital_status, "Living",
+         id: "mother_vital_status_living",
+         class: "form-check-input" %>
+    <%= form.label "mother_vital_status_living", "Living",
+         class: "form-check-label" %>
+  </div>
+
+  <div class="form-check form-check-inline">
+    <%= form.radio_button :mother_s_vital_status, "Deceased",
+         id: "mother_vital_status_deceased",
+         class: "form-check-input" %>
+    <%= form.label "mother_vital_status_deceased", "Deceased",
+         class: "form-check-label" %>
+  </div>
+</div>
+
+  <!-- 4) Children & Dependents -->
+  <div class="form-floating mb-3">
+    <%= form.text_field :children,
+         class: "form-control",
+         placeholder: "Children (Name | DOB DD/MM/YYYY)" %>
+    <%= form.label :children, "Children & Dependents" %>
+  </div>
+
+  <!-- 5) Bequests & Order of Succession -->
+  <div class="form-floating mb-3">
+    <%= form.text_area :outline_of_bequests_and_oder_of_success,
+         class: "form-control",
+         placeholder: "Outline of Bequests & Order of Succession" %>
+    <%= form.label :outline_of_bequests_and_oder_of_success, "Outline of Bequests & Order of Succession" %>
+  </div>
+
+  <!-- 6) Governing Law -->
+  <div class="form-floating mb-3">
+    <%= form.select :inheritance_to_be_governed_by,
+         [
+           ["Law of country of current nationality","Law of country of current nationality"],
+           ["Nationality at the time of death","Nationality at the time of death"],
+           ["Habitual place of residence at the time of death","Habitual place of residence at the time of death"]
+         ],
+         { include_blank: "Select jurisdiction" },
+         class: "form-control" %>
+    <%= form.label :inheritance_to_be_governed_by, "Inheritance governed by" %>
+    <p class="m-2 small-text">
+      Most clients choose “Law of country of current nationality.”
+    </p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    function toggleSection(yesId, sectionId) {
+      var yes     = document.getElementById(yesId);
+      var no      = document.getElementById(yesId.replace("_true","_false"));
+      var section = document.getElementById(sectionId);
+      function update() {
+        section.style.display = yes.checked ? "block" : "none";
+      }
+      yes.addEventListener("change", update);
+      no .addEventListener("change", update);
+      update();
+    }
+
+    toggleSection("currently_married_true",  "current_spouse_section");
+    toggleSection("previously_married_true", "previous_spouse_section");
+  });
+</script>
+
 
 <%# VV License section %>
   <div class="card p-5 mb-5 card-shadow">
