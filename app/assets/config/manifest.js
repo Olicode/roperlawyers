@@ -3,3 +3,4 @@
 //= link_tree ../builds .js
 //= link form.js
 //= link rails-ujs.js
+ //= link turbolinks/dist/turbolinks.js
