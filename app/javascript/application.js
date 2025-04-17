@@ -1,5 +1,5 @@
 import "@hotwired/turbo-rails"
-import "form"                // ← loads your NIE & bank‐sync logic
+import "./form"                // ← loads your NIE & bank‐sync logic
 import "bootstrap"
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
