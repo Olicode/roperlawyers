@@ -157,270 +157,407 @@
 
 
     <%# PoA section %>
-  <div class="card p-5 mb-5 card-shadow">
-    <h4>Power of Attorney</h4>
-    <p>Do you want to give Roper Lawyers a power of attorney so we can do everything for you, including applying for your NIE number, opening a Spanish bank account, apply for a mortgage, etc? You can make one either in Lanzarote if you are here or the country you live in and be sent to us.</p>
-      <div class="form-floating mb-3">
-        <%= form.select "needs_poa", options_for_select([
-        "Yes", "No", "I've already given power to someone"
-        ], ""), { include_blank: true }, { class:"form-control", placeholder:"Needs PoA" } %>
-        <%= form.label :I_would_like_to_give_a_power_of_attorney %>
+<div class="card p-5 mb-5 card-shadow">
+  <h4 class="mb-3">Power of Attorney (PoA)</h4>
+  <p class="mb-3">
+By granting us a Power of Attorney, we’ll handle everything for you.  </p>
+
+  <!-- Q1: Grant PoA? -->
+  <fieldset class="mb-3">
+    <legend class="col-form-label">Would you like to grant us PoA?</legend>
+
+    <div class="form-check mb-2">
+      <%= form.radio_button :needs_poa, 'yes',
+            id: 'needs_poa_yes',
+            class: 'form-check-input' %>
+      <%= form.label :needs_poa_yes,
+            'Yes – please act on my behalf',
+            class: 'form-check-label' %>
+    </div>
+
+    <div class="form-check mb-2">
+      <%= form.radio_button :needs_poa, 'no',
+            id: 'needs_poa_no',
+            class: 'form-check-input' %>
+      <%= form.label :needs_poa_no,
+            'No – I do not require PoA',
+            class: 'form-check-label' %>
+    </div>
+
+    <div class="form-check">
+      <%= form.radio_button :needs_poa, 'already',
+            id: 'needs_poa_already',
+            class: 'form-check-input' %>
+      <%= form.label :needs_poa_already,
+            'Another person holds PoA and will act on my behalf – please let us know and send us a copy',
+            class: 'form-check-label' %>
+    </div>
+  </fieldset>
+
+  <!-- Follow‑up only if Q1 = Yes -->
+  <div id="poa_details" style="display: none;">
+
+    <!-- Q2: Scope of PoA -->
+    <fieldset class="mb-3">
+      <legend class="col-form-label">Which matters should your PoA cover?</legend>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :poa_for, 'buying',
+              id: 'poa_for_buying',
+              class: 'form-check-input' %>
+        <%= form.label :poa_for_buying,
+              'Buying – purchase property on my behalf',
+              class: 'form-check-label' %>
       </div>
-      <p class="mt-3">Please state if you want to give us power to buy, sell, apply for a mortgage or all the above. We recommend choosing Buying, Selling & Mortgage for any future conveyancing.</p>
-      <div class="form-floating mb-3">
-        <%= form.select "poa_for", options_for_select([
-        "Buying", "Selling", "Buying & Selling", "Buying, Selling & Mortgage"
-        ], ""), { include_blank: true}, { class:"form-control", placeholder: "poa_for" } %>
-        <%= form.label :power_of_attorney_for %>
-     </div>
 
+      <div class="form-check mb-2">
+        <%= form.radio_button :poa_for, 'selling',
+              id: 'poa_for_selling',
+              class: 'form-check-input' %>
+        <%= form.label :poa_for_selling,
+              'Selling – sell property on my behalf',
+              class: 'form-check-label' %>
+      </div>
 
-    <p class="mt-3">Please state if you want us to obtain the Power of Attorney in Spain or your home cournty? If its in your home cournty, we will be sending a draft to the closest notary where you live, you will have to sign it there, and the Notary will post the Power of Attorney to us.</p>
-      <div class="form-floating mb-3">
-        <%= form.select "poa_made_in_spain", options_for_select([
-        "Yes", "No"
-        ], ""), { include_blank: true}, { class:"form-control", placeholder: "poa_made_in_spain" } %>
-        <%= form.label :Power_of_attorney_to_be_made_in_Spain? %>
-     </div>
+      <div class="form-check mb-2">
+        <%= form.radio_button :poa_for, 'both',
+              id: 'poa_for_both',
+              class: 'form-check-input' %>
+        <%= form.label :poa_for_both,
+              'Buying & Selling – handle both purchase and sale',
+              class: 'form-check-label' %>
+      </div>
 
+      <div class="form-check">
+        <%= form.radio_button :poa_for, 'all',
+              id: 'poa_for_all',
+              class: 'form-check-input' %>
+        <%= form.label :poa_for_all,
+              'Buying, Selling & Mortgage – full conveyancing and mortgage powers',
+              class: 'form-check-label' %>
+      </div>
+    </fieldset>
+
+    <!-- Q3: Signing location -->
+    <fieldset class="mb-3">
+      <legend class="col-form-label">Where would you like to sign your PoA?</legend>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :poa_made_in_spain, 'yes',
+              id: 'poa_spain_yes',
+              class: 'form-check-input' %>
+        <%= form.label :poa_spain_yes,
+              'In Spain – sign before a Spanish notary with one of our team accompanying you',
+              class: 'form-check-label' %>
+      </div>
+
+      <div class="form-check">
+        <%= form.radio_button :poa_made_in_spain, 'no',
+              id: 'poa_spain_no',
+              class: 'form-check-input' %>
+        <%= form.label :poa_spain_no,
+              'At your local notary – we’ll send a draft for you to sign and have it returned by courier',
+              class: 'form-check-label' %>
+      </div>
+    </fieldset>
 
   </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const yesRadio     = document.getElementById("needs_poa_yes");
+    const noRadio      = document.getElementById("needs_poa_no");
+    const otherRadio   = document.getElementById("needs_poa_already");
+    const poaDetails   = document.getElementById("poa_details");
+
+    function togglePoADetails() {
+      poaDetails.style.display = yesRadio.checked ? "block" : "none";
+    }
+
+    [yesRadio, noRadio, otherRadio].forEach(radio =>
+      radio.addEventListener("change", togglePoADetails)
+    );
+
+    // Initialize on load
+    togglePoADetails();
+  });
+</script>
+
 
 <%# NIE section %>
 <div class="card p-5 mb-5 card-shadow">
-  <h4>NIE Number</h4>
+  <h4 class="mb-3">NIE Number</h4>
   <p class="mb-3">
-    If you already have an NIE, select “No” below, then enter it and upload a copy.  
-    If you don’t have one, select “Yes” and we’ll apply on your behalf.
+    For any legal transaction in Spain, you <strong>must</strong> have an NIE.
   </p>
 
   <fieldset class="mb-3">
     <legend class="col-form-label">Would you like us to apply for your NIE?</legend>
+
+    <div class="form-check mb-2">
+      <%= form.radio_button :needs_nie, 'no',
+            id: 'needs_nie_no',
+            class: 'form-check-input' %>
+      <%= form.label :needs_nie_no,
+            'No – I already have an NIE',
+            class: 'form-check-label' %>
+    </div>
+
     <div class="form-check">
       <%= form.radio_button :needs_nie, 'yes',
             id: 'needs_nie_yes',
             class: 'form-check-input' %>
       <%= form.label :needs_nie_yes,
-            'Yes – please apply on my behalf',
-            class: 'form-check-label' %>
-    </div>
-    <div class="form-check">
-      <%= form.radio_button :needs_nie, 'no',
-            id: 'needs_nie_no',
-            class: 'form-check-input' %>
-      <%= form.label :needs_nie_no,
-            'No – I already have an NIE',
+            'Yes – please apply on my behalf',
             class: 'form-check-label' %>
     </div>
   </fieldset>
 
-  <div id="nie_fields">
+  <!-- hidden by default -->
+  <div id="nie_fields" style="display: none;">
     <div class="form-floating mb-3">
       <%= form.text_field :nie_number,
             class: "form-control",
-            placeholder: "NIE number" %>
+            placeholder: "Enter your NIE number",
+            autocomplete: "off" %>
       <%= form.label :nie_number, "NIE number" %>
     </div>
     <div class="mb-3">
-      <p class="mb-1">Upload a copy of your NIE document</p>
+      <label class="form-label">Upload a copy of your NIE document</label>
       <%= form.file_field :nie_document, class: "form-control" %>
     </div>
   </div>
 
-  <div id="parent_fields">
+  <!-- hidden by default -->
+  <div id="parent_fields" style="display: none;">
     <p class="mb-3">
-      Please enter your parents’ first names so we can apply for your NIE:
+      Please enter your parents’ first names so we can apply for your NIE on your behalf:
     </p>
     <div class="form-floating mb-3">
       <%= form.text_field :father_s_first_name,
             class: "form-control",
-            placeholder: "Father’s first name" %>
+            placeholder: "Father’s first name",
+            autocomplete: "off" %>
       <%= form.label :father_s_first_name, "Father’s first name" %>
     </div>
     <div class="form-floating mb-3">
       <%= form.text_field :mother_s_first_name,
             class: "form-control",
-            placeholder: "Mother’s first name" %>
+            placeholder: "Mother’s first name",
+            autocomplete: "off" %>
       <%= form.label :mother_s_first_name, "Mother’s first name" %>
     </div>
   </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const yesRadio    = document.getElementById("needs_nie_yes");
+  document.addEventListener("DOMContentLoaded", () => {
     const noRadio     = document.getElementById("needs_nie_no");
+    const yesRadio    = document.getElementById("needs_nie_yes");
     const nieFields   = document.getElementById("nie_fields");
     const parentFields= document.getElementById("parent_fields");
 
-    function toggleFields() {
-      if (yesRadio.checked) {
-        parentFields.style.display = "block";
-        nieFields.style.display    = "none";
-      } else {
-        parentFields.style.display = "none";
-        nieFields.style.display    = "block";
-      }
+    function toggleSections() {
+      nieFields.style.display    = noRadio.checked  ? "block" : "none";
+      parentFields.style.display = yesRadio.checked ? "block" : "none";
     }
 
-    // initialize on load
-    toggleFields();
+    [noRadio, yesRadio].forEach(radio =>
+      radio.addEventListener("change", toggleSections)
+    );
 
-    // listen for changes
-    yesRadio.addEventListener("change", toggleFields);
-    noRadio .addEventListener("change", toggleFields);
+    // initialise on page load
+    toggleSections();
   });
 </script>
 
-
-
 <%# Bank details section %>
-<style>
-  /* Grey out read‑only fields so they look disabled, but still submit */
-  .form-control[readonly] {
-    background-color: #e9ecef;
-  }
-</style>
-
 <div class="card p-5 mb-5 card-shadow">
-  <h4>Bank details</h4>
+  <h4 class="mb-3">Bank details</h4>
+  <p class="mb-3">
+  Property purchase payments are typically made in three stages:
 
-  <!-- 1) Will you pay a reservation deposit? -->
+  </p>
+  <ol class="ps-3 mb-4">
+    <li><strong>Reservation fee</strong>  (1%) – to take the property off the market (estate‑agency sales only).</li>
+    <li><strong>Deposit on exchange</strong> 9% (10% if no reservation fee) – due on exchange of contracts.</li>
+    <li><strong>Balance on completion</strong> – the remaining amount on completion day.</li>
+  </ol>
+  <p class="mb-3">
+    Under Spanish anti‑money‑laundering rules, the notary requires the bank name and IBAN of the account used for each payment 
+    (e.g. HSBC, IBAN GB29 MIDL 4012 3456 7890 12).<br>
+    Please fill in the details below for each payment stage.</p>
+
+  <!-- 0) Reservation deposit question -->
   <fieldset class="mb-4">
-    <legend class="col-form-label">Will you or have you paid a reservation deposit?</legend>
+    <legend class="col-form-label">
+      Have you paid—or will you pay—a reservation fee
+      (under an estate‑agent agreement, if applicable)?
+    </legend>
+
     <div class="form-check form-check-inline">
       <%= form.radio_button :will_pay_reservation, 'yes',
-            id: 'pay_res_yes',
+            id: 'will_pay_res_yes',
             class: 'form-check-input' %>
-      <%= form.label :pay_res_yes, 'Yes', class: 'form-check-label me-3' %>
+      <%= form.label :will_pay_res_yes,
+            'Yes',
+            class: 'form-check-label ms-1 me-3' %>
     </div>
+
     <div class="form-check form-check-inline">
       <%= form.radio_button :will_pay_reservation, 'no',
-            id: 'pay_res_no',
+            id: 'will_pay_res_no',
             class: 'form-check-input' %>
-      <%= form.label :pay_res_no, 'No', class: 'form-check-label' %>
+      <%= form.label :will_pay_res_no,
+            'No',
+            class: 'form-check-label ms-1' %>
     </div>
   </fieldset>
 
-  <!-- 2) Reservation (optional) -->
-  <div id="reservation_container" class="mb-4">
-    <h6>Reservation deposit – bank account details</h6>
+  <!-- 1) Reservation fee (only if Yes) -->
+  <div id="reservation_section" style="display: none;">
     <div class="form-floating mb-3">
-      <%= form.text_field :r_origin_bank_details,
+      <%= form.text_field :reservation_deposit_account,
+            id: "reservation_deposit_account",
             class: "form-control",
-            id: "reservation_bank",
-            placeholder: "Bank account details" %>
-      <%= form.label :r_origin_bank_details, "Reservation deposit" %>
+            placeholder: "Enter reservation fee bank name and IBAN" %>
+      <%= form.label :reservation_deposit_account, "Reservation fee account" %>
     </div>
   </div>
 
-  <!-- 3) Same‑account checkbox -->
+  <!-- 2) ALWAYS‑VISIBLE: Use same account? -->
   <div class="form-check mb-4">
     <%= form.check_box :use_same_account,
-          { class: "form-check-input", id: "use_same_account" },
-          "1", "0" %>
+          { id: "use_same_account", class: "form-check-input" } %>
     <%= form.label :use_same_account,
-          "Use the same bank account for all payments",
+          "Use the same account for all payments",
           class: "form-check-label" %>
   </div>
 
-  <!-- Private contract payment -->
-  <h6>Private contract payment – bank account details</h6>
-  <div class="form-floating mb-4">
-    <%= form.text_field :otb_origin_bank_details,
-          class: "form-control",
-          id: "contract_bank",
-          placeholder: "Bank account details" %>
-    <%= form.label :otb_origin_bank_details, "Private contract payment" %>
-  </div>
-
-  <!-- Remaining balance -->
-  <h6>Remaining balance – bank account details</h6>
-  <p class="text-muted mb-2">
-    If paying into our account, type “Roper Lawyers” here.
-  </p>
-  <div class="form-floating mb-4">
-    <%= form.text_field :balance_bank_details,
-          class: "form-control",
-          id: "balance_bank",
-          placeholder: "Bank account details" %>
-    <%= form.label :balance_bank_details, "Remaining balance" %>
-  </div>
-
-  <!-- Spanish account question -->
-  <h6>Do you have a Spanish bank account?</h6>
-  <div class="mb-3">
-    <div class="form-check form-check-inline">
-      <%= form.radio_button :has_a_spanish_bank_account, 'yes',
-            id: 'spanish_yes',
-            class: 'form-check-input' %>
-      <%= form.label :spanish_yes, 'Yes', class: 'form-check-label me-3' %>
-    </div>
-    <div class="form-check form-check-inline">
-      <%= form.radio_button :has_a_spanish_bank_account, 'no',
-            id: 'spanish_no',
-            class: 'form-check-input' %>
-      <%= form.label :spanish_no, 'No', class: 'form-check-label' %>
-    </div>
-  </div>
-
-  <!-- Utility standing order -->
-  <h6>Utility standing order – bank account details</h6>
-  <p class="text-muted mb-2">
-    Must be a Spanish account. Leave blank if you don’t have one yet.
-  </p>
+  <!-- 3) Deposit on exchange -->
   <div class="form-floating mb-3">
-    <%= form.text_field :standing_orders_bank_details,
+    <%= form.text_field :private_contract_account,
+          id: "private_contract_account",
           class: "form-control",
-          placeholder: "Bank account details" %>
-    <%= form.label :standing_orders_bank_details, "Utility standing order" %>
+          placeholder: "Enter deposit on exchange bank name and IBAN" %>
+    <%= form.label :private_contract_account, "Deposit on exchange account" %>
   </div>
+
+  <!-- 4) Balance on completion -->
+  <div class="form-floating mb-1">
+    <%= form.text_field :remaining_balance_account,
+          id: "remaining_balance_account",
+          class: "form-control",
+          placeholder: "Enter balance on completion bank name and IBAN" %>
+    <%= form.label :remaining_balance_account, "Balance on completion account" %>
+  </div>
+
+  <!-- 5) Spanish bank account? -->
+  <fieldset class="mb-3">
+    <legend class="col-form-label mb-2">
+      Do you have a Spanish bank account for utilities standing orders?
+    </legend>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :has_spanish_account, 'yes',
+            id: 'has_spanish_yes',
+            class: 'form-check-input' %>
+      <%= form.label :has_spanish_yes,
+            'Yes',
+            class: 'form-check-label ms-1 me-3' %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :has_spanish_account, 'no',
+            id: 'has_spanish_no',
+            class: 'form-check-input' %>
+      <%= form.label :has_spanish_no,
+            'No',
+            class: 'form-check-label ms-1' %>
+    </div>
+  </fieldset>
+
+  <!-- 6) Utility standing order (only if Yes) -->
+  <div id="utility_section" style="display: none;">
+    <div class="form-floating mb-3">
+      <%= form.text_field :utility_account,
+            id: "utility_account",
+            class: "form-control",
+            placeholder: "Enter utility standing order bank name and IBAN" %>
+      <%= form.label :utility_account, "Utility standing order account" %>
+    </div>
+  
+  </div>
+  <small class="form-text text-muted mb-4">
+    <i>If you are uncertain which account will be used, you can log back in to update your payment details; please ensure all information is confirmed at least two weeks prior to completion.</i>
+  </small>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const payYes       = document.getElementById("pay_res_yes");
-    const payNo        = document.getElementById("pay_res_no");
-    const resContainer = document.getElementById("reservation_container");
-    const sameCB       = document.getElementById("use_same_account");
-    const reservation  = document.getElementById("reservation_bank");
-    const contract     = document.getElementById("contract_bank");
-    const balance      = document.getElementById("balance_bank");
+  document.addEventListener("DOMContentLoaded", () => {
+    const payYes       = document.getElementById("will_pay_res_yes");
+    const payNo        = document.getElementById("will_pay_res_no");
+    const resSection   = document.getElementById("reservation_section");
+    const sameBox      = document.getElementById("use_same_account");
 
-    function toggleReservation() {
-      resContainer.style.display = payYes.checked ? "block" : "none";
-      syncFields();
+    const payFee       = document.getElementById("reservation_deposit_account");
+    const contractFld  = document.getElementById("private_contract_account");
+    const balanceFld   = document.getElementById("remaining_balance_account");
+
+    const hasSpanishYes = document.getElementById("has_spanish_yes");
+    const utilSection   = document.getElementById("utility_section");
+
+    // Show/hide reservation field
+    function toggleReservationSection() {
+      resSection.style.display = payYes.checked ? "block" : "none";
+      syncAccounts();
     }
 
-    function syncFields() {
-      // choose master field: reservation if visible, else contract
-      const master = resContainer.style.display === "block"
-                     ? reservation
-                     : contract;
+    // Show/hide utility field
+    function toggleUtilitySection() {
+      utilSection.style.display = hasSpanishYes.checked ? "block" : "none";
+    }
 
-      if (sameCB.checked) {
-        // copy into others and make read‑only
-        contract.value = master.value;
-        balance.value  = master.value;
-        contract.readOnly = true;
-        balance.readOnly  = true;
+    // Sync readonly & mirroring between fee / deposit / balance
+    function syncAccounts() {
+      if (!sameBox.checked) {
+        [payFee, contractFld, balanceFld].forEach(f => f.removeAttribute("readonly"));
+        return;
+      }
+
+      if (payYes.checked) {
+        // copy from reservation fee
+        [contractFld, balanceFld].forEach(f => {
+          f.value = payFee.value;
+          f.setAttribute("readonly", "readonly");
+        });
       } else {
-        // allow editing
-        contract.readOnly = false;
-        balance.readOnly  = false;
+        // skip to deposit on exchange
+        balanceFld.value = contractFld.value;
+        balanceFld.setAttribute("readonly", "readonly");
+        contractFld.removeAttribute("readonly");
       }
     }
 
-    // initialize
-    toggleReservation();
+    // Mirror inputs as user types
+    function mirrorAccounts(e) {
+      if (!sameBox.checked) return;
+      if (e.target === payFee && payYes.checked) {
+        [contractFld, balanceFld].forEach(f => f.value = payFee.value);
+      } else if (e.target === contractFld && !payYes.checked) {
+        balanceFld.value = contractFld.value;
+      }
+    }
 
-    // event listeners
-    payYes.addEventListener("change",  toggleReservation);
-    payNo .addEventListener("change",  toggleReservation);
-    sameCB.addEventListener("change", syncFields);
-    [reservation, contract].forEach(el =>
-      el.addEventListener("input", syncFields)
-    );
+    // Event listeners
+    [payYes, payNo].forEach(rb => rb.addEventListener("change", toggleReservationSection));
+    sameBox.addEventListener("change", syncAccounts);
+    [payFee, contractFld].forEach(f => f.addEventListener("input", mirrorAccounts));
+    hasSpanishYes.addEventListener("change", toggleUtilitySection);
+    document.getElementById("has_spanish_no").addEventListener("change", toggleUtilitySection);
+
+    // Initialize on load
+    toggleReservationSection();
+    toggleUtilitySection();
   });
 </script>
 
