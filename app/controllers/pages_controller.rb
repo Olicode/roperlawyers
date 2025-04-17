@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_reviews, except: %i[contact_us]
+  #before_action :set_reviews, except: %i[contact_us]
 
   def lanzarote
     @mtitle = "Property solicitors Lanzarote, find Lanzarote property lawyers"
@@ -17,8 +17,6 @@ class PagesController < ApplicationController
     @mtitle = "Property lawyers Gran Canaria, find Gran Canaria estate agents"
     @mdescription = "Looking to buy or sell a property in Gran Canaria? Our property lawyers and estate agents in Gran Canaria can guide you through the process. Call today."
     @reviews = JSON.parse(File.read(File.join('public', 'grancanaria_reviews.json')))
-  end
-  def review_page
   end
 
   def fuerteventura
@@ -45,9 +43,8 @@ class PagesController < ApplicationController
     @reviews = JSON.parse(File.read(File.join('public', 'ibiza_reviews.json')))
   end
 
-
-
   def home
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 
   def contact_us
@@ -55,26 +52,17 @@ class PagesController < ApplicationController
     render json: { success: true }
   end
 
-  private
-
-  def set_reviews
-    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  def vv_license
+    # Vacation rental license page
   end
-
 
   def free_consultation
     # respond to turbo_stream with notice
-    
-
-  end
-
-  def vv_license
-    # Vacation rental license page
   end
 
   def consultation
     
   end
-  
+
 end
 
