@@ -39,6 +39,12 @@
             </a>
           </li>
           <li class="nav-item mx-2">
+            <!-- VV License link -->
+            <a class="nav-link text-white text-decoration-none" href="/vv-license">
+              VV License
+            </a>
+          </li>
+          <li class="nav-item mx-2">
             <a class="nav-link text-white text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
               Contact Our Team
             </a>
@@ -142,18 +148,18 @@
           <div class="mt-3 text-md-start d-flex flex-column flex-lg-row justify-content-center justify-content-lg-start">
             <!-- Consultation button -->
             <div class="mb-2 me-lg-2">
-              <%= link_to '/free-consultation', class: "btn btn-outline-secondary btn-lg button-gold rounded-pill justify-content-center px-3 py-2" do %>
+              <%= link_to '/free-consultation', class: "btn button-gold rounded-pill justify-content-center px-3 py-2" do %>
                 <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
                     alt: "Olivier Roper", 
                     class: "olivier-head") %>
-                <p class="mb-0">Book a Free Consultation<br>with Olivier Roper</p>
+                  <p class="mb-0">Book a Free Consultation<br>with Olivier Roper</p>
               <% end %>
             </div>
             
             <!-- VV License button -->
             <div class="mb-2">
-              <%= link_to '/vv-license', class: "btn btn-outline-secondary btn-lg button-white rounded-pill justify-content-center px-3 py-2" do %>
-                <i class="fas fa-check-circle" style="font-size: 2rem; margin-right: 10px;"></i>
+              <%= link_to '/vv-license', class: "btn button-white rounded-pill justify-content-center px-3 py-2" do %>
+                <i class="fas fa-check-circle" style="font-size: 2rem; width: 15%; text-align: center;"></i>
                 <p class="mb-0">Comply with VV License<br>Regulations</p>
               <% end %>
             </div>
