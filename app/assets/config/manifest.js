@@ -3,9 +3,3 @@
 //= link_tree ../builds .js
 //= link form.js
 //= link rails-ujs.js
-//= link bootstrap.min.js
-//= link jquery.min.js
-//= link stimulus.min.js
-//= link_tree ../../../vendor/javascript .js
-//= link_tree ../builds
-//= link_tree ../../javascript .js
