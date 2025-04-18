@@ -33,7 +33,9 @@
 
         <h2>Contact Us</h2>
         <p>For more information about obtaining a vacation rental license, please contact us:</p>
-        <a href="https://wa.me/+34649948377" class="btn btn-primary">WhatsApp Us</a>
+        <button type="button" class="btn button-white rounded-pill px-3 py-2" data-bs-toggle="modal" data-bs-target="#contactModal">
+          Contact Us Today
+        </button>
       </div>
       <div class="col-lg-4">
         <div class="card shadow-sm">
@@ -58,6 +60,11 @@
   <div class="container text-center">
     <h2>Ready to get your vacation rental license?</h2>
     <p class="lead">Our team of legal experts is ready to help you navigate the process.</p>
-    <a href="/free-consultation" class="btn btn-primary btn-lg">Book a Free Consultation</a>
+    <%= link_to '/free-consultation', class: "btn button-gold rounded-pill px-3 py-2 d-flex justify-content-between mx-auto" do %>
+      <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
+          alt: "Olivier Roper", 
+          class: "olivier-head") %>
+      <p class="mb-0 me-3">Book a Free Consultation</p>
+    <% end %>
   </div>
 </section> 
