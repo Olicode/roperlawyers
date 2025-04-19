@@ -1,9 +1,16 @@
 <%= form_with(model: user) do |form| %>
 <div class="row justify-content-center">
-  <div class="col-12 col-md-10 col-lg-4">
-    <div class="text-center mt-5 mb-3">
-      <h1>Information required</h1>
-      <h6>In order to draw up contracts and title deed we need you to<br>fill in the following information </h6>
+  <div class="col-11 col-md-10 col-lg-4 px-3 px-md-0">
+    <h1 style="font-family: 'Times New Roman', Times, serif; color: #b29c84; text-align: center; margin-top: 3rem; margin-bottom: 1rem; letter-spacing: 0.2em;">ROPER LAWYERS</h1>
+    <div class="text-center m-3 ">
+      <h2>Information required</h2>
+
+<p>
+  The following details are required by administrative bodies and notaries.<br>
+  If you're unsure of any item, you can log in and update it later.<br>
+  We'll be notified of any changes and will review them accordingly.
+</p>
+
     </div>
 <div class="card p-5 mb-5 card-shadow">
   <h4 class="mb-3">Personal details</h4>
@@ -19,16 +26,21 @@
     </div>
   <% end %>
 
-  <div class="form-row align-items-center">
-    <div class="form-floating mb-3 col-md-6">
+
+<div class="row mb-3 g-3">
+  <div class="col-md-6">
+    <div class="form-floating">
       <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
-      <%= form.label :first_name, "First name" %>
-    </div>
-    <div class="form-floating mb-3 col-md-6">
-      <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
-      <%= form.label :last_name, "Last name" %>
+      <%= form.label :first_name, "First name"%>
     </div>
   </div>
+  <div class="col-md-6">
+    <div class="form-floating">
+      <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+      <%= form.label :last_name, "Last name"%>
+    </div>
+  </div>
+</div>
 
   <div class="form-floating mb-3">
     <%= form.text_field :email, class: "form-control", placeholder: "Email address" %>
@@ -41,6 +53,11 @@
   </div>
 
   <div class="form-floating mb-3">
+    <%= form.text_field :home_address, class: "form-control", placeholder: "Home address" %>
+    <%= form.label :home_address, "Home address" %>
+  </div>
+
+  <div class="form-floating mb-3">
     <%= form.text_field :full_name_on_passport, class: "form-control", placeholder: "Full name on passport" %>
     <%= form.label :full_name_on_passport, "Full name on passport" %>
   </div>
@@ -50,21 +67,26 @@
     <%= form.label :passport_number, "Passport number" %>
   </div>
 
-  <div class="form-floating mb-3">
-    <%= form.date_field :date_of_birth, class: "form-control", placeholder: "YYYY-MM-DD" %>
-    <%= form.label :date_of_birth, "Date of birth (YYYY‑MM‑DD)" %>
-  </div>
-
-  <div class="form-floating mb-3">
-    <%= form.date_field :expiry_date, class: "form-control", placeholder: "Passport expiry date" %>
-    <%= form.label :expiry_date, "Passport expiry date" %>
+  <div class="row mb-3 g-3">
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= form.date_field :date_of_birth, class: "form-control", placeholder: "YYYY-MM-DD" %>
+        <%= form.label :date_of_birth, "Date of birth"%>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= form.date_field :expiry_date, class: "form-control", placeholder: "Passport expiry date" %>
+        <%= form.label :expiry_date, "Passport expiry date"%>
+      </div>
+    </div>
   </div>
 
   <div class="form-floating mb-3">
     <%= form.select :nationality,
           options_for_select(%w[Belgian British Chinese Danish Dutch Finnish French German Greek Indian Irish Italian Norwegian Polish Spanish Swedish Swiss Romanian], user.nationality),
           { include_blank: true },
-          class: "form-control" %>
+          class: "form-control form-select" %>
     <%= form.label :nationality, "Nationality" %>
   </div>
 
@@ -72,6 +94,9 @@
     <p class="mb-1">Upload a copy of your passport</p>
     <%= form.file_field :passport_document, class: "form-control" %>
   </div>
+
+
+
 </div>
 <div class="card p-5 mb-5 card-shadow"> 
   <h4 class="mb-3">Additional Information</h4>
@@ -80,22 +105,22 @@
     <%= form.label :profession, "Profession" %>
   </div>
 
-  <div class="form-row">
-    <div class="form-floating mb-3 col-md-6">
-      <%= form.text_field :marital_status, class: "form-control", placeholder: "Marital status" %>
-      <%= form.label :marital_status, "Marital status" %>
+  <div class="row mb-3 g-3">
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= form.text_field :marital_status, class: "form-control", placeholder: "Marital status" %>
+        <%= form.label :marital_status, "Marital status" %>
+      </div>
     </div>
-    <div class="form-floating mb-3 col-md-6">
-      <%= form.text_field :spouse, class: "form-control", placeholder: "Spouse full name" %>
-      <%= form.label :spouse, "Spouse full name" %>
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= form.text_field :spouse, class: "form-control", placeholder: "Spouse full name" %>
+        <%= form.label :spouse, "Spouse full name" %>
+      </div>
     </div>
   </div>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :home_address, class: "form-control", placeholder: "Home address" %>
-    <%= form.label :home_address, "Home address" %>
-  </div>
-
+ 
   <p class="mt-3">What currency are your funds in?</p>
   <fieldset class="mb-3">
     <legend class="visually-hidden">Currency</legend>
@@ -138,7 +163,7 @@
   <p class="mt-3">Are you a tax resident in Spain?</p>
   <div class="form-check mb-3">
     <%= form.check_box :tax_resident, class: "form-check-input", id: "tax_resident" %>
-    <%= form.label :tax_resident, "Yes – I am a tax resident in Spain", class: "form-check-label" %>
+    <%= form.label :tax_resident, "Yes – I am a tax resident in Spain", class: "form-check-label" %>
   </div>
 </div>
 
@@ -148,7 +173,7 @@
 <div class="card p-5 mb-5 card-shadow">
   <h4 class="mb-3">Power of Attorney (PoA)</h4>
   <p class="mb-3">
-By granting us a Power of Attorney, we’ll handle everything for you.  </p>
+By granting us a Power of Attorney, we'll handle everything for you.  </p>
 
   <!-- Q1: Grant PoA? -->
   <fieldset class="mb-3">
@@ -159,7 +184,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
             id: 'needs_poa_yes',
             class: 'form-check-input' %>
       <%= form.label :needs_poa_yes,
-            'Yes – please act on my behalf',
+            'Yes – please act on my behalf',
             class: 'form-check-label' %>
     </div>
 
@@ -168,7 +193,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
             id: 'needs_poa_no',
             class: 'form-check-input' %>
       <%= form.label :needs_poa_no,
-            'No – I do not require PoA',
+            'No – I do not require PoA',
             class: 'form-check-label' %>
     </div>
 
@@ -177,7 +202,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
             id: 'needs_poa_already',
             class: 'form-check-input' %>
       <%= form.label :needs_poa_already,
-            'Another person holds PoA and will act on my behalf – please let us know and send us a copy',
+            'Another person holds PoA and will act on my behalf – please let us know and send us a copy',
             class: 'form-check-label' %>
     </div>
   </fieldset>
@@ -194,7 +219,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
               id: 'poa_for_buying',
               class: 'form-check-input' %>
         <%= form.label :poa_for_buying,
-              'Buying – purchase property on my behalf',
+              'Buying – purchase property on my behalf',
               class: 'form-check-label' %>
       </div>
 
@@ -203,7 +228,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
               id: 'poa_for_selling',
               class: 'form-check-input' %>
         <%= form.label :poa_for_selling,
-              'Selling – sell property on my behalf',
+              'Selling – sell property on my behalf',
               class: 'form-check-label' %>
       </div>
 
@@ -212,7 +237,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
               id: 'poa_for_both',
               class: 'form-check-input' %>
         <%= form.label :poa_for_both,
-              'Buying & Selling – handle both purchase and sale',
+              'Buying & Selling – handle both purchase and sale',
               class: 'form-check-label' %>
       </div>
 
@@ -221,7 +246,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
               id: 'poa_for_all',
               class: 'form-check-input' %>
         <%= form.label :poa_for_all,
-              'Buying, Selling & Mortgage – full conveyancing and mortgage powers',
+              'Buying, Selling & Mortgage – full conveyancing and mortgage powers',
               class: 'form-check-label' %>
       </div>
     </fieldset>
@@ -235,7 +260,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
               id: 'poa_spain_yes',
               class: 'form-check-input' %>
         <%= form.label :poa_spain_yes,
-              'In Spain – sign before a Spanish notary with one of our team accompanying you',
+              'In Spain – sign before a Spanish notary with one of our team accompanying you',
               class: 'form-check-label' %>
       </div>
 
@@ -244,7 +269,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
               id: 'poa_spain_no',
               class: 'form-check-input' %>
         <%= form.label :poa_spain_no,
-              'At your local notary – we’ll send a draft for you to sign and have it returned by courier',
+              "At your local notary – we'll send a draft for you to sign and have it returned by courier",
               class: 'form-check-label' %>
       </div>
     </fieldset>
@@ -288,7 +313,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
             id: 'needs_nie_no',
             class: 'form-check-input' %>
       <%= form.label :needs_nie_no,
-            'No – I already have an NIE',
+            'No – I already have an NIE',
             class: 'form-check-label' %>
     </div>
 
@@ -297,7 +322,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
             id: 'needs_nie_yes',
             class: 'form-check-input' %>
       <%= form.label :needs_nie_yes,
-            'Yes – please apply on my behalf',
+            'Yes – please apply on my behalf',
             class: 'form-check-label' %>
     </div>
   </fieldset>
@@ -320,21 +345,21 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
   <!-- hidden by default -->
   <div id="parent_fields" style="display: none;">
     <p class="mb-3">
-      Please enter your parents’ first names so we can apply for your NIE on your behalf:
+      Please enter your parents' first names so we can apply for your NIE on your behalf:
     </p>
     <div class="form-floating mb-3">
       <%= form.text_field :father_s_first_name,
             class: "form-control",
-            placeholder: "Father’s first name",
+            placeholder: "Father's first name",
             autocomplete: "off" %>
-      <%= form.label :father_s_first_name, "Father’s first name" %>
+      <%= form.label :father_s_first_name, "Father's first name" %>
     </div>
     <div class="form-floating mb-3">
       <%= form.text_field :mother_s_first_name,
             class: "form-control",
-            placeholder: "Mother’s first name",
+            placeholder: "Mother's first name",
             autocomplete: "off" %>
-      <%= form.label :mother_s_first_name, "Mother’s first name" %>
+      <%= form.label :mother_s_first_name, "Mother's first name" %>
     </div>
   </div>
 </div>
@@ -368,9 +393,9 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
 
   </p>
   <ol class="ps-3 mb-4">
-    <li><strong>Reservation fee</strong>  (1%) – to take the property off the market (estate‑agency sales only).</li>
+    <li><strong>Reservation fee</strong>  (1%) – to take the property off the market (estate‑agency sales only).</li>
     <li><strong>Deposit on exchange</strong> 9% (10% if no reservation fee) – due on exchange of contracts.</li>
-    <li><strong>Balance on completion</strong> – the remaining amount on completion day.</li>
+    <li><strong>Balance on completion</strong> – the remaining amount on completion day.</li>
   </ol>
   <p class="mb-3">
     Under Spanish anti‑money‑laundering rules, the notary requires the bank name and IBAN of the account used for each payment 
@@ -612,7 +637,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
   </div>
 
   <!-- 3) Parental Details -->
-  <!-- Father’s Vital Status -->
+  <!-- Father's Vital Status -->
 <div class="mb-3">
   <%= form.label :father_s_vital_status, "Is your father alive?" %><br>
 
@@ -633,7 +658,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
   </div>
 </div>
 
-<!-- Mother’s Vital Status -->
+<!-- Mother's Vital Status -->
 <div class="mb-3">
   <%= form.label :mother_s_vital_status, "Is your mother alive?" %><br>
 
@@ -658,7 +683,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
   <div class="form-floating mb-3">
     <%= form.text_field :children,
          class: "form-control",
-         placeholder: "Children (Name | DOB DD/MM/YYYY)" %>
+         placeholder: "Children (Name | DOB DD/MM/YYYY)" %>
     <%= form.label :children, "Children & Dependents" %>
   </div>
 
@@ -682,7 +707,7 @@ By granting us a Power of Attorney, we’ll handle everything for you.  </p>
          class: "form-control" %>
     <%= form.label :inheritance_to_be_governed_by, "Inheritance governed by" %>
     <p class="m-2 small-text">
-      Most clients choose “Law of country of current nationality.”
+      Most clients choose "Law of country of current nationality."
     </p>
   </div>
 </div>
