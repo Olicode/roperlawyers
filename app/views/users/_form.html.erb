@@ -12,19 +12,19 @@
 </p>
 
     </div>
-<div class="card p-5 mb-5 card-shadow">
+    <div class="card p-5 mb-5 card-shadow">
   <h4 class="mb-3">Personal details</h4>
 
-  <% if user.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
+      <% if user.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger">
       <%= pluralize(user.errors.count, "error") %> prohibited this form from being saved:
-      <ul>
+            <ul>
         <% user.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
 
 
 <div class="row mb-3 g-3">
@@ -33,28 +33,52 @@
       <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
       <%= form.label :first_name, "First name"%>
     </div>
-  </div>
+        </div>
   <div class="col-md-6">
     <div class="form-floating">
       <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
       <%= form.label :last_name, "Last name"%>
-    </div>
-  </div>
-</div>
+        </div>
+      </div>
+          </div>
 
-  <div class="form-floating mb-3">
+        <div class="form-floating mb-3">
     <%= form.text_field :email, class: "form-control", placeholder: "Email address" %>
     <%= form.label :email, "Email address" %>
-  </div>
+        </div>
 
-  <div class="form-floating mb-3">
+        <div class="form-floating mb-3">
     <%= form.text_field :mobile_phone, class: "form-control", placeholder: "Mobile phone number" %>
     <%= form.label :mobile_phone, "Mobile phone number" %>
-  </div>
+        </div>
 
   <div class="form-floating mb-3">
     <%= form.text_field :home_address, class: "form-control", placeholder: "Home address" %>
     <%= form.label :home_address, "Home address" %>
+  </div>
+      <div class="form-floating mb-3">
+    <%= form.text_field :profession, class: "form-control", placeholder: "Profession" %>
+    <%= form.label :profession, "Profession" %>
+  </div>
+
+  <div class="row mb-3 g-3">
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= form.text_field :marital_status, class: "form-control", placeholder: "Marital status" %>
+        <%= form.label :marital_status, "Marital status" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-floating">
+        <%= form.text_field :spouse, class: "form-control", placeholder: "Spouse full name" %>
+        <%= form.label :spouse, "Spouse full name" %>
+      </div>
+    </div>
+  </div>
+    <p class="mt-3">Are you a tax resident in Spain?</p>
+    <div class="form-check mb-3">
+    <%= form.check_box :tax_resident, class: "form-check-input", id: "tax_resident" %>
+    <%= form.label :tax_resident, "Yes – I am a tax resident in Spain", class: "form-check-label" %>
   </div>
 
   <div class="form-floating mb-3">
@@ -73,27 +97,85 @@
         <%= form.date_field :date_of_birth, class: "form-control", placeholder: "YYYY-MM-DD" %>
         <%= form.label :date_of_birth, "Date of birth"%>
       </div>
-    </div>
+   </div>
     <div class="col-md-6">
       <div class="form-floating">
         <%= form.date_field :expiry_date, class: "form-control", placeholder: "Passport expiry date" %>
         <%= form.label :expiry_date, "Passport expiry date"%>
       </div>
     </div>
-  </div>
+   </div>
 
-  <div class="form-floating mb-3">
+     <div class="form-floating mb-3">
     <%= form.select :nationality,
           options_for_select(%w[Belgian British Chinese Danish Dutch Finnish French German Greek Indian Irish Italian Norwegian Polish Spanish Swedish Swiss Romanian], user.nationality),
           { include_blank: "Select" },
           class: "form-control form-select" %>
     <%= form.label :nationality, "Nationality" %>
-  </div>
+   </div>
 
   <div class="mb-3">
     <p class="mb-1">Upload a copy of your passport</p>
-    <%= form.file_field :passport_document, class: "form-control" %>
+    <div class="file-upload-container">
+      <label for="user_passport_document" class="file-upload-label">
+        <div class="upload-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 2V8H20" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="upload-text">Upload a file or drag & drop</span>
+        <span class="file-types">PDF, JPG, PNG</span>
+        <%= form.file_field :passport_document, class: "file-upload-input" %>
+      </label>
+    </div>
   </div>
+
+<style>
+  .file-upload-container {
+    width: 100%;
+  }
+  .file-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 150px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  .file-upload-label:hover {
+    border-color: #999;
+  }
+  .upload-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  .file-upload-input {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+  }
+  .upload-text {
+    margin-bottom: 4px;
+  }
+  .file-types {
+    font-size: 0.8rem;
+    color: #666;
+  }
+</style>
+
+
+
 <hr class="hr mb-3" style="color: #b29c84;" />
 <%# NIE section %>
 
@@ -135,9 +217,21 @@
     </div>
     <div class="mb-3">
       <label class="form-label">Upload a copy of your NIE document</label>
-      <%= form.file_field :nie_document, class: "form-control" %>
+      <div class="file-upload-container">
+        <label for="user_nie_document" class="file-upload-label">
+          <div class="upload-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 2V8H20" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="upload-text">Upload a file or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
+          <%= form.file_field :nie_document, class: "file-upload-input" %>
+        </label>
+      </div>
     </div>
-  </div>
+    </div>
 
   <!-- hidden by default -->
   <div id="parent_fields" style="display: none;">
@@ -164,7 +258,7 @@
         </div>
       </div>
     </div>
-  </div>
+     </div>
 
 
 <script>
@@ -187,32 +281,107 @@
     toggleSections();
   });
 </script>
-
-
 </div>
-<div class="card p-5 mb-5 card-shadow"> 
-  <h4 class="mb-3">Additional Information</h4>
+
+<div class="card p-5 mb-5 card-shadow">
+  <h4 class="mb-3">Requested Services</h4>
+  <p class="mb-3">Please select all services that you require:</p>
+  
+  <div class="mb-4">
+    <h5 class="mb-2">Property Transactions</h5>
+    <div class="form-check ms-3">
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_purchase" }, "Purchase", nil %>
+      <%= form.label "requested_services_purchase", "Purchase", class: "form-check-label" %>
+    </div>
+    
+    <div class="form-check ms-3">
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_sale" }, "Sale", nil %>
+      <%= form.label "requested_services_sale", "Sale", class: "form-check-label" %>
+    </div>
+  </div>
+  
+  <div class="mb-4">
+    <h5 class="mb-2">Legal Documents</h5>
+    <div class="form-check ms-3">
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_will" }, "Will & Last Testament", nil %>
+      <%= form.label "requested_services_will", "Will & Last Testament", class: "form-check-label" %>
+    </div>
+    
+    <div class="form-check ms-3">
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_new_build" }, "New Build Declaration", nil %>
+      <%= form.label "requested_services_new_build", "New Build Declaration", class: "form-check-label" %>
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <h5 class="mb-2">Registry Services</h5>
+    <div class="form-check ms-3">
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_vv" }, "VV Licence", nil %>
+      <%= form.label "requested_services_vv", "VV Licence", class: "form-check-label" %>
+    </div>
+    
+    <div class="form-check ms-3">
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_registry" }, "Unified Registry", nil %>
+      <%= form.label "requested_services_registry", "Unified Registry", class: "form-check-label" %>
+    </div>
+    
+    <div class="form-check ms-3">
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_activities" }, "Classified Activities", nil %>
+      <%= form.label "requested_services_activities", "Classified Activities", class: "form-check-label" %>
+    </div>
+  </div>
+</div>
+
+<div class="card p-5 mb-5 card-shadow" id="section_property_sale">
+  <h4 class="mb-3">Property Sale Details</h4>
+  
   <div class="form-floating mb-3">
-    <%= form.text_field :profession, class: "form-control", placeholder: "Profession" %>
-    <%= form.label :profession, "Profession" %>
+    <%= form.text_area :selling_property_address, class: "form-control", placeholder: "Selling property address", style: "height: 120px;" %>
+    <%= form.label :selling_property_address, "Selling Property Address" %>
   </div>
-
-  <div class="row mb-3 g-3">
-    <div class="col-md-6">
-      <div class="form-floating">
-        <%= form.text_field :marital_status, class: "form-control", placeholder: "Marital status" %>
-        <%= form.label :marital_status, "Marital status" %>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-floating">
-        <%= form.text_field :spouse, class: "form-control", placeholder: "Spouse full name" %>
-        <%= form.label :spouse, "Spouse full name" %>
-      </div>
+  
+  <div class="rounded mb-3">
+    <p>Upload Title Deed (Escritura)</p>
+    <div class="file-upload-container">
+      <label for="user_title_deed_documents" class="file-upload-label">
+        <div class="upload-icon"><i class="fas fa-upload"></i></div>
+        <span class="upload-text">Upload a file or drag & drop</span>
+        <span class="file-types">PDF, JPG, PNG</span>
+        <%= form.file_field :title_deed_documents, multiple: true, class: "file-upload-input" %>
+      </label>
     </div>
   </div>
+</div>
 
- 
+<div class="card p-5 mb-5 card-shadow" id="section_new_build">
+  <h4 class="mb-3">New Build Declaration Information</h4>
+  
+  <div class="form-floating mb-3">
+    <%= form.text_area :selling_property_address, class: "form-control", placeholder: "Selling property address", style: "height: 120px;" %>
+    <%= form.label :selling_property_address, "Selling Property Address" %>
+  </div>
+  
+  <div class="rounded mb-3">
+    <p>Upload Title Deed (Escritura)</p>
+    <div class="file-upload-container">
+      <label for="user_title_deed_documents" class="file-upload-label">
+        <div class="upload-icon"><i class="fas fa-upload"></i></div>
+        <span class="upload-text">Upload a file or drag & drop</span>
+        <span class="file-types">PDF, JPG, PNG</span>
+        <%= form.file_field :title_deed_documents, multiple: true, class: "file-upload-input" %>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="card p-5 mb-5 card-shadow" id="section_property_purchase"> 
+  <h4 class="mb-3">Property Purchase Details</h4>
+  <p class="mb-3">Enter the address of the property you intend to purchase:</p>
+  <div class="form-floating mb-3">
+    <%= form.text_area :buying_property_address, class: "form-control", placeholder: "Property address", style: "height: 120px;" %>
+    <%= form.label :buying_property_address, "Property Address" %>
+  </div>
+
   <p class="mt-3">What currency are your funds in?</p>
   <fieldset class="mb-3">
     <legend class="visually-hidden">Currency</legend>
@@ -251,148 +420,8 @@
       <%= form.label :holiday_let_no, 'No', class: 'form-check-label ms-1' %>
     </div>
   </fieldset>
-
-  <p class="mt-3">Are you a tax resident in Spain?</p>
-  <div class="form-check mb-3">
-    <%= form.check_box :tax_resident, class: "form-check-input", id: "tax_resident" %>
-    <%= form.label :tax_resident, "Yes – I am a tax resident in Spain", class: "form-check-label" %>
-  </div>
-</div>
-
-
-
-    <%# PoA section %>
-<div class="card p-5 mb-5 card-shadow">
-  <h4 class="mb-3">Power of Attorney (PoA)</h4>
-  <p class="mb-3">
-By granting us a Power of Attorney, we'll handle everything for you.  </p>
-
-  <!-- Q1: Grant PoA? -->
-  <fieldset class="mb-3">
-    <legend class="col-form-label">Would you like to grant us PoA?</legend>
-
-    <div class="form-check mb-2">
-      <%= form.radio_button :needs_poa, 'yes',
-            id: 'needs_poa_yes',
-            class: 'form-check-input' %>
-      <%= form.label :needs_poa_yes,
-            'Yes – please act on my behalf',
-            class: 'form-check-label' %>
-    </div>
-
-    <div class="form-check mb-2">
-      <%= form.radio_button :needs_poa, 'no',
-            id: 'needs_poa_no',
-            class: 'form-check-input' %>
-      <%= form.label :needs_poa_no,
-            'No – I do not require PoA',
-            class: 'form-check-label' %>
-    </div>
-
-    <div class="form-check">
-      <%= form.radio_button :needs_poa, 'already',
-            id: 'needs_poa_already',
-            class: 'form-check-input' %>
-      <%= form.label :needs_poa_already,
-            'Another person holds PoA and will act on my behalf – please let us know and send us a copy',
-            class: 'form-check-label' %>
-    </div>
-  </fieldset>
-
-  <!-- Follow‑up only if Q1 = Yes -->
-  <div id="poa_details" style="display: none;">
-
-    <!-- Q2: Scope of PoA -->
-    <fieldset class="mb-3">
-      <legend class="col-form-label">Which matters should your PoA cover?</legend>
-
-      <div class="form-check mb-2">
-        <%= form.radio_button :poa_for, 'buying',
-              id: 'poa_for_buying',
-              class: 'form-check-input' %>
-        <%= form.label :poa_for_buying,
-              'Buying – purchase property on my behalf',
-              class: 'form-check-label' %>
-      </div>
-
-      <div class="form-check mb-2">
-        <%= form.radio_button :poa_for, 'selling',
-              id: 'poa_for_selling',
-              class: 'form-check-input' %>
-        <%= form.label :poa_for_selling,
-              'Selling – sell property on my behalf',
-              class: 'form-check-label' %>
-      </div>
-
-      <div class="form-check mb-2">
-        <%= form.radio_button :poa_for, 'both',
-              id: 'poa_for_both',
-              class: 'form-check-input' %>
-        <%= form.label :poa_for_both,
-              'Buying & Selling – handle both purchase and sale',
-              class: 'form-check-label' %>
-      </div>
-
-      <div class="form-check">
-        <%= form.radio_button :poa_for, 'all',
-              id: 'poa_for_all',
-              class: 'form-check-input' %>
-        <%= form.label :poa_for_all,
-              'Buying, Selling & Mortgage – full conveyancing and mortgage powers',
-              class: 'form-check-label' %>
-      </div>
-    </fieldset>
-
-    <!-- Q3: Signing location -->
-    <fieldset class="mb-3">
-      <legend class="col-form-label">Where would you like to sign your PoA?</legend>
-
-      <div class="form-check mb-2">
-        <%= form.radio_button :poa_made_in_spain, 'yes',
-              id: 'poa_spain_yes',
-              class: 'form-check-input' %>
-        <%= form.label :poa_spain_yes,
-              'In Spain – sign before a Spanish notary with one of our team accompanying you',
-              class: 'form-check-label' %>
-      </div>
-
-      <div class="form-check">
-        <%= form.radio_button :poa_made_in_spain, 'no',
-              id: 'poa_spain_no',
-              class: 'form-check-input' %>
-        <%= form.label :poa_spain_no,
-              "At your local notary – we'll send a draft for you to sign and have it returned by courier",
-              class: 'form-check-label' %>
-      </div>
-    </fieldset>
-
-  </div>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const yesRadio     = document.getElementById("needs_poa_yes");
-    const noRadio      = document.getElementById("needs_poa_no");
-    const otherRadio   = document.getElementById("needs_poa_already");
-    const poaDetails   = document.getElementById("poa_details");
-
-    function togglePoADetails() {
-      poaDetails.style.display = yesRadio.checked ? "block" : "none";
-    }
-
-    [yesRadio, noRadio, otherRadio].forEach(radio =>
-      radio.addEventListener("change", togglePoADetails)
-    );
-
-    // Initialize on load
-    togglePoADetails();
-  });
-</script>
-
-
-
 <%# Bank details section %>
-<div class="card p-5 mb-5 card-shadow">
+<hr class="hr mb-3" style="color: #b29c84;" />
   <h4 class="mb-3">Bank details</h4>
   <p class="mb-3">
   Property purchase payments are typically made in three stages:
@@ -505,7 +534,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <%= form.label :utility_account, "Utility standing order account" %>
     </div>
   </div>
-</div>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -576,10 +605,144 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   });
 </script>
 
+</div>
+
+
+
+    <%# PoA section %>
+  <div class="card p-5 mb-5 card-shadow">
+  <h4 class="mb-3">Power of Attorney (PoA)</h4>
+  <p class="mb-3">
+By granting us a Power of Attorney, we'll handle everything for you.  </p>
+
+  <!-- Q1: Grant PoA? -->
+  <fieldset class="mb-3">
+    <legend class="col-form-label">Would you like to grant us PoA?</legend>
+
+    <div class="form-check mb-2">
+      <%= form.radio_button :needs_poa, 'yes',
+            id: 'needs_poa_yes',
+            class: 'form-check-input' %>
+      <%= form.label :needs_poa_yes,
+            'Yes – please act on my behalf',
+            class: 'form-check-label' %>
+     </div>
+
+    <div class="form-check mb-2">
+      <%= form.radio_button :needs_poa, 'no',
+            id: 'needs_poa_no',
+            class: 'form-check-input' %>
+      <%= form.label :needs_poa_no,
+            'No – I do not require PoA',
+            class: 'form-check-label' %>
+     </div>
+
+    <div class="form-check">
+      <%= form.radio_button :needs_poa, 'already',
+            id: 'needs_poa_already',
+            class: 'form-check-input' %>
+      <%= form.label :needs_poa_already,
+            'Another person holds PoA and will act on my behalf – please let us know and send us a copy',
+            class: 'form-check-label' %>
+    </div>
+  </fieldset>
+
+  <!-- Follow‑up only if Q1 = Yes -->
+  <div id="poa_details" style="display: none;">
+
+    <!-- Q2: Scope of PoA -->
+    <fieldset class="mb-3">
+      <legend class="col-form-label">Which matters should your PoA cover?</legend>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :poa_for, 'buying',
+              id: 'poa_for_buying',
+              class: 'form-check-input' %>
+        <%= form.label :poa_for_buying,
+              'Buying – purchase property on my behalf',
+              class: 'form-check-label' %>
+  </div>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :poa_for, 'selling',
+              id: 'poa_for_selling',
+              class: 'form-check-input' %>
+        <%= form.label :poa_for_selling,
+              'Selling – sell property on my behalf',
+              class: 'form-check-label' %>
+     </div>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :poa_for, 'both',
+              id: 'poa_for_both',
+              class: 'form-check-input' %>
+        <%= form.label :poa_for_both,
+              'Buying & Selling – handle both purchase and sale',
+              class: 'form-check-label' %>
+      </div>
+
+      <div class="form-check">
+        <%= form.radio_button :poa_for, 'all',
+              id: 'poa_for_all',
+              class: 'form-check-input' %>
+        <%= form.label :poa_for_all,
+              'Buying, Selling & Mortgage – full conveyancing and mortgage powers',
+              class: 'form-check-label' %>
+      </div>
+    </fieldset>
+
+    <!-- Q3: Signing location -->
+    <fieldset class="mb-3">
+      <legend class="col-form-label">Where would you like to sign your PoA?</legend>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :poa_made_in_spain, 'yes',
+              id: 'poa_spain_yes',
+              class: 'form-check-input' %>
+        <%= form.label :poa_spain_yes,
+              'In Spain – sign before a Spanish notary with one of our team accompanying you',
+              class: 'form-check-label' %>
+      </div>
+
+      <div class="form-check">
+        <%= form.radio_button :poa_made_in_spain, 'no',
+              id: 'poa_spain_no',
+              class: 'form-check-input' %>
+        <%= form.label :poa_spain_no,
+              "At your local notary – we'll send a draft for you to sign and have it returned by courier",
+              class: 'form-check-label' %>
+      </div>
+    </fieldset>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const yesRadio     = document.getElementById("needs_poa_yes");
+    const noRadio      = document.getElementById("needs_poa_no");
+    const otherRadio   = document.getElementById("needs_poa_already");
+    const poaDetails   = document.getElementById("poa_details");
+
+    function togglePoADetails() {
+      poaDetails.style.display = yesRadio.checked ? "block" : "none";
+    }
+
+    [yesRadio, noRadio, otherRadio].forEach(radio =>
+      radio.addEventListener("change", togglePoADetails)
+    );
+
+    // Initialize on load
+    togglePoADetails();
+  });
+</script>
+
+
+
+
 
 <%# Will section %>
-<%# Will section %>
-<div class="card p-5 mb-5 card-shadow">
+<div class="card p-5 mb-5 card-shadow" id="section_will">
   <h4>Last Will and Testament</h4>
   <p class="mb-3">
     Should you require a Will and Last Testament, kindly provide the necessary information below.<br>
@@ -748,7 +911,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 </script>
 
 <%# Short term complince section %>
-<div class="card p-5 mb-5 card-shadow">
+<div class="card p-5 mb-5 card-shadow" id="section_short_term">
   <h4>Short-Term Rental Compliance</h4>
   <p class="mb-4">
     In order to legally holiday let your property in the Canary Islands, three steps are required:
@@ -769,102 +932,142 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 
 
 <%# VV License section %>
-  <div class="card p-5 mb-5 card-shadow">
+  <div class="card p-5 mb-5 card-shadow" id="section_documents">
     <h4>Documents</h4>
     <p class="mb-5">Documents need to be uploaded:</p>
     
-    <div class="rounded p-3 mb-3 bg-light">
-      <p>Upload Nota Simple</p>
+    <div class="rounded mb-3">
+      <p>Upload Nota Simple (Land Registry Ownership Certificate)</p>
       <p class="text-muted">This is the document that proves property ownership in the Land Registry. If you do not have one, please leave this field blank.</p>
-      <div class="form-floating" >
-        <%= form.file_field :nota_simple_documents, multiple: true %>
+      <div class="file-upload-container">
+        <label for="user_nota_simple_documents" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          <span class="upload-text">Upload a file or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
+          <%= form.file_field :nota_simple_documents, multiple: true, class: "file-upload-input" %>
+        </label>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
-      <p>Upload Title Deed (Escritura)</p>
-      <div class="form-floating" >
-        <%= form.file_field :title_deed_documents, multiple: true %>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
+
+    <div class="rounded mb-3" id="vv_license_upload_section">
       <p>Upload VV License</p>
-      <div class="form-floating" >
-        <%= form.file_field :vv_license_documents, multiple: true %>
+      <div class="file-upload-container">
+        <label for="user_vv_license_documents" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          Upload a file or drag & drop
+          <%= form.file_field :vv_license_documents, multiple: true, class: "file-upload-input" %>
+        </label>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
-      <p>Upload First Occupation License</p>
-      <div class="form-floating" >
-        <%= form.file_field :first_occupation_license_documents, multiple: true %>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
-      <p>Upload Energy Efficiency Certificate (CEE)</p>
-      <div class="form-floating" >
-        <%= form.file_field :cee_documents, multiple: true %>
+
+    <div class="rounded mb-3">
+      <p class="mb-2">Upload First Occupation License</p>
+      <p class="text-muted">If you do not have this document, our office can manage the application on your behalf and liaise with the relevant authorities.</p>
+      <div class="file-upload-container">
+        <label for="user_first_occupation_license_documents" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          Upload a file or drag & drop
+          <%= form.file_field :first_occupation_license_documents, multiple: true, class: "file-upload-input" %>
+        </label>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
+      </div>
+
+    <div class="rounded mb-3">
+      <p class="mb-2">Upload Energy Efficiency Certificate (CEE)</p>
+      <p class="text-muted">If you do not have this document, our office can manage the application on your behalf through a certified technician.</p>
+      <div class="file-upload-container">
+        <label for="user_cee_documents" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          Upload a file or drag & drop
+          <%= form.file_field :cee_documents, multiple: true, class: "file-upload-input" %>
+        </label>
+      </div>
+      </div>
+
+    <div class="rounded mb-3">
       <p>Upload Habitability Certificate</p>
-      <div class="form-floating" >
-        <%= form.file_field :habitability_certificate_documents, multiple: true %>
+      <div class="file-upload-container">
+        <label for="user_habitability_certificate_documents" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          Upload a file or drag & drop
+          <%= form.file_field :habitability_certificate_documents, multiple: true, class: "file-upload-input" %>
+        </label>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
+      </div>
+
+    <div class="rounded mb-3">
       <p>Upload Municipal Certificate</p>
-      <div class="form-floating" >
-        <%= form.file_field :municipal_certificate_documents, multiple: true %>
+      <div class="file-upload-container">
+        <label for="user_municipal_certificate_documents" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          Upload a file or drag & drop
+          <%= form.file_field :municipal_certificate_documents, multiple: true, class: "file-upload-input" %>
+        </label>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
+      </div>
+
+    <div class="rounded mb-3">
       <p>Upload Annual Property Tax Receipt (IBI)</p>
-      <div class="form-floating" >
-        <%= form.file_field :property_tax_receipt_documents, multiple: true %>
+      <div class="file-upload-container">
+        <label for="user_property_tax_receipt_documents" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          Upload a file or drag & drop
+          <%= form.file_field :property_tax_receipt_documents, multiple: true, class: "file-upload-input" %>
+        </label>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
+      </div>
+
+    <div class="rounded mb-3">
       <p>Upload Floor Plan</p>
-      <div class="form-floating" >
-        <%= form.file_field :floor_plan_documents, multiple: true %>
+      <div class="file-upload-container">
+        <label for="user_floor_plan_documents" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          Upload a file or drag & drop
+          <%= form.file_field :floor_plan_documents, multiple: true, class: "file-upload-input" %>
+        </label>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
+      </div>
+
+    <div class="rounded mb-3">
       <p>Upload Community Approval</p>
-      <div class="form-floating" >
-        <%= form.file_field :community_approval_documents, multiple: true %>
+      <div class="file-upload-container">
+        <label for="user_community_approval_documents" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          Upload a file or drag & drop
+          <%= form.file_field :community_approval_documents, multiple: true, class: "file-upload-input" %>
+        </label>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
+      </div>
+
+    <div class="rounded mb-3">
       <p>Upload Civil Liability Insurance Policy</p>
-      <div class="form-floating" >
-        <%= form.file_field :civil_liability_insurance_policy_documents, multiple: true %>
+      <div class="file-upload-container">
+        <label for="user_civil_liability_insurance_policy_documents" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          Upload a file or drag & drop
+          <%= form.file_field :civil_liability_insurance_policy_documents, multiple: true, class: "file-upload-input" %>
+        </label>
       </div>
-    </div>
-    
-    <div class="rounded p-3 mb-3 bg-light">
+      </div>
+
+    <div class="rounded mb-3">
       <p>Upload IGIC Registration (Modelo 400)</p>
-      <div class="form-floating" >
-        <%= form.file_field :igic_registration_modelo_400_document %>
+      <div class="file-upload-container">
+        <label for="user_igic_registration_modelo_400_document" class="file-upload-label">
+          <div class="upload-icon"><i class="fas fa-upload"></i></div>
+          Upload a file or drag & drop
+          <%= form.file_field :igic_registration_modelo_400_document, class: "file-upload-input" %>
+        </label>
       </div>
     </div>
   </div>
 
   <div class="d-grid  mb-3">
-    <%= form.submit "Submit", class:"btn btn-primary btn-lg mb-2" %>
+    <%= form.submit "Submit", class:"btn btn-lg mb-2", style:"background-color: #b29c84; color: white;" %>
   </div>
 
  <div class="mb-5">
- Have any questions? <a href="wa.me/+34649948377">Send me a WhatsApp</a>
+ Have any questions? <a href="wa.me/+34649948377" style="color: #b29c84; text-decoration: none; font-weight: 500;">Send me a WhatsApp</a>
   </div>
   <p class="mt-5 mb-3 text-muted text-center">Roper Lawyers &copy; 2010-<%= Date.today.year %></p>
  </div >
@@ -898,3 +1101,344 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
             });
         });
     </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Sections to control
+    const sections = {
+      purchase: document.getElementById('section_property_purchase'),
+      sale: document.getElementById('section_property_sale'),
+      newBuild: document.getElementById('section_new_build'),
+      will: document.getElementById('section_will'),
+      shortTerm: document.getElementById('section_short_term'),
+      documents: document.getElementById('section_documents')
+    };
+    
+    // Service checkboxes
+    const checkboxes = {
+      purchase: document.getElementById('service_purchase'),
+      sale: document.getElementById('service_sale'),
+      newBuild: document.getElementById('service_new_build'),
+      will: document.getElementById('service_will'),
+      vv: document.getElementById('service_vv'),
+      registry: document.getElementById('service_registry'),
+      activities: document.getElementById('service_activities')
+    };
+    
+    // Special sections that depend on specific checkboxes
+    const vvLicenseUploadSection = document.getElementById('vv_license_upload_section');
+    
+    // Hide all conditional sections initially
+    Object.values(sections).forEach(section => {
+      if (section) {
+        section.style.display = 'none';
+      }
+    });
+    
+    // Function to update section visibility
+    function updateSections() {
+      // Show/hide Purchase section
+      if (sections.purchase) {
+        sections.purchase.style.display = checkboxes.purchase.checked ? 'block' : 'none';
+      }
+      
+      // Show/hide Sale section
+      if (sections.sale) {
+        sections.sale.style.display = checkboxes.sale.checked ? 'block' : 'none';
+      }
+      
+      // Show/hide New Build section
+      if (sections.newBuild) {
+        sections.newBuild.style.display = checkboxes.newBuild.checked ? 'block' : 'none';
+      }
+      
+      // Show/hide Will section
+      if (sections.will) {
+        sections.will.style.display = checkboxes.will.checked ? 'block' : 'none';
+      }
+      
+      // Show/hide Short Term section if any related service is checked
+      if (sections.shortTerm) {
+        sections.shortTerm.style.display = 
+          (checkboxes.vv.checked || checkboxes.registry.checked || checkboxes.activities.checked) 
+            ? 'block' : 'none';
+      }
+      
+      // Show/hide Documents section (show only when Sale or any short-term compliance service is selected)
+      if (sections.documents) {
+        sections.documents.style.display = 
+          (checkboxes.sale.checked || checkboxes.vv.checked || checkboxes.registry.checked || checkboxes.activities.checked) 
+            ? 'block' : 'none';
+      }
+      
+      // Show VV License upload ONLY when Unified Registry or Classified Activities is selected
+      if (vvLicenseUploadSection) {
+        vvLicenseUploadSection.style.display = 
+          (checkboxes.registry.checked || checkboxes.activities.checked) ? 'block' : 'none';
+      }
+    }
+    
+    // Add event listeners to all checkboxes
+    Object.values(checkboxes).forEach(checkbox => {
+      if (checkbox) {
+        checkbox.addEventListener('change', updateSections);
+      }
+    });
+    
+    // Run initially to set up correct state
+    updateSections();
+    
+    // If there are any pre-selected services (e.g., when editing), show those sections
+    if (checkboxes.purchase && checkboxes.purchase.checked) sections.purchase.style.display = 'block';
+    if (checkboxes.sale && checkboxes.sale.checked) sections.sale.style.display = 'block';
+    if (checkboxes.newBuild && checkboxes.newBuild.checked) sections.newBuild.style.display = 'block';
+    if (checkboxes.will && checkboxes.will.checked) sections.will.style.display = 'block';
+    if ((checkboxes.vv && checkboxes.vv.checked) || 
+        (checkboxes.registry && checkboxes.registry.checked) || 
+        (checkboxes.activities && checkboxes.activities.checked)) {
+      if (sections.shortTerm) sections.shortTerm.style.display = 'block';
+    }
+    
+    // Initial state for VV License upload section
+    if (vvLicenseUploadSection && (checkboxes.registry || checkboxes.activities)) {
+      vvLicenseUploadSection.style.display = 
+        (checkboxes.registry.checked || checkboxes.activities.checked) ? 'block' : 'none';
+    }
+    
+    // Initial state for Documents section
+    if (sections.documents) {
+      sections.documents.style.display = 
+        (checkboxes.sale.checked || checkboxes.vv.checked || checkboxes.registry.checked || checkboxes.activities.checked) 
+          ? 'block' : 'none';
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // File upload behavior with individual file tracking
+    const fileInputs = document.querySelectorAll(".file-upload-input");
+    
+    // Replace all upload icons with document icon SVG
+    document.querySelectorAll(".upload-icon").forEach(icon => {
+      if (icon.querySelector("svg")) return; // Skip if already has SVG
+      
+      icon.innerHTML = `
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 2V8H20" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      `;
+    });
+    
+    // Update all file upload labels with proper text elements
+    document.querySelectorAll(".file-upload-label").forEach(label => {
+      // Skip if already updated
+      if (label.querySelector(".upload-text")) return;
+      
+      // Get the original text content
+      const originalText = label.childNodes[2].textContent.trim();
+      
+      // Remove the original text node
+      label.childNodes[2].remove();
+      
+      // Create and add the new elements
+      const uploadText = document.createElement("span");
+      uploadText.className = "upload-text";
+      uploadText.textContent = "Upload a file or drag & drop";
+      
+      const fileTypes = document.createElement("span");
+      fileTypes.className = "file-types";
+      fileTypes.textContent = "PDF, JPG, PNG";
+      
+      // Add the elements after the icon
+      const iconElement = label.querySelector(".upload-icon");
+      iconElement.insertAdjacentElement("afterend", fileTypes);
+      iconElement.insertAdjacentElement("afterend", uploadText);
+    });
+    
+    // Set up custom file handling for each input
+    fileInputs.forEach(input => {
+      const label = input.parentElement;
+      const fileList = document.createElement("div");
+      fileList.className = "file-list mt-3 w-100";
+      label.appendChild(fileList);
+      
+      // Create a container to store our file objects
+      const storedFiles = new Map();
+      
+      // Function to update the file list display
+      function updateFileList() {
+        // Clear current list
+        fileList.innerHTML = "";
+        
+        if (storedFiles.size === 0) {
+          fileList.style.display = "none";
+          return;
+        }
+        
+        fileList.style.display = "block";
+        
+        // Add each file to the list
+        storedFiles.forEach((file, id) => {
+          const fileItem = document.createElement("div");
+          fileItem.className = "file-item d-flex align-items-center justify-content-between bg-light rounded p-2 mb-2";
+          fileItem.innerHTML = `
+            <div class="file-icon me-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+              </svg>
+            </div>
+            <div class="file-name flex-grow-1 text-truncate" title="${file.name}">${file.name}</div>
+            <button type="button" class="btn btn-sm text-danger delete-file" data-file-id="${id}" title="Remove file">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg>
+            </button>
+          `;
+          fileList.appendChild(fileItem);
+        });
+        
+        // Add event listeners for delete buttons
+        fileList.querySelectorAll(".delete-file").forEach(btn => {
+          btn.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const fileId = this.getAttribute("data-file-id");
+            storedFiles.delete(fileId);
+            updateFileList();
+            updateInputFiles();
+          });
+        });
+      }
+      
+      // Function to update the actual file input with our stored files
+      function updateInputFiles() {
+        // Create a new DataTransfer object
+        const dataTransfer = new DataTransfer();
+        
+        // Add all stored files to it
+        storedFiles.forEach(file => {
+          dataTransfer.items.add(file);
+        });
+        
+        // Set the input's files
+        input.files = dataTransfer.files;
+      }
+      
+      // Handle file selection
+      input.addEventListener("change", function() {
+        // Add newly selected files to our collection
+        if (this.files.length > 0) {
+          for (let i = 0; i < this.files.length; i++) {
+            const file = this.files[i];
+            const id = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+            storedFiles.set(id, file);
+          }
+          
+          // Clear the input so the same file can be selected again
+          this.value = '';
+          
+          // Update displays
+          updateFileList();
+          updateInputFiles();
+        }
+      });
+      
+      // Drag and drop functionality
+      label.addEventListener("dragover", function(e) {
+        e.preventDefault();
+        label.classList.add("dragover");
+      });
+      
+      label.addEventListener("dragleave", function() {
+        label.classList.remove("dragover");
+      });
+      
+      label.addEventListener("drop", function(e) {
+        e.preventDefault();
+        label.classList.remove("dragover");
+        
+        if (e.dataTransfer.files.length) {
+          // Add dropped files to our collection
+          for (let i = 0; i < e.dataTransfer.files.length; i++) {
+            const file = e.dataTransfer.files[i];
+            const id = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+            storedFiles.set(id, file);
+          }
+          
+          // Update displays
+          updateFileList();
+          updateInputFiles();
+        }
+      });
+      
+      // Initialize the file list
+      updateFileList();
+    });
+  });
+</script>
+
+<style>
+  .file-upload-label.dragover {
+    border-color: #2684FF;
+    background-color: rgba(38, 132, 255, 0.05);
+  }
+  
+  .file-info {
+    font-size: 0.85rem;
+    color: #333;
+    word-break: break-all;
+  }
+  
+  .delete-file {
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .delete-file:hover {
+    transform: scale(1.2);
+  }
+  
+  .file-list {
+    text-align: left;
+  }
+  
+  .file-item {
+    font-size: 0.85rem;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const dateOfBirthField = document.getElementById("dateOfBirthField");
+    const dateOfBirthError = document.getElementById("dateOfBirthError");
+
+    if (dateOfBirthField && dateOfBirthError) {
+      dateOfBirthField.addEventListener("input", function() {
+        const inputDate = dateOfBirthField.value;
+        const isValidFormat = dateOfBirthField.checkValidity();
+
+        if (isValidFormat) {
+          const dateParts = inputDate.split("-");
+          const year = parseInt(dateParts[0]);
+          const month = parseInt(dateParts[1]);
+          const day = parseInt(dateParts[2]);
+
+          if (year >= 1900 && year <= 2020 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+            dateOfBirthError.textContent = ""; // Clear the error message
+          } else {
+            dateOfBirthError.textContent = "Invalid date. Please choose a valid date for your date of birth!";
+          }
+        } else {
+          dateOfBirthError.textContent = "Please use the format YYYY-MM-DD.";
+        }
+      });
+    }
+  });
+</script>
