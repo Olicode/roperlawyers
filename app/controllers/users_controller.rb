@@ -140,6 +140,36 @@ class UsersController < ApplicationController
             end
           end
           
+          if user_params[:habitability_certificate_documents].reject(&:blank?).present?
+            user_params[:habitability_certificate_documents].reject(&:blank?).each do |document|
+              SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Habitability Certificate"))
+            end
+          end
+          
+          if user_params[:municipal_certificate_documents].reject(&:blank?).present?
+            user_params[:municipal_certificate_documents].reject(&:blank?).each do |document|
+              SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Municipal Certificate"))
+            end
+          end
+          
+          if user_params[:property_tax_receipt_documents].reject(&:blank?).present?
+            user_params[:property_tax_receipt_documents].reject(&:blank?).each do |document|
+              SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Property Tax Receipt (IBI)"))
+            end
+          end
+          
+          if user_params[:floor_plan_documents].reject(&:blank?).present?
+            user_params[:floor_plan_documents].reject(&:blank?).each do |document|
+              SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Floor Plan"))
+            end
+          end
+          
+          if user_params[:community_approval_documents].reject(&:blank?).present?
+            user_params[:community_approval_documents].reject(&:blank?).each do |document|
+              SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Community Approval"))
+            end
+          end
+          
           if user_params[:igic_registration_modelo_400_document].present?
             SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:igic_registration_modelo_400_document], "IGIC Registration Modelo 400"))
           end
@@ -192,7 +222,12 @@ class UsersController < ApplicationController
           vv_license_documents: [], 
           first_occupation_license_documents: [], 
           cee_documents: [], 
-          civil_liability_insurance_policy_documents: []
+          civil_liability_insurance_policy_documents: [],
+          habitability_certificate_documents: [],
+          municipal_certificate_documents: [],
+          property_tax_receipt_documents: [],
+          floor_plan_documents: [],
+          community_approval_documents: []
         )
     end
 end
