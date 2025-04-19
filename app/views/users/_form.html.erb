@@ -85,7 +85,7 @@
   <div class="form-floating mb-3">
     <%= form.select :nationality,
           options_for_select(%w[Belgian British Chinese Danish Dutch Finnish French German Greek Indian Irish Italian Norwegian Polish Spanish Swedish Swiss Romanian], user.nationality),
-          { include_blank: true },
+          { include_blank: "Select" },
           class: "form-control form-select" %>
     <%= form.label :nationality, "Nationality" %>
   </div>
@@ -302,7 +302,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 <div class="card p-5 mb-5 card-shadow">
   <h4 class="mb-3">NIE Number</h4>
   <p class="mb-3">
-    For any legal transaction in Spain, you <strong>must</strong> have an NIE.
+    An NIE (Foreigner Identification Number) is required for most official processes in Spain, including legal, financial, and administrative transactions.
   </p>
 
   <fieldset class="mb-3">
@@ -345,21 +345,27 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   <!-- hidden by default -->
   <div id="parent_fields" style="display: none;">
     <p class="mb-3">
-      Please enter your parents' first names so we can apply for your NIE on your behalf:
+      Please enter your parents' first names so we can apply for your NIE:
     </p>
-    <div class="form-floating mb-3">
-      <%= form.text_field :father_s_first_name,
-            class: "form-control",
-            placeholder: "Father's first name",
-            autocomplete: "off" %>
-      <%= form.label :father_s_first_name, "Father's first name" %>
-    </div>
-    <div class="form-floating mb-3">
-      <%= form.text_field :mother_s_first_name,
-            class: "form-control",
-            placeholder: "Mother's first name",
-            autocomplete: "off" %>
-      <%= form.label :mother_s_first_name, "Mother's first name" %>
+    <div class="row mb-3 g-3">
+      <div class="col-md-6">
+        <div class="form-floating">
+          <%= form.text_field :father_s_first_name,
+                class: "form-control",
+                placeholder: "Father's first name",
+                autocomplete: "off" %>
+          <%= form.label :father_s_first_name, "Father's first name" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <%= form.text_field :mother_s_first_name,
+                class: "form-control",
+                placeholder: "Mother's first name",
+                autocomplete: "off" %>
+          <%= form.label :mother_s_first_name, "Mother's first name" %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -498,11 +504,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
             placeholder: "Enter utility standing order bank name and IBAN" %>
       <%= form.label :utility_account, "Utility standing order account" %>
     </div>
-  
   </div>
-  <small class="form-text text-muted mb-4">
-    <i>If you are uncertain which account will be used, you can log back in to update your payment details; please ensure all information is confirmed at least two weeks prior to completion.</i>
-  </small>
 </div>
 
 <script>
@@ -579,9 +581,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 <%# Will section %>
 <div class="card p-5 mb-5 card-shadow">
   <h4>Last Will and Testament</h4>
-  <p class="mb-5">
-    Do you want a Will & Last Testament? If so, please fill in the fields below.<br>
-    <strong>Cost per Will:</strong> €400 (Translator ~€100 · Notary ~€50)
+  <p class="mb-3">
+    Should you require a Will and Last Testament, kindly provide the necessary information below.<br>
   </p>
 
   <!-- 1) Are you currently married? -->
@@ -600,7 +601,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <%= form.text_field :name_of_the_present_spouse,
            class: "form-control",
            placeholder: "Name of present spouse" %>
-      <%= form.label :name_of_the_present_spouse, "Name of present spouse" %>
+      <%= form.label :name_of_the_present_spouse, "Full name of present spouse" %>
     </div>
   </div>
 
@@ -619,15 +620,17 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <div class="form-floating mb-3">
       <%= form.text_field :name_of_the_previous_spouses,
            class: "form-control",
-           placeholder: "Name of previous spouse(s)" %>
-      <%= form.label :name_of_the_previous_spouses, "Name of previous spouse(s)" %>
+           placeholder: "Full name of previous spouse(s)" %>
+      <%= form.label :name_of_the_previous_spouses, "Full name of previous spouse(s)" %>
     </div>
+    <p class="m-2">If divorced, enter date of decree absolute:</p>
     <div class="form-floating mb-3">
       <%= form.date_field :date_of_divorce,
            class: "form-control",
            placeholder: "Date of divorce (DD/MM/YYYY)" %>
       <%= form.label :date_of_divorce, "Date of divorce" %>
     </div>
+    <p class="m-2">If widowed, enter date of spouse's death:</p>
     <div class="form-floating mb-3">
       <%= form.date_field :date_of_decease,
            class: "form-control",
@@ -642,18 +645,18 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   <%= form.label :father_s_vital_status, "Is your father alive?" %><br>
 
   <div class="form-check form-check-inline">
-    <%= form.radio_button :father_s_vital_status, "Living",
+    <%= form.radio_button :father_s_vital_status, "Yes",
          id: "father_vital_status_living",
          class: "form-check-input" %>
-    <%= form.label "father_vital_status_living", "Living",
+    <%= form.label "father_vital_status_living", "Yes",
          class: "form-check-label" %>
   </div>
 
   <div class="form-check form-check-inline">
-    <%= form.radio_button :father_s_vital_status, "Deceased",
+    <%= form.radio_button :father_s_vital_status, "No",
          id: "father_vital_status_deceased",
          class: "form-check-input" %>
-    <%= form.label "father_vital_status_deceased", "Deceased",
+    <%= form.label "father_vital_status_deceased", "No",
          class: "form-check-label" %>
   </div>
 </div>
@@ -663,18 +666,18 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   <%= form.label :mother_s_vital_status, "Is your mother alive?" %><br>
 
   <div class="form-check form-check-inline">
-    <%= form.radio_button :mother_s_vital_status, "Living",
+    <%= form.radio_button :mother_s_vital_status, "Yes",
          id: "mother_vital_status_living",
          class: "form-check-input" %>
-    <%= form.label "mother_vital_status_living", "Living",
+    <%= form.label "mother_vital_status_living", "Yes",
          class: "form-check-label" %>
   </div>
 
   <div class="form-check form-check-inline">
-    <%= form.radio_button :mother_s_vital_status, "Deceased",
+    <%= form.radio_button :mother_s_vital_status, "No",
          id: "mother_vital_status_deceased",
          class: "form-check-input" %>
-    <%= form.label "mother_vital_status_deceased", "Deceased",
+    <%= form.label "mother_vital_status_deceased", "No",
          class: "form-check-label" %>
   </div>
 </div>
@@ -684,18 +687,31 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <%= form.text_field :children,
          class: "form-control",
          placeholder: "Children (Name | DOB DD/MM/YYYY)" %>
-    <%= form.label :children, "Children & Dependents" %>
+    <%= form.label :children, "Children & dependents" %>
   </div>
 
   <!-- 5) Bequests & Order of Succession -->
+<p>
+  List the individuals or organisations you wish to inherit your estate, along with the item and percentage each should receive.<br>
+  You may also name an alternative beneficiary in case someone is unable to inherit.
+</p>
+
+<p class="mb-2">
+  <strong>Example:</strong><br>
+  All assets in Spain: John Smith – 50%, Anna Smith – 50%.<br>
+  If John is unable to inherit, his share should pass to James Clarke.
+</p>
+
+
   <div class="form-floating mb-3">
     <%= form.text_area :outline_of_bequests_and_oder_of_success,
          class: "form-control",
          placeholder: "Outline of Bequests & Order of Succession" %>
-    <%= form.label :outline_of_bequests_and_oder_of_success, "Outline of Bequests & Order of Succession" %>
+    <%= form.label :outline_of_bequests_and_oder_of_success, "Beneficiaries & gifts" %>
   </div>
 
   <!-- 6) Governing Law -->
+  <p class="mb-2">Select the country whose laws you would like to govern your inheritance:</p>
   <div class="form-floating mb-3">
     <%= form.select :inheritance_to_be_governed_by,
          [
@@ -703,11 +719,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
            ["Nationality at the time of death","Nationality at the time of death"],
            ["Habitual place of residence at the time of death","Habitual place of residence at the time of death"]
          ],
-         { include_blank: "Select jurisdiction" },
-         class: "form-control" %>
+         { include_blank: "Select" },
+         class: "form-control form-select" %>
     <%= form.label :inheritance_to_be_governed_by, "Inheritance governed by" %>
     <p class="m-2 small-text">
-      Most clients choose "Law of country of current nationality."
+      Most people making a will choose the "Law of their current nationality".
     </p>
   </div>
 </div>
