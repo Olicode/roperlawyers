@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many_attached :first_occupation_license_documents
   has_many_attached :cee_documents
   has_many_attached :civil_liability_insurance_policy_documents
+  has_many_attached :habitability_certificate_documents
  
 
   # These callbacks will send emails to info@roperlawyers.com

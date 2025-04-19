@@ -94,7 +94,99 @@
     <p class="mb-1">Upload a copy of your passport</p>
     <%= form.file_field :passport_document, class: "form-control" %>
   </div>
+<hr class="hr mb-3" style="color: #b29c84;" />
+<%# NIE section %>
 
+  <h4 class="mb-3 mt-3">NIE number</h4>
+  <p class="mb-3">
+    An NIE (Foreigner Identification Number) is required for most official processes in Spain, including legal, financial, and administrative transactions.
+  </p>
+
+  <fieldset class="mb-3">
+    <legend class="col-form-label">Would you like us to apply for your NIE?</legend>
+
+    <div class="form-check mb-2">
+      <%= form.radio_button :needs_nie, 'no',
+            id: 'needs_nie_no',
+            class: 'form-check-input' %>
+      <%= form.label :needs_nie_no,
+            'No – I already have an NIE',
+            class: 'form-check-label' %>
+    </div>
+
+    <div class="form-check">
+      <%= form.radio_button :needs_nie, 'yes',
+            id: 'needs_nie_yes',
+            class: 'form-check-input' %>
+      <%= form.label :needs_nie_yes,
+            'Yes – please apply on my behalf',
+            class: 'form-check-label' %>
+    </div>
+  </fieldset>
+
+  <!-- hidden by default -->
+  <div id="nie_fields" style="display: none;">
+    <div class="form-floating mb-3">
+      <%= form.text_field :nie_number,
+            class: "form-control",
+            placeholder: "Enter your NIE number",
+            autocomplete: "off" %>
+      <%= form.label :nie_number, "NIE number" %>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Upload a copy of your NIE document</label>
+      <%= form.file_field :nie_document, class: "form-control" %>
+    </div>
+  </div>
+
+  <!-- hidden by default -->
+  <div id="parent_fields" style="display: none;">
+    <p class="mb-3">
+      Please enter your parents' first names so we can apply for your NIE:
+    </p>
+    <div class="row mb-3 g-3">
+      <div class="col-md-6">
+        <div class="form-floating">
+          <%= form.text_field :father_s_first_name,
+                class: "form-control",
+                placeholder: "Father's first name",
+                autocomplete: "off" %>
+          <%= form.label :father_s_first_name, "Father's first name" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <%= form.text_field :mother_s_first_name,
+                class: "form-control",
+                placeholder: "Mother's first name",
+                autocomplete: "off" %>
+          <%= form.label :mother_s_first_name, "Mother's first name" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const noRadio     = document.getElementById("needs_nie_no");
+    const yesRadio    = document.getElementById("needs_nie_yes");
+    const nieFields   = document.getElementById("nie_fields");
+    const parentFields= document.getElementById("parent_fields");
+
+    function toggleSections() {
+      nieFields.style.display    = noRadio.checked  ? "block" : "none";
+      parentFields.style.display = yesRadio.checked ? "block" : "none";
+    }
+
+    [noRadio, yesRadio].forEach(radio =>
+      radio.addEventListener("change", toggleSections)
+    );
+
+    // initialise on page load
+    toggleSections();
+  });
+</script>
 
 
 </div>
@@ -298,98 +390,6 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 </script>
 
 
-<%# NIE section %>
-<div class="card p-5 mb-5 card-shadow">
-  <h4 class="mb-3">NIE Number</h4>
-  <p class="mb-3">
-    An NIE (Foreigner Identification Number) is required for most official processes in Spain, including legal, financial, and administrative transactions.
-  </p>
-
-  <fieldset class="mb-3">
-    <legend class="col-form-label">Would you like us to apply for your NIE?</legend>
-
-    <div class="form-check mb-2">
-      <%= form.radio_button :needs_nie, 'no',
-            id: 'needs_nie_no',
-            class: 'form-check-input' %>
-      <%= form.label :needs_nie_no,
-            'No – I already have an NIE',
-            class: 'form-check-label' %>
-    </div>
-
-    <div class="form-check">
-      <%= form.radio_button :needs_nie, 'yes',
-            id: 'needs_nie_yes',
-            class: 'form-check-input' %>
-      <%= form.label :needs_nie_yes,
-            'Yes – please apply on my behalf',
-            class: 'form-check-label' %>
-    </div>
-  </fieldset>
-
-  <!-- hidden by default -->
-  <div id="nie_fields" style="display: none;">
-    <div class="form-floating mb-3">
-      <%= form.text_field :nie_number,
-            class: "form-control",
-            placeholder: "Enter your NIE number",
-            autocomplete: "off" %>
-      <%= form.label :nie_number, "NIE number" %>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Upload a copy of your NIE document</label>
-      <%= form.file_field :nie_document, class: "form-control" %>
-    </div>
-  </div>
-
-  <!-- hidden by default -->
-  <div id="parent_fields" style="display: none;">
-    <p class="mb-3">
-      Please enter your parents' first names so we can apply for your NIE:
-    </p>
-    <div class="row mb-3 g-3">
-      <div class="col-md-6">
-        <div class="form-floating">
-          <%= form.text_field :father_s_first_name,
-                class: "form-control",
-                placeholder: "Father's first name",
-                autocomplete: "off" %>
-          <%= form.label :father_s_first_name, "Father's first name" %>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-floating">
-          <%= form.text_field :mother_s_first_name,
-                class: "form-control",
-                placeholder: "Mother's first name",
-                autocomplete: "off" %>
-          <%= form.label :mother_s_first_name, "Mother's first name" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const noRadio     = document.getElementById("needs_nie_no");
-    const yesRadio    = document.getElementById("needs_nie_yes");
-    const nieFields   = document.getElementById("nie_fields");
-    const parentFields= document.getElementById("parent_fields");
-
-    function toggleSections() {
-      nieFields.style.display    = noRadio.checked  ? "block" : "none";
-      parentFields.style.display = yesRadio.checked ? "block" : "none";
-    }
-
-    [noRadio, yesRadio].forEach(radio =>
-      radio.addEventListener("change", toggleSections)
-    );
-
-    // initialise on page load
-    toggleSections();
-  });
-</script>
 
 <%# Bank details section %>
 <div class="card p-5 mb-5 card-shadow">
@@ -747,11 +747,31 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   });
 </script>
 
+<%# Short term complince section %>
+<div class="card p-5 mb-5 card-shadow">
+  <h4>Short-Term Rental Compliance</h4>
+  <p class="mb-4">
+    In order to legally holiday let your property in the Canary Islands, three steps are required:
+  </p>
+
+  <div class="rounded mb-3">
+    <ol class="mb-3">
+      <li>Apply for a <strong>VV License</strong></li>
+      <li>Register in the <strong>Unified Tourism Registry</strong></li>
+      <li>Submit a <strong>Classified Activities Declaration</strong> to your local municipality</li>
+    </ol>
+    <p class="mb-0">
+      Fill out this section so we can complete the applications on your behalf.
+    </p>
+  </div>
+</div>
+
+
 
 <%# VV License section %>
   <div class="card p-5 mb-5 card-shadow">
-    <h4>VV License documents</h4>
-    <p class="mb-5">VV license documents need to be uploaded in the following order:</p>
+    <h4>Documents</h4>
+    <p class="mb-5">Documents need to be uploaded:</p>
     
     <div class="rounded p-3 mb-3 bg-light">
       <p>Upload Nota Simple</p>
@@ -786,6 +806,13 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload Energy Efficiency Certificate (CEE)</p>
       <div class="form-floating" >
         <%= form.file_field :cee_documents, multiple: true %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload Habitability Certificate</p>
+      <div class="form-floating" >
+        <%= form.file_field :habitability_certificate_documents, multiple: true %>
       </div>
     </div>
     
