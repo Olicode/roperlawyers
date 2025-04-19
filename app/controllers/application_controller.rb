@@ -53,11 +53,17 @@ class ApplicationController < ActionController::Base
   end
 
   def sf_file_upload_attrs_map(user, document, doc_type)
+    file_data = if document.respond_to?(:tempfile)
+                  File.read(document.tempfile.path)
+                else
+                  File.read(document.path)
+                end
+
     {
       Name: "#{doc_type} #{user.first_name} #{user.last_name}",
       ParentId: user.sf_contact_id,
       description: "Uploaded by #{user.first_name} #{user.last_name}",
-      Body: Base64::encode64(File.read(document))
+      Body: Base64::encode64(file_data)
     }
   end
 end

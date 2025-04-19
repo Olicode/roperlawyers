@@ -18,7 +18,15 @@ class SalesforceService
   end
 
   def self.upload_file(file_attrs)
-    new.client.create!('Attachment', file_attrs)
+    begin
+      Rails.logger.info "Attempting to upload file to Salesforce: #{file_attrs[:Name]}"
+      new.client.create!('Attachment', file_attrs)
+      Rails.logger.info "Successfully uploaded file to Salesforce"
+    rescue => e
+      Rails.logger.error "Error in SalesforceService.upload_file: #{e.message}"
+      Rails.logger.error e.backtrace.join("\n")
+      raise e
+    end
   end
 
   def self.find_contact(sf_contact_id)

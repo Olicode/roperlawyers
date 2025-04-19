@@ -109,13 +109,27 @@ class UsersController < ApplicationController
           if user_params[:nota_simple_documents].reject(&:blank?).present?
             
             user_params[:nota_simple_documents].reject(&:blank?).each do |document|
-              SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Nota Simple"))
+              begin
+                Rails.logger.info "Uploading Nota Simple document: #{document.inspect}"
+                SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Nota Simple"))
+                Rails.logger.info "Successfully uploaded Nota Simple document"
+              rescue => e
+                Rails.logger.error "Error uploading Nota Simple document: #{e.message}"
+                Rails.logger.error e.backtrace.join("\n")
+              end
             end
           end
           
           if user_params[:title_deed_documents].reject(&:blank?).present?
             user_params[:title_deed_documents].reject(&:blank?).each do |document|
-              SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Title Deed"))
+              begin
+                Rails.logger.info "Uploading Title Deed document: #{document.inspect}"
+                SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Title Deed"))
+                Rails.logger.info "Successfully uploaded Title Deed document"
+              rescue => e
+                Rails.logger.error "Error uploading Title Deed document: #{e.message}"
+                Rails.logger.error e.backtrace.join("\n")
+              end
             end
           end
           
