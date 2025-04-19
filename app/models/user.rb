@@ -17,6 +17,10 @@ class User < ApplicationRecord
   has_many_attached :cee_documents
   has_many_attached :civil_liability_insurance_policy_documents
   has_many_attached :habitability_certificate_documents
+  has_many_attached :municipal_certificate_documents
+  has_many_attached :property_tax_receipt_documents
+  has_many_attached :floor_plan_documents
+  has_many_attached :community_approval_documents
  
 
   # These callbacks will send emails to info@roperlawyers.com

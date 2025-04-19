@@ -817,6 +817,34 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     </div>
     
     <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload Municipal Certificate</p>
+      <div class="form-floating" >
+        <%= form.file_field :municipal_certificate_documents, multiple: true %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload Annual Property Tax Receipt (IBI)</p>
+      <div class="form-floating" >
+        <%= form.file_field :property_tax_receipt_documents, multiple: true %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload Floor Plan</p>
+      <div class="form-floating" >
+        <%= form.file_field :floor_plan_documents, multiple: true %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
+      <p>Upload Community Approval</p>
+      <div class="form-floating" >
+        <%= form.file_field :community_approval_documents, multiple: true %>
+      </div>
+    </div>
+    
+    <div class="rounded p-3 mb-3 bg-light">
       <p>Upload Civil Liability Insurance Policy</p>
       <div class="form-floating" >
         <%= form.file_field :civil_liability_insurance_policy_documents, multiple: true %>
