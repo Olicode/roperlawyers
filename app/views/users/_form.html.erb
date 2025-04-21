@@ -298,23 +298,25 @@
 
 <div class="card p-5 mb-5 card-shadow">
   <h4 class="mb-3">Requested Services</h4>
-  <p class="mb-3">Please select all services that you require:</p>
+  <p class="mb-3">Please tick all the services you would like us to assist you with:</p>
   
   <div class="mb-4">
     <h5 class="mb-2">Property Transactions</h5>
+    <p class="mb-3">If you're buying or selling a property, please select the relevant option:</p>
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_purchase" }, "Purchase", nil %>
-      <%= form.label "requested_services_purchase", "Purchase", class: "form-check-label" %>
+      <%= form.label "requested_services_purchase", "I am purchasing a property", class: "form-check-label" %>
     </div>
     
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_sale" }, "Sale", nil %>
-      <%= form.label "requested_services_sale", "Sale", class: "form-check-label" %>
+      <%= form.label "requested_services_sale", "I am selling a property", class: "form-check-label" %>
     </div>
   </div>
   
   <div class="mb-4">
     <h5 class="mb-2">Legal Documents</h5>
+    <p class="mb-3">If you would like us to prepare any of the following legal documents, please tick below:</p>
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_will" }, "Will & Last Testament", nil %>
       <%= form.label "requested_services_will", "Will & Last Testament", class: "form-check-label" %>
@@ -327,20 +329,24 @@
   </div>
   
   <div class="mb-3">
-    <h5 class="mb-2">Registry Services</h5>
+    <h5 class="mb-2">Holiday Let Compliance (Short-Term Rentals)</h5>
+
+  <p class="mb-3">
+If you plan to holiday let your property, three legal steps are required. Tick any you’d like us to handle:  </p>
+
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_vv" }, "VV Licence", nil %>
-      <%= form.label "requested_services_vv", "VV Licence", class: "form-check-label" %>
+      <%= form.label "requested_services_vv", "Apply for VV Licence", class: "form-check-label" %>
     </div>
 
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_registry" }, "Unified Registry", nil %>
-      <%= form.label "requested_services_registry", "Unified Registry", class: "form-check-label" %>
+      <%= form.label "requested_services_registry", "Register with the Unified Registry", class: "form-check-label" %>
     </div>
 
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_activities" }, "Classified Activities", nil %>
-      <%= form.label "requested_services_activities", "Classified Activities", class: "form-check-label" %>
+      <%= form.label "requested_services_activities", "Submit Classified Activities Declaration", class: "form-check-label" %>
     </div>
   </div>
 </div>
@@ -927,24 +933,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   });
 </script>
 
-<%# Short term complince section %>
-<div class="card p-5 mb-5 card-shadow" id="section_short_term">
-  <h4>Short-Term Rental Compliance</h4>
-  <p class="mb-4">
-    In order to legally holiday let your property in the Canary Islands, three steps are required:
-  </p>
 
-  <div class="rounded mb-3">
-    <ol class="mb-3">
-      <li>Apply for a <strong>VV License</strong></li>
-      <li>Register in the <strong>Unified Tourism Registry</strong></li>
-      <li>Submit a <strong>Classified Activities Declaration</strong> to your local municipality</li>
-    </ol>
-    <p class="mb-0">
-      Fill out this section so we can complete the applications on your behalf.
-    </p>
-  </div>
-</div>
 
 
 
