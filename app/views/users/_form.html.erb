@@ -119,10 +119,7 @@
     <div class="file-upload-container">
       <label for="user_passport_document" class="file-upload-label">
         <div class="upload-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M14 2V8H20" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
         </div>
         <span class="upload-text">Upload a file or drag & drop</span>
         <span class="file-types">PDF, JPG, PNG</span>
@@ -154,8 +151,10 @@
   }
   .upload-icon {
     font-size: 2rem;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: #666;
+    width: 1em;
+    height: 1em;
   }
   .file-upload-input {
     position: absolute;
@@ -207,7 +206,7 @@
   </fieldset>
 
   <!-- hidden by default -->
-  <div id="nie_fields" style="display: none;">
+  <div id="nie_fields" class="hidden-section">
     <div class="form-floating mb-3">
       <%= form.text_field :nie_number,
             class: "form-control",
@@ -220,10 +219,7 @@
       <div class="file-upload-container">
         <label for="user_nie_document" class="file-upload-label">
           <div class="upload-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M14 2V8H20" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
           <span class="upload-text">Upload a file or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -234,7 +230,7 @@
     </div>
 
   <!-- hidden by default -->
-  <div id="parent_fields" style="display: none;">
+  <div id="parent_fields" class="hidden-section">
     <p class="mb-3">
       Please enter your parents' first names so we can apply for your NIE:
     </p>
@@ -262,23 +258,40 @@
 
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("turbo:load", () => {
     const noRadio     = document.getElementById("needs_nie_no");
     const yesRadio    = document.getElementById("needs_nie_yes");
     const nieFields   = document.getElementById("nie_fields");
     const parentFields= document.getElementById("parent_fields");
 
     function toggleSections() {
-      nieFields.style.display    = noRadio.checked  ? "block" : "none";
-      parentFields.style.display = yesRadio.checked ? "block" : "none";
+      // When "No - I already have an NIE" is selected, show NIE fields
+      if (noRadio.checked) {
+        nieFields.classList.remove("hidden-section");
+      } else {
+        nieFields.classList.add("hidden-section");
+      }
+      
+      // When "Yes - please apply on my behalf" is selected, show parent fields
+      if (yesRadio.checked) {
+        parentFields.classList.remove("hidden-section");
+      } else {
+        parentFields.classList.add("hidden-section");
+      }
     }
 
     [noRadio, yesRadio].forEach(radio =>
       radio.addEventListener("change", toggleSections)
     );
 
-    // initialise on page load
-    toggleSections();
+    // Force hide both sections initially
+    nieFields.classList.add("hidden-section");
+    parentFields.classList.add("hidden-section");
+    
+    // Only call toggleSections if a radio is already checked (for page refresh/edit cases)
+    if (noRadio.checked || yesRadio.checked) {
+      toggleSections();
+    }
   });
 </script>
 </div>
@@ -319,12 +332,12 @@
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_vv" }, "VV Licence", nil %>
       <%= form.label "requested_services_vv", "VV Licence", class: "form-check-label" %>
     </div>
-    
+
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_registry" }, "Unified Registry", nil %>
       <%= form.label "requested_services_registry", "Unified Registry", class: "form-check-label" %>
     </div>
-    
+
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_activities" }, "Classified Activities", nil %>
       <%= form.label "requested_services_activities", "Classified Activities", class: "form-check-label" %>
@@ -335,17 +348,19 @@
 <div class="card p-5 mb-5 card-shadow" id="section_property_sale">
   <h4 class="mb-3">Property Sale Details</h4>
   
-  <div class="form-floating mb-3">
+      <div class="form-floating mb-3">
     <%= form.text_area :selling_property_address, class: "form-control", placeholder: "Selling property address", style: "height: 120px;" %>
     <%= form.label :selling_property_address, "Selling Property Address" %>
-  </div>
-  
+     </div>
+
   <div class="rounded mb-3">
     <p>Upload Title Deed (Escritura)</p>
     <div class="file-upload-container">
       <label for="user_title_deed_documents" class="file-upload-label">
-        <div class="upload-icon"><i class="fas fa-upload"></i></div>
-        <span class="upload-text">Upload a file or drag & drop</span>
+        <div class="upload-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+        </div>
+        <span class="upload-text">Upload files or drag & drop</span>
         <span class="file-types">PDF, JPG, PNG</span>
         <%= form.file_field :title_deed_documents, multiple: true, class: "file-upload-input" %>
       </label>
@@ -356,7 +371,7 @@
 <div class="card p-5 mb-5 card-shadow" id="section_new_build">
   <h4 class="mb-3">New Build Declaration Information</h4>
   
-  <div class="form-floating mb-3">
+    <div class="form-floating mb-3">
     <%= form.text_area :selling_property_address, class: "form-control", placeholder: "Selling property address", style: "height: 120px;" %>
     <%= form.label :selling_property_address, "Selling Property Address" %>
   </div>
@@ -365,19 +380,21 @@
     <p>Upload Title Deed (Escritura)</p>
     <div class="file-upload-container">
       <label for="user_title_deed_documents" class="file-upload-label">
-        <div class="upload-icon"><i class="fas fa-upload"></i></div>
-        <span class="upload-text">Upload a file or drag & drop</span>
+        <div class="upload-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+        </div>
+        <span class="upload-text">Upload files or drag & drop</span>
         <span class="file-types">PDF, JPG, PNG</span>
         <%= form.file_field :title_deed_documents, multiple: true, class: "file-upload-input" %>
       </label>
     </div>
   </div>
-</div>
+      </div>
 
 <div class="card p-5 mb-5 card-shadow" id="section_property_purchase"> 
   <h4 class="mb-3">Property Purchase Details</h4>
   <p class="mb-3">Enter the address of the property you intend to purchase:</p>
-  <div class="form-floating mb-3">
+    <div class="form-floating mb-3">
     <%= form.text_area :buying_property_address, class: "form-control", placeholder: "Property address", style: "height: 120px;" %>
     <%= form.label :buying_property_address, "Property Address" %>
   </div>
@@ -537,7 +554,7 @@
 
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("turbo:load", () => {
     const payYes       = document.getElementById("will_pay_res_yes");
     const payNo        = document.getElementById("will_pay_res_no");
     const resSection   = document.getElementById("reservation_section");
@@ -718,7 +735,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("turbo:load", function() {
     const yesRadio     = document.getElementById("needs_poa_yes");
     const noRadio      = document.getElementById("needs_poa_no");
     const otherRadio   = document.getElementById("needs_poa_already");
@@ -892,7 +909,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("turbo:load", function() {
     function toggleSection(yesId, sectionId) {
       var yes     = document.getElementById(yesId);
       var no      = document.getElementById(yesId.replace("_true","_false"));
@@ -941,8 +958,10 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p class="text-muted">This is the document that proves property ownership in the Land Registry. If you do not have one, please leave this field blank.</p>
       <div class="file-upload-container">
         <label for="user_nota_simple_documents" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          <span class="upload-text">Upload a file or drag & drop</span>
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+          <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
           <%= form.file_field :nota_simple_documents, multiple: true, class: "file-upload-input" %>
         </label>
@@ -953,8 +972,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload VV License</p>
       <div class="file-upload-container">
         <label for="user_vv_license_documents" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          Upload a file or drag & drop
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+       <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
           <%= form.file_field :vv_license_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
@@ -965,8 +987,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p class="text-muted">If you do not have this document, our office can manage the application on your behalf and liaise with the relevant authorities.</p>
       <div class="file-upload-container">
         <label for="user_first_occupation_license_documents" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          Upload a file or drag & drop
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+                 <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
           <%= form.file_field :first_occupation_license_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
@@ -977,8 +1002,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p class="text-muted">If you do not have this document, our office can manage the application on your behalf through a certified technician.</p>
       <div class="file-upload-container">
         <label for="user_cee_documents" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          Upload a file or drag & drop
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+                 <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
           <%= form.file_field :cee_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
@@ -988,8 +1016,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload Habitability Certificate</p>
       <div class="file-upload-container">
         <label for="user_habitability_certificate_documents" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          Upload a file or drag & drop
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+                <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
           <%= form.file_field :habitability_certificate_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
@@ -999,8 +1030,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload Municipal Certificate</p>
       <div class="file-upload-container">
         <label for="user_municipal_certificate_documents" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          Upload a file or drag & drop
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+                <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
           <%= form.file_field :municipal_certificate_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
@@ -1010,8 +1044,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload Annual Property Tax Receipt (IBI)</p>
       <div class="file-upload-container">
         <label for="user_property_tax_receipt_documents" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          Upload a file or drag & drop
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+                 <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
           <%= form.file_field :property_tax_receipt_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
@@ -1021,9 +1058,12 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload Floor Plan</p>
       <div class="file-upload-container">
         <label for="user_floor_plan_documents" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          Upload a file or drag & drop
-          <%= form.file_field :floor_plan_documents, multiple: true, class: "file-upload-input" %>
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+       <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>        
+           <%= form.file_field :floor_plan_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
       </div>
@@ -1032,9 +1072,12 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload Community Approval</p>
       <div class="file-upload-container">
         <label for="user_community_approval_documents" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          Upload a file or drag & drop
-          <%= form.file_field :community_approval_documents, multiple: true, class: "file-upload-input" %>
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+       <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
+                    <%= form.file_field :community_approval_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
       </div>
@@ -1043,8 +1086,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload Civil Liability Insurance Policy</p>
       <div class="file-upload-container">
         <label for="user_civil_liability_insurance_policy_documents" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          Upload a file or drag & drop
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+             <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
           <%= form.file_field :civil_liability_insurance_policy_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
@@ -1054,8 +1100,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload IGIC Registration (Modelo 400)</p>
       <div class="file-upload-container">
         <label for="user_igic_registration_modelo_400_document" class="file-upload-label">
-          <div class="upload-icon"><i class="fas fa-upload"></i></div>
-          Upload a file or drag & drop
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+         <span class="upload-text">Upload a file or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
           <%= form.file_field :igic_registration_modelo_400_document, class: "file-upload-input" %>
         </label>
       </div>
@@ -1076,7 +1125,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
    <% end %>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("turbo:load", function() {
             const dateOfBirthField = document.getElementById("dateOfBirthField");
             const dateOfBirthError = document.getElementById("dateOfBirthError");
 
@@ -1103,7 +1152,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     </script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("turbo:load", function() {
     // Sections to control
     const sections = {
       purchase: document.getElementById('section_property_purchase'),
@@ -1214,173 +1263,6 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   });
 </script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // File upload behavior with individual file tracking
-    const fileInputs = document.querySelectorAll(".file-upload-input");
-    
-    // Replace all upload icons with document icon SVG
-    document.querySelectorAll(".upload-icon").forEach(icon => {
-      if (icon.querySelector("svg")) return; // Skip if already has SVG
-      
-      icon.innerHTML = `
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M14 2V8H20" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      `;
-    });
-    
-    // Update all file upload labels with proper text elements
-    document.querySelectorAll(".file-upload-label").forEach(label => {
-      // Skip if already updated
-      if (label.querySelector(".upload-text")) return;
-      
-      // Get the original text content
-      const originalText = label.childNodes[2].textContent.trim();
-      
-      // Remove the original text node
-      label.childNodes[2].remove();
-      
-      // Create and add the new elements
-      const uploadText = document.createElement("span");
-      uploadText.className = "upload-text";
-      uploadText.textContent = "Upload a file or drag & drop";
-      
-      const fileTypes = document.createElement("span");
-      fileTypes.className = "file-types";
-      fileTypes.textContent = "PDF, JPG, PNG";
-      
-      // Add the elements after the icon
-      const iconElement = label.querySelector(".upload-icon");
-      iconElement.insertAdjacentElement("afterend", fileTypes);
-      iconElement.insertAdjacentElement("afterend", uploadText);
-    });
-    
-    // Set up custom file handling for each input
-    fileInputs.forEach(input => {
-      const label = input.parentElement;
-      const fileList = document.createElement("div");
-      fileList.className = "file-list mt-3 w-100";
-      label.appendChild(fileList);
-      
-      // Create a container to store our file objects
-      const storedFiles = new Map();
-      
-      // Function to update the file list display
-      function updateFileList() {
-        // Clear current list
-        fileList.innerHTML = "";
-        
-        if (storedFiles.size === 0) {
-          fileList.style.display = "none";
-          return;
-        }
-        
-        fileList.style.display = "block";
-        
-        // Add each file to the list
-        storedFiles.forEach((file, id) => {
-          const fileItem = document.createElement("div");
-          fileItem.className = "file-item d-flex align-items-center justify-content-between bg-light rounded p-2 mb-2";
-          fileItem.innerHTML = `
-            <div class="file-icon me-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
-              </svg>
-            </div>
-            <div class="file-name flex-grow-1 text-truncate" title="${file.name}">${file.name}</div>
-            <button type="button" class="btn btn-sm text-danger delete-file" data-file-id="${id}" title="Remove file">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-              </svg>
-            </button>
-          `;
-          fileList.appendChild(fileItem);
-        });
-        
-        // Add event listeners for delete buttons
-        fileList.querySelectorAll(".delete-file").forEach(btn => {
-          btn.addEventListener("click", function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const fileId = this.getAttribute("data-file-id");
-            storedFiles.delete(fileId);
-            updateFileList();
-            updateInputFiles();
-          });
-        });
-      }
-      
-      // Function to update the actual file input with our stored files
-      function updateInputFiles() {
-        // Create a new DataTransfer object
-        const dataTransfer = new DataTransfer();
-        
-        // Add all stored files to it
-        storedFiles.forEach(file => {
-          dataTransfer.items.add(file);
-        });
-        
-        // Set the input's files
-        input.files = dataTransfer.files;
-      }
-      
-      // Handle file selection
-      input.addEventListener("change", function() {
-        // Add newly selected files to our collection
-        if (this.files.length > 0) {
-          for (let i = 0; i < this.files.length; i++) {
-            const file = this.files[i];
-            const id = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-            storedFiles.set(id, file);
-          }
-          
-          // Clear the input so the same file can be selected again
-          this.value = '';
-          
-          // Update displays
-          updateFileList();
-          updateInputFiles();
-        }
-      });
-      
-      // Drag and drop functionality
-      label.addEventListener("dragover", function(e) {
-        e.preventDefault();
-        label.classList.add("dragover");
-      });
-      
-      label.addEventListener("dragleave", function() {
-        label.classList.remove("dragover");
-      });
-      
-      label.addEventListener("drop", function(e) {
-        e.preventDefault();
-        label.classList.remove("dragover");
-        
-        if (e.dataTransfer.files.length) {
-          // Add dropped files to our collection
-          for (let i = 0; i < e.dataTransfer.files.length; i++) {
-            const file = e.dataTransfer.files[i];
-            const id = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-            storedFiles.set(id, file);
-          }
-          
-          // Update displays
-          updateFileList();
-          updateInputFiles();
-        }
-      });
-      
-      // Initialize the file list
-      updateFileList();
-    });
-  });
-</script>
-
 <style>
   .file-upload-label.dragover {
     border-color: #2684FF;
@@ -1415,7 +1297,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("turbo:load", function() {
     const dateOfBirthField = document.getElementById("dateOfBirthField");
     const dateOfBirthError = document.getElementById("dateOfBirthError");
 
@@ -1442,3 +1324,9 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     }
   });
 </script>
+
+<style>
+  .hidden-section {
+    display: none !important;
+  }
+</style>
