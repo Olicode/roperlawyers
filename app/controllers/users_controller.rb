@@ -91,7 +91,6 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        
         if @user.sf_contact_id.blank?
           sf_contact_id = SalesforceService.create_or_update_contact(sf_attrs_map(@user))
           @user.update!(sf_contact_id: sf_contact_id) unless sf_contact_id == false

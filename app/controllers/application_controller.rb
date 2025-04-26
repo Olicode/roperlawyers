@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       Home_Address_del__c: user.home_address,
       Buying_Property_Address__c: user.buying_property_address,
       Selling_Property_Address__c: user.selling_property_address,
-      Requested_Services__c: user.requested_services.is_a?(Array) ? user.requested_services.join(';') : user.requested_services,
+      Requested_Services__c: JSON.parse(user.requested_services).join(';'),
       Currency__c: user.currency,
       Here_till__c: user.here_till,
       Needs_Mortgage__c: user.needs_mortgage,
