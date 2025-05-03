@@ -63,7 +63,8 @@ class UsersController < ApplicationController
         children: @sf_contact.Children__c,
         outline_of_bequests_and_oder_of_success: @sf_contact.Outline_of_bequests_and_order_of_success__c,
         inheritance_to_be_governed_by: @sf_contact.Inheritance_to_be_governed_by__c,
-        energy_efficiency_certificate_cee: @sf_contact.Energy_Efficiency_Certificate_CEE__c
+        energy_efficiency_certificate_cee: @sf_contact.Energy_Efficiency_Certificate_CEE__c,
+        escritura: @sf_contact.Escritura__c
       )
     end
   end
@@ -234,6 +235,7 @@ class UsersController < ApplicationController
           :outline_of_bequests_and_oder_of_success, :inheritance_to_be_governed_by,
           :poa_made_in_spain, :poa_for, :needs_nie, :home_address, :currency, :needs_mortgage, :wants_to_holiday_let,
           :has_a_spanish_bank_account, :date_of_birth, :igic_registration_modelo_400_document, :energy_efficiency_certificate_cee,
+          :escritura,
           { requested_services: [] },
           nota_simple_documents: [], 
           title_deed_documents: [], 

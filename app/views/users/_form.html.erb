@@ -358,20 +358,6 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     <%= form.text_area :selling_property_address, class: "form-control", placeholder: "Selling property address", style: "height: 120px;" %>
     <%= form.label :selling_property_address, "Selling Property Address" %>
      </div>
-
-  <div class="rounded mb-3">
-    <p>Upload Title Deed (Escritura)</p>
-    <div class="file-upload-container">
-      <label for="user_title_deed_documents" class="file-upload-label">
-        <div class="upload-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
-        </div>
-        <span class="upload-text">Upload files or drag & drop</span>
-        <span class="file-types">PDF, JPG, PNG</span>
-        <%= form.file_field :title_deed_documents, multiple: true, class: "file-upload-input" %>
-      </label>
-    </div>
-  </div>
 </div>
 
 <div class="card p-5 mb-5 card-shadow" id="section_new_build">
@@ -380,20 +366,6 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     <div class="form-floating mb-3">
     <%= form.text_area :selling_property_address, class: "form-control", placeholder: "Selling property address", style: "height: 120px;" %>
     <%= form.label :selling_property_address, "Selling Property Address" %>
-  </div>
-  
-  <div class="rounded mb-3">
-    <p>Upload Title Deed (Escritura)</p>
-    <div class="file-upload-container">
-      <label for="user_title_deed_documents" class="file-upload-label">
-        <div class="upload-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
-        </div>
-        <span class="upload-text">Upload files or drag & drop</span>
-        <span class="file-types">PDF, JPG, PNG</span>
-        <%= form.file_field :title_deed_documents, multiple: true, class: "file-upload-input" %>
-      </label>
-    </div>
   </div>
       </div>
 
@@ -633,7 +605,7 @@ If you plan to holiday let your property, three legal steps are required. Tick a
 
 
     <%# PoA section %>
-  <div class="card p-5 mb-5 card-shadow">
+  <div class="card p-5 mb-5 card-shadow" id="section_poa">
   <h4 class="mb-3">Power of Attorney (PoA)</h4>
   <p class="mb-3">
 By granting us a Power of Attorney, we'll handle everything for you.  </p>
@@ -746,17 +718,66 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     const noRadio      = document.getElementById("needs_poa_no");
     const otherRadio   = document.getElementById("needs_poa_already");
     const poaDetails   = document.getElementById("poa_details");
-
+    const poaSection   = document.getElementById("section_poa");
+    
+    // Service checkboxes that should trigger showing the PoA section
+    const purchaseCheckbox = document.getElementById("service_purchase");
+    const saleCheckbox = document.getElementById("service_sale");
+    const newBuildCheckbox = document.getElementById("service_new_build");
+    
+    // NIE radio buttons
+    const nieYesRadio = document.getElementById("needs_nie_yes");
+    
     function togglePoADetails() {
-      poaDetails.style.display = yesRadio.checked ? "block" : "none";
+      // Only show the details section if the Yes radio is checked
+      if (poaDetails) {
+        poaDetails.style.display = yesRadio.checked ? "block" : "none";
+      }
     }
-
-    [yesRadio, noRadio, otherRadio].forEach(radio =>
-      radio.addEventListener("change", togglePoADetails)
-    );
-
-    // Initialize on load
+    
+    function updatePoASectionVisibility() {
+      // Show PoA section if:
+      // 1. NIE "Yes" is selected OR
+      // 2. Any of the relevant services are checked (purchase, sale, new build)
+      const shouldShowPoA = 
+        (nieYesRadio && nieYesRadio.checked) || 
+        (purchaseCheckbox && purchaseCheckbox.checked) ||
+        (saleCheckbox && saleCheckbox.checked) ||
+        (newBuildCheckbox && newBuildCheckbox.checked);
+      
+      if (poaSection) {
+        poaSection.style.display = shouldShowPoA ? "block" : "none";
+      }
+    }
+    
+    // Add event listeners for PoA radio buttons
+    [yesRadio, noRadio, otherRadio].forEach(radio => {
+      if (radio) {
+        radio.addEventListener("change", togglePoADetails);
+      }
+    });
+    
+    // Add event listeners for the conditions that show/hide the entire section
+    if (nieYesRadio) {
+      nieYesRadio.addEventListener("change", updatePoASectionVisibility);
+    }
+    
+    // Also listen to the "No" NIE option to potentially hide PoA
+    const nieNoRadio = document.getElementById("needs_nie_no");
+    if (nieNoRadio) {
+      nieNoRadio.addEventListener("change", updatePoASectionVisibility);
+    }
+    
+    // Add listeners to service checkboxes
+    [purchaseCheckbox, saleCheckbox, newBuildCheckbox].forEach(checkbox => {
+      if (checkbox) {
+        checkbox.addEventListener("change", updatePoASectionVisibility);
+      }
+    });
+    
+    // Initialize both functions on page load
     togglePoADetails();
+    updatePoASectionVisibility();
   });
 </script>
 
@@ -942,9 +963,53 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <h4>Documents</h4>
     <p class="mb-5">Documents need to be uploaded:</p>
     
+    <fieldset class="mb-3">
+      <legend class="col-form-label mb-2">Can you provide the Title Deed (Escritura)?</legend>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :escritura, 'Provided',
+              id: 'title_deed_upload_now',
+              class: 'form-check-input' %>
+        <%= form.label :title_deed_upload_now,
+              'Yes, I will upload it now',
+              class: 'form-check-label' %>
+      </div>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :escritura, 'Client Will Provide',
+              id: 'title_deed_send_later',
+              class: 'form-check-input' %>
+        <%= form.label :title_deed_send_later,
+              'Yes, but I will send it later',
+              class: 'form-check-label' %>
+      </div>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :escritura, 'Client Can\'t Find It',
+              id: 'title_deed_cant_find',
+              class: 'form-check-input' %>
+        <%= form.label :title_deed_cant_find,
+              'I can\'t find it',
+              class: 'form-check-label' %>
+      </div>
+    </fieldset>
+
+    <div class="rounded mb-3" id="title_deed_upload_section">
+      <p>Upload Title Deed (Escritura)</p>
+      <div class="file-upload-container">
+        <label for="user_title_deed_documents" class="file-upload-label">
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+          <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
+          <%= form.file_field :title_deed_documents, multiple: true, class: "file-upload-input" %>
+        </label>
+      </div>
+    </div>
+    
     <div class="rounded mb-3">
       <p>Upload Nota Simple (Land Registry Ownership Certificate)</p>
-      <p class="text-muted">If the title deed (escritura) has been uploaded, there's no need to upload it again. If not, please provide the finca number, which can be found in the escritura, so we can request a Nota Simple.</p>
       <div class="file-upload-container">
         <label for="user_nota_simple_documents" class="file-upload-label">
           <div class="upload-icon">
@@ -955,37 +1020,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
           <%= form.file_field :nota_simple_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
-      </div>
-
-    <div class="rounded mb-3" id="vv_license_upload_section">
-      <p>Upload VV License</p>
-      
-      <div class="file-upload-container">
-        <label for="user_vv_license_documents" class="file-upload-label">
-          <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
-          </div>
-       <span class="upload-text">Upload files or drag & drop</span>
-          <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :vv_license_documents, multiple: true, class: "file-upload-input" %>
-        </label>
-      </div>
-      </div>
-
-    <div class="rounded mb-3">
-      <p class="mb-2">Upload First Occupation License</p>
-      <p class="text-muted">If you do not have this document, our office can manage the application on your behalf and liaise with the relevant authorities.</p>
-      <div class="file-upload-container">
-        <label for="user_first_occupation_license_documents" class="file-upload-label">
-          <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
-          </div>
-                 <span class="upload-text">Upload files or drag & drop</span>
-          <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :first_occupation_license_documents, multiple: true, class: "file-upload-input" %>
-        </label>
-      </div>
-      </div>
+    </div>
 
     <fieldset class="mb-3">
       <legend class="col-form-label mb-2">Do you have the Energy Efficiency Certificate (CEE)?</legend>
@@ -1033,26 +1068,35 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       </div>
       </div>
 
-<script>
-  document.addEventListener("turbo:load", function() {
-    const uploadNowRadio = document.getElementById("cee_upload_now");
-    const sendLaterRadio = document.getElementById("cee_send_later");
-    const needToApplyRadio = document.getElementById("cee_need_to_apply");
-    const ceeUploadSection = document.getElementById("cee_upload_section");
+    <div class="rounded mb-3" id="vv_license_upload_section">
+      <p>Upload VV License</p>
+      
+      <div class="file-upload-container">
+        <label for="user_vv_license_documents" class="file-upload-label">
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+       <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
+          <%= form.file_field :vv_license_documents, multiple: true, class: "file-upload-input" %>
+        </label>
+      </div>
+      </div>
 
-    function toggleCeeUploadSection() {
-      // Only show the upload section if "Yes, I will upload it now" is selected
-      ceeUploadSection.style.display = uploadNowRadio.checked ? "block" : "none";
-    }
-
-    [uploadNowRadio, sendLaterRadio, needToApplyRadio].forEach(radio =>
-      radio.addEventListener("change", toggleCeeUploadSection)
-    );
-
-    // Initialize on load
-    toggleCeeUploadSection();
-  });
-</script>
+    <div class="rounded mb-3">
+      <p class="mb-2">Upload First Occupation License</p>
+      <p class="text-muted">If you do not have this document, our office can manage the application on your behalf and liaise with the relevant authorities.</p>
+      <div class="file-upload-container">
+        <label for="user_first_occupation_license_documents" class="file-upload-label">
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+                 <span class="upload-text">Upload files or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
+          <%= form.file_field :first_occupation_license_documents, multiple: true, class: "file-upload-input" %>
+        </label>
+      </div>
+      </div>
 
     <div class="rounded mb-3">
       <p>Upload Habitability Certificate</p>
@@ -1068,6 +1112,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       </div>
       </div>
 
+    <%# Municipal Certificate section is commented out 
     <div class="rounded mb-3">
       <p>Upload Municipal Certificate</p>
       <div class="file-upload-container">
@@ -1077,11 +1122,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
           </div>
                 <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :municipal_certificate_documents, multiple: true, class: "file-upload-input" %>
-        </label>
+          <%= form.file_field :municipal_certificate_documents, multiple: true, class: "file-upload-input" 
+        </label> 
       </div>
-      </div>
-
+      </div> %>
+    
     <div class="rounded mb-3">
       <p>Upload Annual Property Tax Receipt (IBI)</p>
       <div class="file-upload-container">
@@ -1124,7 +1169,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       </div>
       </div>
 
-    <div class="rounded mb-3">
+    <div class="rounded mb-3" id="civil_liability_section">
       <p>Upload Civil Liability Insurance Policy</p>
       <div class="file-upload-container">
         <label for="user_civil_liability_insurance_policy_documents" class="file-upload-label">
@@ -1138,7 +1183,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       </div>
       </div>
 
-    <div class="rounded mb-3">
+    <div class="rounded mb-3" id="igic_registration_section">
       <p>Upload IGIC Registration (Modelo 400)</p>
       <div class="file-upload-container">
         <label for="user_igic_registration_modelo_400_document" class="file-upload-label">
@@ -1218,6 +1263,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     
     // Special sections that depend on specific checkboxes
     const vvLicenseUploadSection = document.getElementById('vv_license_upload_section');
+    const civilLiabilitySection = document.getElementById('civil_liability_section');
+    const igicRegistrationSection = document.getElementById('igic_registration_section');
     
     // Hide all conditional sections initially
     Object.values(sections).forEach(section => {
@@ -1267,6 +1314,20 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
         vvLicenseUploadSection.style.display = 
           (checkboxes.registry.checked || checkboxes.activities.checked) ? 'block' : 'none';
       }
+      
+      // Hide Civil Liability and IGIC sections when only selling (but show them for holiday lets)
+      const isOnlySelling = checkboxes.sale.checked && 
+                            !checkboxes.vv.checked && 
+                            !checkboxes.registry.checked && 
+                            !checkboxes.activities.checked;
+      
+      if (civilLiabilitySection) {
+        civilLiabilitySection.style.display = isOnlySelling ? 'none' : 'block';
+      }
+      
+      if (igicRegistrationSection) {
+        igicRegistrationSection.style.display = isOnlySelling ? 'none' : 'block';
+      }
     }
     
     // Add event listeners to all checkboxes
@@ -1301,6 +1362,20 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       sections.documents.style.display = 
         (checkboxes.sale.checked || checkboxes.vv.checked || checkboxes.registry.checked || checkboxes.activities.checked) 
           ? 'block' : 'none';
+    }
+    
+    // Initial state for Civil Liability and IGIC sections
+    const isOnlySelling = checkboxes.sale && checkboxes.sale.checked && 
+                        !(checkboxes.vv && checkboxes.vv.checked) && 
+                        !(checkboxes.registry && checkboxes.registry.checked) && 
+                        !(checkboxes.activities && checkboxes.activities.checked);
+    
+    if (civilLiabilitySection) {
+      civilLiabilitySection.style.display = isOnlySelling ? 'none' : 'block';
+    }
+    
+    if (igicRegistrationSection) {
+      igicRegistrationSection.style.display = isOnlySelling ? 'none' : 'block';
     }
   });
 </script>
@@ -1372,3 +1447,80 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     display: none !important;
   }
 </style>
+
+<script>
+  document.addEventListener("turbo:load", function() {
+    const uploadNowRadio = document.getElementById("cee_upload_now");
+    const sendLaterRadio = document.getElementById("cee_send_later");
+    const needToApplyRadio = document.getElementById("cee_need_to_apply");
+    const ceeUploadSection = document.getElementById("cee_upload_section");
+
+    function toggleCeeUploadSection() {
+      // Only show the upload section if "Yes, I will upload it now" is selected
+      if (ceeUploadSection) {
+        ceeUploadSection.style.display = uploadNowRadio && uploadNowRadio.checked ? "block" : "none";
+      }
+    }
+
+    if (uploadNowRadio && sendLaterRadio && needToApplyRadio) {
+      uploadNowRadio.addEventListener("change", toggleCeeUploadSection);
+      sendLaterRadio.addEventListener("change", toggleCeeUploadSection);
+      needToApplyRadio.addEventListener("change", toggleCeeUploadSection);
+    }
+
+    // Initialize on load
+    toggleCeeUploadSection();
+  });
+</script>
+
+<style>
+  .file-upload-label.dragover {
+</style>
+
+<script>
+  document.addEventListener("turbo:load", function() {
+    // Title Deed section toggle
+    const titleDeedUploadNowRadio = document.getElementById("title_deed_upload_now");
+    const titleDeedSendLaterRadio = document.getElementById("title_deed_send_later");
+    const titleDeedCantFindRadio = document.getElementById("title_deed_cant_find");
+    const titleDeedUploadSection = document.getElementById("title_deed_upload_section");
+
+    function toggleTitleDeedUploadSection() {
+      // Only show the upload section if "Yes, I will upload it now" is selected
+      if (titleDeedUploadSection) {
+        titleDeedUploadSection.style.display = titleDeedUploadNowRadio && titleDeedUploadNowRadio.checked ? "block" : "none";
+      }
+    }
+
+    if (titleDeedUploadNowRadio && titleDeedSendLaterRadio && titleDeedCantFindRadio) {
+      titleDeedUploadNowRadio.addEventListener("change", toggleTitleDeedUploadSection);
+      titleDeedSendLaterRadio.addEventListener("change", toggleTitleDeedUploadSection);
+      titleDeedCantFindRadio.addEventListener("change", toggleTitleDeedUploadSection);
+    }
+
+    // Initialize on load
+    toggleTitleDeedUploadSection();
+    
+    // CEE section toggle
+    const ceeUploadNowRadio = document.getElementById("cee_upload_now");
+    const ceeSendLaterRadio = document.getElementById("cee_send_later");
+    const ceeNeedToApplyRadio = document.getElementById("cee_need_to_apply");
+    const ceeUploadSection = document.getElementById("cee_upload_section");
+
+    function toggleCeeUploadSection() {
+      // Only show the upload section if "Yes, I will upload it now" is selected
+      if (ceeUploadSection) {
+        ceeUploadSection.style.display = ceeUploadNowRadio && ceeUploadNowRadio.checked ? "block" : "none";
+      }
+    }
+
+    if (ceeUploadNowRadio && ceeSendLaterRadio && ceeNeedToApplyRadio) {
+      ceeUploadNowRadio.addEventListener("change", toggleCeeUploadSection);
+      ceeSendLaterRadio.addEventListener("change", toggleCeeUploadSection);
+      ceeNeedToApplyRadio.addEventListener("change", toggleCeeUploadSection);
+    }
+
+    // Initialize on load
+    toggleCeeUploadSection();
+  });
+</script>
