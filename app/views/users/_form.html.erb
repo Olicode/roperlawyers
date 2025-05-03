@@ -332,7 +332,7 @@
     <h5 class="mb-2">Holiday Let Compliance (Short-Term Rentals)</h5>
 
   <p class="mb-3">
-If you plan to holiday let your property, three legal steps are required. Tick any you’d like us to handle:  </p>
+If you plan to holiday let your property, three legal steps are required. Tick any you'd like us to handle:  </p>
 
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_vv" }, "VV Licence", nil %>
@@ -987,9 +987,40 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       </div>
       </div>
 
-    <div class="rounded mb-3">
+    <fieldset class="mb-3">
+      <legend class="col-form-label mb-2">Do you have the Energy Efficiency Certificate (CEE)?</legend>
+            <p class="text-muted">If you do not have this document, our office can manage the application on your behalf through a certified technician.</p>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :energy_efficiency_certificate_cee, 'Provided',
+              id: 'cee_upload_now',
+              class: 'form-check-input' %>
+        <%= form.label :cee_upload_now,
+              'Yes, I will upload it now',
+              class: 'form-check-label' %>
+      </div>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :energy_efficiency_certificate_cee, 'Client Will Provide',
+              id: 'cee_send_later',
+              class: 'form-check-input' %>
+        <%= form.label :cee_send_later,
+              'Yes, but I will send it later',
+              class: 'form-check-label' %>
+      </div>
+
+      <div class="form-check mb-2">
+        <%= form.radio_button :energy_efficiency_certificate_cee, 'We Need to Apply',
+              id: 'cee_need_to_apply',
+              class: 'form-check-input' %>
+        <%= form.label :cee_need_to_apply,
+              'No, please obtain one on my behalf',
+              class: 'form-check-label' %>
+      </div>
+    </fieldset>
+
+    <div class="rounded mb-3" id="cee_upload_section">
       <p class="mb-2">Upload Energy Efficiency Certificate (CEE)</p>
-      <p class="text-muted">If you do not have this document, our office can manage the application on your behalf through a certified technician.</p>
       <div class="file-upload-container">
         <label for="user_cee_documents" class="file-upload-label">
           <div class="upload-icon">
@@ -1001,6 +1032,27 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
         </label>
       </div>
       </div>
+
+<script>
+  document.addEventListener("turbo:load", function() {
+    const uploadNowRadio = document.getElementById("cee_upload_now");
+    const sendLaterRadio = document.getElementById("cee_send_later");
+    const needToApplyRadio = document.getElementById("cee_need_to_apply");
+    const ceeUploadSection = document.getElementById("cee_upload_section");
+
+    function toggleCeeUploadSection() {
+      // Only show the upload section if "Yes, I will upload it now" is selected
+      ceeUploadSection.style.display = uploadNowRadio.checked ? "block" : "none";
+    }
+
+    [uploadNowRadio, sendLaterRadio, needToApplyRadio].forEach(radio =>
+      radio.addEventListener("change", toggleCeeUploadSection)
+    );
+
+    // Initialize on load
+    toggleCeeUploadSection();
+  });
+</script>
 
     <div class="rounded mb-3">
       <p>Upload Habitability Certificate</p>

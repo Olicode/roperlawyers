@@ -47,7 +47,8 @@ class ApplicationController < ActionController::Base
       Mother_s_Vital_Status__c: user.mother_s_vital_status,
       Children__c: user.children,
       Outline_of_bequests_and_order_of_success__c: user.outline_of_bequests_and_oder_of_success,
-      Inheritance_to_be_governed_by__c: user.inheritance_to_be_governed_by
+      Inheritance_to_be_governed_by__c: user.inheritance_to_be_governed_by,
+      Energy_Efficiency_Certificate_CEE__c: user.energy_efficiency_certificate_cee
 
     }
   end
