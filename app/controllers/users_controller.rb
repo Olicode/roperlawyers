@@ -107,7 +107,7 @@ class UsersController < ApplicationController
             SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:passport_document], "Passport"))
           end
           
-          if user_params[:nota_simple_documents].reject(&:blank?).present?
+          if user_params[:nota_simple_documents]&.reject(&:blank?)&.present?
             
             user_params[:nota_simple_documents].reject(&:blank?).each do |document|
               begin
@@ -121,7 +121,7 @@ class UsersController < ApplicationController
             end
           end
           
-          if user_params[:title_deed_documents].reject(&:blank?).present?
+          if user_params[:title_deed_documents]&.reject(&:blank?)&.present?
             user_params[:title_deed_documents].reject(&:blank?).each do |document|
               begin
                 Rails.logger.info "Uploading Title Deed document: #{document.inspect}"
@@ -134,67 +134,67 @@ class UsersController < ApplicationController
             end
           end
           
-          if user_params[:vv_license_documents].reject(&:blank?).present?
+          if user_params[:vv_license_documents]&.reject(&:blank?)&.present?
             user_params[:vv_license_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "VV License"))
             end
           end
           
-          if user_params[:first_occupation_license_documents].reject(&:blank?).present?
+          if user_params[:first_occupation_license_documents]&.reject(&:blank?)&.present?
             user_params[:first_occupation_license_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "First Occupation License"))
             end
           end
           
-          if user_params[:cee_documents].reject(&:blank?).present?
+          if user_params[:cee_documents]&.reject(&:blank?)&.present?
             user_params[:cee_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "CEE"))
             end
           end
           
-          if user_params[:civil_liability_insurance_policy_documents].reject(&:blank?).present?
+          if user_params[:civil_liability_insurance_policy_documents]&.reject(&:blank?)&.present?
             user_params[:civil_liability_insurance_policy_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Civil Liability Insurance Policy"))
             end
           end
           
-          if user_params[:habitability_certificate_documents].reject(&:blank?).present?
+          if user_params[:habitability_certificate_documents]&.reject(&:blank?)&.present?
             user_params[:habitability_certificate_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Habitability Certificate"))
             end
           end
           
-          if user_params[:municipal_certificate_documents].reject(&:blank?).present?
+          if user_params[:municipal_certificate_documents]&.reject(&:blank?)&.present?
             user_params[:municipal_certificate_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Municipal Certificate"))
             end
           end
           
-          if user_params[:property_tax_receipt_documents].reject(&:blank?).present?
+          if user_params[:property_tax_receipt_documents]&.reject(&:blank?)&.present?
             user_params[:property_tax_receipt_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Property Tax Receipt (IBI)"))
             end
           end
           
-          if user_params[:floor_plan_documents].reject(&:blank?).present?
+          if user_params[:floor_plan_documents]&.reject(&:blank?)&.present?
             user_params[:floor_plan_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Floor Plan"))
             end
           end
           
-          if user_params[:community_approval_documents].reject(&:blank?).present?
+          if user_params[:community_approval_documents]&.reject(&:blank?)&.present?
             user_params[:community_approval_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Community Approval"))
             end
           end
           
-          if user_params[:water_bill_documents].reject(&:blank?).present?
+          if user_params[:water_bill_documents]&.reject(&:blank?)&.present?
             user_params[:water_bill_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Water Bill"))
             end
           end
           
-          if user_params[:electricity_bill_documents].reject(&:blank?).present?
+          if user_params[:electricity_bill_documents]&.reject(&:blank?)&.present?
             user_params[:electricity_bill_documents].reject(&:blank?).each do |document|
               SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Electricity Bill"))
             end
