@@ -188,6 +188,18 @@ class UsersController < ApplicationController
             end
           end
           
+          if user_params[:water_bill_documents].reject(&:blank?).present?
+            user_params[:water_bill_documents].reject(&:blank?).each do |document|
+              SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Water Bill"))
+            end
+          end
+          
+          if user_params[:electricity_bill_documents].reject(&:blank?).present?
+            user_params[:electricity_bill_documents].reject(&:blank?).each do |document|
+              SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Electricity Bill"))
+            end
+          end
+          
           if user_params[:igic_registration_modelo_400_document].present?
             SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:igic_registration_modelo_400_document], "IGIC Registration Modelo 400"))
           end
@@ -247,7 +259,9 @@ class UsersController < ApplicationController
           municipal_certificate_documents: [],
           property_tax_receipt_documents: [],
           floor_plan_documents: [],
-          community_approval_documents: []
+          community_approval_documents: [],
+          water_bill_documents: [],
+          electricity_bill_documents: []
         )
     end
 end

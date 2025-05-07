@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_03_184141) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_07_090512) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -105,6 +105,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_03_184141) do
     t.text "requested_services"
     t.string "energy_efficiency_certificate_cee"
     t.string "escritura"
+    t.json "water_bill_documents"
+    t.json "electricity_bill_documents"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

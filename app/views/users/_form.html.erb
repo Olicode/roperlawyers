@@ -959,9 +959,9 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 
 
 <%# VV License section %>
-  <div class="card p-5 mb-5 card-shadow" id="section_documents">
+  <div class="card p-5 mb-3 card-shadow" id="section_documents">
     <h4>Documents</h4>
-    <p class="mb-5">Documents need to be uploaded:</p>
+    <p class="mb-3">Documents required to be uploaded:</p>
     
     <fieldset class="mb-3">
       <legend class="col-form-label mb-2">Can you provide the Title Deed (Escritura)?</legend>
@@ -1157,6 +1157,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 
     <div class="rounded mb-3">
       <p>Upload Community Approval</p>
+      <p class="text-muted">certificate issued by the community of owners confirming that short-term rentals are permitted within the building or development.</p>
       <div class="file-upload-container">
         <label for="user_community_approval_documents" class="file-upload-label">
           <div class="upload-icon">
@@ -1193,6 +1194,34 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
          <span class="upload-text">Upload a file or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
           <%= form.file_field :igic_registration_modelo_400_document, class: "file-upload-input" %>
+        </label>
+      </div>
+    </div>
+
+    <div class="rounded mb-3" id="water_bill_section">
+      <p>Upload Water Bill</p>
+      <div class="file-upload-container">
+        <label for="user_water_bill_documents" class="file-upload-label">
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+         <span class="upload-text">Upload a file or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
+          <%= form.file_field :water_bill_documents, multiple: true, class: "file-upload-input" %>
+        </label>
+      </div>
+    </div>
+
+    <div class="rounded mb-3" id="electricity_bill_section">
+      <p>Upload Electricity Bill</p>
+      <div class="file-upload-container">
+        <label for="user_electricity_bill_documents" class="file-upload-label">
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </div>
+         <span class="upload-text">Upload a file or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
+          <%= form.file_field :electricity_bill_documents, multiple: true, class: "file-upload-input" %>
         </label>
       </div>
     </div>
@@ -1265,6 +1294,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     const vvLicenseUploadSection = document.getElementById('vv_license_upload_section');
     const civilLiabilitySection = document.getElementById('civil_liability_section');
     const igicRegistrationSection = document.getElementById('igic_registration_section');
+    const waterBillSection = document.getElementById('water_bill_section');
+    const electricityBillSection = document.getElementById('electricity_bill_section');
     
     // Hide all conditional sections initially
     Object.values(sections).forEach(section => {
@@ -1310,9 +1341,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       }
       
       // Show VV License upload ONLY when Unified Registry or Classified Activities is selected
+      // AND VV License service is NOT selected (applying for VV License means they don't have one yet)
       if (vvLicenseUploadSection) {
         vvLicenseUploadSection.style.display = 
-          (checkboxes.registry.checked || checkboxes.activities.checked) ? 'block' : 'none';
+          ((checkboxes.registry.checked || checkboxes.activities.checked) && !checkboxes.vv.checked) 
+            ? 'block' : 'none';
       }
       
       // Hide Civil Liability and IGIC sections when only selling (but show them for holiday lets)
@@ -1327,6 +1360,15 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       
       if (igicRegistrationSection) {
         igicRegistrationSection.style.display = isOnlySelling ? 'none' : 'block';
+      }
+      
+      // Show Water Bill and Electricity Bill sections ONLY when selling property is selected
+      if (waterBillSection) {
+        waterBillSection.style.display = checkboxes.sale.checked ? 'block' : 'none';
+      }
+      
+      if (electricityBillSection) {
+        electricityBillSection.style.display = checkboxes.sale.checked ? 'block' : 'none';
       }
     }
     
@@ -1354,7 +1396,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     // Initial state for VV License upload section
     if (vvLicenseUploadSection && (checkboxes.registry || checkboxes.activities)) {
       vvLicenseUploadSection.style.display = 
-        (checkboxes.registry.checked || checkboxes.activities.checked) ? 'block' : 'none';
+        ((checkboxes.registry.checked || checkboxes.activities.checked) && !checkboxes.vv.checked) 
+          ? 'block' : 'none';
     }
     
     // Initial state for Documents section
@@ -1376,6 +1419,15 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     
     if (igicRegistrationSection) {
       igicRegistrationSection.style.display = isOnlySelling ? 'none' : 'block';
+    }
+    
+    // Initial state for Water Bill and Electricity Bill sections
+    if (waterBillSection) {
+      waterBillSection.style.display = checkboxes.sale && checkboxes.sale.checked ? 'block' : 'none';
+    }
+    
+    if (electricityBillSection) {
+      electricityBillSection.style.display = checkboxes.sale && checkboxes.sale.checked ? 'block' : 'none';
     }
   });
 </script>
