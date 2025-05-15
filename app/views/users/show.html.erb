@@ -1,334 +1,487 @@
 <div class="row justify-content-center">
   <div class="col-12 col-md-10 col-lg-6">
-
-    <h1 class="mt-5 text-center">Your submited information</h1>
-
-    <div class="container card p-5 mb-3 card-shadow">
- <h4 class="mb-3">Personal details</h4>
-
-    <p>
-      <strong>First name:</strong>
-      <%= @user.first_name %>
-    </p>
-
-    <p>
-      <strong>Last name:</strong>
-      <%= @user.last_name %>
-    </p>
-
-    <p>
-      <strong>Email:</strong>
-      <%= @user.email %>
-    </p>
-
-    <p>
-      <strong>Mobile:</strong>
-      <%= @user.mobile_phone %>
-    </p>
-
-    <p>
-      <strong>Full name on passport:</strong>
-      <%= @user.full_name_on_passport %>
-    </p>
-
-    <p>
-      <strong>Passport number:</strong>
-      <%= @user.passport_number %>
-    </p>
-
-    <p>
-      <strong>Date of Birth:</strong>
-      <%= @user.date_of_birth&.strftime("%d/%m/%Y") %>
-    </p>
-
-    <p>
-      <strong>Expiry Date </strong>
-      <%= @user.expiry_date&.strftime("%d/%m/%Y") %>
-    </p>
-
-    <p>
-      <strong>Nationality:</strong>
-      <%= @user.nationality %>
-    </p>
-
-    <p>
-      <strong>Profession:</strong>
-      <%= @user.profession %>
-    </p>
-
-    <p>
-      <strong>Marital status:</strong>
-      <%= @user.marital_status %>
-    </p>
-
-    <p>
-      <strong>Spouse full name:</strong>
-      <%= @user.spouse %>
-    </p>
-
-    <p>
-      <strong>Home Address:</strong>
-      <%= @user.home_address %>
-    </p>
-
-    <p>
-      <strong>Currency:</strong>
-      <%= @user.currency %>
-    </p>
-    <p>
-      <strong>Mortgage application:</strong>
-      <%= @user.needs_mortgage %>
-    </p>
-
-    <p>
-      <strong>Holiday Let:</strong>
-      <%= @user.wants_to_holiday_let %>
-    </p>
-
-    <p>
-      <strong>In Lanzarote until:</strong>
-      <%= @user.here_till&.strftime("%d/%m/%Y") %>
-    </p>
-</div>
-
-<div class="card p-5 mb-5 card-shadow">
-  <h4 class="mb-3">Power of Attorney</h4>
-    <p>
-      <strong>Power of Attorney:</strong>
-      <%= @user.needs_poa %>
-    </p>
-
-    <p>
-      <strong>PoA made in Spain:</strong>
-      <%= @user.poa_made_in_spain %>
-    </p>
-
-    <p>
-      <strong>PoA For:</strong>
-      <%= @user.poa_for %>
-    </p>
-</div>
-
- <div class="card p-5 mb-5 card-shadow">
-    <h4 class="mb-3">NIE</h4>
-    <p>
-      <strong>NIE Number:</strong>
-      <%= @user.nie_number %>
-    </p>
-
-
-    <p>
-      <strong>Father's first name:</strong>
-      <%= @user.father_s_first_name %>
-    </p>
-
-    <p>
-      <strong>Mother's first name:</strong>
-      <%= @user.mother_s_first_name %>
-    </p>
-  </div>
-<div class="card p-5 mb-5 card-shadow">
-<h4 class="mb-3">Bank details</h4>
-    <p>
-      <strong>Reservation origin bank:</strong>
-      <%= @user.r_origin_bank_details %>
-    </p>
-
-    <p>
-      <strong>Private Contract origin bank:</strong>
-      <%= @user.otb_origin_bank_details %>
-    </p>
-
-    <p>
-      <strong>Balance origin bank:</strong>
-      <%= @user.balance_bank_details %>
-    </p>
-
-    <p>
-      <strong>Do you have a Spanish Bank account:</strong>
-      <%= @user.has_a_spanish_bank_account %>
-    </p>
-
-    <p>
-      <strong>Utilities standing orders bank:</strong>
-      <%= @user.standing_orders_bank_details %>
-    </p>
-</div>
-    <%# will  %>
-    <div class="card p-5 mb-5 card-shadow">
-<h4 class="mb-3">Last Will & Testament</h4>
-
-    <p>
-      <strong>Name of the present spouse:</strong>
-      <%= @user.name_of_the_present_spouse %>
-    </p>
-
-    <p>
-      <strong>Name of the previous spouses:</strong>
-      <%= @user.name_of_the_previous_spouses %>
-    </p>
-
-    <p>
-      <strong>Date of divorce:</strong>
-      <%= @user.date_of_divorce&.strftime("%d/%m/%Y") %>
-    </p>
-
-    <p>
-      <strong>Date of decease:</strong>
-      <%= @user.date_of_decease&.strftime("%d/%m/%Y") %>
-    </p>
-
-    <p>
-      <strong>Father's full name:</strong>
-      <%= @user.father_s_full_name %>
-    </p>
-
-    <p>
-      <strong>Father's vital status:</strong>
-      <%= @user.father_s_vital_status %>
-    </p>
-
-    <p>
-      <strong>Mother's vital status:</strong>
-      <%= @user.mother_s_vital_status %>
-    </p>
-
-    <p>
-      <strong>Mother's full name:</strong>
-      <%= @user.mother_s_full_name %>
-    </p>
-
-    <p>
-      <strong>Children:</strong>
-      <%= @user.children %>
-    </p>
-
-    <p>
-      <strong>Outline of Bequests and Order of Success:</strong>
-      <%= @user.outline_of_bequests_and_oder_of_success %>
-    </p>
-
-    <p>
-      <strong>Inheritance to be governed by:</strong>
-      <%= @user.inheritance_to_be_governed_by %>
-    </p>
-
-
-
-
+    <h1 style="font-family: 'Times New Roman', Times, serif; color: #b29c84; text-align: center; margin-top: 3rem; margin-bottom: 1rem; letter-spacing: 0.2em;">ROPER LAWYERS</h1>
+    <div class="text-center mb-4">
+      <h2>Your Submitted Information</h2>
+      <p class="text-muted">Review the details you've provided. You can edit this information if needed.</p>
     </div>
 
-    <%# uploaded docuemnts section  %>
-
-      <div class="card p-5 mb-3 card-shadow">
-          <h4 class="mb-3">Uploaded documents</h4>
-
-            <div class="mb-4">
-              <% if @user.nie_document.attached? %>
-                  <h5 class="mt-3">NIE document</h5>
-                  <div class="mb-3">
-                    <%= image_tag @user.nie_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
-                  </div>
-              <% end %>
-            </div>
-
-            <div class="mb-4">
-              <% if @user.passport_document.attached? %>
-                <h5 class="mt-3">Passport</h5>
-                <div class="mb-3">
-                  <%= image_tag @user.passport_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
-                </div>
-              <% end %>
-            </div>
-
-            <% if @user.nota_simple_documents.attached? || 
-                  @user.title_deed_documents.attached? ||
-                  @user.vv_license_documents.attached? ||
-                  @user.first_occupation_license_documents.attached? ||
-                  @user.cee_documents.attached? ||
-                  @user.civil_liability_insurance_policy_documents.attached? ||
-                  @user.igic_registration_modelo_400_document.attached? %>
-              
-              <h5 class="mt-4 mb-3">VV License related documents</h5>
-              
-              <% if @user.nota_simple_documents.attached? %>
-                <p><strong>Nota Simple:</strong></p>
-                <div class="row mb-4">
-                  <% @user.nota_simple_documents.each do |document| %>
-                    <div class="col-md-4 mb-3">
-                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-
-              <% if @user.title_deed_documents.attached? %>
-                <p><strong>Title Deed (Escritura):</strong></p>
-                <div class="row mb-4">
-                  <% @user.title_deed_documents.each do |document| %>
-                    <div class="col-md-4 mb-3">
-                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-
-              <% if @user.vv_license_documents.attached? %>
-                <p><strong>VV License:</strong></p>
-                <div class="row mb-4">
-                  <% @user.vv_license_documents.each do |document| %>
-                    <div class="col-md-4 mb-3">
-                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-
-              <% if @user.first_occupation_license_documents.attached? %>
-                <p><strong>First Occupation License:</strong></p>
-                <div class="row mb-4">
-                  <% @user.first_occupation_license_documents.each do |document| %>
-                    <div class="col-md-4 mb-3">
-                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-
-              <% if @user.cee_documents.attached? %>
-                <p><strong>Energy Efficiency Certificate (CEE):</strong></p>
-                <div class="row mb-4">
-                  <% @user.cee_documents.each do |document| %>
-                    <div class="col-md-4 mb-3">
-                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-
-              <% if @user.civil_liability_insurance_policy_documents.attached? %>
-                <p><strong>Civil Liability Insurance Policy:</strong></p>
-                <div class="row mb-4">
-                  <% @user.civil_liability_insurance_policy_documents.each do |document| %>
-                    <div class="col-md-4 mb-3">
-                      <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-
-              <% if @user.igic_registration_modelo_400_document.attached? %>
-                <p><strong>IGIC Registration (Modelo 400):</strong></p>
-                <div class="mb-4">
-                  <%= image_tag @user.igic_registration_modelo_400_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
-                </div>
-              <% end %>
-            <% end %>
+    <!-- Personal Details Section -->
+    <div class="card p-4 mb-4 card-shadow">
+      <h4 class="mb-3 border-bottom pb-2">Personal Details</h4>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>First Name:</strong><br> <%= @user.first_name.presence || "Not provided" %></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Last Name:</strong><br> <%= @user.last_name.presence || "Not provided" %></p>
+        </div>
       </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Email:</strong><br> <%= @user.email.presence || "Not provided" %></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Phone:</strong><br> <%= @user.mobile_phone.presence || "Not provided" %></p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <p><strong>Home Address:</strong><br> <%= @user.home_address.presence || "Not provided" %></p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Profession:</strong><br> <%= @user.profession.presence || "Not provided" %></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Tax Resident in Spain:</strong><br> <%= @user.tax_resident? ? "Yes" : "No" %></p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Marital Status:</strong><br> <%= @user.marital_status.presence || "Not provided" %></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Spouse Name:</strong><br> <%= @user.spouse.presence || "Not provided" %></p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <p><strong>Full Name on Passport:</strong><br> <%= @user.full_name_on_passport.presence || "Not provided" %></p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Passport Number:</strong><br> <%= @user.passport_number.presence || "Not provided" %></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Nationality:</strong><br> <%= @user.nationality.presence || "Not provided" %></p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Date of Birth:</strong><br> <%= @user.date_of_birth&.strftime("%d/%m/%Y").presence || "Not provided" %></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Passport Expiry Date:</strong><br> <%= @user.expiry_date&.strftime("%d/%m/%Y").presence || "Not provided" %></p>
+        </div>
+      </div>
+      
+      <% if @user.passport_document.attached? %>
+        <div class="mt-3">
+          <p><strong>Passport Document:</strong></p>
+          <div class="mb-3">
+            <%= image_tag @user.passport_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-    <div class="row justify-content-center" >
-        <%= link_to 'Edit' , edit_user_path(@user),  class:"btn btn-primary btn-lg col-4 m-1"%>
-        <%= link_to "Logout", destroy_user_session_path, class:"btn btn-outline-primary btn-lg col-4 m-1", method: :delete %>
+    <!-- NIE Section -->
+    <div class="card p-4 mb-4 card-shadow">
+      <h4 class="mb-3 border-bottom pb-2">NIE Number</h4>
+      
+      <div class="row">
+        <div class="col-12">
+          <p><strong>Need NIE Application:</strong><br> <%= @user.needs_nie.presence || "Not specified" %></p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <p><strong>NIE Number:</strong><br> <%= @user.nie_number.presence || "Not provided" %></p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Father's First Name:</strong><br> <%= @user.father_s_first_name.presence || "Not provided" %></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Mother's First Name:</strong><br> <%= @user.mother_s_first_name.presence || "Not provided" %></p>
+        </div>
+      </div>
+      
+      <% if @user.nie_document.attached? %>
+        <div class="mt-3">
+          <p><strong>NIE Document:</strong></p>
+          <div class="mb-3">
+            <%= image_tag @user.nie_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Requested Services Section -->
+    <div class="card p-4 mb-4 card-shadow">
+      <h4 class="mb-3 border-bottom pb-2">Requested Services</h4>
+      
+      <% if @user.requested_services.present? %>
+        <div class="row">
+          <div class="col-12">
+            <p><strong>Services Requested:</strong></p>
+            <ul class="list-group mb-3">
+              <% JSON.parse(@user.requested_services).each do |service| %>
+                <li class="list-group-item"><%= service %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% else %>
+        <p>No services selected</p>
+      <% end %>
+    </div>
+
+    <!-- Property Details Section -->
+    <% if @user.requested_services.present? && (JSON.parse(@user.requested_services).include?("Sale") || JSON.parse(@user.requested_services).include?("Purchase")) %>
+      <div class="card p-4 mb-4 card-shadow">
+        <h4 class="mb-3 border-bottom pb-2">Property Details</h4>
+        
+        <% if JSON.parse(@user.requested_services).include?("Sale") %>
+          <div class="row mb-3">
+            <div class="col-12">
+              <p><strong>Selling Property Address:</strong><br> <%= @user.selling_property_address.presence || "Not provided" %></p>
+            </div>
+          </div>
+        <% end %>
+        
+        <% if JSON.parse(@user.requested_services).include?("Purchase") %>
+          <div class="row mb-3">
+            <div class="col-12">
+              <p><strong>Buying Property Address:</strong><br> <%= @user.buying_property_address.presence || "Not provided" %></p>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <p><strong>Currency:</strong><br> <%= @user.currency.presence || "Not specified" %></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Needs Mortgage:</strong><br> <%= @user.needs_mortgage.presence || "Not specified" %></p>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <p><strong>Holiday Let:</strong><br> <%= @user.wants_to_holiday_let.presence || "Not specified" %></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>In Lanzarote Until:</strong><br> <%= @user.here_till&.strftime("%d/%m/%Y").presence || "Not specified" %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <!-- Bank Details Section -->
+    <% if @user.has_a_spanish_bank_account.present? || @user.r_origin_bank_details.present? || @user.otb_origin_bank_details.present? || @user.balance_bank_details.present? || @user.standing_orders_bank_details.present? %>
+      <div class="card p-4 mb-4 card-shadow">
+        <h4 class="mb-3 border-bottom pb-2">Bank Details</h4>
+        
+        <div class="row">
+          <div class="col-12">
+            <p><strong>Spanish Bank Account:</strong><br> <%= @user.has_a_spanish_bank_account.presence || "Not specified" %></p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <p><strong>Reservation Origin Bank:</strong><br> <%= @user.r_origin_bank_details.presence || "Not provided" %></p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <p><strong>Private Contract Origin Bank:</strong><br> <%= @user.otb_origin_bank_details.presence || "Not provided" %></p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <p><strong>Balance Origin Bank:</strong><br> <%= @user.balance_bank_details.presence || "Not provided" %></p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <p><strong>Utilities Standing Orders Bank:</strong><br> <%= @user.standing_orders_bank_details.presence || "Not provided" %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Power of Attorney Section -->
+    <% if @user.needs_poa.present? %>
+      <div class="card p-4 mb-4 card-shadow">
+        <h4 class="mb-3 border-bottom pb-2">Power of Attorney</h4>
+        
+        <div class="row">
+          <div class="col-12">
+            <p><strong>Power of Attorney Status:</strong><br> <%= @user.needs_poa.presence || "Not specified" %></p>
+          </div>
+        </div>
+        
+        <% if @user.needs_poa == "yes" %>
+          <div class="row">
+            <div class="col-md-6">
+              <p><strong>PoA For:</strong><br> <%= @user.poa_for.presence || "Not specified" %></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>PoA Made in Spain:</strong><br> <%= @user.poa_made_in_spain.presence || "Not specified" %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <!-- Will Section -->
+    <% if @user.requested_services.present? && JSON.parse(@user.requested_services).include?("Will & Last Testament") %>
+      <div class="card p-4 mb-4 card-shadow">
+        <h4 class="mb-3 border-bottom pb-2">Last Will & Testament</h4>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Current Spouse:</strong><br> <%= @user.name_of_the_present_spouse.presence || "Not provided" %></p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Previous Spouses:</strong><br> <%= @user.name_of_the_previous_spouses.presence || "Not provided" %></p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Date of Divorce:</strong><br> <%= @user.date_of_divorce&.strftime("%d/%m/%Y").presence || "Not applicable" %></p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Date of Decease:</strong><br> <%= @user.date_of_decease&.strftime("%d/%m/%Y").presence || "Not applicable" %></p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Father's Full Name:</strong><br> <%= @user.father_s_full_name.presence || "Not provided" %></p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Father's Vital Status:</strong><br> <%= @user.father_s_vital_status.presence || "Not specified" %></p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Mother's Full Name:</strong><br> <%= @user.mother_s_full_name.presence || "Not provided" %></p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Mother's Vital Status:</strong><br> <%= @user.mother_s_vital_status.presence || "Not specified" %></p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <p><strong>Children:</strong><br> <%= @user.children.presence || "None" %></p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <p><strong>Bequests and Order of Succession:</strong><br> <%= @user.outline_of_bequests_and_oder_of_success.presence || "Not provided" %></p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <p><strong>Inheritance Governed By:</strong><br> <%= @user.inheritance_to_be_governed_by.presence || "Not specified" %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Documents Section -->
+    <div class="card p-4 mb-4 card-shadow">
+      <h4 class="mb-3 border-bottom pb-2">Uploaded Documents</h4>
+      
+      <% if @user.title_deed_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Title Deed (Escritura):</strong> <%= @user.escritura %></p>
+          <div class="row">
+            <% @user.title_deed_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.nota_simple_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Nota Simple (Land Registry Ownership Certificate):</strong></p>
+          <div class="row">
+            <% @user.nota_simple_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.cee_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Energy Efficiency Certificate (CEE):</strong> <%= @user.energy_efficiency_certificate_cee %></p>
+          <div class="row">
+            <% @user.cee_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.first_occupation_license_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>First Occupation License:</strong></p>
+          <div class="row">
+            <% @user.first_occupation_license_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.habitability_certificate_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Habitability Certificate:</strong></p>
+          <div class="row">
+            <% @user.habitability_certificate_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.property_tax_receipt_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Property Tax Receipt (IBI):</strong></p>
+          <div class="row">
+            <% @user.property_tax_receipt_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.floor_plan_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Floor Plan:</strong></p>
+          <div class="row">
+            <% @user.floor_plan_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.community_approval_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Community Approval:</strong></p>
+          <div class="row">
+            <% @user.community_approval_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.civil_liability_insurance_policy_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Civil Liability Insurance Policy:</strong></p>
+          <div class="row">
+            <% @user.civil_liability_insurance_policy_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.igic_registration_modelo_400_document.attached? %>
+        <div class="mb-4">
+          <p><strong>IGIC Registration (Modelo 400):</strong></p>
+          <div class="mb-3">
+            <%= image_tag @user.igic_registration_modelo_400_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.water_bill_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Water Bill:</strong></p>
+          <div class="row">
+            <% @user.water_bill_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.electricity_bill_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Electricity Bill:</strong></p>
+          <div class="row">
+            <% @user.electricity_bill_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if !@user.title_deed_documents.attached? && 
+            !@user.nota_simple_documents.attached? && 
+            !@user.cee_documents.attached? && 
+            !@user.first_occupation_license_documents.attached? && 
+            !@user.habitability_certificate_documents.attached? && 
+            !@user.property_tax_receipt_documents.attached? && 
+            !@user.floor_plan_documents.attached? && 
+            !@user.community_approval_documents.attached? && 
+            !@user.civil_liability_insurance_policy_documents.attached? && 
+            !@user.igic_registration_modelo_400_document.attached? && 
+            !@user.water_bill_documents.attached? && 
+            !@user.electricity_bill_documents.attached? && 
+            !@user.passport_document.attached? && 
+            !@user.nie_document.attached? %>
+        <p class="text-muted">No documents uploaded yet.</p>
+      <% end %>
+    </div>
+
+    <!-- Actions -->
+    <div class="row justify-content-center mb-5">
+      <%= link_to 'Edit Your Information', edit_user_path(@user), class: "btn btn-lg mb-2 col-md-5 m-2", style: "background-color: #b29c84; color: white;" %>
+      <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-secondary btn-lg col-md-5 m-2", method: :delete %>
     </div>
 
     <p class="mt-5 mb-3 text-muted text-center">Roper Lawyers &copy; 2010-<%= Date.today.year %></p>
