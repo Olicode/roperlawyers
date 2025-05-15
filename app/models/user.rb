@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many_attached :property_tax_receipt_documents
   has_many_attached :floor_plan_documents
   has_many_attached :community_approval_documents
+  has_many_attached :water_bill_documents
+  has_many_attached :electricity_bill_documents
  
 
   # These callbacks will send emails to info@roperlawyers.com
