@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   def tenerife
     @mtitle = "Tenerife estate agents, find property lawyers in Tenerife"
     @mdescription = "If you need advice for buying a property in Tenerife or you're looking to sell your property in Spain, contact our team. We can guide you through the process today."
-    @reviews = JSON.parse(File.read(File.join('public', 'tenerife_reviews.json')))
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 
   def grancanaria
@@ -31,16 +31,16 @@ class PagesController < ApplicationController
     @reviews = JSON.parse(File.read(File.join('public', 'marbella_reviews.json')))
   end
 
-  def mardrid
+  def madrid
     @mtitle = "Property Conveyancing Solicitors in Madrid"
     @mdescription = "Experienced property lawyers in Madrid are ready to help. Buying or selling a property in Spain and need a solicitor? Enquire, here."
-    @reviews = JSON.parse(File.read(File.join('public', 'madrid_reviews.json')))
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 
-  def ibizq
+  def ibiza
     @mtitle = "Property lawyers Ibiza, find property solicitors in Ibiza"
     @mdescription = "Find your dream home in Spain through our property solicitors in Ibiza. Experience expert legal advice from our English-speaking lawyers today."
-    @reviews = JSON.parse(File.read(File.join('public', 'ibiza_reviews.json')))
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 
   def home
