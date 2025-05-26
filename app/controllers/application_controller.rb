@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
       MobilePhone: user.mobile_phone,
       Full_name_on_passport__c: user.full_name_on_passport,
       Passport_Number__c: user.passport_number,
-      Date_of_Birth__c: user.date_of_birth.iso8601,
-      Expiry_Date__c: user.expiry_date.iso8601,
+      Date_of_Birth__c: user.date_of_birth&.iso8601,
+      Expiry_Date__c: user.expiry_date&.iso8601,
       Nationality__c: user.nationality,
       Profesi_n__c: user.profession,
       Estado_Civil__c: user.marital_status,
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       Home_Address_del__c: user.home_address,
       Buying_Property_Address__c: user.buying_property_address,
       Selling_Property_Address__c: user.selling_property_address,
-      Requested_Services__c: JSON.parse(user.requested_services).join(';'),
+      Requested_Services__c: user.requested_services ? JSON.parse(user.requested_services).join(';') : nil,
       Currency__c: user.currency,
       Here_till__c: user.here_till,
       Needs_Mortgage__c: user.needs_mortgage,
@@ -39,8 +39,8 @@ class ApplicationController < ActionController::Base
       Standing_orders_Bank_details__c: user.standing_orders_bank_details,
       Name_of_the_present_spouse__c: user.name_of_the_present_spouse,
       Name_of_the_previous_spouses__c: user.name_of_the_previous_spouses,
-      Date_of_divorce__c: user.date_of_divorce.iso8601,
-      Date_of_decease__c: user.date_of_decease.iso8601,
+      Date_of_divorce__c: user.date_of_divorce&.iso8601,
+      Date_of_decease__c: user.date_of_decease&.iso8601,
       Father_s_Full_Name__c: user.father_s_full_name,
       Father_s_Vital_Status__c: user.father_s_vital_status,
       Mother_s_Full_Name__c: user.mother_s_full_name,
@@ -50,7 +50,6 @@ class ApplicationController < ActionController::Base
       Inheritance_to_be_governed_by__c: user.inheritance_to_be_governed_by,
       Energy_Efficiency_Certificate_CEE__c: user.energy_efficiency_certificate_cee,
       Escritura__c: user.escritura
-
     }
   end
 

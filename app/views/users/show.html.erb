@@ -459,6 +459,50 @@
           </div>
         </div>
       <% end %>
+
+      <% if @user.vv_license_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>VV License Documents:</strong></p>
+          <div class="row">
+            <% @user.vv_license_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @user.municipal_certificate_documents.attached? %>
+        <div class="mb-4">
+          <p><strong>Municipal Certificate Documents:</strong></p>
+          <div class="row">
+            <% @user.municipal_certificate_documents.each do |document| %>
+              <div class="col-md-4 mb-3">
+                <%= image_tag document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @user.passport_document.attached? %>
+        <div class="mb-4">
+          <p><strong>Passport Document:</strong></p>
+          <div class="mb-3">
+            <%= image_tag @user.passport_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @user.nie_document.attached? %>
+        <div class="mb-4">
+          <p><strong>NIE Document:</strong></p>
+          <div class="mb-3">
+            <%= image_tag @user.nie_document, class: "img-fluid img-thumbnail", style: "max-width: 200px; max-height: 200px; object-fit: contain;" %>
+          </div>
+        </div>
+      <% end %>
       
       <% if !@user.title_deed_documents.attached? && 
             !@user.nota_simple_documents.attached? && 

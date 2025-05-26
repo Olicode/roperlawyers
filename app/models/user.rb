@@ -23,7 +23,6 @@ class User < ApplicationRecord
   has_many_attached :community_approval_documents
   has_many_attached :water_bill_documents
   has_many_attached :electricity_bill_documents
- 
 
   # These callbacks will send emails to info@roperlawyers.com
   #after_create_commit :send_updates_to_admin
