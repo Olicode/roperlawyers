@@ -61,10 +61,15 @@ class ApplicationController < ActionController::Base
                 end
 
     {
-      Name: "#{doc_type} #{user.first_name} #{user.last_name}",
-      ParentId: user.sf_contact_id,
-      description: "Uploaded by #{user.first_name} #{user.last_name}",
-      Body: Base64::encode64(file_data)
+      convent_version: {
+        Title: "#{doc_type} #{user.first_name} #{user.last_name}",
+        PathOnClient: document.original_filename,
+        VersionData: Base64::encode64(file_data)
+      },
+      content_document_link: {
+        LinkedEntityId: user.sf_contact_id,
+        ShareType: 'V'
+      }
     }
   end
 end

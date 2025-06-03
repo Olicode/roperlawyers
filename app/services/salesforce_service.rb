@@ -17,10 +17,15 @@ class SalesforceService
     new.client.upsert!('Contact', 'Email', attrs)
   end
 
-  def self.upload_file(file_attrs)
+  def self.upload_file(attrs)
     begin
-      Rails.logger.info "Attempting to upload file to Salesforce: #{file_attrs[:Name]}"
-      new.client.create!('Attachment', file_attrs)
+      Rails.logger.info "Attempting to upload file to Salesforce: #{attrs[:convent_version][:Title]}"
+      content_version = new.client.create!('ContentVersion', attrs[:convent_version])
+      cv = new.client.query("SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = '#{content_version.id}'").first
+      client.create!(
+        'ContentDocumentLink',
+        attrs[:content_document_link].merge(ContentDocumentId: cv['ContentDocumentId'])
+      )
       Rails.logger.info "Successfully uploaded file to Salesforce"
     rescue => e
       Rails.logger.error "Error in SalesforceService.upload_file: #{e.message}"

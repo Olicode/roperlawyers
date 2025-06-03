@@ -98,7 +98,6 @@ class UsersController < ApplicationController
           @user.update!(sf_contact_id: sf_contact_id) unless sf_contact_id == false
         else
           SalesforceService.update_contact(sf_attrs_map(@user).merge!(Id: @user.sf_contact_id))
-          #binding.pry
           if user_params[:nie_document].present?
             SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:nie_document], "NIE"))
           end
