@@ -1,4 +1,4 @@
-<%= form_with(model: user) do |form| %>
+<%= form_with(model: user, html: { data: { controller: "user-form" } }) do |form| %>
 <div class="row justify-content-center">
   <div class="col-11 col-md-10 col-lg-4 px-3 px-md-0">
     <h1 style="font-family: 'Times New Roman', Times, serif; color: #b29c84; text-align: center; margin-top: 3rem; margin-bottom: 1rem; letter-spacing: 0.2em;">ROPER LAWYERS</h1>
@@ -116,13 +116,13 @@
   <div class="mb-3">
     <p class="mb-1">Upload a copy of your passport</p>
     <div class="file-upload-container">
-      <label for="user_passport_document" class="file-upload-label">
+      <label for="user_passport_document" class="file-upload-label" data-user-form-target="fileUploadLabel">
         <div class="upload-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
         </div>
         <span class="upload-text">Upload a file or drag & drop</span>
         <span class="file-types">PDF, JPG, PNG</span>
-        <%= form.file_field :passport_document, class: "file-upload-input" %>
+        <%= form.file_field :passport_document, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
       </label>
     </div>
   </div>
@@ -211,7 +211,8 @@
     <div class="form-check mb-2">
       <%= form.radio_button :needs_nie, 'no',
             id: 'needs_nie_no',
-            class: 'form-check-input' %>
+            class: 'form-check-input',
+            data: { 'user-form-target': 'nieNoRadio' } %>
       <%= form.label :needs_nie_no,
             'No – I already have an NIE',
             class: 'form-check-label' %>
@@ -220,7 +221,8 @@
     <div class="form-check">
       <%= form.radio_button :needs_nie, 'yes',
             id: 'needs_nie_yes',
-            class: 'form-check-input' %>
+            class: 'form-check-input',
+            data: { 'user-form-target': 'nieYesRadio' } %>
       <%= form.label :needs_nie_yes,
             'Yes – please apply on my behalf',
             class: 'form-check-label' %>
@@ -228,7 +230,7 @@
   </fieldset>
 
   <!-- hidden by default -->
-  <div id="nie_fields" class="hidden-section">
+  <div id="nie_fields" class="hidden-section" data-user-form-target="nieFields">
     <div class="form-floating mb-3">
       <%= form.text_field :nie_number,
             class: "form-control",
@@ -239,20 +241,20 @@
     <div class="mb-3">
       <label class="form-label">Upload a copy of your NIE document</label>
       <div class="file-upload-container">
-        <label for="user_nie_document" class="file-upload-label">
+        <label for="user_nie_document" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
           <span class="upload-text">Upload a file or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :nie_document, class: "file-upload-input" %>
+          <%= form.file_field :nie_document, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
     </div>
     </div>
 
   <!-- hidden by default -->
-  <div id="parent_fields" class="hidden-section">
+  <div id="parent_fields" class="hidden-section" data-user-form-target="parentFields">
     <p class="mb-3">
       Please enter your parents' first names so we can apply for your NIE:
     </p>
@@ -277,45 +279,6 @@
       </div>
     </div>
      </div>
-
-
-<script>
-  document.addEventListener("turbo:load", () => {
-    const noRadio     = document.getElementById("needs_nie_no");
-    const yesRadio    = document.getElementById("needs_nie_yes");
-    const nieFields   = document.getElementById("nie_fields");
-    const parentFields= document.getElementById("parent_fields");
-
-    function toggleSections() {
-      // When "No - I already have an NIE" is selected, show NIE fields
-      if (noRadio.checked) {
-        nieFields.classList.remove("hidden-section");
-      } else {
-        nieFields.classList.add("hidden-section");
-      }
-      
-      // When "Yes - please apply on my behalf" is selected, show parent fields
-      if (yesRadio.checked) {
-        parentFields.classList.remove("hidden-section");
-      } else {
-        parentFields.classList.add("hidden-section");
-      }
-    }
-
-    [noRadio, yesRadio].forEach(radio =>
-      radio.addEventListener("change", toggleSections)
-    );
-
-    // Force hide both sections initially
-    nieFields.classList.add("hidden-section");
-    parentFields.classList.add("hidden-section");
-    
-    // Only call toggleSections if a radio is already checked (for page refresh/edit cases)
-    if (noRadio.checked || yesRadio.checked) {
-      toggleSections();
-    }
-  });
-</script>
 </div>
 
 <div class="card p-5 mb-5 card-shadow">
@@ -326,12 +289,12 @@
     <h5 class="mb-2">Property Transactions</h5>
     <p class="mb-3">If you're buying or selling a property, please select the relevant option:</p>
     <div class="form-check ms-3">
-      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_purchase" }, "Purchase", nil %>
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_purchase", 'data-user-form-target': 'servicePurchase' }, "Purchase", nil %>
       <%= form.label "requested_services_purchase", "I am purchasing a property", class: "form-check-label" %>
     </div>
     
     <div class="form-check ms-3">
-      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_sale" }, "Sale", nil %>
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_sale", 'data-user-form-target': 'serviceSale' }, "Sale", nil %>
       <%= form.label "requested_services_sale", "I am selling a property", class: "form-check-label" %>
     </div>
   </div>
@@ -340,12 +303,12 @@
     <h5 class="mb-2">Legal Documents</h5>
     <p class="mb-3">If you would like us to prepare any of the following legal documents, please tick below:</p>
     <div class="form-check ms-3">
-      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_will" }, "Will & Last Testament", nil %>
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_will", 'data-user-form-target': 'serviceWill' }, "Will & Last Testament", nil %>
       <%= form.label "requested_services_will", "Will & Last Testament", class: "form-check-label" %>
     </div>
     
     <div class="form-check ms-3">
-      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_new_build" }, "New Build Declaration", nil %>
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_new_build", 'data-user-form-target': 'serviceNewBuild' }, "New Build Declaration", nil %>
       <%= form.label "requested_services_new_build", "New Build Declaration", class: "form-check-label" %>
     </div>
   </div>
@@ -357,23 +320,23 @@
 If you plan to holiday let your property, three legal steps are required. Tick any you'd like us to handle:  </p>
 
     <div class="form-check ms-3">
-      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_vv" }, "VV Licence", nil %>
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_vv", 'data-user-form-target': 'serviceVv' }, "VV Licence", nil %>
       <%= form.label "requested_services_vv", "Apply for VV Licence", class: "form-check-label" %>
     </div>
 
     <div class="form-check ms-3">
-      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_registry" }, "Unified Registry", nil %>
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_registry", 'data-user-form-target': 'serviceRegistry' }, "Unified Registry", nil %>
       <%= form.label "requested_services_registry", "Register with the Unified Registry", class: "form-check-label" %>
     </div>
 
     <div class="form-check ms-3">
-      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_activities" }, "Classified Activities", nil %>
+      <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_activities", 'data-user-form-target': 'serviceActivities' }, "Classified Activities", nil %>
       <%= form.label "requested_services_activities", "Submit Classified Activities Declaration", class: "form-check-label" %>
     </div>
   </div>
 </div>
 
-<div class="card p-5 mb-5 card-shadow" id="section_property_sale">
+<div class="card p-5 mb-5 card-shadow" id="section_property_sale" data-user-form-target="sectionSale" style="display:none">
   <h4 class="mb-3">Property Sale Details</h4>
   
       <div class="form-floating mb-3">
@@ -382,7 +345,7 @@ If you plan to holiday let your property, three legal steps are required. Tick a
      </div>
 </div>
 
-<div class="card p-5 mb-5 card-shadow" id="section_new_build">
+<div class="card p-5 mb-5 card-shadow" id="section_new_build" data-user-form-target="sectionNewBuild" style="display:none">
   <h4 class="mb-3">New Build Declaration Information</h4>
   
     <div class="form-floating mb-3">
@@ -391,7 +354,7 @@ If you plan to holiday let your property, three legal steps are required. Tick a
   </div>
       </div>
 
-<div class="card p-5 mb-5 card-shadow" id="section_property_purchase"> 
+<div class="card p-5 mb-5 card-shadow" id="section_property_purchase" data-user-form-target="sectionPurchase" style="display:none"> 
   <h4 class="mb-3">Property Purchase Details</h4>
   <p class="mb-3">Enter the address of the property you intend to purchase:</p>
     <div class="form-floating mb-3">
@@ -416,11 +379,11 @@ If you plan to holiday let your property, three legal steps are required. Tick a
   <fieldset class="mb-3">
     <legend class="visually-hidden">Apply for mortgage</legend>
     <div class="form-check form-check-inline">
-      <%= form.radio_button :needs_mortgage, 'Yes', id: 'mortgage_yes', class: 'form-check-input' %>
+      <%= form.radio_button :needs_mortgage, 'Yes', id: "mortgage_yes", class: "form-check-input", 'data-user-form-target': 'needsMortgageYes' %>
       <%= form.label :mortgage_yes, 'Yes', class: 'form-check-label ms-1 me-3' %>
     </div>
     <div class="form-check form-check-inline">
-      <%= form.radio_button :needs_mortgage, 'No', id: 'mortgage_no', class: 'form-check-input' %>
+      <%= form.radio_button :needs_mortgage, 'No', id: "mortgage_no", class: "form-check-input", 'data-user-form-target': 'needsMortgageNo' %>
       <%= form.label :mortgage_no, 'No', class: 'form-check-label ms-1' %>
     </div>
   </fieldset>
@@ -429,11 +392,11 @@ If you plan to holiday let your property, three legal steps are required. Tick a
   <fieldset class="mb-3">
     <legend class="visually-hidden">Holiday let property</legend>
     <div class="form-check form-check-inline">
-      <%= form.radio_button :wants_to_holiday_let, 'Yes', id: 'holiday_let_yes', class: 'form-check-input' %>
+      <%= form.radio_button :wants_to_holiday_let, 'Yes', id: "holiday_let_yes", class: "form-check-input", 'data-user-form-target': 'wantsToHolidayLetYes' %>
       <%= form.label :holiday_let_yes, 'Yes', class: 'form-check-label ms-1 me-3' %>
     </div>
     <div class="form-check form-check-inline">
-      <%= form.radio_button :wants_to_holiday_let, 'No', id: 'holiday_let_no', class: 'form-check-input' %>
+      <%= form.radio_button :wants_to_holiday_let, 'No', id: "holiday_let_no", class: "form-check-input", 'data-user-form-target': 'wantsToHolidayLetNo' %>
       <%= form.label :holiday_let_no, 'No', class: 'form-check-label ms-1' %>
     </div>
   </fieldset>
@@ -464,7 +427,8 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     <div class="form-check form-check-inline">
       <%= form.radio_button :will_pay_reservation, 'yes',
             id: 'will_pay_res_yes',
-            class: 'form-check-input' %>
+            class: 'form-check-input',
+            data: { 'user-form-target': 'payYes' } %> <!-- Stimulus: payYesTarget -->
       <%= form.label :will_pay_res_yes,
             'Yes',
             class: 'form-check-label ms-1 me-3' %>
@@ -473,7 +437,8 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     <div class="form-check form-check-inline">
       <%= form.radio_button :will_pay_reservation, 'no',
             id: 'will_pay_res_no',
-            class: 'form-check-input' %>
+            class: 'form-check-input',
+            data: { 'user-form-target': 'payNo' } %> <!-- Stimulus: payNoTarget -->
       <%= form.label :will_pay_res_no,
             'No',
             class: 'form-check-label ms-1' %>
@@ -481,12 +446,13 @@ If you plan to holiday let your property, three legal steps are required. Tick a
   </fieldset>
 
   <!-- 1) Reservation fee (only if Yes) -->
-  <div id="reservation_section" style="display: none;">
+  <div id="reservation_section" style="display: none;" data-user-form-target="resSection"> <!-- Stimulus: resSectionTarget -->
     <div class="form-floating mb-3">
       <%= form.text_field :reservation_deposit_account,
-            id: "reservation_deposit_account",
-            class: "form-control",
-            placeholder: "Enter reservation fee bank name and IBAN" %>
+          id: "reservation_deposit_account",
+          class: "form-control",
+          placeholder: "Enter reservation fee bank name and IBAN",
+          data: { 'user-form-target': 'payFee' } %> <!-- Stimulus: payFeeTarget -->
       <%= form.label :reservation_deposit_account, "Reservation fee account" %>
     </div>
   </div>
@@ -494,7 +460,7 @@ If you plan to holiday let your property, three legal steps are required. Tick a
   <!-- 2) ALWAYS‑VISIBLE: Use same account? -->
   <div class="form-check mb-4">
     <%= form.check_box :use_same_account,
-          { id: "use_same_account", class: "form-check-input" } %>
+          { id: "use_same_account", class: "form-check-input", 'data-user-form-target': 'sameBox' } %> <!-- Stimulus: sameBoxTarget -->
     <%= form.label :use_same_account,
           "Use the same account for all payments",
           class: "form-check-label" %>
@@ -505,7 +471,8 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     <%= form.text_field :private_contract_account,
           id: "private_contract_account",
           class: "form-control",
-          placeholder: "Enter deposit on exchange bank name and IBAN" %>
+          placeholder: "Enter deposit on exchange bank name and IBAN",
+          data: { 'user-form-target': 'contractFld' } %> <!-- Stimulus: contractFldTarget -->
     <%= form.label :private_contract_account, "Deposit on exchange account" %>
   </div>
 
@@ -514,7 +481,8 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     <%= form.text_field :remaining_balance_account,
           id: "remaining_balance_account",
           class: "form-control",
-          placeholder: "Enter balance on completion bank name and IBAN" %>
+          placeholder: "Enter balance on completion bank name and IBAN",
+          data: { 'user-form-target': 'balanceFld' } %> <!-- Stimulus: balanceFldTarget -->
     <%= form.label :remaining_balance_account, "Balance on completion account" %>
   </div>
 
@@ -526,7 +494,8 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     <div class="form-check form-check-inline">
       <%= form.radio_button :has_spanish_account, 'yes',
             id: 'has_spanish_yes',
-            class: 'form-check-input' %>
+            class: 'form-check-input',
+            data: { 'user-form-target': 'hasSpanishAccountYes' } %>
       <%= form.label :has_spanish_yes,
             'Yes',
             class: 'form-check-label ms-1 me-3' %>
@@ -534,7 +503,8 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     <div class="form-check form-check-inline">
       <%= form.radio_button :has_spanish_account, 'no',
             id: 'has_spanish_no',
-            class: 'form-check-input' %>
+            class: 'form-check-input',
+            data: { 'user-form-target': 'hasSpanishAccountNo' } %>
       <%= form.label :has_spanish_no,
             'No',
             class: 'form-check-label ms-1' %>
@@ -542,7 +512,7 @@ If you plan to holiday let your property, three legal steps are required. Tick a
   </fieldset>
 
   <!-- 6) Utility standing order (only if Yes) -->
-  <div id="utility_section" style="display: none;">
+  <div id="utility_section" style="display: none;" data-user-form-target="utilitySection">
     <div class="form-floating mb-3">
       <%= form.text_field :utility_account,
             id: "utility_account",
@@ -553,81 +523,14 @@ If you plan to holiday let your property, three legal steps are required. Tick a
   </div>
 
 
-<script>
-  document.addEventListener("turbo:load", () => {
-    const payYes       = document.getElementById("will_pay_res_yes");
-    const payNo        = document.getElementById("will_pay_res_no");
-    const resSection   = document.getElementById("reservation_section");
-    const sameBox      = document.getElementById("use_same_account");
 
-    const payFee       = document.getElementById("reservation_deposit_account");
-    const contractFld  = document.getElementById("private_contract_account");
-    const balanceFld   = document.getElementById("remaining_balance_account");
-
-    const hasSpanishYes = document.getElementById("has_spanish_yes");
-    const utilSection   = document.getElementById("utility_section");
-
-    // Show/hide reservation field
-    function toggleReservationSection() {
-      resSection.style.display = payYes.checked ? "block" : "none";
-      syncAccounts();
-    }
-
-    // Show/hide utility field
-    function toggleUtilitySection() {
-      utilSection.style.display = hasSpanishYes.checked ? "block" : "none";
-    }
-
-    // Sync readonly & mirroring between fee / deposit / balance
-    function syncAccounts() {
-      if (!sameBox.checked) {
-        [payFee, contractFld, balanceFld].forEach(f => f.removeAttribute("readonly"));
-        return;
-      }
-
-      if (payYes.checked) {
-        // copy from reservation fee
-        [contractFld, balanceFld].forEach(f => {
-          f.value = payFee.value;
-          f.setAttribute("readonly", "readonly");
-        });
-      } else {
-        // skip to deposit on exchange
-        balanceFld.value = contractFld.value;
-        balanceFld.setAttribute("readonly", "readonly");
-        contractFld.removeAttribute("readonly");
-      }
-    }
-
-    // Mirror inputs as user types
-    function mirrorAccounts(e) {
-      if (!sameBox.checked) return;
-      if (e.target === payFee && payYes.checked) {
-        [contractFld, balanceFld].forEach(f => f.value = payFee.value);
-      } else if (e.target === contractFld && !payYes.checked) {
-        balanceFld.value = contractFld.value;
-      }
-    }
-
-    // Event listeners
-    [payYes, payNo].forEach(rb => rb.addEventListener("change", toggleReservationSection));
-    sameBox.addEventListener("change", syncAccounts);
-    [payFee, contractFld].forEach(f => f.addEventListener("input", mirrorAccounts));
-    hasSpanishYes.addEventListener("change", toggleUtilitySection);
-    document.getElementById("has_spanish_no").addEventListener("change", toggleUtilitySection);
-
-    // Initialize on load
-    toggleReservationSection();
-    toggleUtilitySection();
-  });
-</script>
 
 </div>
 
 
 
     <%# PoA section %>
-  <div class="card p-5 mb-5 card-shadow" id="section_poa">
+  <div class="card p-5 mb-5 card-shadow" id="section_poa" data-user-form-target="poaSection" style="display:none">
   <h4 class="mb-3">Power of Attorney (PoA)</h4>
   <p class="mb-3">
 By granting us a Power of Attorney, we'll handle everything for you.  </p>
@@ -639,7 +542,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <div class="form-check mb-2">
       <%= form.radio_button :needs_poa, 'yes',
             id: 'needs_poa_yes',
-            class: 'form-check-input' %>
+            class: 'form-check-input',
+            data: { 'user-form-target': 'needsPoaYes' } %>
       <%= form.label :needs_poa_yes,
             'Yes – please act on my behalf',
             class: 'form-check-label' %>
@@ -648,7 +552,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <div class="form-check mb-2">
       <%= form.radio_button :needs_poa, 'no',
             id: 'needs_poa_no',
-            class: 'form-check-input' %>
+            class: 'form-check-input',
+            data: { 'user-form-target': 'needsPoaNo' } %>
       <%= form.label :needs_poa_no,
             'No – I do not require PoA',
             class: 'form-check-label' %>
@@ -657,7 +562,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <div class="form-check">
       <%= form.radio_button :needs_poa, 'already',
             id: 'needs_poa_already',
-            class: 'form-check-input' %>
+            class: 'form-check-input',
+            data: { 'user-form-target': 'needsPoaAlready' } %>
       <%= form.label :needs_poa_already,
             'Another person holds PoA and will act on my behalf – please let us know and send us a copy',
             class: 'form-check-label' %>
@@ -665,7 +571,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   </fieldset>
 
   <!-- Follow‑up only if Q1 = Yes -->
-  <div id="poa_details" style="display: none;">
+  <div id="poa_details" style="display: none;" data-user-form-target="poaDetails">
 
     <!-- Q2: Scope of PoA -->
     <fieldset class="mb-3">
@@ -734,81 +640,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   </div>
 </div>
 
-<script>
-  document.addEventListener("turbo:load", function() {
-    const yesRadio     = document.getElementById("needs_poa_yes");
-    const noRadio      = document.getElementById("needs_poa_no");
-    const otherRadio   = document.getElementById("needs_poa_already");
-    const poaDetails   = document.getElementById("poa_details");
-    const poaSection   = document.getElementById("section_poa");
-    
-    // Service checkboxes that should trigger showing the PoA section
-    const purchaseCheckbox = document.getElementById("service_purchase");
-    const saleCheckbox = document.getElementById("service_sale");
-    const newBuildCheckbox = document.getElementById("service_new_build");
-    
-    // NIE radio buttons
-    const nieYesRadio = document.getElementById("needs_nie_yes");
-    
-    function togglePoADetails() {
-      // Only show the details section if the Yes radio is checked
-      if (poaDetails) {
-        poaDetails.style.display = yesRadio.checked ? "block" : "none";
-      }
-    }
-    
-    function updatePoASectionVisibility() {
-      // Show PoA section if:
-      // 1. NIE "Yes" is selected OR
-      // 2. Any of the relevant services are checked (purchase, sale, new build)
-      const shouldShowPoA = 
-        (nieYesRadio && nieYesRadio.checked) || 
-        (purchaseCheckbox && purchaseCheckbox.checked) ||
-        (saleCheckbox && saleCheckbox.checked) ||
-        (newBuildCheckbox && newBuildCheckbox.checked);
-      
-      if (poaSection) {
-        poaSection.style.display = shouldShowPoA ? "block" : "none";
-      }
-    }
-    
-    // Add event listeners for PoA radio buttons
-    [yesRadio, noRadio, otherRadio].forEach(radio => {
-      if (radio) {
-        radio.addEventListener("change", togglePoADetails);
-      }
-    });
-    
-    // Add event listeners for the conditions that show/hide the entire section
-    if (nieYesRadio) {
-      nieYesRadio.addEventListener("change", updatePoASectionVisibility);
-    }
-    
-    // Also listen to the "No" NIE option to potentially hide PoA
-    const nieNoRadio = document.getElementById("needs_nie_no");
-    if (nieNoRadio) {
-      nieNoRadio.addEventListener("change", updatePoASectionVisibility);
-    }
-    
-    // Add listeners to service checkboxes
-    [purchaseCheckbox, saleCheckbox, newBuildCheckbox].forEach(checkbox => {
-      if (checkbox) {
-        checkbox.addEventListener("change", updatePoASectionVisibility);
-      }
-    });
-    
-    // Initialize both functions on page load
-    togglePoADetails();
-    updatePoASectionVisibility();
-  });
-</script>
-
-
-
-
-
 <%# Will section %>
-<div class="card p-5 mb-5 card-shadow" id="section_will">
+<div class="card p-5 mb-5 card-shadow" id="section_will" data-user-form-target="sectionWill" style="display:none">
   <h4>Last Will and Testament</h4>
   <p class="mb-3">
     Should you require a Will and Last Testament, kindly provide the necessary information below.<br>
@@ -817,15 +650,15 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   <!-- 1) Are you currently married? -->
   <div class="mb-3">
     <%= form.label :currently_married, "Are you currently married?" %><br>
-    <%= form.radio_button :currently_married, true,  id: "currently_married_true"  %>
+    <%= form.radio_button :currently_married, true,  id: "currently_married_true", 'data-user-form-target': 'currentlyMarriedTrue'  %>
     <%= form.label         :currently_married_true, "Yes", class: "form-check-label" %>
     &nbsp;
-    <%= form.radio_button :currently_married, false, id: "currently_married_false" %>
+    <%= form.radio_button :currently_married, false, id: "currently_married_false", 'data-user-form-target': 'currentlyMarriedFalse' %>
     <%= form.label         :currently_married_false, "No",  class: "form-check-label" %>
   </div>
 
   <!-- If married, show this: -->
-  <div id="current_spouse_section" style="display:none;">
+  <div id="current_spouse_section" style="display:none;" data-user-form-target="currentSpouseSection">
     <div class="form-floating mb-3">
       <%= form.text_field :name_of_the_present_spouse,
            class: "form-control",
@@ -837,15 +670,15 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   <!-- 2) Were you married before? -->
   <div class="mb-3">
     <%= form.label :previously_married, "Have you been married before?" %><br>
-    <%= form.radio_button :previously_married, true,  id: "previously_married_true"  %>
+    <%= form.radio_button :previously_married, true,  id: "previously_married_true", 'data-user-form-target': 'previouslyMarriedTrue'  %>
     <%= form.label         :previously_married_true, "Yes", class: "form-check-label" %>
     &nbsp;
-    <%= form.radio_button :previously_married, false, id: "previously_married_false" %>
+    <%= form.radio_button :previously_married, false, id: "previously_married_false", 'data-user-form-target': 'previouslyMarriedFalse' %>
     <%= form.label         :previously_married_false, "No",  class: "form-check-label" %>
   </div>
 
   <!-- If previously married, show this: -->
-  <div id="previous_spouse_section" style="display:none;">
+  <div id="previous_spouse_section" style="display:none;" data-user-form-target="previousSpouseSection">
     <div class="form-floating mb-3">
       <%= form.text_field :name_of_the_previous_spouses,
            class: "form-control",
@@ -957,31 +790,14 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   </div>
 </div>
 
-<script>
-  document.addEventListener("turbo:load", function() {
-    function toggleSection(yesId, sectionId) {
-      var yes     = document.getElementById(yesId);
-      var no      = document.getElementById(yesId.replace("_true","_false"));
-      var section = document.getElementById(sectionId);
-      function update() {
-        section.style.display = yes.checked ? "block" : "none";
-      }
-      yes.addEventListener("change", update);
-      no .addEventListener("change", update);
-      update();
-    }
 
-    toggleSection("currently_married_true",  "current_spouse_section");
-    toggleSection("previously_married_true", "previous_spouse_section");
-  });
-</script>
 
 
 
 
 
 <%# VV License section %>
-  <div class="card p-5 mb-3 card-shadow" id="section_documents">
+  <div class="card p-5 mb-3 card-shadow" id="section_documents" data-user-form-target="sectionDocuments" style="display:none">
     <h4>Documents</h4>
     <p class="mb-3">Documents required to be uploaded:</p>
     
@@ -991,7 +807,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="form-check mb-2">
         <%= form.radio_button :escritura, 'Provided',
               id: 'title_deed_upload_now',
-              class: 'form-check-input' %>
+              class: 'form-check-input',
+              data: { 'user-form-target': 'titleDeedUploadNowRadio' } %>
         <%= form.label :title_deed_upload_now,
               'Yes, I will upload it now',
               class: 'form-check-label' %>
@@ -1000,7 +817,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="form-check mb-2">
         <%= form.radio_button :escritura, 'Client Will Provide',
               id: 'title_deed_send_later',
-              class: 'form-check-input' %>
+              class: 'form-check-input',
+              data: { 'user-form-target': 'titleDeedSendLaterRadio' } %>
         <%= form.label :title_deed_send_later,
               'Yes, but I will send it later',
               class: 'form-check-label' %>
@@ -1009,23 +827,24 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="form-check mb-2">
         <%= form.radio_button :escritura, 'Client Cannot Find It',
               id: 'title_deed_cant_find',
-              class: 'form-check-input' %>
+              class: 'form-check-input',
+              data: { 'user-form-target': 'titleDeedCantFindRadio' } %>
         <%= form.label :title_deed_cant_find,
               'I can\'t find it',
               class: 'form-check-label' %>
       </div>
     </fieldset>
 
-    <div class="rounded mb-3" id="title_deed_upload_section">
+    <div class="rounded mb-3" id="title_deed_upload_section" data-user-form-target="titleDeedUploadSection" style="display:none">
       <p>Upload Title Deed (Escritura)</p>
       <div class="file-upload-container mb-5">
-        <label for="user_title_deed_documents" class="file-upload-label">
+        <label for="user_title_deed_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
           <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :title_deed_documents, multiple: true, class: "file-upload-input" %>
+          <%= form.file_field :title_deed_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
     </div>
@@ -1034,13 +853,13 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p class="mb-2">Upload Nota Simple (Land Registry Ownership Certificate)</p>
       <p class="text-muted">If you don't have a recent copy of the Land Registry Ownership Certificate (Nota Simple), we can obtain it for you.</p>
       <div class="file-upload-container mb-5">
-        <label for="user_nota_simple_documents" class="file-upload-label">
+        <label for="user_nota_simple_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
           <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :nota_simple_documents, multiple: true, class: "file-upload-input" %>
+          <%= form.file_field :nota_simple_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
     </div>
@@ -1052,7 +871,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="form-check mb-2">
         <%= form.radio_button :energy_efficiency_certificate_cee, 'Provided',
               id: 'cee_upload_now',
-              class: 'form-check-input' %>
+              class: 'form-check-input',
+              data: { 'user-form-target': 'ceeUploadNowRadio' } %>
         <%= form.label :cee_upload_now,
               'Yes, I will upload it now',
               class: 'form-check-label' %>
@@ -1061,7 +881,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="form-check mb-2">
         <%= form.radio_button :energy_efficiency_certificate_cee, 'Client Will Provide',
               id: 'cee_send_later',
-              class: 'form-check-input' %>
+              class: 'form-check-input',
+              data: { 'user-form-target': 'ceeSendLaterRadio' } %>
         <%= form.label :cee_send_later,
               'Yes, but I will send it later',
               class: 'form-check-label' %>
@@ -1070,23 +891,24 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="form-check mb-2">
         <%= form.radio_button :energy_efficiency_certificate_cee, 'We Need to Apply',
               id: 'cee_need_to_apply',
-              class: 'form-check-input' %>
+              class: 'form-check-input',
+              data: { 'user-form-target': 'ceeNeedToApplyRadio' } %>
         <%= form.label :cee_need_to_apply,
               'No, please obtain one on my behalf',
               class: 'form-check-label' %>
       </div>
     </fieldset>
 
-    <div class="rounded mb-3" id="cee_upload_section">
+    <div class="rounded mb-3" id="cee_upload_section" data-user-form-target="ceeUploadSection" style="display:none">
       <p class="mb-2">Upload Energy Efficiency Certificate (CEE)</p>
       <div class="file-upload-container mb-5">
-        <label for="user_cee_documents" class="file-upload-label">
+        <label for="user_cee_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
                  <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :cee_documents, multiple: true, class: "file-upload-input" %>
+          <%= form.file_field :cee_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
       </div>
@@ -1095,13 +917,13 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload VV License</p>
       
       <div class="file-upload-container">
-        <label for="user_vv_license_documents" class="file-upload-label">
+        <label for="user_vv_license_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
        <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :vv_license_documents, multiple: true, class: "file-upload-input" %>
+          <%= form.file_field :vv_license_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
       </div>
@@ -1110,13 +932,13 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p class="mb-2">Upload First Occupation License</p>
       <p class="text-muted">If you do not have this document, our office can manage the application on your behalf and liaise with the relevant authorities.</p>
       <div class="file-upload-container mb-5">
-        <label for="user_first_occupation_license_documents" class="file-upload-label">
+        <label for="user_first_occupation_license_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
                  <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :first_occupation_license_documents, multiple: true, class: "file-upload-input" %>
+          <%= form.file_field :first_occupation_license_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
       </div>
@@ -1124,13 +946,13 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <div class="rounded mb-3">
       <p>Upload Habitability Certificate</p>
       <div class="file-upload-container mb-5">
-        <label for="user_habitability_certificate_documents" class="file-upload-label">
+        <label for="user_habitability_certificate_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
                 <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :habitability_certificate_documents, multiple: true, class: "file-upload-input" %>
+          <%= form.file_field :habitability_certificate_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
       </div>
@@ -1139,13 +961,13 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <div class="rounded mb-3">
       <p>Upload Municipal Certificate</p>
       <div class="file-upload-container">
-        <label for="user_municipal_certificate_documents" class="file-upload-label">
+        <label for="user_municipal_certificate_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
                 <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :municipal_certificate_documents, multiple: true, class: "file-upload-input" 
+          <%= form.file_field :municipal_certificate_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' 
         </label> 
       </div>
       </div> %>
@@ -1153,13 +975,13 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <div class="rounded mb-3">
       <p>Upload Annual Property Tax Receipt (IBI)</p>
       <div class="file-upload-container mb-5">
-        <label for="user_property_tax_receipt_documents" class="file-upload-label">
+        <label for="user_property_tax_receipt_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
                  <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :property_tax_receipt_documents, multiple: true, class: "file-upload-input" %>
+          <%= form.file_field :property_tax_receipt_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
       </div>
@@ -1167,13 +989,13 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <div class="rounded mb-3">
       <p>Upload Floor Plan</p>
       <div class="file-upload-container mb-5">
-        <label for="user_floor_plan_documents" class="file-upload-label">
+        <label for="user_floor_plan_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
        <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>        
-           <%= form.file_field :floor_plan_documents, multiple: true, class: "file-upload-input" %>
+           <%= form.file_field :floor_plan_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
       </div>
@@ -1182,13 +1004,13 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <p>Upload Community Approval</p>
       <p class="text-muted">certificate issued by the community of owners confirming that short-term rentals are permitted within the building or development.</p>
       <div class="file-upload-container mb-5">
-        <label for="user_community_approval_documents" class="file-upload-label">
+        <label for="user_community_approval_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
        <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-                    <%= form.file_field :community_approval_documents, multiple: true, class: "file-upload-input" %>
+                    <%= form.file_field :community_approval_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
       </div>
@@ -1196,13 +1018,13 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <div class="rounded mb-3" id="civil_liability_section">
       <p>Upload Civil Liability Insurance Policy</p>
       <div class="file-upload-container mb-5">
-        <label for="user_civil_liability_insurance_policy_documents" class="file-upload-label">
+        <label for="user_civil_liability_insurance_policy_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
              <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :civil_liability_insurance_policy_documents, multiple: true, class: "file-upload-input" %>
+          <%= form.file_field :civil_liability_insurance_policy_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
       </div>
@@ -1210,47 +1032,47 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
     <div class="rounded mb-3" id="igic_registration_section">
       <p>Upload IGIC Registration (Modelo 400)</p>
       <div class="file-upload-container mb-5">
-        <label for="user_igic_registration_modelo_400_document" class="file-upload-label">
+        <label for="user_igic_registration_modelo_400_document" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
          <span class="upload-text">Upload a file or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :igic_registration_modelo_400_document, class: "file-upload-input" %>
+          <%= form.file_field :igic_registration_modelo_400_document, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
     </div>
 
-    <div class="rounded mb-3" id="water_bill_section">
+    <div class="rounded mb-3" id="water_bill_section" data-user-form-target="waterBillSection" style="display:none">
       <p>Upload Water Bill</p>
       <div class="file-upload-container mb-5">
-        <label for="user_water_bill_documents" class="file-upload-label">
+        <label for="user_water_bill_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
          <span class="upload-text">Upload a file or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :water_bill_documents, multiple: true, class: "file-upload-input" %>
+          <%= form.file_field :water_bill_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
     </div>
 
-    <div class="rounded mb-3" id="electricity_bill_section">
+    <div class="rounded mb-3" id="electricity_bill_section" data-user-form-target="electricityBillSection" style="display:none">
       <p>Upload Electricity Bill</p>
       <div class="file-upload-container mb-5">
-        <label for="user_electricity_bill_documents" class="file-upload-label">
+        <label for="user_electricity_bill_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
           </div>
          <span class="upload-text">Upload a file or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :electricity_bill_documents, multiple: true, class: "file-upload-input" %>
+          <%= form.file_field :electricity_bill_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
     </div>
   </div>
 
-  <div class="d-grid  mb-3">
+  <div class="d-grid mb-3">
     <%= form.submit "Submit", class:"btn btn-lg mb-2", style:"background-color: #b29c84; color: white;" %>
   </div>
 
@@ -1262,198 +1084,6 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   </div>
   </div>
    <% end %>
-
-    <script>
-        document.addEventListener("turbo:load", function() {
-            const dateOfBirthField = document.getElementById("dateOfBirthField");
-            const dateOfBirthError = document.getElementById("dateOfBirthError");
-
-            dateOfBirthField.addEventListener("input", function() {
-                const inputDate = dateOfBirthField.value;
-                const isValidFormat = dateOfBirthField.checkValidity();
-
-                if (isValidFormat) {
-                    const dateParts = inputDate.split("-");
-                    const year = parseInt(dateParts[0]);
-                    const month = parseInt(dateParts[1]);
-                    const day = parseInt(dateParts[2]);
-
-                    if (year >= 1900 && year <= 2020 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
-                        dateOfBirthError.textContent = ""; // Clear the error message
-                    } else {
-                        dateOfBirthError.textContent = "Invalid date. Please choose a valid date for your date of birth!";
-                    }
-                } else {
-                    dateOfBirthError.textContent = "Please use the format YYYY-MM-DD.";
-                }
-            });
-        });
-    </script>
-
-<script>
-  document.addEventListener("turbo:load", function() {
-    // Sections to control
-    const sections = {
-      purchase: document.getElementById('section_property_purchase'),
-      sale: document.getElementById('section_property_sale'),
-      newBuild: document.getElementById('section_new_build'),
-      will: document.getElementById('section_will'),
-      shortTerm: document.getElementById('section_short_term'),
-      documents: document.getElementById('section_documents')
-    };
-    
-    // Service checkboxes
-    const checkboxes = {
-      purchase: document.getElementById('service_purchase'),
-      sale: document.getElementById('service_sale'),
-      newBuild: document.getElementById('service_new_build'),
-      will: document.getElementById('service_will'),
-      vv: document.getElementById('service_vv'),
-      registry: document.getElementById('service_registry'),
-      activities: document.getElementById('service_activities')
-    };
-    
-    // Special sections that depend on specific checkboxes
-    const vvLicenseUploadSection = document.getElementById('vv_license_upload_section');
-    const civilLiabilitySection = document.getElementById('civil_liability_section');
-    const igicRegistrationSection = document.getElementById('igic_registration_section');
-    const waterBillSection = document.getElementById('water_bill_section');
-    const electricityBillSection = document.getElementById('electricity_bill_section');
-    
-    // Hide all conditional sections initially
-    Object.values(sections).forEach(section => {
-      if (section) {
-        section.style.display = 'none';
-      }
-    });
-    
-    // Function to update section visibility
-    function updateSections() {
-      // Show/hide Purchase section
-      if (sections.purchase) {
-        sections.purchase.style.display = checkboxes.purchase.checked ? 'block' : 'none';
-      }
-      
-      // Show/hide Sale section
-      if (sections.sale) {
-        sections.sale.style.display = checkboxes.sale.checked ? 'block' : 'none';
-      }
-      
-      // Show/hide New Build section
-      if (sections.newBuild) {
-        sections.newBuild.style.display = checkboxes.newBuild.checked ? 'block' : 'none';
-      }
-      
-      // Show/hide Will section
-      if (sections.will) {
-        sections.will.style.display = checkboxes.will.checked ? 'block' : 'none';
-      }
-      
-      // Show/hide Short Term section if any related service is checked
-      if (sections.shortTerm) {
-        sections.shortTerm.style.display = 
-          (checkboxes.vv.checked || checkboxes.registry.checked || checkboxes.activities.checked) 
-            ? 'block' : 'none';
-      }
-      
-      // Show/hide Documents section (show only when Sale or any short-term compliance service is selected)
-      if (sections.documents) {
-        sections.documents.style.display = 
-          (checkboxes.sale.checked || checkboxes.vv.checked || checkboxes.registry.checked || checkboxes.activities.checked) 
-            ? 'block' : 'none';
-      }
-      
-      // Show VV License upload ONLY when Unified Registry or Classified Activities is selected
-      // AND VV License service is NOT selected (applying for VV License means they don't have one yet)
-      if (vvLicenseUploadSection) {
-        vvLicenseUploadSection.style.display = 
-          ((checkboxes.registry.checked || checkboxes.activities.checked) && !checkboxes.vv.checked) 
-            ? 'block' : 'none';
-      }
-      
-      // Hide Civil Liability and IGIC sections when only selling (but show them for holiday lets)
-      const isOnlySelling = checkboxes.sale.checked && 
-                            !checkboxes.vv.checked && 
-                            !checkboxes.registry.checked && 
-                            !checkboxes.activities.checked;
-      
-      if (civilLiabilitySection) {
-        civilLiabilitySection.style.display = isOnlySelling ? 'none' : 'block';
-      }
-      
-      if (igicRegistrationSection) {
-        igicRegistrationSection.style.display = isOnlySelling ? 'none' : 'block';
-      }
-      
-      // Show Water Bill and Electricity Bill sections ONLY when selling property is selected
-      if (waterBillSection) {
-        waterBillSection.style.display = checkboxes.sale.checked ? 'block' : 'none';
-      }
-      
-      if (electricityBillSection) {
-        electricityBillSection.style.display = checkboxes.sale.checked ? 'block' : 'none';
-      }
-    }
-    
-    // Add event listeners to all checkboxes
-    Object.values(checkboxes).forEach(checkbox => {
-      if (checkbox) {
-        checkbox.addEventListener('change', updateSections);
-      }
-    });
-    
-    // Run initially to set up correct state
-    updateSections();
-    
-    // If there are any pre-selected services (e.g., when editing), show those sections
-    if (checkboxes.purchase && checkboxes.purchase.checked) sections.purchase.style.display = 'block';
-    if (checkboxes.sale && checkboxes.sale.checked) sections.sale.style.display = 'block';
-    if (checkboxes.newBuild && checkboxes.newBuild.checked) sections.newBuild.style.display = 'block';
-    if (checkboxes.will && checkboxes.will.checked) sections.will.style.display = 'block';
-    if ((checkboxes.vv && checkboxes.vv.checked) || 
-        (checkboxes.registry && checkboxes.registry.checked) || 
-        (checkboxes.activities && checkboxes.activities.checked)) {
-      if (sections.shortTerm) sections.shortTerm.style.display = 'block';
-    }
-    
-    // Initial state for VV License upload section
-    if (vvLicenseUploadSection && (checkboxes.registry || checkboxes.activities)) {
-      vvLicenseUploadSection.style.display = 
-        ((checkboxes.registry.checked || checkboxes.activities.checked) && !checkboxes.vv.checked) 
-          ? 'block' : 'none';
-    }
-    
-    // Initial state for Documents section
-    if (sections.documents) {
-      sections.documents.style.display = 
-        (checkboxes.sale.checked || checkboxes.vv.checked || checkboxes.registry.checked || checkboxes.activities.checked) 
-          ? 'block' : 'none';
-    }
-    
-    // Initial state for Civil Liability and IGIC sections
-    const isOnlySelling = checkboxes.sale && checkboxes.sale.checked && 
-                        !(checkboxes.vv && checkboxes.vv.checked) && 
-                        !(checkboxes.registry && checkboxes.registry.checked) && 
-                        !(checkboxes.activities && checkboxes.activities.checked);
-    
-    if (civilLiabilitySection) {
-      civilLiabilitySection.style.display = isOnlySelling ? 'none' : 'block';
-    }
-    
-    if (igicRegistrationSection) {
-      igicRegistrationSection.style.display = isOnlySelling ? 'none' : 'block';
-    }
-    
-    // Initial state for Water Bill and Electricity Bill sections
-    if (waterBillSection) {
-      waterBillSection.style.display = checkboxes.sale && checkboxes.sale.checked ? 'block' : 'none';
-    }
-    
-    if (electricityBillSection) {
-      electricityBillSection.style.display = checkboxes.sale && checkboxes.sale.checked ? 'block' : 'none';
-    }
-  });
-</script>
 
 <style>
   .file-upload-label.dragover {
@@ -1488,114 +1118,8 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   }
 </style>
 
-<script>
-  document.addEventListener("turbo:load", function() {
-    const dateOfBirthField = document.getElementById("dateOfBirthField");
-    const dateOfBirthError = document.getElementById("dateOfBirthError");
-
-    if (dateOfBirthField && dateOfBirthError) {
-      dateOfBirthField.addEventListener("input", function() {
-        const inputDate = dateOfBirthField.value;
-        const isValidFormat = dateOfBirthField.checkValidity();
-
-        if (isValidFormat) {
-          const dateParts = inputDate.split("-");
-          const year = parseInt(dateParts[0]);
-          const month = parseInt(dateParts[1]);
-          const day = parseInt(dateParts[2]);
-
-          if (year >= 1900 && year <= 2020 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
-            dateOfBirthError.textContent = ""; // Clear the error message
-          } else {
-            dateOfBirthError.textContent = "Invalid date. Please choose a valid date for your date of birth!";
-          }
-        } else {
-          dateOfBirthError.textContent = "Please use the format YYYY-MM-DD.";
-        }
-      });
-    }
-  });
-</script>
-
 <style>
   .hidden-section {
     display: none !important;
   }
 </style>
-
-<script>
-  document.addEventListener("turbo:load", function() {
-    const uploadNowRadio = document.getElementById("cee_upload_now");
-    const sendLaterRadio = document.getElementById("cee_send_later");
-    const needToApplyRadio = document.getElementById("cee_need_to_apply");
-    const ceeUploadSection = document.getElementById("cee_upload_section");
-
-    function toggleCeeUploadSection() {
-      // Only show the upload section if "Yes, I will upload it now" is selected
-      if (ceeUploadSection) {
-        ceeUploadSection.style.display = uploadNowRadio && uploadNowRadio.checked ? "block" : "none";
-      }
-    }
-
-    if (uploadNowRadio && sendLaterRadio && needToApplyRadio) {
-      uploadNowRadio.addEventListener("change", toggleCeeUploadSection);
-      sendLaterRadio.addEventListener("change", toggleCeeUploadSection);
-      needToApplyRadio.addEventListener("change", toggleCeeUploadSection);
-    }
-
-    // Initialize on load
-    toggleCeeUploadSection();
-  });
-</script>
-
-<style>
-  .file-upload-label.dragover {
-</style>
-
-<script>
-  document.addEventListener("turbo:load", function() {
-    // Title Deed section toggle
-    const titleDeedUploadNowRadio = document.getElementById("title_deed_upload_now");
-    const titleDeedSendLaterRadio = document.getElementById("title_deed_send_later");
-    const titleDeedCantFindRadio = document.getElementById("title_deed_cant_find");
-    const titleDeedUploadSection = document.getElementById("title_deed_upload_section");
-
-    function toggleTitleDeedUploadSection() {
-      // Only show the upload section if "Yes, I will upload it now" is selected
-      if (titleDeedUploadSection) {
-        titleDeedUploadSection.style.display = titleDeedUploadNowRadio && titleDeedUploadNowRadio.checked ? "block" : "none";
-      }
-    }
-
-    if (titleDeedUploadNowRadio && titleDeedSendLaterRadio && titleDeedCantFindRadio) {
-      titleDeedUploadNowRadio.addEventListener("change", toggleTitleDeedUploadSection);
-      titleDeedSendLaterRadio.addEventListener("change", toggleTitleDeedUploadSection);
-      titleDeedCantFindRadio.addEventListener("change", toggleTitleDeedUploadSection);
-    }
-
-    // Initialize on load
-    toggleTitleDeedUploadSection();
-    
-    // CEE section toggle
-    const ceeUploadNowRadio = document.getElementById("cee_upload_now");
-    const ceeSendLaterRadio = document.getElementById("cee_send_later");
-    const ceeNeedToApplyRadio = document.getElementById("cee_need_to_apply");
-    const ceeUploadSection = document.getElementById("cee_upload_section");
-
-    function toggleCeeUploadSection() {
-      // Only show the upload section if "Yes, I will upload it now" is selected
-      if (ceeUploadSection) {
-        ceeUploadSection.style.display = ceeUploadNowRadio && ceeUploadNowRadio.checked ? "block" : "none";
-      }
-    }
-
-    if (ceeUploadNowRadio && ceeSendLaterRadio && ceeNeedToApplyRadio) {
-      ceeUploadNowRadio.addEventListener("change", toggleCeeUploadSection);
-      ceeSendLaterRadio.addEventListener("change", toggleCeeUploadSection);
-      ceeNeedToApplyRadio.addEventListener("change", toggleCeeUploadSection);
-    }
-
-    // Initialize on load
-    toggleCeeUploadSection();
-  });
-</script>

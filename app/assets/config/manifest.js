@@ -3,8 +3,9 @@
 //= link_tree ../builds .js
 //= link form.js
 //= link rails-ujs.js
- //= link turbolinks/dist/turbolinks.js
- //= link jquery.min.js
-   //= link controllers/application.js
-   //= link controllers/hello_controller.js
-   //= link controllers/index.js
+//= link turbolinks/dist/turbolinks.js
+//= link jquery.min.js
+//= link controllers/application.js
+//= link controllers/hello_controller.js
+//= link controllers/index.js
+//= link controllers/user_form_controller.js

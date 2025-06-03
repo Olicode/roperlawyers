@@ -1,73 +1,83 @@
-import "@hotwired/turbo-rails"
-import "./form"                // ← loads your NIE & bank‐sync logic
-import "bootstrap"
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import "./channels"
-import $ from "jquery"
+import "@hotwired/turbo-rails";
+import { Application } from "@hotwired/stimulus";
+import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers";
+import Rails from "@rails/ujs";
+import Turbolinks from "turbolinks";
+import "./channels";
+import $ from "jquery";
+window.Stimulus = Application.start();
+const context = require.context("./controllers", true, /_controller\.js$/);
+window.Stimulus.load(definitionsFromContext(context));
+Rails.start();
+Turbolinks.start();
 
-Rails.start()
-Turbolinks.start()
-
-function activateContactForm () {
-  $("#contactModal #successMessageBody, #contactModal #errorMessageBody, #contactModal .ct-spinner").hide()
+function activateContactForm() {
+  $(
+    "#contactModal #successMessageBody, #contactModal #errorMessageBody, #contactModal .ct-spinner"
+  ).hide();
   $("#contactForm").on("submit", (e) => {
     e.preventDefault();
-    const $form = $(this)
+    const $form = $(this);
 
-    $form.find(".ct-spinner").show()
-    $form.find("button[type=submit]").attr("disabled", "disabled")
-    const email = $form.find("[name=email]").val()
-    const message = $form.find("[name=message]").val()
-    const url = $form.find("[name=url]").val()
+    $form.find(".ct-spinner").show();
+    $form.find("button[type=submit]").attr("disabled", "disabled");
+    const email = $form.find("[name=email]").val();
+    const message = $form.find("[name=message]").val();
+    const url = $form.find("[name=url]").val();
     $.ajax({
       url: "/contact_us",
-      beforeSend: function (xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(
+          "X-CSRF-Token",
+          $('meta[name="csrf-token"]').attr("content")
+        );
+      },
       type: "POST",
       data: {
         email: email,
         message: message,
-        url
+        url,
       },
-    }).fail(function (data) {
-
-      $("#errorMessageBody").show()
-      $("#contactFormBody").hide()
-      $("#successMessageBody").hide()
-      $form.find("button[type=submit]").hide()
-
-
-    }).then(function (data) {
-      $form.find("button[type=submit]").hide()
-      $("#errorMessageBody").hide()
-      $("#contactFormBody").hide()
-      $("#successMessageBody").show()
     })
+      .fail(function (data) {
+        $("#errorMessageBody").show();
+        $("#contactFormBody").hide();
+        $("#successMessageBody").hide();
+        $form.find("button[type=submit]").hide();
+      })
+      .then(function (data) {
+        $form.find("button[type=submit]").hide();
+        $("#errorMessageBody").hide();
+        $("#contactFormBody").hide();
+        $("#successMessageBody").show();
+      })
       .done(function (data) {
-        $form.find("button[type=submit]").removeAttr("disabled")
+        $form.find("button[type=submit]").removeAttr("disabled");
       });
-
-  })
+  });
 
   $("#submitButton").on("click", function (e) {
     e.preventDefault();
-    const email = $('#email').val()
+    const email = $("#email").val();
     $.ajax({
       url: "/contact_us",
-      beforeSend: function (xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(
+          "X-CSRF-Token",
+          $('meta[name="csrf-token"]').attr("content")
+        );
+      },
       type: "POST",
       data: {
-        email: email
+        email: email,
       },
-    })
-      .done(function (data) {
-        console.log('data', data)
-      });
-  })
+    }).done(function (data) {
+      console.log("data", data);
+    });
+  });
 }
 
-
 $(document).on("turbo:load", activateContactForm);
-$(document).on("turbo:load", ()=>{console.log("Ready")});
-$(document).ready(()=>{console.log("doc Ready")});
-
+$(document).on("turbo:load", () => {
+  console.log("Ready");
+});
