@@ -3,7 +3,6 @@
 
 pin "application"
 pin "@hotwired/turbo-rails",      to: "turbo.min.js",         preload: true
-pin "form",                       to: "form.js"               # your module
 pin "bootstrap",                  to: "bootstrap.min.js"
 pin "@rails/ujs",                 to: "rails-ujs.js"
 pin "turbolinks",                 to: "turbolinks.js"

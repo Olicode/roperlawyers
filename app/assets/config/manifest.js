@@ -1,7 +1,6 @@
 //= link_tree ../images
 //= link_directory ../stylesheets .css
 //= link_tree ../builds .js
-//= link form.js
 //= link rails-ujs.js
 //= link turbolinks/dist/turbolinks.js
 //= link jquery.min.js
