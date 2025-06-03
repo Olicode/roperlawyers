@@ -22,7 +22,7 @@ class SalesforceService
       Rails.logger.info "Attempting to upload file to Salesforce: #{attrs[:convent_version][:Title]}"
       content_version = new.client.create!('ContentVersion', attrs[:convent_version])
       cv = new.client.query("SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = '#{content_version}'").first
-      client.create!(
+      new.client.create!(
         'ContentDocumentLink',
         attrs[:content_document_link].merge(ContentDocumentId: cv['ContentDocumentId'])
       )
