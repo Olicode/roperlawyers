@@ -82,3 +82,4 @@ gem 'sass-rails'
 gem "jsbundling-rails", "~> 1.3"
 
 gem 'dotenv-rails', groups: [:development, :test]
+gem "solid_queue", "~> 1.1"
