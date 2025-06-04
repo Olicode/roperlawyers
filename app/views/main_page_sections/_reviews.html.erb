@@ -19,7 +19,7 @@
               </div>
             <p>
               <div class="comment-box" data-controller="review">
-  <% if review["comment"].length > 50 %>
+  <% if review["comment"].length > 180 %>
     <span data-review-target="comment" data-full="<%= h review["comment"] %>" data-truncated="<%= h truncate(review["comment"], length: 180) %>">
       <%= truncate(review["comment"], length: 180) %>
     </span><br />
