@@ -18,25 +18,17 @@
              <%# <h6 class="review-date"><%= review["Date"] %>
               </div>
             <p>
-              <div class="comment-box">
-                <% if review["comment"].length > 50 %>
-                  <%= truncate(review["comment"], length: 180) %><br />
-                  <%= link_to 'More', '', class: "read-more-#{review["id"]} review-text"%>
-
-                  <script>
-                   $(document).delegate(".read-more-<%= review["id"] %>", "click", function(e){
-                      e.preventDefault();
-                      $(this).parent().html('<%= escape_javascript review["comment"] %><br /><%= link_to 'Less', '', class: "read-less-#{review["id"]} review-text"%>')
-                    });
-                    $(document).delegate(".read-less-<%= review["id"] %>", "click", function(e){
-                      e.preventDefault();
-                      $(this).parent().html('<%= escape_javascript truncate(review["comment"], length: 180) %><br /><%= link_to 'Read', '', class: "read-more-#{review["id"]} review-text"%>')
-                    });
-                  </script>
-                <% else %>
-                  <%= review["comment"]  %>
-                <% end %>
-              </div>
+              <div class="comment-box" data-controller="review">
+  <% if review["comment"].length > 50 %>
+    <span data-review-target="comment" data-full="<%= h review["comment"] %>" data-truncated="<%= h truncate(review["comment"], length: 180) %>">
+      <%= truncate(review["comment"], length: 180) %>
+    </span><br />
+    <a href="#" data-review-target="moreLink" data-action="review#showFull" class="review-text">More</a>
+    <a href="#" data-review-target="lessLink" data-action="review#showTruncated" class="review-text d-none">Less</a>
+  <% else %>
+    <%= review["comment"] %>
+  <% end %>
+</div>
             </p>
           </div>
         </div>

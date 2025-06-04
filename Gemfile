@@ -18,7 +18,6 @@ gem "puma", ">= 5.0"
 gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-
 gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
@@ -28,7 +27,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem "redis", ">= 4.0.1"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -67,14 +66,12 @@ group :test do
   gem "selenium-webdriver"
 end
 
-
 gem 'simple_form'
 gem 'restforce'
+gem 'bootstrap', '~> 5.3.3'
 
 gem 'devise'
-gem 'jquery-rails'
-gem 'font-awesome-sass', '~> 5.15.1'
-gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 6.1.0'
 gem 'active_storage_base64'
 
 gem "aws-sdk-s3", require: false

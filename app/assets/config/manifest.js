@@ -2,9 +2,9 @@
 //= link_directory ../stylesheets .css
 //= link_tree ../builds .js
 //= link rails-ujs.js
-//= link turbolinks/dist/turbolinks.js
-//= link jquery.min.js
 //= link controllers/application.js
-//= link controllers/hello_controller.js
 //= link controllers/index.js
+//= link controllers/contact_controller.js
 //= link controllers/user_form_controller.js
+//= link controllers/review_controller.js
+//= link bootstrap.min.js
