@@ -228,6 +228,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_04_194239) do
     t.string "escritura"
     t.json "water_bill_documents"
     t.json "electricity_bill_documents"
+    t.datetime "last_admin_update_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
