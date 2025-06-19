@@ -75,7 +75,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        SalesforceSyncJob.perform_later(@user.id, user_params.to_h)
+        SalesforceSyncJob.perform_later(@user)
 
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
