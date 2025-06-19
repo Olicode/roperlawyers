@@ -35,7 +35,6 @@ class User < ApplicationRecord
   private
 
   def send_updates_to_admin
-    # Only send email if one of the specified fields changed
     monitored_fields = %w[
       first_name last_name passport_number email nie_number date_of_birth expiry_date
       mobile_phone full_name_on_passport nationality profession marital_status spouse 
@@ -49,10 +48,19 @@ class User < ApplicationRecord
       buying_property_address selling_property_address requested_services 
       energy_efficiency_certificate_cee
     ]
-    # previous_changes is available in after_commit
     changed = previous_changes.keys & monitored_fields
     return if changed.empty?
 
-    AdminMailer.send_user_updates(self).deliver_now
+    if previous_changes.keys.include?("id")
+      # Always send on create
+      AdminMailer.send_user_updates(self).deliver_now
+      update_column(:last_admin_update_sent_at, Time.current)
+    else
+      # Throttle for updates only
+      if last_admin_update_sent_at.nil? || last_admin_update_sent_at < 1.hour.ago
+        AdminMailer.send_user_updates(self).deliver_now
+        update_column(:last_admin_update_sent_at, Time.current)
+      end
+    end
   end
 end
