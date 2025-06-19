@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.where(id: current_user.id)
+    redirect_to root_path
   end
 
   # GET /users/1 or /users/1.json
