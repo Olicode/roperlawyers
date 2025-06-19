@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   validates :email, presence: true
-  validates :last_name, presence: true, on: :update
+  validates :first_name, :last_name, :mobile_phone, presence: true, on: :update
 
   has_one_attached :nie_document
   has_one_attached :passport_document

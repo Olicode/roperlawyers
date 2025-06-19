@@ -4,16 +4,14 @@
     <h1 style="font-family: 'Times New Roman', Times, serif; color: #b29c84; text-align: center; margin-top: 3rem; margin-bottom: 1rem; letter-spacing: 0.2em;">ROPER LAWYERS</h1>
     <div class="text-center m-3 ">
       <h2>Information required</h2>
-
-<p>
-  The following details are required by administrative bodies and notaries.<br>
-  If you're unsure of any item, you can log in and update it later.<br>
-  We'll be notified of any changes and will review them accordingly.
-</p>
-
+      <p>
+        The following details are required by administrative bodies and notaries.<br>
+        If you're unsure of any item, you can log in and update it later.<br>
+        We'll be notified of any changes and will review them accordingly.
+      </p>
     </div>
     <div class="card p-5 mb-5 card-shadow">
-  <h4 class="mb-3">Personal details</h4>
+      <h4 class="mb-3">Personal details</h4>
 
       <% if user.errors.any? %>
         <div id="error_explanation" class="alert alert-danger">
@@ -26,182 +24,113 @@
         </div>
       <% end %>
 
-
-<div class="row mb-3 g-3">
-  <div class="col-md-6">
-    <div class="form-floating">
-      <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
-      <%= form.label :first_name, "First name"%>
-    </div>
+      <div class="row mb-3 g-3">
+        <div class="col-md-6">
+          <div class="form-floating">
+            <%= form.text_field :first_name, class: "form-control", placeholder: "First name", required: true %>
+            <%= form.label :first_name, "First name" %>
+          </div>
         </div>
-  <div class="col-md-6">
-    <div class="form-floating">
-      <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
-      <%= form.label :last_name, "Last name"%>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <%= form.text_field :last_name, class: "form-control", placeholder: "Last name", required: true %>
+            <%= form.label :last_name, "Last name" %>
+          </div>
         </div>
-      </div>
           </div>
 
         <div class="form-floating mb-3">
-    <%= form.text_field :email, class: "form-control", placeholder: "Email address" %>
-    <%= form.label :email, "Email address" %>
+          <%= form.text_field :email, class: "form-control", placeholder: "Email address", required: true %>
+          <%= form.label :email, "Email address" %>
         </div>
 
         <div class="form-floating mb-3">
-    <%= form.text_field :mobile_phone, class: "form-control", placeholder: "Mobile phone number" %>
-    <%= form.label :mobile_phone, "Mobile phone number" %>
+          <%= form.text_field :mobile_phone, class: "form-control", placeholder: "Mobile phone number", required: true %>
+          <%= form.label :mobile_phone, "Mobile phone number" %>
         </div>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :home_address, class: "form-control", placeholder: "Home address" %>
-    <%= form.label :home_address, "Home address" %>
-  </div>
-      <div class="form-floating mb-3">
-    <%= form.text_field :profession, class: "form-control", placeholder: "Profession" %>
-    <%= form.label :profession, "Profession" %>
-  </div>
+        <div class="form-floating mb-3">
+          <%= form.text_field :home_address, class: "form-control", placeholder: "Home address" %>
+          <%= form.label :home_address, "Home address" %>
+        </div>
 
-  <div class="row mb-3 g-3">
-    <div class="col-md-6">
-      <div class="form-floating">
-        <%= form.text_field :marital_status, class: "form-control", placeholder: "Marital status" %>
-        <%= form.label :marital_status, "Marital status" %>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-floating">
-        <%= form.text_field :spouse, class: "form-control", placeholder: "Spouse full name" %>
-        <%= form.label :spouse, "Spouse full name" %>
-      </div>
-    </div>
-  </div>
+        <div class="form-floating mb-3">
+          <%= form.text_field :profession, class: "form-control", placeholder: "Profession" %>
+          <%= form.label :profession, "Profession" %>
+        </div>
+
+        <div class="row mb-3 g-3">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <%= form.text_field :marital_status, class: "form-control", placeholder: "Marital status" %>
+              <%= form.label :marital_status, "Marital status" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-floating">
+              <%= form.text_field :spouse, class: "form-control", placeholder: "Spouse full name" %>
+              <%= form.label :spouse, "Spouse full name" %>
+            </div>
+          </div>
+        </div>
     <p class="mt-3">Are you a tax resident in Spain?</p>
     <div class="form-check mb-3">
-    <%= form.check_box :tax_resident, class: "form-check-input", id: "tax_resident" %>
-    <%= form.label :tax_resident, "Yes – I am a tax resident in Spain", class: "form-check-label" %>
-  </div>
+      <%= form.check_box :tax_resident, class: "form-check-input", id: "tax_resident" %>
+      <%= form.label :tax_resident, "Yes – I am a tax resident in Spain", class: "form-check-label" %>
+    </div>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :full_name_on_passport, class: "form-control", placeholder: "Full name on passport" %>
-    <%= form.label :full_name_on_passport, "Full name on passport" %>
-  </div>
+    <div class="form-floating mb-3">
+      <%= form.text_field :full_name_on_passport, class: "form-control", placeholder: "Full name on passport" %>
+      <%= form.label :full_name_on_passport, "Full name on passport" %>
+    </div>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :passport_number, class: "form-control", placeholder: "Passport number" %>
-    <%= form.label :passport_number, "Passport number" %>
-  </div>
+    <div class="form-floating mb-3">
+      <%= form.text_field :passport_number, class: "form-control", placeholder: "Passport number" %>
+      <%= form.label :passport_number, "Passport number" %>
+    </div>
 
-  <div class="row mb-3 g-3">
-    <div class="col-md-6">
-      <div class="form-floating">
-        <%= form.date_field :date_of_birth, class: "form-control", placeholder: "YYYY-MM-DD" %>
-        <%= form.label :date_of_birth, "Date of birth"%>
+    <div class="row mb-3 g-3">
+      <div class="col-md-6">
+        <div class="form-floating">
+          <%= form.date_field :date_of_birth, class: "form-control", placeholder: "YYYY-MM-DD" %>
+          <%= form.label :date_of_birth, "Date of birth" %>
+        </div>
       </div>
-   </div>
-    <div class="col-md-6">
-      <div class="form-floating">
-        <%= form.date_field :expiry_date, class: "form-control", placeholder: "Passport expiry date" %>
-        <%= form.label :expiry_date, "Passport expiry date"%>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <%= form.date_field :expiry_date, class: "form-control", placeholder: "Passport expiry date" %>
+          <%= form.label :expiry_date, "Passport expiry date" %>
+        </div>
       </div>
     </div>
-   </div>
 
-     <div class="form-floating mb-3">
-    <%= form.select :nationality,
+    <div class="form-floating mb-3">
+      <%= form.select :nationality,
           options_for_select(%w[Belgian British Chinese Danish Dutch Finnish French German Greek Indian Irish Italian Norwegian Polish Spanish Swedish Swiss Romanian], user.nationality),
           { include_blank: "Select" },
           class: "form-control form-select" %>
-    <%= form.label :nationality, "Nationality" %>
-   </div>
-  <div class="mb-3">
-    <p class="mb-1">Upload a copy of your passport</p>
-    <div class="file-upload-container">
-      <label for="user_passport_document" class="file-upload-label" data-user-form-target="fileUploadLabel">
-        <div class="upload-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
-        </div>
-        <span class="upload-text">Upload a file or drag & drop</span>
-        <span class="file-types">PDF, JPG, PNG</span>
-        <%= form.file_field :passport_document, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
-      </label>
+      <%= form.label :nationality, "Nationality" %>
     </div>
-  </div>
+    <div class="mb-3">
+      <p class="mb-1">Upload a copy of your passport</p>
+      <div class="file-upload-container">
+        <label for="user_passport_document" class="file-upload-label" data-user-form-target="fileUploadLabel">
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
+          </div>
+          <span class="upload-text">Upload a file or drag & drop</span>
+          <span class="file-types">PDF, JPG, PNG</span>
+          <%= form.file_field :passport_document, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
+        </label>
+      </div>
+    </div>
 
-<style>
-  .file-upload-container {
-    width: 100%;
-  }
-  .file-upload-label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 150px;
-    border: 2px dashed #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.3s ease;
-  }
-  .file-upload-label:hover {
-    border-color: #999;
-  }
-  .upload-icon {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #666;
-    width: 1em;
-    height: 1em;
-  }
-  .file-upload-input {
-    position: absolute;
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    z-index: -1;
-  }
-  .upload-text {
-    margin-bottom: 4px;
-  }
-  .file-types {
-    font-size: 0.8rem;
-    color: #666;
-  }
+<hr class="hr mb-3" style="color: #b29c84;">
 
-  /* Mobile responsiveness for cards */
-  @media (max-width: 767px) {
-    .card-shadow {
-      box-shadow: none !important;
-      padding: 0 !important;
-      margin-bottom: 2rem !important;
-    }
-    
-    .card {
-      border: none !important;
-    }
-    
-    .card h4 {
-      margin-top: 2rem !important;
-      margin-bottom: 1rem !important;
-      font-size: 1.4rem !important;
-    }
-    
-    .form-floating {
-      margin-bottom: 1rem !important;
-    }
-  }
-</style>
-
-
-
-<hr class="hr mb-3" style="color: #b29c84;" />
 <%# NIE section %>
 
-  <h4 class="mb-3 mt-3">NIE number</h4>
-  <p class="mb-3">
+<h4 class="mb-3 mt-3">NIE number</h4>
+<p class="mb-3">
     An NIE (Foreigner Identification Number) is required for most official processes in Spain, including legal, financial, and administrative transactions.
   </p>
 
@@ -243,7 +172,7 @@
       <div class="file-upload-container">
         <label for="user_nie_document" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
           <span class="upload-text">Upload a file or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -284,7 +213,7 @@
 <div class="card p-5 mb-5 card-shadow">
   <h4 class="mb-3">Requested Services</h4>
   <p class="mb-3">Please tick all the services you would like us to assist you with:</p>
-  
+
   <div class="mb-4">
     <h5 class="mb-2">Property Transactions</h5>
     <p class="mb-3">If you're buying or selling a property, please select the relevant option:</p>
@@ -292,13 +221,13 @@
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_purchase", 'data-user-form-target': 'servicePurchase' }, "Purchase", nil %>
       <%= form.label "requested_services_purchase", "I am purchasing a property", class: "form-check-label" %>
     </div>
-    
+
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_sale", 'data-user-form-target': 'serviceSale' }, "Sale", nil %>
       <%= form.label "requested_services_sale", "I am selling a property", class: "form-check-label" %>
     </div>
   </div>
-  
+
   <div class="mb-4">
     <h5 class="mb-2">Legal Documents</h5>
     <p class="mb-3">If you would like us to prepare any of the following legal documents, please tick below:</p>
@@ -306,13 +235,13 @@
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_will", 'data-user-form-target': 'serviceWill' }, "Will & Last Testament", nil %>
       <%= form.label "requested_services_will", "Will & Last Testament", class: "form-check-label" %>
     </div>
-    
+
     <div class="form-check ms-3">
       <%= form.check_box :requested_services, { multiple: true, class: "form-check-input service-checkbox", id: "service_new_build", 'data-user-form-target': 'serviceNewBuild' }, "New Build Declaration", nil %>
       <%= form.label "requested_services_new_build", "New Build Declaration", class: "form-check-label" %>
     </div>
   </div>
-  
+
   <div class="mb-3">
     <h5 class="mb-2">Holiday Let Compliance (Short-Term Rentals)</h5>
 
@@ -338,7 +267,7 @@ If you plan to holiday let your property, three legal steps are required. Tick a
 
 <div class="card p-5 mb-5 card-shadow" id="section_property_sale" data-user-form-target="sectionSale" style="display:none">
   <h4 class="mb-3">Property Sale Details</h4>
-  
+
       <div class="form-floating mb-3">
     <%= form.text_area :selling_property_address, class: "form-control", placeholder: "Selling property address", style: "height: 120px;" %>
     <%= form.label :selling_property_address, "Selling Property Address" %>
@@ -347,14 +276,14 @@ If you plan to holiday let your property, three legal steps are required. Tick a
 
 <div class="card p-5 mb-5 card-shadow" id="section_new_build" data-user-form-target="sectionNewBuild" style="display:none">
   <h4 class="mb-3">New Build Declaration Information</h4>
-  
+
     <div class="form-floating mb-3">
     <%= form.text_area :selling_property_address, class: "form-control", placeholder: "Selling property address", style: "height: 120px;" %>
     <%= form.label :selling_property_address, "Selling Property Address" %>
   </div>
       </div>
 
-<div class="card p-5 mb-5 card-shadow" id="section_property_purchase" data-user-form-target="sectionPurchase" style="display:none"> 
+<div class="card p-5 mb-5 card-shadow" id="section_property_purchase" data-user-form-target="sectionPurchase" style="display:none">
   <h4 class="mb-3">Property Purchase Details</h4>
   <p class="mb-3">Enter the address of the property you intend to purchase:</p>
     <div class="form-floating mb-3">
@@ -401,7 +330,7 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     </div>
   </fieldset>
 <%# Bank details section %>
-<hr class="hr mb-3" style="color: #b29c84;" />
+<hr class="hr mb-3" style="color: #b29c84;">
   <h4 class="mb-3">Bank details</h4>
   <p class="mb-3">
   Property purchase payments are typically made in three stages:
@@ -413,7 +342,7 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     <li><strong>Balance on completion</strong> – the remaining amount on completion day.</li>
   </ol>
   <p class="mb-3">
-    Under Spanish anti‑money‑laundering rules, the notary requires the bank name and IBAN of the account used for each payment 
+    Under Spanish anti‑money‑laundering rules, the notary requires the bank name and IBAN of the account used for each payment
     (e.g. HSBC, IBAN GB29 MIDL 4012 3456 7890 12).<br>
     Please fill in the details below for each payment stage.</p>
 
@@ -522,12 +451,7 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     </div>
   </div>
 
-
-
-
 </div>
-
-
 
     <%# PoA section %>
   <div class="card p-5 mb-5 card-shadow" id="section_poa" data-user-form-target="poaSection" style="display:none">
@@ -650,7 +574,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   <!-- 1) Are you currently married? -->
   <div class="mb-3">
     <%= form.label :currently_married, "Are you currently married?" %><br>
-    <%= form.radio_button :currently_married, true,  id: "currently_married_true", 'data-user-form-target': 'currentlyMarriedTrue'  %>
+    <%= form.radio_button :currently_married, true,  id: "currently_married_true", 'data-user-form-target': 'currentlyMarriedTrue' %>
     <%= form.label         :currently_married_true, "Yes", class: "form-check-label" %>
     &nbsp;
     <%= form.radio_button :currently_married, false, id: "currently_married_false", 'data-user-form-target': 'currentlyMarriedFalse' %>
@@ -670,7 +594,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   <!-- 2) Were you married before? -->
   <div class="mb-3">
     <%= form.label :previously_married, "Have you been married before?" %><br>
-    <%= form.radio_button :previously_married, true,  id: "previously_married_true", 'data-user-form-target': 'previouslyMarriedTrue'  %>
+    <%= form.radio_button :previously_married, true,  id: "previously_married_true", 'data-user-form-target': 'previouslyMarriedTrue' %>
     <%= form.label         :previously_married_true, "Yes", class: "form-check-label" %>
     &nbsp;
     <%= form.radio_button :previously_married, false, id: "previously_married_false", 'data-user-form-target': 'previouslyMarriedFalse' %>
@@ -764,7 +688,6 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   If John is unable to inherit, his share should pass to James Clarke.
 </p>
 
-
   <div class="form-floating mb-3">
     <%= form.text_area :outline_of_bequests_and_oder_of_success,
          class: "form-control",
@@ -790,17 +713,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   </div>
 </div>
 
-
-
-
-
-
-
 <%# VV License section %>
   <div class="card p-5 mb-3 card-shadow" id="section_documents" data-user-form-target="sectionDocuments" style="display:none">
     <h4>Documents</h4>
     <p class="mb-3">Documents required to be uploaded:</p>
-    
+
     <fieldset class="mb-3">
       <legend class="col-form-label mb-2">Can you provide the Title Deed (Escritura)?</legend>
 
@@ -840,7 +757,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="file-upload-container mb-5">
         <label for="user_title_deed_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
           <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -848,14 +765,14 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
         </label>
       </div>
     </div>
-    
+
     <div class="rounded mb-3">
       <p class="mb-2">Upload Nota Simple (Land Registry Ownership Certificate)</p>
       <p class="text-muted">If you don't have a recent copy of the Land Registry Ownership Certificate (Nota Simple), we can obtain it for you.</p>
       <div class="file-upload-container mb-5">
         <label for="user_nota_simple_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
           <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -904,7 +821,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="file-upload-container mb-5">
         <label for="user_cee_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
                  <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -915,11 +832,11 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
 
     <div class="rounded mb-3" id="vv_license_upload_section">
       <p>Upload VV License</p>
-      
+
       <div class="file-upload-container">
         <label for="user_vv_license_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
        <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -934,7 +851,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="file-upload-container mb-5">
         <label for="user_first_occupation_license_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
                  <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -948,7 +865,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="file-upload-container mb-5">
         <label for="user_habitability_certificate_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
                 <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -957,7 +874,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       </div>
       </div>
 
-    <%# Municipal Certificate section is commented out 
+    <%# Municipal Certificate section is commented out
     <div class="rounded mb-3">
       <p>Upload Municipal Certificate</p>
       <div class="file-upload-container">
@@ -967,17 +884,17 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
           </div>
                 <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
-          <%= form.file_field :municipal_certificate_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' 
-        </label> 
+          <%= form.file_field :municipal_certificate_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput'
+        </label>
       </div>
       </div> %>
-    
+
     <div class="rounded mb-3">
       <p>Upload Annual Property Tax Receipt (IBI)</p>
       <div class="file-upload-container mb-5">
         <label for="user_property_tax_receipt_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
                  <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -991,10 +908,10 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="file-upload-container mb-5">
         <label for="user_floor_plan_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
        <span class="upload-text">Upload files or drag & drop</span>
-          <span class="file-types">PDF, JPG, PNG</span>        
+          <span class="file-types">PDF, JPG, PNG</span>
            <%= form.file_field :floor_plan_documents, multiple: true, class: "file-upload-input", 'data-user-form-target': 'fileUploadInput' %>
         </label>
       </div>
@@ -1006,7 +923,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="file-upload-container mb-5">
         <label for="user_community_approval_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
        <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -1020,7 +937,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="file-upload-container mb-5">
         <label for="user_civil_liability_insurance_policy_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
              <span class="upload-text">Upload files or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -1034,7 +951,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="file-upload-container mb-5">
         <label for="user_igic_registration_modelo_400_document" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
          <span class="upload-text">Upload a file or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -1048,7 +965,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="file-upload-container mb-5">
         <label for="user_water_bill_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
          <span class="upload-text">Upload a file or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -1062,7 +979,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
       <div class="file-upload-container mb-5">
         <label for="user_electricity_bill_documents" class="file-upload-label" data-user-form-target="fileUploadLabel">
           <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="grey" style="width: 1em; height: 1em;"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z" /></svg>
           </div>
          <span class="upload-text">Upload a file or drag & drop</span>
           <span class="file-types">PDF, JPG, PNG</span>
@@ -1080,46 +997,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
  Have any questions? <a href="wa.me/+34649948377" style="color: #b29c84; text-decoration: none; font-weight: 500;">Send me a WhatsApp</a>
   </div>
   <p class="mt-5 mb-3 text-muted text-center">Roper Lawyers &copy; 2010-<%= Date.today.year %></p>
- </div >
+ </div>
   </div>
   </div>
    <% end %>
-
-<style>
-  .file-upload-label.dragover {
-    border-color: #2684FF;
-    background-color: rgba(38, 132, 255, 0.05);
-  }
-  
-  .file-info {
-    font-size: 0.85rem;
-    color: #333;
-    word-break: break-all;
-  }
-  
-  .delete-file {
-    padding: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  
-  .delete-file:hover {
-    transform: scale(1.2);
-  }
-  
-  .file-list {
-    text-align: left;
-  }
-  
-  .file-item {
-    font-size: 0.85rem;
-  }
-</style>
-
-<style>
-  .hidden-section {
-    display: none !important;
-  }
-</style>

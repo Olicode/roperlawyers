@@ -1,3 +1,103 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.file-upload-container {
+    width: 100%;
+}
+.file-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 150px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+.file-upload-label:hover {
+    border-color: #999;
+}
+.upload-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #666;
+    width: 1em;
+    height: 1em;
+}
+.file-upload-input {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+.upload-text {
+    margin-bottom: 4px;
+}
+.file-types {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Mobile responsiveness for cards */
+@media (max-width: 767px) {
+    .card-shadow {
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin-bottom: 2rem !important;
+    }
+
+    .card {
+      border: none !important;
+    }
+
+    .card h4 {
+      margin-top: 2rem !important;
+      margin-bottom: 1rem !important;
+      font-size: 1.4rem !important;
+    }
+
+    .form-floating {
+      margin-bottom: 1rem !important;
+    }
+}
+
+.file-upload-label.dragover {
+    border-color: #2684FF;
+    background-color: rgba(38, 132, 255, 0.05);
+}
+
+.file-info {
+    font-size: 0.85rem;
+    color: #333;
+    word-break: break-all;
+}
+
+.delete-file {
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.delete-file:hover {
+    transform: scale(1.2);
+}
+
+.file-list {
+    text-align: left;
+}
+
+.file-item {
+    font-size: 0.85rem;
+}
+
+.hidden-section {
+    display: none !important;
+}
