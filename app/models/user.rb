@@ -35,6 +35,7 @@ class User < ApplicationRecord
   private
 
   def send_updates_to_admin
+    # Only send email if one of the specified fields changed
     monitored_fields = %w[
       first_name last_name passport_number email nie_number date_of_birth expiry_date
       mobile_phone full_name_on_passport nationality profession marital_status spouse 
@@ -48,6 +49,7 @@ class User < ApplicationRecord
       buying_property_address selling_property_address requested_services 
       energy_efficiency_certificate_cee
     ]
+    # previous_changes is available in after_commit
     changed = previous_changes.keys & monitored_fields
     return if changed.empty?
 

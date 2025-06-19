@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def edit
     if @user.sf_contact_id.present?
       @sf_contact = SalesforceService.find_contact(@user.sf_contact_id)
-      @user.update!(
+      @user.update_columns(
         first_name: @sf_contact.FirstName,
         last_name: @sf_contact.LastName,
         email: @sf_contact.Email,
