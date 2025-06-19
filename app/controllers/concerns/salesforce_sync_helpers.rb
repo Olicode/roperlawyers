@@ -28,7 +28,7 @@ module SalesforceSyncHelpers
       Standing_Orders_Bank_Details__c: user.standing_orders_bank_details,
       Needs_PoA__c: user.needs_poa,
       Here_Till__c: user.here_till,
-      Mailing_Address__c: user.mailing_address,
+      MailingAddress: user.mailing_address,
       Date_of_decease__c: user.date_of_decease&.iso8601,
       Father_s_Full_Name__c: user.father_s_full_name,
       Father_s_Vital_Status__c: user.father_s_vital_status,
