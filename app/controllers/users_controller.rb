@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include SalesforceSyncHelpers
   before_action :set_user, :authenticate_user!, only: %i[ show edit update destroy ]
 
   # GET /users or /users.json
