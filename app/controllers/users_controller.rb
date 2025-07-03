@@ -239,7 +239,7 @@ class UsersController < ApplicationController
           :first_name, :last_name, :passport_number,
           :nie_number, :email, :sf_contact_id, :date_of_, :expiry_date,
           :mobile_phone, :here_till, :full_name_on_passport, :nationality,
-          :profession, :marital_status, :spouse, :mailing_address, :buying_property_address, :selling_property_address,
+          :profession, :marital_status, :spouse, :buying_property_address, :selling_property_address,
           :father_s_first_name, :mother_s_first_name,
           :r_origin_bank_details, :otb_origin_bank_details,
           :balance_bank_details, :standing_orders_bank_details, :nie_document, :passport_document, :needs_poa,
