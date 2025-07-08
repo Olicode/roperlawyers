@@ -990,7 +990,7 @@ By granting us a Power of Attorney, we'll handle everything for you.  </p>
   </div>
 
   <div class="d-grid mb-3">
-    <%= form.submit "Submit", class:"btn btn-lg mb-2", style:"background-color: #b29c84; color: white;" %>
+    <%= form.submit "Submit", class:"btn btn-lg mb-2", style:"background-color: #b29c84; color: white;", data: { action: "click->user-form#disableOnSubmit" } %>
   </div>
 
  <div class="mb-5">

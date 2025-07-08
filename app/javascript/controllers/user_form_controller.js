@@ -740,4 +740,20 @@ export default class extends Controller {
         "Please use the format YYYY-MM-DD.";
     }
   }
+
+  /**
+   * Disables the submit button after first click to prevent multiple submissions.
+   * Triggered via data-action on the submit button.
+   */
+  disableOnSubmit(event) {
+    const button = event.target;
+    const form = button.closest("form");
+    if (form && form.checkValidity()) {
+      setTimeout(() => {
+        button.disabled = true;
+        button.innerText = "Submitting...";
+      }, 10);
+    }
+    // Do not call event.preventDefault() or event.stopPropagation()
+  }
 }
