@@ -751,7 +751,11 @@ export default class extends Controller {
     if (form && form.checkValidity()) {
       setTimeout(() => {
         button.disabled = true;
-        button.innerText = "Submitting...";
+        if (button.tagName === "INPUT" && button.type === "submit") {
+          button.value = "Submitting...";
+        } else {
+          button.innerText = "Submitting...";
+        }
       }, 10);
     }
     // Do not call event.preventDefault() or event.stopPropagation()
