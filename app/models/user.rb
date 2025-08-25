@@ -45,6 +45,12 @@ class User < ApplicationRecord
     end
   end
 
+  def salesforce_requested_services
+    return "" unless requested_services && requested_services.is_a?(String)
+
+    JSON.parse(requested_services)&.join(";")
+  end
+
   private
 
   def send_updates_to_admin

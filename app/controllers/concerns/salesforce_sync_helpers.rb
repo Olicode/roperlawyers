@@ -49,10 +49,9 @@ module SalesforceSyncHelpers
       Currency__c: user.currency,
       Needs_NIE__c: user.needs_nie == 'yes' ? 'Yes' : 'No',
       Needs_Mortgage__c: user.needs_mortgage,
-      Wants_to_holiday_let__c: user.wants_to_holiday_let,
       Has_a_Spanish_Bank_Account__c: user.has_a_spanish_bank_account == 'yes' ? 'Yes' : 'No',
       B_Preferred_Notary_date__c: user.b_preferred_notary_date&.iso8601,
-      Requested_Services__c: user.requested_services,
+      Requested_Services__c: user.salesforce_requested_services,
     }
   end
 
