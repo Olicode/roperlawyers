@@ -37,7 +37,22 @@ module SalesforceSyncHelpers
       Outline_of_bequests_and_order_of_success__c: user.outline_of_bequests_and_oder_of_success,
       Inheritance_to_be_governed_by__c: user.inheritance_to_be_governed_by,
       Energy_Efficiency_Certificate_CEE__c: user.energy_efficiency_certificate_cee,
-      Escritura__c: user.escritura
+      Escritura__c: user.escritura,
+      Wants_to_holiday_let__c: user.wants_to_holiday_let,
+      NIE_Number__c: user.nie_number,
+      Name_of_the_present_spouse__c: user.name_of_the_present_spouse,
+      Name_of_the_previous_spouses__c: user.name_of_the_previous_spouses,
+      Date_of_divorce__c: user.date_of_divorce&.iso8601,
+      Tax_Resident__c: user.tax_resident ? 'Yes' : 'No',
+      PoA_made_in_Spain__c: user.poa_made_in_spain == 'yes' ? 'Yes' : 'No',
+      PoA_for__c: user.salesforce_poa_for,
+      Currency__c: user.currency,
+      Needs_NIE__c: user.needs_nie == 'yes' ? 'Yes' : 'No',
+      Needs_Mortgage__c: user.needs_mortgage,
+      Wants_to_holiday_let__c: user.wants_to_holiday_let,
+      Has_a_Spanish_Bank_Account__c: user.has_a_spanish_bank_account == 'yes' ? 'Yes' : 'No',
+      B_Preferred_Notary_date__c: user.b_preferred_notary_date&.iso8601,
+      Requested_Services__c: user.requested_services,
     }
   end
 

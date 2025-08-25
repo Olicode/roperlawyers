@@ -32,6 +32,19 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def salesforce_poa_for
+    case poa_for
+    when "buying"
+      "Buying"
+    when "selling"
+      "Selling"
+    when "both"
+      "Buying & Selling"
+    when "all"
+      "Buying, Selling & Mortgage"
+    end
+  end
+
   private
 
   def send_updates_to_admin
