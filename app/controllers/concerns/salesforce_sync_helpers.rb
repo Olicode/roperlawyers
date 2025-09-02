@@ -52,6 +52,7 @@ module SalesforceSyncHelpers
       Has_a_Spanish_Bank_Account__c: user.has_a_spanish_bank_account == 'yes' ? 'Yes' : 'No',
       B_Preferred_Notary_date__c: user.b_preferred_notary_date&.iso8601,
       Requested_Services__c: user.salesforce_requested_services,
+      FX_Quote_Referral_Consent__c: user.fx_quote_referral_consent? ? 'Yes' : 'No',
     }
   end
 

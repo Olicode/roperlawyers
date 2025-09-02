@@ -304,6 +304,19 @@ If you plan to holiday let your property, three legal steps are required. Tick a
     </div>
   </fieldset>
 
+  <p class="mt-3">Would you like us to pass your contact details to a trusted currency exchange company for a quote? (e.g., pounds to euros or vice versa)</p>
+  <fieldset class="mb-3">
+    <legend class="visually-hidden">FX quote referral consent</legend>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :fx_quote_referral_consent, true, id: 'fx_quote_referral_yes', class: 'form-check-input' %>
+      <%= form.label :fx_quote_referral_yes, 'Yes, please', class: 'form-check-label ms-1 me-3' %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :fx_quote_referral_consent, false, id: 'fx_quote_referral_no', class: 'form-check-input' %>
+      <%= form.label :fx_quote_referral_no, 'No, thank you', class: 'form-check-label ms-1' %>
+    </div>
+  </fieldset>
+
   <p class="mt-3">Will you need a mortgage?</p>
   <fieldset class="mb-3">
     <legend class="visually-hidden">Apply for mortgage</legend>
