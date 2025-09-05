@@ -35,7 +35,6 @@ module UserFieldDefinitions
         passport_document: { 
           label: "Upload a copy of your passport",
           email_label: "Passport",
-          virtual: true, 
           type: :attachment,
           file_types: "PDF, J PG, PNG"
         }
@@ -587,9 +586,9 @@ module UserFieldDefinitions
     when :boolean
       value == true ? "Yes" : "No"
     when :attachment
-      value.attached? ? "Yes" : "No"
+      value.attached? ? "✓ Document Uploaded" : "No"
     when :attachments
-      value.attached? ? "Yes (#{value.count} files)" : "No"
+      value.attached? ? "✓ #{value.count} Document#{'s' if value.count != 1} Uploaded" : "No"
     when :checkbox_group
       # Handle requested_services which is stored as JSON string
       if value.is_a?(String)
@@ -612,5 +611,46 @@ module UserFieldDefinitions
   # Get all field names as a flat array (useful for monitoring changes)
   def self.all_field_names
     USER_FIELDS.values.flat_map { |section| section[:fields].keys }.map(&:to_s)
+  end
+
+  # Get all attachment fields across all sections
+  def self.all_attachment_fields
+    attachment_fields = []
+    
+    USER_FIELDS.each do |section_key, section_data|
+      section_data[:fields].each do |field_name, field_config|
+        if [:attachment, :attachments].include?(field_config[:type])
+          attachment_fields << {
+            field_name: field_name,
+            field_config: field_config,
+            section_key: section_key,
+            section_title: section_data[:title]
+          }
+        end
+      end
+    end
+    
+    attachment_fields
+  end
+
+  # Get all non-attachment fields across all sections
+  # Returns the same structure as USER_FIELDS but without attachment fields or sections that only contain attachments
+  def self.all_non_attachment_fields
+    filtered_fields = {}
+    
+    USER_FIELDS.each do |section_key, section_data|
+      # Skip sections that only contain attachment fields (like vv_license_documents)
+      non_attachment_fields_in_section = section_data[:fields].reject do |field_name, field_config|
+        [:attachment, :attachments].include?(field_config[:type])
+      end
+      
+      # Only include the section if it has non-attachment fields
+      if non_attachment_fields_in_section.any?
+        filtered_fields[section_key] = section_data.dup
+        filtered_fields[section_key][:fields] = non_attachment_fields_in_section
+      end
+    end
+    
+    filtered_fields
   end
 end

@@ -18,6 +18,91 @@ module UserFormHelper
     end
   end
 
+  # Helper method to check if a section should be displayed based on conditional logic
+  def should_display_section?(user, section_data)
+    return true unless section_data[:conditional_display]
+    
+    field_name = section_data[:conditional_display][:field]
+    contains_value = section_data[:conditional_display][:contains]
+    field_value = user.send(field_name)
+    
+    if field_value.is_a?(String) && field_value.present?
+      begin
+        parsed_value = JSON.parse(field_value)
+        parsed_value.include?(contains_value) if parsed_value.is_a?(Array)
+      rescue JSON::ParserError
+        field_value.include?(contains_value)
+      end
+    else
+      false
+    end
+  end
+
+  # Helper method to check if a section has any content to display
+  def section_has_content?(user, section_data)
+    section_data[:fields].any? do |field_name, field_config|
+      next if field_config[:virtual]
+      field_has_value?(user, field_name, field_config)
+    end
+  end
+
+  # Helper method to check if a field has a value worth displaying
+  def field_has_value?(user, field_name, field_config)
+    value = user.send(field_name)
+    
+    case field_config[:type]
+    when :attachment, :attachments
+      value.attached?
+    when :checkbox_group
+      value.present? && JSON.parse(value).any? rescue false
+    else
+      value.present?
+    end
+  end
+
+  # Helper method to render user field values for display (show page)
+  def render_user_field_value(user, field_name, field_config)
+    value = user.send(field_name)
+    
+    case field_config[:type]
+    when :date
+      value&.strftime("%d/%m/%Y") || "Not provided"
+    when :boolean
+      value == true ? "Yes" : "No"
+    when :attachment
+      if value.attached?
+        content_tag :span, class: "text-success" do
+          "✓ Document Uploaded"
+        end
+      else
+        "Not provided"
+      end
+    when :attachments
+      if value.attached?
+        content_tag :span, class: "text-success" do
+          "✓ #{pluralize(value.count, 'Document')} Uploaded"
+        end
+      else
+        "Not provided"
+      end
+    when :checkbox_group
+      if value.present?
+        services = JSON.parse(value) rescue []
+        if services.any?
+          content_tag :ul, class: "list-group mb-3" do
+            services.map { |service| content_tag(:li, service, class: "list-group-item") }.join.html_safe
+          end
+        else
+          "No services selected"
+        end
+      else
+        "No services selected"
+      end
+    else
+      value.presence || "Not provided"
+    end
+  end
+
   # Generate form fields dynamically based on UserFieldDefinitions
   def render_user_field(form, field_name, field_config, options = {})
     case field_config[:type]
@@ -311,6 +396,21 @@ module UserFormHelper
   end
 
   def render_checkbox_group_field(form, field_name, field_config, options)
+    # Get current user's selected services
+    current_values = []
+    if form.object && form.object.send(field_name).present?
+      stored_value = form.object.send(field_name)
+      if stored_value.is_a?(String)
+        begin
+          current_values = JSON.parse(stored_value)
+        rescue JSON::ParserError
+          current_values = []
+        end
+      elsif stored_value.is_a?(Array)
+        current_values = stored_value
+      end
+    end
+    
     field_config[:sections].map do |section|
       content_tag(:div, class: "mb-4") do
         content_tag(:h5, section[:title], class: "mb-2") +
@@ -322,8 +422,17 @@ module UserFormHelper
               stimulus_attrs['data-user-form-target'] = option[:stimulus_target]
             end
             
+            # Check if this option is selected
+            is_checked = current_values.include?(option[:value])
+            
             form.check_box(field_name, 
-              { multiple: true, class: "form-check-input service-checkbox", id: "service_#{option[:value].downcase.gsub(/[^a-z0-9]/, '_')}", **stimulus_attrs }, 
+              { 
+                multiple: true, 
+                class: "form-check-input service-checkbox", 
+                id: "service_#{option[:value].downcase.gsub(/[^a-z0-9]/, '_')}", 
+                checked: is_checked,
+                **stimulus_attrs 
+              }, 
               option[:value], nil
             ) +
             form.label("#{field_name}_#{option[:value].downcase.gsub(/[^a-z0-9]/, '_')}", option[:label], class: "form-check-label")

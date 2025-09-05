@@ -12,7 +12,7 @@
     <th align="left" style="background-color: #f2f2f2;">Value</th>
   </tr>
   
-  <% UserFieldDefinitions::USER_FIELDS.each do |section_key, section_data| %>
+  <% UserFieldDefinitions.all_non_attachment_fields.each do |section_key, section_data| %>
     <tr>
       <td colspan="2" style="background-color: #f2f2f2;"><strong><%= section_data[:title] %></strong></td>
     </tr>
@@ -22,6 +22,30 @@
       <tr>
         <td><%= field_config[:email_label] || field_config[:label] %></td>
         <td><%= @user.format_field_value(field_name, @user.send(field_name), field_config) %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  
+  <!-- Consolidated Documents Section -->
+  <% attachment_fields = UserFieldDefinitions.all_attachment_fields %>
+  
+  <% if attachment_fields.any? %>
+    <tr>
+      <td colspan="2" style="background-color: #f2f2f2;"><strong>Documents</strong></td>
+    </tr>
+    
+    <% attachment_fields.each do |field_data| %>
+      <% value = @user.send(field_data[:field_name]) %>
+      <% has_attachment = value.present? && ((field_data[:field_config][:type] == :attachment && value.attached?) || (field_data[:field_config][:type] == :attachments && value.attached?)) %>
+      <tr>
+        <td><%= field_data[:field_config][:email_label] || field_data[:field_config][:label] %></td>
+        <td>
+          <% if has_attachment %>
+            <%= @user.format_field_value(field_data[:field_name], value, field_data[:field_config]) %>
+          <% else %>
+            <em>Not uploaded</em>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   <% end %>

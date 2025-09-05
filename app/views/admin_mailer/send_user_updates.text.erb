@@ -5,13 +5,22 @@ New update from user: <%= @user.full_name %> (<%= @user.email %>)
 User details
 ============
 
-<% UserFieldDefinitions::USER_FIELDS.each do |section_key, section_data| %>
+<% UserFieldDefinitions.all_non_attachment_fields.each do |section_key, section_data| %>
     <%= section_data[:title] %>
 
     <% section_data[:fields].each do |field_name, field_config| %>
         <% next if field_config[:virtual] %>
         <%= field_config[:email_label] || field_config[:label] %>: <%= @user.format_field_value(field_name, @user.send(field_name), field_config) %>
     <% end %>
+<% end %>
+
+Documents
+=========
+
+<% UserFieldDefinitions.all_attachment_fields.each do |field_data| %>
+    <% value = @user.send(field_data[:field_name]) %>
+    <% has_attachment = value.present? && ((field_data[:field_config][:type] == :attachment && value.attached?) || (field_data[:field_config][:type] == :attachments && value.attached?)) %>
+    <%= field_data[:field_config][:email_label] || field_data[:field_config][:label] %>: <% if has_attachment %><%= @user.format_field_value(field_data[:field_name], value, field_data[:field_config]) %><% else %>Not uploaded<% end %>
 <% end %>
 
 Salesforce Contact ID: <%= @user.sf_contact_id.present? ? @user.sf_contact_id : "Not yet created" %>
