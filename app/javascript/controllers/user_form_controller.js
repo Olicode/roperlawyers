@@ -8,36 +8,59 @@ export default class extends Controller {
     "nieYesRadio",
     "nieFields",
     "parentFields",
-    // Reservation/Utility/Account
+    // Bank Details Section
     "payYes",
     "payNo",
-    "resSection",
     "sameBox",
-    "payFee",
-    "contractFld",
-    "balanceFld",
+    "reservationDepositAccount",
+    "privateContractAccount", 
+    "remainingBalanceAccount",
     "hasSpanishAccountYes",
     "hasSpanishAccountNo",
-    "utilitySection",
+    "rOriginBankDetails",
     // File Upload
     "fileUploadInput",
     "fileUploadLabel",
     // Spouse Section
     "currentlyMarriedTrue",
     "currentlyMarriedFalse",
-    "currentSpouseSection",
     "previouslyMarriedTrue",
     "previouslyMarriedFalse",
-    "previousSpouseSection",
+    // Title Deed Section
+    "canProvideTitleDeedUploadNow",
+    "canProvideTitleDeedSendLater",
+    "canProvideTitleDeedCantFind",
+    // CEE Section
+    "energyEfficiencyCertificateCeeProvided",
+    "energyEfficiencyCertificateCeeClientWillProvide",
+    "energyEfficiencyCertificateCeeWeNeedToApply",
     // PoA Section
     "needsPoaYes",
     "needsPoaNo",
     "needsPoaAlready",
-    "poaDetails",
     "poaSection",
+    "poaFor",
+    "poaMadeInSpain",
+    // Conditional field targets
+    "standingOrdersBankDetails",
+    "nieNumber",
+    "nieDocument",
+    "fatherSFirstName",
+    "motherSFirstName",
+    "nameOfThePresentSpouse",
+    "nameOfThePreviousSpouses",
+    "dateOfDivorce",
+    "dateOfDecease",
+    "titleDeedDocuments",
+    "ceeDocuments",
+    // Service checkboxes
     "servicePurchase",
     "serviceSale",
     "serviceNewBuild",
+    "serviceVv",
+    "serviceRegistry",
+    "serviceActivities",
+    "serviceWill",
     // Section toggles
     "sectionPurchase",
     "sectionSale",
@@ -45,11 +68,6 @@ export default class extends Controller {
     "sectionWill",
     "sectionShortTerm",
     "sectionDocuments",
-    // Service checkboxes
-    "serviceVv",
-    "serviceRegistry",
-    "serviceActivities",
-    "serviceWill",
     // Special sections
     "vvLicenseUploadSection",
     "civilLiabilitySection",
@@ -65,18 +83,13 @@ export default class extends Controller {
     "titleDeedSendLaterRadio",
     "titleDeedCantFindRadio",
     "titleDeedUploadSection",
-    // Date of birth
-    "dateOfBirthField",
-    "dateOfBirthError",
   ];
 
   connect() {
     // NIE toggle
     if (
       this.hasNieNoRadioTarget &&
-      this.hasNieYesRadioTarget &&
-      this.hasNieFieldsTarget &&
-      this.hasParentFieldsTarget
+      this.hasNieYesRadioTarget
     ) {
       this.nieNoRadioTarget.addEventListener(
         "change",
@@ -86,44 +99,39 @@ export default class extends Controller {
         "change",
         this.toggleSections.bind(this)
       );
-      this.nieFieldsTarget.classList.add("hidden-section");
-      this.parentFieldsTarget.classList.add("hidden-section");
+      // Hide all conditional NIE fields by default (they're already hidden with display: none from Rails)
+      // No need to add hidden-section class since we're using display style now
       if (this.nieNoRadioTarget.checked || this.nieYesRadioTarget.checked) {
         this.toggleSections();
       }
     }
 
-    // Reservation/Utility/Account
-
+    // Bank Details Section
     if (
       this.hasPayYesTarget &&
-      this.hasPayNoTarget &&
-      this.hasResSectionTarget &&
-      this.hasSameBoxTarget &&
-      this.hasPayFeeTarget &&
-      this.hasContractFldTarget &&
-      this.hasBalanceFldTarget &&
-      this.hasHasSpanishAccountYesTarget &&
-      this.hasHasSpanishAccountNoTarget &&
-      this.hasUtilitySectionTarget
+      this.hasPayNoTarget
     ) {
       [this.payYesTarget, this.payNoTarget].forEach((rb) =>
-        rb.addEventListener("change", this.toggleReservationSection.bind(this))
+        rb.addEventListener("change", this.toggleReservationDepositAccount.bind(this))
       );
-      this.sameBoxTarget.addEventListener(
-        "change",
-        this.syncAccounts.bind(this)
-      );
-      [this.payFeeTarget, this.contractFldTarget].forEach((f) =>
-        f.addEventListener("input", this.mirrorAccounts.bind(this))
-      );
+      this.toggleReservationDepositAccount();
+    }
+
+    // Set up bank account sync - but delay to allow sections to be shown first
+    setTimeout(() => {
+      this.setupBankAccountSync();
+    }, 100);
+
+    if (
+      this.hasHasSpanishAccountYesTarget &&
+      this.hasHasSpanishAccountNoTarget
+    ) {
       this.hasSpanishAccountYesTarget.addEventListener("change", () => {
         this.toggleUtilitySection();
       });
       this.hasSpanishAccountNoTarget.addEventListener("change", () => {
         this.toggleUtilitySection();
       });
-      this.toggleReservationSection();
       this.toggleUtilitySection();
     }
 
@@ -134,10 +142,8 @@ export default class extends Controller {
     if (
       this.hasCurrentlyMarriedTrueTarget &&
       this.hasCurrentlyMarriedFalseTarget &&
-      this.hasCurrentSpouseSectionTarget &&
       this.hasPreviouslyMarriedTrueTarget &&
-      this.hasPreviouslyMarriedFalseTarget &&
-      this.hasPreviousSpouseSectionTarget
+      this.hasPreviouslyMarriedFalseTarget
     ) {
       this.currentlyMarriedTrueTarget.addEventListener(
         "change",
@@ -158,12 +164,53 @@ export default class extends Controller {
       this.toggleSpouseSections();
     }
 
+    // Title Deed Section
+    if (
+      this.hasCanProvideTitleDeedUploadNowTarget &&
+      this.hasCanProvideTitleDeedSendLaterTarget &&
+      this.hasCanProvideTitleDeedCantFindTarget
+    ) {
+      this.canProvideTitleDeedUploadNowTarget.addEventListener(
+        "change",
+        this.toggleTitleDeedUpload.bind(this)
+      );
+      this.canProvideTitleDeedSendLaterTarget.addEventListener(
+        "change",
+        this.toggleTitleDeedUpload.bind(this)
+      );
+      this.canProvideTitleDeedCantFindTarget.addEventListener(
+        "change",
+        this.toggleTitleDeedUpload.bind(this)
+      );
+      this.toggleTitleDeedUpload();
+    }
+
+    // CEE Section
+    if (
+      this.hasEnergyEfficiencyCertificateCeeProvidedTarget &&
+      this.hasEnergyEfficiencyCertificateCeeClientWillProvideTarget &&
+      this.hasEnergyEfficiencyCertificateCeeWeNeedToApplyTarget
+    ) {
+      this.energyEfficiencyCertificateCeeProvidedTarget.addEventListener(
+        "change",
+        this.toggleCeeUpload.bind(this)
+      );
+      this.energyEfficiencyCertificateCeeClientWillProvideTarget.addEventListener(
+        "change",
+        this.toggleCeeUpload.bind(this)
+      );
+      this.energyEfficiencyCertificateCeeWeNeedToApplyTarget.addEventListener(
+        "change",
+        this.toggleCeeUpload.bind(this)
+      );
+      this.toggleCeeUpload();
+    }
+
     // PoA Section
     if (
       this.hasNeedsPoaYesTarget &&
       this.hasNeedsPoaNoTarget &&
       this.hasNeedsPoaAlreadyTarget &&
-      this.hasPoaDetailsTarget &&
       this.hasPoaSectionTarget &&
       this.hasServicePurchaseTarget &&
       this.hasServiceSaleTarget &&
@@ -271,94 +318,47 @@ export default class extends Controller {
       });
       this.toggleTitleDeedUploadSection();
     }
-
-    // Date of birth validation
-    if (this.hasDateOfBirthFieldTarget && this.hasDateOfBirthErrorTarget) {
-      this.dateOfBirthFieldTarget.addEventListener(
-        "input",
-        this.validateDateOfBirth.bind(this)
-      );
-    }
   }
 
   // NIE
   toggleSections() {
-    if (this.nieNoRadioTarget.checked) {
-      this.nieFieldsTarget.classList.remove("hidden-section");
-    } else {
-      this.nieFieldsTarget.classList.add("hidden-section");
+    const nieNoVisible = this.nieNoRadioTarget.checked ? "block" : "none";
+    const nieYesVisible = this.nieYesRadioTarget.checked ? "block" : "none";
+    
+    // Toggle NIE number and document fields (when "No" is selected)
+    if (this.hasNieNumberTarget) {
+      this.nieNumberTarget.style.display = nieNoVisible;
     }
-    if (this.nieYesRadioTarget.checked) {
-      this.parentFieldsTarget.classList.remove("hidden-section");
-    } else {
-      this.parentFieldsTarget.classList.add("hidden-section");
+    
+    if (this.hasNieDocumentTarget) {
+      this.nieDocumentTarget.style.display = nieNoVisible;
     }
+
+    // Toggle parent name fields (when "Yes" is selected) - grouped field
+    if (this.hasFatherSFirstNameTarget) {
+      this.fatherSFirstNameTarget.style.display = nieYesVisible;
+    }
+
     // Ensure POA section visibility updates when NIE Yes is selected
     if (typeof this.updatePoaSectionVisibility === "function") {
       this.updatePoaSectionVisibility();
     }
   }
 
-  // Reservation/Utility/Account
-  toggleReservationSection() {
-    this.resSectionTarget.style.display = this.payYesTarget.checked
-      ? "block"
-      : "none";
-    this.syncAccounts();
-  }
-
-  toggleUtilitySection() {
-    if (this.hasUtilitySectionTarget && this.hasHasSpanishAccountYesTarget) {
-      this.utilitySectionTarget.style.display = this.hasSpanishAccountYesTarget
-        .checked
-        ? "block"
-        : "none";
-    }
-  }
-
-  syncAccounts() {
-    if (!this.sameBoxTarget.checked) {
-      [
-        this.payFeeTarget,
-        this.contractFldTarget,
-        this.balanceFldTarget,
-      ].forEach((f) => f.removeAttribute("readonly"));
-      return;
-    }
-    if (this.payYesTarget.checked) {
-      [this.contractFldTarget, this.balanceFldTarget].forEach((f) => {
-        f.value = this.payFeeTarget.value;
-        f.setAttribute("readonly", "readonly");
-      });
-    } else {
-      this.balanceFldTarget.value = this.contractFldTarget.value;
-      this.balanceFldTarget.setAttribute("readonly", "readonly");
-      this.contractFldTarget.removeAttribute("readonly");
-    }
-  }
-
-  mirrorAccounts(e) {
-    if (!this.sameBoxTarget.checked) return;
-    if (e.target === this.payFeeTarget && this.payYesTarget.checked) {
-      [this.contractFldTarget, this.balanceFldTarget].forEach(
-        (f) => (f.value = this.payFeeTarget.value)
-      );
-    } else if (
-      e.target === this.contractFldTarget &&
-      !this.payYesTarget.checked
-    ) {
-      this.balanceFldTarget.value = this.contractFldTarget.value;
-    }
-  }
 
   /**
    * Show/hide PoA details section based on radio selection.
    */
   togglePoaDetails() {
-    if (this.hasPoaDetailsTarget && this.hasNeedsPoaYesTarget) {
-      this.poaDetailsTarget.style.display = this.needsPoaYesTarget.checked
-        ? "block"
-        : "none";
+    const isVisible = this.needsPoaYesTarget.checked ? "block" : "none";
+    
+    // Toggle POA conditional fields using Stimulus targets
+    if (this.hasPoaForTarget) {
+      this.poaForTarget.style.display = isVisible;
+    }
+    
+    if (this.hasPoaMadeInSpainTarget) {
+      this.poaMadeInSpainTarget.style.display = isVisible;
     }
   }
 
@@ -379,15 +379,50 @@ export default class extends Controller {
    * Show/hide spouse sections based on radio selections.
    */
   toggleSpouseSections() {
-    if (this.currentlyMarriedTrueTarget.checked) {
-      this.currentSpouseSectionTarget.style.display = "block";
-    } else {
-      this.currentSpouseSectionTarget.style.display = "none";
+    // Toggle current spouse field (when "Yes" is selected for currently married)
+    const currentSpouseVisible = this.currentlyMarriedTrueTarget.checked ? "block" : "none";
+    if (this.hasNameOfThePresentSpouseTarget) {
+      this.nameOfThePresentSpouseTarget.style.display = currentSpouseVisible;
     }
-    if (this.previouslyMarriedTrueTarget.checked) {
-      this.previousSpouseSectionTarget.style.display = "block";
-    } else {
-      this.previousSpouseSectionTarget.style.display = "none";
+
+    // Toggle previous spouse fields (when "Yes" is selected for previously married)
+    const previousSpouseVisible = this.previouslyMarriedTrueTarget.checked ? "block" : "none";
+    if (this.hasNameOfThePreviousSpousesTarget) {
+      this.nameOfThePreviousSpousesTarget.style.display = previousSpouseVisible;
+    }
+    if (this.hasDateOfDivorceTarget) {
+      this.dateOfDivorceTarget.style.display = previousSpouseVisible;
+    }
+    if (this.hasDateOfDeceaseTarget) {
+      this.dateOfDeceaseTarget.style.display = previousSpouseVisible;
+    }
+
+    // Keep legacy section toggles for backward compatibility
+    if (this.hasCurrentSpouseSectionTarget) {
+      this.currentSpouseSectionTarget.style.display = currentSpouseVisible;
+    }
+    if (this.hasPreviousSpouseSectionTarget) {
+      this.previousSpouseSectionTarget.style.display = previousSpouseVisible;
+    }
+  }
+
+  /**
+   * Show/hide title deed upload section based on radio selection.
+   */
+  toggleTitleDeedUpload() {
+    const uploadVisible = this.canProvideTitleDeedUploadNowTarget.checked ? "block" : "none";
+    if (this.hasTitleDeedDocumentsTarget) {
+      this.titleDeedDocumentsTarget.style.display = uploadVisible;
+    }
+  }
+
+  /**
+   * Show/hide CEE upload section based on radio selection.
+   */
+  toggleCeeUpload() {
+    const uploadVisible = this.energyEfficiencyCertificateCeeProvidedTarget.checked ? "block" : "none";
+    if (this.hasCeeDocumentsTarget) {
+      this.ceeDocumentsTarget.style.display = uploadVisible;
     }
   }
 
@@ -491,13 +526,25 @@ export default class extends Controller {
       // Drag & drop handlers
       label.addEventListener("dragover", function (e) {
         e.preventDefault();
+        e.stopPropagation();
         label.classList.add("dragover");
       });
-      label.addEventListener("dragleave", function () {
-        label.classList.remove("dragover");
+      label.addEventListener("dragenter", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        label.classList.add("dragover");
+      });
+      label.addEventListener("dragleave", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        // Only remove dragover if we're leaving the label itself, not a child element
+        if (!label.contains(e.relatedTarget)) {
+          label.classList.remove("dragover");
+        }
       });
       label.addEventListener("drop", function (e) {
         e.preventDefault();
+        e.stopPropagation();
         label.classList.remove("dragover");
         if (e.dataTransfer.files.length) {
           for (let i = 0; i < e.dataTransfer.files.length; i++) {
@@ -530,6 +577,7 @@ export default class extends Controller {
       const checked = purchaseCheckboxes.some((cb) => cb.checked);
       this.sectionPurchaseTarget.style.display = checked ? "block" : "none";
     }
+    
     // Show/hide Sale section
     if (
       this.hasSectionSaleTarget &&
@@ -543,6 +591,7 @@ export default class extends Controller {
       const checked = saleCheckboxes.some((cb) => cb.checked);
       this.sectionSaleTarget.style.display = checked ? "block" : "none";
     }
+
     // Show/hide New Build section
     if (
       this.hasSectionNewBuildTarget &&
@@ -556,6 +605,7 @@ export default class extends Controller {
       const checked = newBuildCheckboxes.some((cb) => cb.checked);
       this.sectionNewBuildTarget.style.display = checked ? "block" : "none";
     }
+
     // Show/hide Will section
     if (
       this.hasSectionWillTarget &&
@@ -569,86 +619,44 @@ export default class extends Controller {
       const checked = willCheckboxes.some((cb) => cb.checked);
       this.sectionWillTarget.style.display = checked ? "block" : "none";
     }
-    // Show/hide Short Term section if any related service is checked (supports multiple checkboxes)
-    if (
-      this.hasSectionShortTermTarget &&
-      this.hasServiceVvTargets &&
-      this.hasServiceRegistryTargets &&
-      this.hasServiceActivitiesTargets
-    ) {
+
+    // Show/hide Short Term section if any related service is checked
+    if (this.hasSectionShortTermTarget) {
       const checked =
-        this.serviceVvTargets.some((cb) => cb.checked) ||
-        this.serviceRegistryTargets.some((cb) => cb.checked) ||
-        this.serviceActivitiesTargets.some((cb) => cb.checked);
+        (this.hasServiceVvTarget && this.serviceVvTarget.checked) ||
+        (this.hasServiceRegistryTarget && this.serviceRegistryTarget.checked) ||
+        (this.hasServiceActivitiesTarget && this.serviceActivitiesTarget.checked);
       this.sectionShortTermTarget.style.display = checked ? "block" : "none";
     }
-    // Show/hide Documents section (sale or short-term compliance, supports multiple checkboxes)
-    if (
-      this.hasSectionDocumentsTarget &&
-      (this.hasServiceSaleTargets || this.hasServiceSaleTarget) &&
-      (this.hasServiceVvTargets || this.hasServiceVvTarget) &&
-      (this.hasServiceRegistryTargets || this.hasServiceRegistryTarget) &&
-      (this.hasServiceActivitiesTargets || this.hasServiceActivitiesTarget)
-    ) {
-      const saleCheckboxes = this.serviceSaleTargets?.length
-        ? this.serviceSaleTargets
-        : this.serviceSaleTarget
-        ? [this.serviceSaleTarget]
-        : [];
-      const vvCheckboxes = this.serviceVvTargets?.length
-        ? this.serviceVvTargets
-        : this.serviceVvTarget
-        ? [this.serviceVvTarget]
-        : [];
-      const registryCheckboxes = this.serviceRegistryTargets?.length
-        ? this.serviceRegistryTargets
-        : this.serviceRegistryTarget
-        ? [this.serviceRegistryTarget]
-        : [];
-      const activitiesCheckboxes = this.serviceActivitiesTargets?.length
-        ? this.serviceActivitiesTargets
-        : this.serviceActivitiesTarget
-        ? [this.serviceActivitiesTarget]
-        : [];
 
+    // Show/hide Documents section (sale or short-term compliance)
+    if (this.hasSectionDocumentsTarget) {
       const checked =
-        saleCheckboxes.some((cb) => cb.checked) ||
-        vvCheckboxes.some((cb) => cb.checked) ||
-        registryCheckboxes.some((cb) => cb.checked) ||
-        activitiesCheckboxes.some((cb) => cb.checked);
+        (this.hasServiceSaleTarget && this.serviceSaleTarget.checked) ||
+        (this.hasServiceVvTarget && this.serviceVvTarget.checked) ||
+        (this.hasServiceRegistryTarget && this.serviceRegistryTarget.checked) ||
+        (this.hasServiceActivitiesTarget && this.serviceActivitiesTarget.checked);
 
       this.sectionDocumentsTarget.style.display = checked ? "block" : "none";
     }
+
     // VV License upload: show only if Registry or Activities is selected and NOT VV License (supports multiple checkboxes)
-    if (
-      this.hasVvLicenseUploadSectionTarget &&
-      this.hasServiceRegistryTargets &&
-      this.hasServiceActivitiesTargets &&
-      this.hasServiceVvTargets
-    ) {
+    if (this.hasVvLicenseUploadSectionTarget) {
       const registryOrActivitiesChecked =
-        this.serviceRegistryTargets.some((cb) => cb.checked) ||
-        this.serviceActivitiesTargets.some((cb) => cb.checked);
-      const vvChecked = this.serviceVvTargets.some((cb) => cb.checked);
+        this.serviceRegistryTarget.checked ||
+        this.serviceActivitiesTarget.checked;
+      const vvChecked = this.serviceVvTarget.checked;
       this.vvLicenseUploadSectionTarget.style.display =
         registryOrActivitiesChecked && !vvChecked ? "block" : "none";
     }
-    // Civil Liability and IGIC: hide when only selling (show for holiday lets, supports multiple checkboxes)
+
+    // Civil Liability and IGIC: hide when only selling (show for holiday lets)
     const isOnlySelling =
-      this.hasServiceSaleTargets &&
-      this.serviceSaleTargets.some((cb) => cb.checked) &&
-      !(
-        this.hasServiceVvTargets &&
-        this.serviceVvTargets.some((cb) => cb.checked)
-      ) &&
-      !(
-        this.hasServiceRegistryTargets &&
-        this.serviceRegistryTargets.some((cb) => cb.checked)
-      ) &&
-      !(
-        this.hasServiceActivitiesTargets &&
-        this.serviceActivitiesTargets.some((cb) => cb.checked)
-      );
+      this.hasServiceSaleTarget &&
+      this.serviceSaleTarget.checked &&
+      !(this.hasServiceVvTarget && this.serviceVvTarget.checked) &&
+      !(this.hasServiceRegistryTarget && this.serviceRegistryTarget.checked) &&
+      !(this.hasServiceActivitiesTarget && this.serviceActivitiesTarget.checked);
     if (this.hasCivilLiabilitySectionTarget) {
       this.civilLiabilitySectionTarget.style.display = isOnlySelling
         ? "none"
@@ -659,32 +667,12 @@ export default class extends Controller {
         ? "none"
         : "block";
     }
-    // Water/Electricity Bills: only when selling (supports single or multiple checkboxes)
-    if (
-      this.hasWaterBillSectionTarget &&
-      (this.hasServiceSaleTargets || this.hasServiceSaleTarget)
-    ) {
-      const saleCheckboxes = this.serviceSaleTargets?.length
-        ? this.serviceSaleTargets
-        : this.serviceSaleTarget
-        ? [this.serviceSaleTarget]
-        : [];
-      const checked = saleCheckboxes.some((cb) => cb.checked);
-      this.waterBillSectionTarget.style.display = checked ? "block" : "none";
+    // Water/Electricity Bills: hide when only selling (show for holiday lets)
+    if (this.hasWaterBillSectionTarget) {
+      this.waterBillSectionTarget.style.display = isOnlySelling ? "none" : "block";
     }
-    if (
-      this.hasElectricityBillSectionTarget &&
-      (this.hasServiceSaleTargets || this.hasServiceSaleTarget)
-    ) {
-      const saleCheckboxes = this.serviceSaleTargets?.length
-        ? this.serviceSaleTargets
-        : this.serviceSaleTarget
-        ? [this.serviceSaleTarget]
-        : [];
-      const checked = saleCheckboxes.some((cb) => cb.checked);
-      this.electricityBillSectionTarget.style.display = checked
-        ? "block"
-        : "none";
+    if (this.hasElectricityBillSectionTarget) {
+      this.electricityBillSectionTarget.style.display = isOnlySelling ? "none" : "block";
     }
   }
 
@@ -711,34 +699,87 @@ export default class extends Controller {
     }
   }
 
-  // Date of birth validation
-  validateDateOfBirth() {
-    if (!(this.hasDateOfBirthFieldTarget && this.hasDateOfBirthErrorTarget))
+  // Bank Details Section Toggle Methods
+  toggleReservationDepositAccount() {
+    if (!this.hasROriginBankDetailsTarget) return;
+    
+    const shouldShow = this.hasPayYesTarget && this.payYesTarget.checked;
+    this.rOriginBankDetailsTarget.style.display = shouldShow ? "block" : "none";
+  }
+
+  toggleUtilitySection() {
+    if (!this.hasStandingOrdersBankDetailsTarget) return;
+    
+    const shouldShow = this.hasHasSpanishAccountYesTarget && this.hasSpanishAccountYesTarget.checked;
+    this.standingOrdersBankDetailsTarget.style.display = shouldShow ? "block" : "none";
+  }
+
+  syncAccounts() {
+    if (!this.hasSameBoxTarget) {
       return;
-    const inputDate = this.dateOfBirthFieldTarget.value;
-    const isValidFormat = this.dateOfBirthFieldTarget.checkValidity();
-    if (isValidFormat) {
-      const dateParts = inputDate.split("-");
-      const year = parseInt(dateParts[0]);
-      const month = parseInt(dateParts[1]);
-      const day = parseInt(dateParts[2]);
-      if (
-        year >= 1900 &&
-        year <= 2020 &&
-        month >= 1 &&
-        month <= 12 &&
-        day >= 1 &&
-        day <= 31
-      ) {
-        this.dateOfBirthErrorTarget.textContent = "";
-      } else {
-        this.dateOfBirthErrorTarget.textContent =
-          "Invalid date. Please choose a valid date for your date of birth!";
-      }
-    } else {
-      this.dateOfBirthErrorTarget.textContent =
-        "Please use the format YYYY-MM-DD.";
     }
+    
+    const checkbox = this.sameBoxTarget.querySelector('input[type="checkbox"]');
+    const shouldSync = checkbox ? checkbox.checked : false;
+    
+    if (shouldSync) {
+      // Copy reservation deposit account to private contract and remaining balance
+      if (this.hasReservationDepositAccountTarget && this.hasPrivateContractAccountTarget) {
+        const reservationValue = this.reservationDepositAccountTarget.value || '';
+        const contractInput = this.privateContractAccountTarget;
+        if (contractInput) contractInput.value = reservationValue;
+      }
+      
+      if (this.hasReservationDepositAccountTarget && this.hasRemainingBalanceAccountTarget) {
+        const reservationValue = this.reservationDepositAccountTarget.value || '';
+        const balanceInput = this.remainingBalanceAccountTarget;
+        if (balanceInput) balanceInput.value = reservationValue;
+      }
+    }
+  }
+
+  setupBankAccountSync() {
+    if (
+      this.hasSameBoxTarget &&
+      this.hasPrivateContractAccountTarget &&
+      this.hasRemainingBalanceAccountTarget
+    ) {
+      
+      const checkbox = this.sameBoxTarget.querySelector('input[type="checkbox"]');
+      if (checkbox) {
+        checkbox.addEventListener(
+          "change",
+          this.syncAccounts.bind(this)
+        );
+      }
+      
+      // Attach input listeners to the actual input fields within the targets
+      const contractInput = this.privateContractAccountTarget;
+      const balanceInput = this.remainingBalanceAccountTarget;
+      const reservationInput = this.rOriginBankDetailsTarget?.querySelector('input');
+      
+      if (contractInput) {
+        contractInput.addEventListener("input", this.mirrorAccounts.bind(this));
+      }
+      if (balanceInput) {
+        balanceInput.addEventListener("input", this.mirrorAccounts.bind(this));
+      }
+      
+      // Also listen to reservation input changes for mirroring
+      if (reservationInput) {
+        reservationInput.addEventListener("input", this.mirrorAccounts.bind(this));
+      }
+    }
+  }
+
+  mirrorAccounts() {
+    const checkbox = this.sameBoxTarget?.querySelector('input[type="checkbox"]');
+    if (!this.hasSameBoxTarget || !checkbox || !checkbox.checked) {
+      return;
+    }
+    
+    // Mirror the reservation deposit account value to other fields when they change
+    this.syncAccounts();
   }
 
   /**
@@ -756,7 +797,7 @@ export default class extends Controller {
         } else {
           button.innerText = "Submitting...";
         }
-      }, 10);
+      }, 100);
     }
     // Do not call event.preventDefault() or event.stopPropagation()
   }

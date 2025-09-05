@@ -1,78 +1,17 @@
 User Update Notification
 
-New update from user: <%= @user.email %>
+New update from user: <%= @user.full_name %> (<%= @user.email %>)
 
-User Attributes:
-=======================================
+User details
+============
 
-Personal Information:
----------------------
-First Name: <%= @user.first_name.present? ? @user.first_name : "-" %>
-Last Name: <%= @user.last_name.present? ? @user.last_name : "-" %>
-Email: <%= @user.email.present? ? @user.email : "-" %>
-Mobile Phone: <%= @user.mobile_phone.present? ? @user.mobile_phone : "-" %>
-Full Name on Passport: <%= @user.full_name_on_passport.present? ? @user.full_name_on_passport : "-" %>
-Passport Number: <%= @user.passport_number.present? ? @user.passport_number : "-" %>
-Date of Birth: <%= @user.date_of_birth.present? ? @user.date_of_birth.strftime("%d/%m/%Y") : "-" %>
-Expiry Date: <%= @user.expiry_date.present? ? @user.expiry_date.strftime("%d/%m/%Y") : "-" %>
-Nationality: <%= @user.nationality.present? ? @user.nationality : "-" %>
-Profession: <%= @user.profession.present? ? @user.profession : "-" %>
-Marital Status: <%= @user.marital_status.present? ? @user.marital_status : "-" %>
-Spouse: <%= @user.spouse.present? ? @user.spouse : "-" %>
-Home Address: <%= @user.home_address.present? ? @user.home_address : "-" %>
-Currency: <%= @user.currency.present? ? @user.currency : "-" %>
-Here Until: <%= @user.here_till.present? ? @user.here_till.strftime("%d/%m/%Y") : "-" %>
-Needs Mortgage: <%= @user.needs_mortgage.present? ? @user.needs_mortgage : "-" %>
-Wants to Holiday Let: <%= @user.wants_to_holiday_let.present? ? @user.wants_to_holiday_let : "-" %>
-Tax Resident: <%= @user.tax_resident == true ? "Yes" : "No" %>
+<% UserFieldDefinitions::USER_FIELDS.each do |section_key, section_data| %>
+    <%= section_data[:title] %>
 
-Power of Attorney:
----------------------
-Needs PoA: <%= @user.needs_poa.present? ? @user.needs_poa : "-" %>
-PoA For: <%= @user.poa_for.present? ? @user.poa_for : "-" %>
-PoA Made in Spain: <%= @user.poa_made_in_spain.present? ? @user.poa_made_in_spain : "-" %>
-
-NIE Information:
----------------------
-Needs NIE: <%= @user.needs_nie.present? ? @user.needs_nie : "-" %>
-NIE Number: <%= @user.nie_number.present? ? @user.nie_number : "-" %>
-Father's First Name: <%= @user.father_s_first_name.present? ? @user.father_s_first_name : "-" %>
-Mother's First Name: <%= @user.mother_s_first_name.present? ? @user.mother_s_first_name : "-" %>
-
-Bank Details:
----------------------
-Reservation Origin Bank Details: <%= @user.r_origin_bank_details.present? ? @user.r_origin_bank_details : "-" %>
-Private Contract Origin Bank Details: <%= @user.otb_origin_bank_details.present? ? @user.otb_origin_bank_details : "-" %>
-Balance Bank Details: <%= @user.balance_bank_details.present? ? @user.balance_bank_details : "-" %>
-Has Spanish Bank Account: <%= @user.has_a_spanish_bank_account.present? ? @user.has_a_spanish_bank_account : "-" %>
-Standing Orders Bank Details: <%= @user.standing_orders_bank_details.present? ? @user.standing_orders_bank_details : "-" %>
-
-Last Will & Testament:
----------------------
-Name of Present Spouse: <%= @user.name_of_the_present_spouse.present? ? @user.name_of_the_present_spouse : "-" %>
-Name of Previous Spouses: <%= @user.name_of_the_previous_spouses.present? ? @user.name_of_the_previous_spouses : "-" %>
-Date of Divorce: <%= @user.date_of_divorce.present? ? @user.date_of_divorce.strftime("%d/%m/%Y") : "-" %>
-Date of Decease: <%= @user.date_of_decease.present? ? @user.date_of_decease.strftime("%d/%m/%Y") : "-" %>
-Father's Full Name: <%= @user.father_s_full_name.present? ? @user.father_s_full_name : "-" %>
-Father's Vital Status: <%= @user.father_s_vital_status.present? ? @user.father_s_vital_status : "-" %>
-Mother's Full Name: <%= @user.mother_s_full_name.present? ? @user.mother_s_full_name : "-" %>
-Mother's Vital Status: <%= @user.mother_s_vital_status.present? ? @user.mother_s_vital_status : "-" %>
-Children: <%= @user.children.present? ? @user.children : "-" %>
-Outline of Bequests and Order of Success: <%= @user.outline_of_bequests_and_oder_of_success.present? ? @user.outline_of_bequests_and_oder_of_success : "-" %>
-Inheritance to be Governed By: <%= @user.inheritance_to_be_governed_by.present? ? @user.inheritance_to_be_governed_by : "-" %>
-
-Document Uploads:
----------------------
-NIE Document: <%= @user.nie_document.attached? ? "Yes" : "No" %>
-Passport Document: <%= @user.passport_document.attached? ? "Yes" : "No" %>
-Nota Simple Documents: <%= @user.nota_simple_documents.attached? ? "Yes (#{@user.nota_simple_documents.count} files)" : "No" %>
-Title Deed Documents: <%= @user.title_deed_documents.attached? ? "Yes (#{@user.title_deed_documents.count} files)" : "No" %>
-VV License Documents: <%= @user.vv_license_documents.attached? ? "Yes (#{@user.vv_license_documents.count} files)" : "No" %>
-First Occupation License Documents: <%= @user.first_occupation_license_documents.attached? ? "Yes (#{@user.first_occupation_license_documents.count} files)" : "No" %>
-CEE Documents: <%= @user.cee_documents.attached? ? "Yes (#{@user.cee_documents.count} files)" : "No" %>
-Civil Liability Insurance Policy Documents: <%= @user.civil_liability_insurance_policy_documents.attached? ? "Yes (#{@user.civil_liability_insurance_policy_documents.count} files)" : "No" %>
-IGIC Registration (Modelo 400) Document: <%= @user.igic_registration_modelo_400_document.attached? ? "Yes" : "No" %>
+    <% section_data[:fields].each do |field_name, field_config| %>
+        <% next if field_config[:virtual] %>
+        <%= field_config[:email_label] || field_config[:label] %>: <%= @user.format_field_value(field_name, @user.send(field_name), field_config) %>
+    <% end %>
+<% end %>
 
 Salesforce Contact ID: <%= @user.sf_contact_id.present? ? @user.sf_contact_id : "Not yet created" %>
-
-
