@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = ["form", "successMessage", "errorMessage", "spinner"];
 
   connect() {
-    console.log("Connected to contact controller 3");
     // Hide messages and spinner on connect
     this.hideAll();
   }

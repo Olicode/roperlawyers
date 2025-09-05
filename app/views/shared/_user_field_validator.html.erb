@@ -1,0 +1,62 @@
+<%# 
+  This partial validates that all fields in the form are present in the email template
+  and vice versa. Include this in development to catch sync issues early.
+%>
+
+<% if Rails.env.development? %>
+  <% 
+    # Get all fields from UserFieldDefinitions
+    defined_fields = UserFieldDefinitions.all_field_names.sort
+    
+    # Get fields that are actually in the form (you'll need to manually update this list when adding new form fields)
+    form_fields = %w[
+      first_name last_name email mobile_phone home_address profession
+      marital_status spouse tax_resident full_name_on_passport passport_number
+      date_of_birth expiry_date nationality needs_nie nie_number
+      father_s_first_name mother_s_first_name needs_mortgage wants_to_holiday_let
+      currency needs_poa poa_for poa_made_in_spain buying_property_address
+      selling_property_address r_origin_bank_details otb_origin_bank_details
+      balance_bank_details has_a_spanish_bank_account standing_orders_bank_details
+      name_of_the_present_spouse name_of_the_previous_spouses date_of_divorce
+      date_of_decease father_s_full_name father_s_vital_status mother_s_full_name
+      mother_s_vital_status children outline_of_bequests_and_oder_of_success
+      inheritance_to_be_governed_by nie_document passport_document
+      nota_simple_documents title_deed_documents vv_license_documents
+      first_occupation_license_documents cee_documents
+      civil_liability_insurance_policy_documents igic_registration_modelo_400_document
+    ].sort
+    
+    # Find differences
+    missing_from_form = defined_fields - form_fields
+    extra_in_form = form_fields - defined_fields
+  %>
+  
+  <% if missing_from_form.any? || extra_in_form.any? %>
+    <div class="alert alert-warning mt-3" style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 1rem; border-radius: 0.25rem;">
+      <h5>⚠️ Form/Email Sync Issues Detected (Development Only)</h5>
+      
+      <% if missing_from_form.any? %>
+        <p><strong>Fields defined in UserFieldDefinitions but missing from form:</strong></p>
+        <ul>
+          <% missing_from_form.each do |field| %>
+            <li><code><%= field %></code></li>
+          <% end %>
+        </ul>
+      <% end %>
+      
+      <% if extra_in_form.any? %>
+        <p><strong>Fields in form but not defined in UserFieldDefinitions:</strong></p>
+        <ul>
+          <% extra_in_form.each do |field| %>
+            <li><code><%= field %></code></li>
+          <% end %>
+        </ul>
+      <% end %>
+      
+      <p><small>
+        Update <code>app/models/concerns/user_field_definitions.rb</code> to keep email template and form in sync.
+        This warning only appears in development.
+      </small></p>
+    </div>
+  <% end %>
+<% end %>
