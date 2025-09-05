@@ -41,7 +41,7 @@ class AdminMailerPreview < ActionMailer::Preview
       children: "Emma Doe | 15/03/2010, James Doe | 22/08/2012",
       outline_of_bequests_and_oder_of_success: "All assets in Spain: Jane Doe – 60%, Emma Doe – 20%, James Doe – 20%",
       inheritance_to_be_governed_by: "Law of country of current nationality",
-      requested_services: ["Classified Activities", "Purchase", "Sale"]
+      requested_services: '["Classified Activities", "Purchase", "Sale"]'
     )
     
     AdminMailer.send_user_updates(user)

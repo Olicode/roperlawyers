@@ -590,6 +590,20 @@ module UserFieldDefinitions
       value.attached? ? "Yes" : "No"
     when :attachments
       value.attached? ? "Yes (#{value.count} files)" : "No"
+    when :checkbox_group
+      # Handle requested_services which is stored as JSON string
+      if value.is_a?(String)
+        begin
+          parsed_services = JSON.parse(value)
+          parsed_services.is_a?(Array) ? parsed_services.join(", ") : value.to_s
+        rescue JSON::ParserError
+          value.to_s
+        end
+      elsif value.is_a?(Array)
+        value.join(", ")
+      else
+        value.to_s
+      end
     else
       value.to_s
     end
