@@ -91,7 +91,8 @@ module UserFieldDefinitions
         selling_property_address: {
           label: "Selling Property Address",
           type: :textarea,
-          style: "height: 120px;"
+          style: "height: 120px;",
+          id: "property_sale_selling_property_address"
         }
       }
     },
@@ -106,7 +107,8 @@ module UserFieldDefinitions
         selling_property_address: {
           label: "Selling Property Address",
           type: :textarea,
-          style: "height: 120px;"
+          style: "height: 120px;",
+          id: "new_build_declaration_selling_property_address"
         }
       }
     },
@@ -122,7 +124,8 @@ module UserFieldDefinitions
         buying_property_address: {
           label: "Property Address",
           type: :textarea,
-          style: "height: 120px;"
+          style: "height: 120px;",
+          id: "property_purchase_buying_property_address"
         },
         currency: {
           label: "What currency are your funds in?",

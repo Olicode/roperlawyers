@@ -367,6 +367,18 @@ module UsersHelper
     placeholder = field_config[:placeholder] || field_config[:label]
     style = field_config[:style] || ""
     
+    # Use custom ID if provided, otherwise let Rails generate it
+    field_options = {
+      class: css_classes, 
+      placeholder: placeholder,
+      style: style,
+      **options.except(:class)
+    }
+    
+    if field_config[:id]
+      field_options[:id] = field_config[:id]
+    end
+    
     content = ""
     
     # Add description if present
@@ -383,13 +395,14 @@ module UsersHelper
     end
     
     content += content_tag(:div, class: "form-floating mb-3") do
-      form.text_area(field_name, 
-        class: css_classes, 
-        placeholder: placeholder,
-        style: style,
-        **options.except(:class)
-      ) +
-      form.label(field_name, field_config[:label])
+      textarea_field = form.text_area(field_name, field_options)
+      
+      # Use custom ID for label if provided
+      if field_config[:id]
+        textarea_field + label_tag(field_config[:id], field_config[:label])
+      else
+        textarea_field + form.label(field_name, field_config[:label])
+      end
     end
     
     content.html_safe
@@ -424,18 +437,19 @@ module UsersHelper
             
             # Check if this option is selected
             is_checked = current_values.include?(option[:value])
+            checkbox_id = "service_#{option[:value].downcase.gsub(/[^a-z0-9]/, '_')}"
             
             form.check_box(field_name, 
               { 
                 multiple: true, 
                 class: "form-check-input service-checkbox", 
-                id: "service_#{option[:value].downcase.gsub(/[^a-z0-9]/, '_')}", 
+                id: checkbox_id, 
                 checked: is_checked,
                 **stimulus_attrs 
               }, 
               option[:value], nil
             ) +
-            form.label("#{field_name}_#{option[:value].downcase.gsub(/[^a-z0-9]/, '_')}", option[:label], class: "form-check-label")
+            label_tag(checkbox_id, option[:label], class: "form-check-label")
           end
         end.join.html_safe
       end
@@ -465,16 +479,17 @@ module UsersHelper
       stimulus_attrs['data-user-form-target'] = field_config[:stimulus_target]
     end
     
+    field_id = "user_#{field_name}"
+    
     if field_config[:description]
       content_tag(:p, field_config[:description], class: "mt-3") +
       content_tag(:div, class: "form-check mb-3", **stimulus_attrs) do
         if field_config[:virtual]
-          check_box_tag(field_name, "1", false, class: "form-check-input", id: field_name) +
-          label_tag(field_name, field_config[:label], class: "form-check-label")
+          check_box_tag(field_name, "1", false, class: "form-check-input", id: field_id) +
+          label_tag(field_id, field_config[:label], class: "form-check-label")
         else
           form.check_box(field_name, 
             class: "form-check-input",
-            id: field_name,
             **options.except(:class)
           ) +
           form.label(field_name, field_config[:label], class: "form-check-label")
@@ -483,12 +498,11 @@ module UsersHelper
     else
       content_tag(:div, class: "form-check mb-3", **stimulus_attrs) do
         if field_config[:virtual]
-          check_box_tag(field_name, "1", false, class: "form-check-input", id: field_name) +
-          label_tag(field_name, field_config[:label], class: "form-check-label")
+          check_box_tag(field_name, "1", false, class: "form-check-input", id: field_id) +
+          label_tag(field_id, field_config[:label], class: "form-check-label")
         else
           form.check_box(field_name, 
             class: "form-check-input",
-            id: field_name,
             **options.except(:class)
           ) +
           form.label(field_name, field_config[:label], class: "form-check-label")
@@ -509,13 +523,15 @@ module UsersHelper
               stimulus_attrs['data-user-form-target'] = option[:stimulus_target]
             end
             
+            radio_id = "user_#{field_name}_#{option[:value].to_s.parameterize(separator: '_')}"
+            
             form.radio_button(field_name, option[:value], 
-              id: "#{field_name}_#{option[:value]}",
+              id: radio_id,
               class: "form-check-input",
               **stimulus_attrs,
               **options.except(:class)
             ) +
-            form.label("#{field_name}_#{option[:value]}", option[:label], class: "form-check-label ms-1")
+            label_tag(radio_id, option[:label], class: "form-check-label ms-1")
           end
         end.join.html_safe
       end
@@ -529,13 +545,15 @@ module UsersHelper
               stimulus_attrs['data-user-form-target'] = option[:stimulus_target]
             end
             
+            radio_id = "user_#{field_name}_#{option[:value].to_s.parameterize(separator: '_')}"
+            
             form.radio_button(field_name, option[:value], 
-              id: "#{field_name}_#{option[:value]}",
+              id: radio_id,
               class: "form-check-input",
               **stimulus_attrs,
               **options.except(:class)
             ) +
-            form.label("#{field_name}_#{option[:value]}", option[:label], class: "form-check-label")
+            label_tag(radio_id, option[:label], class: "form-check-label")
           end
         end.join.html_safe
       end
