@@ -1,6 +1,6 @@
 module UsersHelper
   # Render a complete form section from UserFieldDefinitions
-  def render_user_section(form, section_key, user = nil, wrapper_options = {})
+  def render_user_form_section(form, section_key, user = nil, wrapper_options = {})
     section_data = UserFieldDefinitions::USER_FIELDS[section_key]
     return "" unless section_data&.dig(:form_section)
 

@@ -21,27 +21,27 @@
         </div>
       <% end %>
 
-      <%= render_user_section(form, :personal, user) %>
+      <%= render_user_form_section(form, :personal, user) %>
 
-      <%= render_user_section(form, :nie_information, user) %>
+      <%= render_user_form_section(form, :nie_information, user) %>
 
-      <%= render_user_section(form, :requested_services, user) %>
+      <%= render_user_form_section(form, :requested_services, user) %>
 
-      <%= render_user_section(form, :property_sale, user, id: "section_property_sale", "data-user-form-target": "sectionSale", style: "display:none") %>
+      <%= render_user_form_section(form, :property_sale, user, id: "section_property_sale", "data-user-form-target": "sectionSale", style: "display:none") %>
 
-      <%= render_user_section(form, :new_build_declaration, user, id: "section_new_build", "data-user-form-target": "sectionNewBuild", style: "display:none") %>
+      <%= render_user_form_section(form, :new_build_declaration, user, id: "section_new_build", "data-user-form-target": "sectionNewBuild", style: "display:none") %>
 
       <div class="card p-5 mb-5 card-shadow" id="section_property_purchase" data-user-form-target="sectionPurchase" style="display:none">
-        <%= render_user_section(form, :property_purchase, user, no_wrapper: true) %>
+        <%= render_user_form_section(form, :property_purchase, user, no_wrapper: true) %>
         <hr class="hr mb-3" style="color: #b29c84;">
-        <%= render_user_section(form, :bank_details, user, no_wrapper: true) %>
+        <%= render_user_form_section(form, :bank_details, user, no_wrapper: true) %>
       </div>
 
-      <%= render_user_section(form, :power_of_attorney, user, id: "section_poa", "data-user-form-target": "poaSection", style: "display:none") %>
+      <%= render_user_form_section(form, :power_of_attorney, user, id: "section_poa", "data-user-form-target": "poaSection", style: "display:none") %>
 
-      <%= render_user_section(form, :will_testament, user, id: "section_will", "data-user-form-target": "sectionWill", style: "display:none") %>
+      <%= render_user_form_section(form, :will_testament, user, id: "section_will", "data-user-form-target": "sectionWill", style: "display:none") %>
 
-      <%= render_user_section(form, :vv_license_documents, user, id: "section_documents", "data-user-form-target": "sectionDocuments", class: "card p-5 mb-3 card-shadow", style: "display:none") %>
+      <%= render_user_form_section(form, :vv_license_documents, user, id: "section_documents", "data-user-form-target": "sectionDocuments", class: "card p-5 mb-3 card-shadow", style: "display:none") %>
 
       <div class="d-grid mb-3">
         <%= form.submit "Submit", class:"btn btn-lg mb-2", style:"background-color: #b29c84; color: white;", data: { action: "click->user-form#disableOnSubmit" } %>
