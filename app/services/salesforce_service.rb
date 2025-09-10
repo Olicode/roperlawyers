@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SalesforceService
   def self.health
     new.client.query("select Name from User").count > 0
