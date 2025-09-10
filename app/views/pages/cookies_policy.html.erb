@@ -1,0 +1,119 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="https://www.roperlawyers.com/">Roper Lawyers</a>
+
+      <div class="d-flex align-items-center">
+        <!-- Call button visible on mobile only -->
+        <a href="tel:+34928974241" class="d-lg-none me-2">
+          <i class="fas fa-phone-alt text-white"></i>
+        </a>
+        <!-- Hamburger menu button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none;">
+          <span class="navbar-toggler-icon" style="filter: brightness(0) invert(1);"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Left aligned items -->
+        <ul class="navbar-nav me-auto left-links">
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white text-decoration-none" href="tel:+44 20 8135 8218">
+              🇬🇧 +44 20 8135 8218
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white text-decoration-none" href="tel:+34 928 97 42 41">
+              🇪🇸 +34 928 97 42 41
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <%= link_to "Spain Property Selling and Buying Guide", "/spain-property-guide", 
+                        class: "nav-link text-white text-decoration-none" %>
+          </li>
+          <li class="nav-item mx-2">
+            <!-- Link now points to /free-consultation -->
+            <a class="nav-link text-white text-decoration-none" href="/free-consultation">
+              Free consultation
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <!-- VV License link -->
+            <a class="nav-link text-white text-decoration-none" href="/vv-license">
+              VV License
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+              Contact Our Team
+            </a>
+          </li>
+        </ul>
+
+        <!-- Right aligned items: Buttons for auth-related links -->
+        <ul class="navbar-nav ms-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <p class="nav-link text-muted mb-0">
+                Logged in as <strong><%= current_user.email %></strong>
+              </p>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Dashboard', edit_user_path(current_user), class: "btn btn-outline-secondary m-1" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-secondary m-1", method: :delete %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary m-1" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary m-1" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <!-- Calendly widget assets -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</nav>    
+
+<main class="pt-5" style="padding-top: 30px !important">
+    <div class="container min-vh-100 py-5 px-3 px-md-5">
+      <div class="rounded-4 p-4 p-lg-5">
+        <article class="prose max-w-none">
+            <h2 class="text-2xl font-bold mb-4">Cookies Policy | Política de Cookies</h2>
+
+            <p>Our website uses cookies to improve your browsing experience and analyse traffic. In compliance with GDPR and LOPDGDD, we inform you about their use.</p>
+
+            <p>Nuestra web utiliza cookies para mejorar su experiencia de navegación y analizar el tráfico. En cumplimiento con el RGPD y la LOPDGDD, le informamos sobre su uso.</p>
+
+            <h3 class="text-xl font-bold mb-4">1. What Are Cookies? | ¿Qué son las Cookies?</h3>
+            <p>Cookies are small files stored on your device that help websites function and collect information.</p>
+            <p>Las cookies son pequeños archivos que se almacenan en su dispositivo y permiten que las webs funcionen y recopilen información.</p>
+
+            <h3 class="text-xl font-bold mb-4">2. Types of Cookies We Use | Tipos de Cookies que Utilizamos</h3>
+            <ul>
+            <li><strong>Essential cookies | Cookies esenciales:</strong> Required for site security and operation (Rails session).</li>
+            <li><strong>Analytics cookies | Cookies de analítica:</strong> Google Analytics, to understand how visitors use our site.</li>
+            </ul>
+
+            <h3 class="text-xl font-bold mb-4">3. How to Control Cookies | Cómo Controlar las Cookies</h3>
+            <p>You can accept, reject, or configure cookies through our banner or in your browser settings.</p>
+            <p>Puede aceptar, rechazar o configurar cookies a través de nuestro banner o en la configuración de su navegador.</p>
+
+            <h3 class="text-xl font-bold mb-4">4. Third-Party Cookies | Cookies de Terceros</h3>
+            <p>We use Google Analytics, which may set cookies to collect anonymous usage data.</p>
+            <p>Utilizamos Google Analytics, que puede establecer cookies para recopilar datos de uso anónimos.</p>
+
+            <h3 class="text-xl font-bold mb-4">5. Updates | Actualizaciones</h3>
+            <p>This Cookies Policy may be updated in line with legal changes.</p>
+            <p>Esta Política de Cookies puede actualizarse conforme a la normativa vigente.</p>
+        </article>
+      </div>
+    </div>
+</main>
+
+<%= render 'main_page_sections/footer' %>

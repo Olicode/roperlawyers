@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'free-consultation', to: 'pages#free_consultation'
   get 'consultation', to: 'pages#consultation'
   get 'vv-license', to: 'pages#vv_license'
+  get 'privacy-policy', to: 'pages#privacy_policy'
+  get 'cookies-policy', to: 'pages#cookies_policy'
 
   
   

@@ -53,16 +53,18 @@ class PagesController < ApplicationController
   end
 
   def vv_license
-    # Vacation rental license page
   end
 
   def free_consultation
-    # respond to turbo_stream with notice
   end
 
   def consultation
-    
   end
 
+  def privacy_policy
+  end
+
+  def cookies_policy
+  end
 end
 

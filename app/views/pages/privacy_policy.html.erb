@@ -1,0 +1,184 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="https://www.roperlawyers.com/">Roper Lawyers</a>
+
+      <div class="d-flex align-items-center">
+        <!-- Call button visible on mobile only -->
+        <a href="tel:+34928974241" class="d-lg-none me-2">
+          <i class="fas fa-phone-alt text-white"></i>
+        </a>
+        <!-- Hamburger menu button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none;">
+          <span class="navbar-toggler-icon" style="filter: brightness(0) invert(1);"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Left aligned items -->
+        <ul class="navbar-nav me-auto left-links">
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white text-decoration-none" href="tel:+44 20 8135 8218">
+              🇬🇧 +44 20 8135 8218
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white text-decoration-none" href="tel:+34 928 97 42 41">
+              🇪🇸 +34 928 97 42 41
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <%= link_to "Spain Property Selling and Buying Guide", "/spain-property-guide", 
+                        class: "nav-link text-white text-decoration-none" %>
+          </li>
+          <li class="nav-item mx-2">
+            <!-- Link now points to /free-consultation -->
+            <a class="nav-link text-white text-decoration-none" href="/free-consultation">
+              Free consultation
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <!-- VV License link -->
+            <a class="nav-link text-white text-decoration-none" href="/vv-license">
+              VV License
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+              Contact Our Team
+            </a>
+          </li>
+        </ul>
+
+        <!-- Right aligned items: Buttons for auth-related links -->
+        <ul class="navbar-nav ms-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <p class="nav-link text-muted mb-0">
+                Logged in as <strong><%= current_user.email %></strong>
+              </p>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Dashboard', edit_user_path(current_user), class: "btn btn-outline-secondary m-1" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-secondary m-1", method: :delete %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary m-1" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary m-1" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <!-- Calendly widget assets -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</nav>    
+ <main class="pt-5" style="padding-top: 30px !important">
+    <div class="container min-vh-100 py-5 px-3 px-md-5">
+      <div class="rounded-4 p-4 p-lg-5">
+        <article class="prose max-w-none">
+            <h2 class="text-2xl font-bold mb-4">Privacy Policy | Política de Privacidad</h2>
+
+            <p>At Roper Lawyers, operated by Olivier Roper (NIE X0671636J, Colegiado ICALAN 507), with registered address at Calle Acatife 9, Puerta Q41, Puerto del Carmen, Tías, Lanzarote, 35510, Spain, we are committed to protecting your personal data in accordance with the General Data Protection Regulation (EU 2016/679 – GDPR) and the Spanish Organic Law 3/2018 on Data Protection and Digital Rights (LOPDGDD).</p>
+
+            <p>En Roper Lawyers, dirigido por Olivier Roper (NIE X0671636J, Colegiado ICALAN 507), con domicilio en Calle Acatife 9, Puerta Q41, Puerto del Carmen, Tías, Lanzarote, 35510, España, nos comprometemos a proteger sus datos personales conforme al Reglamento General de Protección de Datos (UE 2016/679 – RGPD) y la Ley Orgánica 3/2018 de Protección de Datos Personales y Garantía de los Derechos Digitales (LOPDGDD).</p>
+
+            <h3 class="text-xl font-bold mb-4">1. Data Controller | Responsable del Tratamiento</h3>
+            <p>Roper Lawyers – Olivier Roper<br>
+            Calle Acatife 9, Puerta Q41, Puerto del Carmen, Tías, Lanzarote, 35510, Spain<br>
+            Email: <%= mail_to("info@roperlawyers.com") %></p>
+
+            <h3 class="text-xl font-bold mb-4">2. Data We Collect | Datos que Recopilamos</h3>
+            <ul>
+                <li><strong>Contact details | Datos de contacto:</strong> name, email, phone.</li>
+                <li><strong>Identification documents | Documentos de identificación:</strong> passport, ID, NIE.</li>
+                <li><strong>Financial information | Información financiera:</strong> bank account, escrow/transfer details.</li>
+                <li><strong>Case-related data | Datos de expediente:</strong> property details, contracts, wills, inheritance.</li>
+                <li><strong>Website data | Datos web:</strong> cookies, IP, browsing behaviour (Google Analytics).</li>
+            </ul>
+
+            <h3 class="text-xl font-bold mb-4">3. Purpose of Processing | Finalidad del Tratamiento</h3>
+            <p>We process personal data to:</p>
+            <ul>
+                <li>Provide legal services (conveyancing, wills, inheritance).</li>
+                <li>Comply with legal and professional obligations.</li>
+                <li>Manage communication and client files.</li>
+                <li>Prevent money laundering and meet tax obligations.</li>
+                <li>Improve our website through analytics.</li>
+            </ul>
+
+            <p>Tratamos datos personales para:</p>
+            <ul>
+                <li>Prestar servicios jurídicos (compraventa, testamentos, herencias).</li>
+                <li>Cumplir con obligaciones legales y profesionales.</li>
+                <li>Gestionar comunicaciones y expedientes.</li>
+                <li>Prevenir blanqueo de capitales y cumplir con obligaciones fiscales.</li>
+                <li>Mejorar nuestra web mediante analítica.</li>
+            </ul>
+
+            <h3 class="text-xl font-bold mb-4">4. Legal Basis | Base Jurídica</h3>
+            <ul>
+                <li><strong>Contract | Contrato</strong> – performance of legal services.</li>
+                <li><strong>Legal obligation | Obligación legal</strong> – Spanish laws, bar regulations.</li>
+                <li><strong>Legitimate interest | Interés legítimo</strong> – to manage and improve services.</li>
+                <li><strong>Consent | Consentimiento</strong> – for optional communications/marketing.</li>
+            </ul>
+
+            <h3 class="text-xl font-bold mb-4">5. Data Sharing | Cesión de Datos</h3>
+            <p>Data may be shared with:</p>
+            <ul>
+                <li>Notaries, land registries, courts, tax authorities.</li>
+                <li>Banks and financial institutions.</li>
+                <li>IT/hosting providers (Google Workspace, secure storage).</li>
+            </ul>
+
+            <p>Los datos pueden compartirse con:</p>
+            <ul>
+                <li>Notarías, registros, juzgados, autoridades fiscales.</li>
+                <li>Bancos e instituciones financieras.</li>
+                <li>Proveedores tecnológicos (Google Workspace, almacenamiento seguro).</li>
+            </ul>
+
+            <h3 class="text-xl font-bold mb-4">6. Data Retention | Conservación de Datos</h3>
+            <ul>
+                <li><strong>Legal files:</strong> minimum 5 years (or longer as required).</li>
+                <li><strong>Financial/tax data:</strong> as required by law.</li>
+                <li><strong>Analytics:</strong> per Google’s retention policies.</li>
+            </ul>
+
+            <ul>
+                <li><strong>Expedientes jurídicos:</strong> mínimo 5 años (o más según la ley).</li>
+                <li><strong>Datos financieros/fiscales:</strong> según lo exigido por la normativa.</li>
+                <li><strong>Analítica:</strong> según políticas de Google.</li>
+            </ul>
+
+            <h3 class="text-xl font-bold mb-4">7. User Rights | Derechos de los Usuarios</h3>
+            <p>You may request: access, rectification, erasure, restriction, portability, objection, and complaints to the AEPD (<%= link_to("www.aepd.es", "https://www.aepd.es", target: "_blank") %>).<br>
+            Contact: <%= mail_to("info@roperlawyers.com") %></p>
+
+            <p>Usted puede ejercer: acceso, rectificación, supresión, limitación, portabilidad, oposición y reclamación ante la AEPD (<%= link_to("www.aepd.es", "https://www.aepd.es", target: "_blank") %>).<br>
+            Contacto: <%= mail_to("info@roperlawyers.com") %></p>
+
+            <h3 class="text-xl font-bold mb-4">8. Cookies & Analytics | Cookies y Analítica</h3>
+            <p>We use cookies and Google Analytics. See our <%= link_to("Cookies Policy", cookies_policy_path) %>.</p>
+            <p>Utilizamos cookies y Google Analytics. Consulte nuestra <%= link_to("Política de Cookies", cookies_policy_path) %>.</p>
+
+            <h3 class="text-xl font-bold mb-4">9. Security | Seguridad</h3>
+            <p>We use technical and organizational measures to safeguard data. Sensitive documents (passports, financials) are handled confidentially.</p>
+            <p>Adoptamos medidas técnicas y organizativas para proteger los datos. Documentos sensibles (pasaportes, datos financieros) se tratan con estricta confidencialidad.</p>
+
+            <h3 class="text-xl font-bold mb-4">10. Updates | Actualizaciones</h3>
+            <p>This policy may be updated.<br>
+            Esta política puede ser actualizada.</p>
+        </article>
+      </div>
+    </div>
+  </main>
+
+<%= render 'main_page_sections/footer' %>
