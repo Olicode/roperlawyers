@@ -7,6 +7,10 @@ class PagesController < ApplicationController
     @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
   end
 
+  def lanzarote_conveyancing_lawyer
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
   def tenerife
     @mtitle = "Tenerife estate agents, find property lawyers in Tenerife"
     @mdescription = "If you need advice for buying a property in Tenerife or you're looking to sell your property in Spain, contact our team. We can guide you through the process today."
@@ -50,21 +54,6 @@ class PagesController < ApplicationController
   def contact_us
     TransactionalMailer.contact_us(ENV['MAILER_TO'] || "rcvdtest@yopmail.com", params[:email],params[:url], params[:message]).deliver!
     render json: { success: true }
-  end
-
-  def vv_license
-  end
-
-  def free_consultation
-  end
-
-  def consultation
-  end
-
-  def privacy_policy
-  end
-
-  def cookies_policy
   end
 end
 
