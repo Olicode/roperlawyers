@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   post 'contact_us', to: 'pages#contact_us'
   get 'lanzarote', to: 'pages#lanzarote'
+  get 'lanzarote-conveyancing-lawyer', to: 'pages#lanzarote_conveyancing_lawyer'
   get 'tenerife', to: 'pages#tenerife'
   get 'grancanaria', to: 'pages#grancanaria'
   get 'fuerteventura', to: 'pages#fuerteventura'
