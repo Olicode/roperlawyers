@@ -1,197 +1,111 @@
-
-<header>
-<!-- Hotjar Tracking Code for www.roperlawyers.com -->
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:2564836,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
-</header>
-
 <main>
-<section class="">
-
-
-
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand logo" href="/ibiza">Roper Lawyers Ibiza</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <a class="nav-link text-white" href="tel:+44 20 8135 8218">🇬🇧 +44 20 8135 8218<span class="sr-only">(current)</span></a>
-            <a class="nav-link text-white" href="tel:+34 928 97 42 41">🇪🇸 +34 971 97 42 41<span class="sr-only">(current)</span></a>
-        </ul>
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <button type="button" class="btn btn-light m-1 " href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
-          Free consultation
-          </button>
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, id: "flash_#{name}", class:" m-1" %>
-      <% end %>
-
-        <% if user_signed_in? %>
-          <p class="text-muted">Logged in as <strong><%= current_user.email %></strong></p>
-          <div class="pull-right">
-          <%= link_to 'Dashboard', edit_user_path(current_user), class:"btn btn-outline-secondary m-1" %>
-          </div>
-          <%= link_to "Logout", destroy_user_session_path, class:"btn btn-outline-secondary m-1", method: :delete %>
-        <% else %>
-          <%= link_to "Sign up", new_user_registration_path, class:"btn btn-outline-secondary m-1" %>
-          <%= link_to "Login", new_user_session_path, class:"btn btn-outline-secondary m-1" %>
-        <% end %>
-
+  <div class="flash flash-warning alert alert-dismissible fade show" role="alert">
+    <span>Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.</span>
+    <a data-bs-dismiss="alert" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </a>
   </div>
-</nav>
-
-<div class="container"></div>
-<div class="flash flash-warning alert alert-dismissible fade show" role="alert">
-  <span>Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.</span>
-  <a data-bs-dismiss="alert" aria-label="Close">
-    <i class="fas fa-times"></i>
-  </a>
-</div>
-</div>
-<div class="container p-4">
+  
+  <div class="container p-4">
     <div class="row flex-lg-row-reverse align-items-center g-5">
       <div class="col-md-5 mx-auto col-lg-5 video-width">
-      <div class="iframe-container">
-        <iframe src="https://www.youtube.com/embed/CFsN076Hj4A"?autoplay=0&modestbranding=0&rel=0&fs=0&color=white&controls=0&disablekb=1" width="560" height="315" title="Roper Lawyers Ibiza" frameborder="0"></iframe>
+        <div class="iframe-container">
+          <iframe src="https://www.youtube.com/embed/CFsN076Hj4A"?autoplay=0&modestbranding=0&rel=0&fs=0&color=white&controls=0&disablekb=1" width="560" height="315" title="Roper Lawyers Ibiza" frameborder="0"></iframe>
+        </div>
       </div>
-      </div>
+      
       <div class="col-lg-6">
         <h1 class="display-5 fw-bold lh-1 mb-3">Property Lawyers in <span class="gradient-text">Ibiza</span>.</h1>
         <p class="value-proposition">With over 12 years of experience, we can provide you with transparent and reliable legal guidance, ensuring a hassle-free process for your property purchase in Ibiza.</p>
+        
         <div class="d-grid gap-2 d-md-flex my-4 justify-content-md-start">
-
           <%# <button type="button" class="btn btn-primary btn-lg px-4 p-3 me-md-2 my-3 gold-bg" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</button> %>
-        <div class="d-grid gap-2 d-flex w-100">
-
-        <!-- Calendly link widget begin -->
-          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-3  button-gold" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
-          <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", alt: "Olivier Roper", class:"olivier-head")  %>
-          <p>Schedule a free consultation with Olivier Roper →</p>
-          </button>
+          
+          <div class="d-grid gap-2 d-flex w-100">
+            <!-- Calendly link widget begin -->
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+            <button type="button" class="btn btn-outline-secondary btn-lg px-3 button-gold" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
+              <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", alt: "Olivier Roper", class:"olivier-head")  %>
+              <p>Schedule a free consultation with Olivier Roper →</p>
+            </button>
+          </div>
+          <!-- Calendly link widget end -->
+          
+          <%# <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-3 my-3 button-gold"></button> %>
         </div>
-<div>
-
-
-           <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank">
-           <div class="red-dot"></div>
-           <i class="fa-brands fa-whatsapp"></i>
-           </a>
-
-          <script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
-        </div>
-
-<!-- Calendly link widget end -->
-          <%#  <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-3 my-3 button-gold"></button>%>
-        </div>
-       
+        
         <button type="button" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#contactModal">
           Contact Us
         </button>
+        
         <div>
-        Read our
-        <a class="reviews-link" href="#reviews"><strong>Google Reviews</strong>
-        <span class="stars">5.0</span>
-        <i class="fa-sharp fa-solid fa-star stars"></i>
-        <i class="fa-sharp fa-solid fa-star stars"></i>
-        <i class="fa-sharp fa-solid fa-star stars"></i>
-        <i class="fa-sharp fa-solid fa-star stars"></i>
-        <i class="fa-sharp fa-solid fa-star stars"></i>
-        </a>
+          Read our
+          <a class="reviews-link" href="#reviews"><strong>Google Reviews</strong>
+            <span class="stars">5.0</span>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <form id='contactUsForm'>
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="container px-4 py-5">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="pb-4 m-3 text-center">English-Speaking Ibiza Property Lawyers</h2>
       </div>
-      <div class="modal-body">
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
-          <label for="floatingEmail">Email address</label>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p>Our team of lawyers at Roper Lawyers is entirely proficient in English, ensuring seamless communication with our clients. What sets us apart is the unique advantage of our owner, Olivier Roper, who is a native bilingual speaker of both Spanish and English. This linguistic dexterity enables us to effortlessly engage with both buyers and sellers in Spain and the UK. With this capability, we can assist with effective communication and understanding between all parties involved, guaranteeing a smooth and successful property purchase process for our clients.</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id='submitButton' class="btn btn-primary">Save</button>
-      </div>
-      </form>
     </div>
   </div>
-</div>
-</section>
-
-<div class="container px-4 py-5">
-<div class="row">
-<div class="col-12">
-  <h2 class="pb-4 m-3 text-center">English-Speaking Ibiza Property Lawyers</h2>
-</div>
-</div>
-<div class="row">
-<div class="col-12">
-<p>Our team of lawyers at Roper Lawyers is entirely proficient in English, ensuring seamless communication with our clients. What sets us apart is the unique advantage of our owner, Olivier Roper, who is a native bilingual speaker of both Spanish and English. This linguistic dexterity enables us to effortlessly engage with both buyers and sellers in Spain and the UK. With this capability, we can assist with effective communication and understanding between all parties involved, guaranteeing a smooth and successful property purchase process for our clients.</p>
-</div>
-</div>
-</div>
 
   <%= render 'main_page_sections/why_us' %>
   <%= render 'main_page_sections/about_us' %>
   <%= render 'main_page_sections/features' %>
 
   <div class="container px-4 py-5">
-<div class="row">
-<div class="col-12">
-  <h2 class="pb-4 m-3 text-center">Solicitors in Ibiza for Property Conveyancing</h2>
-</div>
-</div>
-<div class="row">
-<div class="col-md-6 col-12">
-<h3>Expert Ibiza Property Lawyers</h3>
-<p>At Roper Lawyers, we pride ourselves on offering comprehensive legal services tailored specifically for real estate transactions in Ibiza and <a href="https://www.roperlawyers.com/marbella">Marbella</a>. Our dedicated team excels in conducting meticulous due diligence on properties, leaving no stone unturned. We go above and beyond to verify the legal status of each property, identifying any potential issues or encumbrances that may arise during the transaction process. With a commitment to excellence, we aim to provide our clients with the assurance that their property transactions are handled with the utmost care and attention to detail.</p>
-<p>One of our key strengths lies in our deep understanding of Spanish conveyancing laws. Recognising the unique legal landscape of property transactions in Spain, our team of expert lawyers is well-versed in the intricacies of local regulations. It doesn’t matter if you are a buyer or seller, our proficiency in Spanish conveyancing laws ensures that your real estate transaction is not only legally sound but also conducted with efficiency and precision.</p>
-</div>
-<div class="col-md-6 col-12">
-<h3>Specialist Legal Advice</h3>
-<p>Our legal professionals bring a wealth of expertise specifically honed for the intricacies of real estate matters in Ibiza. With an acute understanding of the local landscape, our property solicitors in Ibiza ensure that clients receive specialised advice that is both comprehensive and made for their unique needs.</p>
-<p>At Roper Lawyers, we understand that buying or selling property can be a significant undertaking. That is why our focus is on delivering personalised legal advice to our clients. Our property solicitors in Ibiza work closely with individuals to grasp the nuances of their transactions and provide advice that aligns with their goals. With our teams guidance, clients can proceed with confidence, knowing that their interests are safeguarded and that every legal aspect of their property transaction is meticulously addressed, paving the way for a smooth and successful outcome.</p>
-</div>
-</div>
-<div class="row">
-<div class="col-12">
-  <h2 class="pb-4 m-3 text-center">Consult Ibiza Property Lawyers for a Smooth Transaction</h2>
-</div>
-</div>
-<div class="row">
-<div class="col-md-6 col-12">
-<p>Our team of dedicated professionals is ready to guide you through every step of the transaction process. Whether you are buying or selling property, understanding the complexities of real estate law has never been more crucial.</p>
-</div>
-<div class="col-md-6 col-12">
-<p>Our team is well-versed in addressing the unique demands of the present housing market, ensuring that our clients receive expert legal support. By choosing our <a href="https://www.roperlawyers.com/">property lawyers</a>, you not only gain a legal partner but also a dedicated ally committed to helping you achieve your property goals. Consult with us today and experience an efficient transaction process.</p>
-</div>
-</div>
-</div>
+    <div class="row">
+      <div class="col-12">
+        <h2 class="pb-4 m-3 text-center">Solicitors in Ibiza for Property Conveyancing</h2>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <h3>Expert Ibiza Property Lawyers</h3>
+        <p>At Roper Lawyers, we pride ourselves on offering comprehensive legal services tailored specifically for real estate transactions in Ibiza and <a href="https://www.roperlawyers.com/marbella">Marbella</a>. Our dedicated team excels in conducting meticulous due diligence on properties, leaving no stone unturned. We go above and beyond to verify the legal status of each property, identifying any potential issues or encumbrances that may arise during the transaction process. With a commitment to excellence, we aim to provide our clients with the assurance that their property transactions are handled with the utmost care and attention to detail.</p>
+        <p>One of our key strengths lies in our deep understanding of Spanish conveyancing laws. Recognising the unique legal landscape of property transactions in Spain, our team of expert lawyers is well-versed in the intricacies of local regulations. It doesn't matter if you are a buyer or seller, our proficiency in Spanish conveyancing laws ensures that your real estate transaction is not only legally sound but also conducted with efficiency and precision.</p>
+      </div>
+      <div class="col-md-6 col-12">
+        <h3>Specialist Legal Advice</h3>
+        <p>Our legal professionals bring a wealth of expertise specifically honed for the intricacies of real estate matters in Ibiza. With an acute understanding of the local landscape, our property solicitors in Ibiza ensure that clients receive specialised advice that is both comprehensive and made for their unique needs.</p>
+        <p>At Roper Lawyers, we understand that buying or selling property can be a significant undertaking. That is why our focus is on delivering personalised legal advice to our clients. Our property solicitors in Ibiza work closely with individuals to grasp the nuances of their transactions and provide advice that aligns with their goals. With our teams guidance, clients can proceed with confidence, knowing that their interests are safeguarded and that every legal aspect of their property transaction is meticulously addressed, paving the way for a smooth and successful outcome.</p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12">
+        <h2 class="pb-4 m-3 text-center">Consult Ibiza Property Lawyers for a Smooth Transaction</h2>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <p>Our team of dedicated professionals is ready to guide you through every step of the transaction process. Whether you are buying or selling property, understanding the complexities of real estate law has never been more crucial.</p>
+      </div>
+      <div class="col-md-6 col-12">
+        <p>Our team is well-versed in addressing the unique demands of the present housing market, ensuring that our clients receive expert legal support. By choosing our <a href="https://www.roperlawyers.com/">property lawyers</a>, you not only gain a legal partner but also a dedicated ally committed to helping you achieve your property goals. Consult with us today and experience an efficient transaction process.</p>
+      </div>
+    </div>
+  </div>
 
   <%= render 'main_page_sections/faq' %>
   <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
@@ -199,5 +113,4 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   <%= render 'main_page_sections/costs' %>
   <%= render 'main_page_sections/logos' %>
-  <%= render 'main_page_sections/footer' %>
 </main>

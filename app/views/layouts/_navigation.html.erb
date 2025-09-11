@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="https://www.roperlawyers.com/">Roper Lawyers</a>
+
+      <div class="d-flex align-items-center">
+        <!-- Call button visible on mobile only -->
+        <a href="tel:+34928974241" class="d-lg-none me-2">
+          <i class="fas fa-phone-alt text-white"></i>
+        </a>
+        <!-- Hamburger menu button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none;">
+          <span class="navbar-toggler-icon" style="filter: brightness(0) invert(1);"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Left aligned items -->
+        <ul class="navbar-nav me-auto left-links">
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white text-decoration-none" href="tel:+44 20 8135 8218">
+              🇬🇧 +44 20 8135 8218
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white text-decoration-none" href="tel:+34 928 97 42 41">
+              🇪🇸 +34 928 97 42 41
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <%= link_to "Spain Property Guide", "/spain-property-guide", 
+                        class: "nav-link text-white text-decoration-none" %>
+          </li>
+          <li class="nav-item mx-2">
+            <!-- Link now points to /free-consultation -->
+            <a class="nav-link text-white text-decoration-none" href="/free-consultation">
+              Free consultation
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <!-- VV License link -->
+            <a class="nav-link text-white text-decoration-none" href="/vv-license">
+              VV License
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        <!-- Right aligned items: Buttons for auth-related links -->
+        <ul class="navbar-nav ms-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <p class="nav-link text-muted mb-0">
+                Logged in as <strong><%= current_user.email %></strong>
+              </p>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Dashboard', edit_user_path(current_user), class: "btn btn-outline-secondary m-1" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-secondary m-1", method: :delete %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary m-1" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary m-1" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <!-- Calendly widget assets -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</nav>

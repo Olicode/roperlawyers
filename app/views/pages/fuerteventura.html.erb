@@ -1,204 +1,127 @@
-<header>
-<!-- Hotjar Tracking Code for www.roperlawyers.com -->
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:2564836,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
-</header>
-
 <main>
-<section class="">
-
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/fuerteventura">Roper Lawyers Fuerteventura</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
-         <ul class="navbar-nav">
-            <a class="nav-link text-white" href="tel:+44 20 8135 8218">🇬🇧 +44 20 8135 8218<span class="sr-only">(current)</span></a>
-            <a class="nav-link text-white" href="tel:+34 928 97 42 41">🇪🇸 +34 928 97 42 41<span class="sr-only">(current)</span></a>
-        </ul>
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <button type="button" class="btn btn-light m-1 " href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
-          Free consultation
-          </button>
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, id: "flash_#{name}", class:" m-1" %>
-      <% end %>
-
-        <% if user_signed_in? %>
-          <p class="text-muted">Logged in as <strong><%= current_user.email %></strong></p>
-          <div class="pull-right">
-          <%= link_to 'Dashboard', edit_user_path(current_user), class:"btn btn-outline-secondary m-1" %>
-          </div>
-          <%= link_to "Logout", destroy_user_session_path, class:"btn btn-outline-secondary m-1", method: :delete %>
-        <% else %>
-          <%= link_to "Sign up", new_user_registration_path, class:"btn btn-outline-secondary m-1" %>
-          <%= link_to "Login", new_user_session_path, class:"btn btn-outline-secondary m-1" %>
-        <% end %>
-
+  <div class="flash flash-warning alert alert-dismissible fade show" role="alert">
+    <span>Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.</span>
+    <a data-bs-dismiss="alert" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </a>
   </div>
-</nav>
-
-<div class="flash flash-warning alert alert-dismissible fade show" role="alert">
-  <span>Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.</span>
-  <a data-bs-dismiss="alert" aria-label="Close">
-    <i class="fas fa-times"></i>
-  </a>
-</div>
-<div class="container p-4">
+  
+  <div class="container p-4">
     <div class="row flex-lg-row-reverse align-items-center g-5">
       <div class="col-md-5 mx-auto col-lg-5 video-width">
-      <div class="iframe-container">
-        <iframe src="https://www.youtube.com/embed/Yh_KPBxRHmM"?autoplay=0&modestbranding=0&rel=0&fs=0&color=white&controls=0&disablekb=1" width="560" height="315" title="Roper Lawyers Ibiza" frameborder="0"></iframe>
+        <div class="iframe-container">
+          <iframe src="https://www.youtube.com/embed/Yh_KPBxRHmM"?autoplay=0&modestbranding=0&rel=0&fs=0&color=white&controls=0&disablekb=1" width="560" height="315" title="Roper Lawyers Ibiza" frameborder="0"></iframe>
+        </div>
       </div>
-      </div>
+      
       <div class="col-lg-6">
         <h1 class="display-5 fw-bold lh-1 mb-3">Fuerteventura Estate Agents & <span class="gradient-text">Property Lawyers</span>.</h1>
         <p class="value-proposition">We can offer you clear, concise, straightforward, and trustworthy legal advice to ensure that purchasing your property in Fuerteventura is easy. With over 12 years of experience, we aim to make your transaction stress-free.</p>
+        
         <div class="d-grid gap-2 d-md-flex my-4 justify-content-md-start">
-
           <%# <button type="button" class="btn btn-primary btn-lg px-4 p-3 me-md-2 my-3 gold-bg" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</button> %>
-        <div class="d-grid gap-2">
-
-        <!-- Calendly link widget begin -->
-          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-2  button-gold" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
-          <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", alt: "Olivier Roper", class:"olivier-head")  %>
-          <p>Schedule your free consultation with Olivier Roper →</p>
+          
+          <div class="d-grid gap-2">
+            <!-- Calendly link widget begin -->
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+            <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-2 button-gold" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/15min?hide_gdpr_banner=1'});return false;">
+              <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", alt: "Olivier Roper", class:"olivier-head")  %>
+              <p>Schedule your free consultation with Olivier Roper →</p>
+            </button>
+          </div>
+          
+          <button type="button" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#contactModal">
+            Email Us
           </button>
+          <!-- Calendly link widget end -->
+          
+          <%# <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-3 my-3 button-gold"></button> %>
         </div>
-        <button type="button" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#contactModal">
-        Email Us
-      </button>
-<div>
-
-
-           <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank">
-           <div class="red-dot"></div>
-           <i class="fa-brands fa-whatsapp"></i>
-           </a>
-
-          <script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
-        </div>
-
-<!-- Calendly link widget end -->
-          <%#  <button type="button" class="btn btn-outline-secondary btn-lg px-4 p-3 my-3 button-gold"></button>%>
-        </div>
+        
         <div>
-        <i class="fa-solid fa-envelope"></i>
+          <i class="fa-solid fa-envelope"></i>
           <a class="emailus" href="mailto:info@roperlawyers.com">Email us</a>
           or call us on <i class="fa-solid fa-phone"></i><a class="emailus" href="tel:+34 928 97 42 41">+34 928 97 42 41</a>
         </div>
-       
+        
         <div>
-        Read our
-        <a class="reviews-link" href="#reviews"><strong>Google Reviews</strong>
-          <span class="stars">5.0</span>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-        </a>
+          Read our
+          <a class="reviews-link" href="#reviews"><strong>Google Reviews</strong>
+            <span class="stars">5.0</span>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <form id='contactUsForm'>
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="container px-4 py-5">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="pb-4 m-3 text-center">English Speaking Property Lawyers in Fuerteventura</h2>
       </div>
-      <div class="modal-body">
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
-          <label for="floatingEmail">Email address</label>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <p>At Roper Lawyers, our English-speaking property lawyers in Fuerteventura are dedicated to providing exceptional legal services tailored to the needs of our clients. Fluent in both English and Spanish, our Fuerteventura estate agents ensure clear and effective communication throughout the entire process, eliminating language barriers and ensuring that our clients fully understand their rights and obligations. With a commitment to professionalism and integrity, our <a href="https://www.roperlawyers.com/">property lawyers in Spain</a> uphold the highest standards of legal practice, offering reliable guidance and representation to individuals and businesses alike.</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id='submitButton' class="btn btn-primary">Save</button>
+      <div class="col-md-6 col-12">
+        <p>When you choose Roper Lawyers, you are choosing a team of experienced professionals who are dedicated to achieving the best possible outcome for you. Our property solicitors in Fuerteventura combine their extensive knowledge of Spanish conveyancing laws with a client-centred approach to provide personalised legal advice and representation. If you need help reviewing contracts or negotiating terms in Fuerteventura or <a href="https://www.roperlawyers.com/lanzarote">Lanzarote</a>, we can handle every aspect of your real estate transaction with plenty of care and attention to detail.</p>
       </div>
-      </form>
     </div>
   </div>
-</div>
-</section>
-
-<div class="container px-4 py-5">
-<div class="row">
-<div class="col-12">
-  <h2 class="pb-4 m-3 text-center">English Speaking Property Lawyers in Fuerteventura</h2>
-</div>
-</div>
-<div class="row">
-<div class="col-md-6 col-12">
-<p>At Roper Lawyers, our English-speaking property lawyers in Fuerteventura are dedicated to providing exceptional legal services tailored to the needs of our clients. Fluent in both English and Spanish, our Fuerteventura estate agents ensure clear and effective communication throughout the entire process, eliminating language barriers and ensuring that our clients fully understand their rights and obligations. With a commitment to professionalism and integrity, our <a href="https://www.roperlawyers.com/">property lawyers in Spain</a> uphold the highest standards of legal practice, offering reliable guidance and representation to individuals and businesses alike.</p>
-</div>
-<div class="col-md-6 col-12">
-<p>When you choose Roper Lawyers, you are choosing a team of experienced professionals who are dedicated to achieving the best possible outcome for you. Our property solicitors in Fuerteventura combine their extensive knowledge of Spanish conveyancing laws with a client-centred approach to provide personalised legal advice and representation. If you need help reviewing contracts or negotiating terms in Fuerteventura or <a href="https://www.roperlawyers.com/lanzarote">Lanzarote</a>, we can handle every aspect of your real estate transaction with plenty of care and attention to detail.</p>
-</div>
-</div>
-</div>
 
   <%= render 'main_page_sections/why_us' %>
   <%= render 'main_page_sections/about_us' %>
   <%= render 'main_page_sections/features' %>
   <div class="container px-4 py-5">
-<div class="row">
-<div class="col-md-6 col-12">
-<p>Our commitment to excellence extends beyond just providing legal services; it encompasses a deep understanding of the local market dynamics and regulatory landscape in Fuerteventura. We recognise that every property transaction is a significant investment, and our property solicitors in Fuerteventura are dedicated to delivering outcomes that align with your goals and expectations. Our personalised approach ensures that we address your specific needs and concerns, providing peace of mind throughout the entire process.</p>
-</div>
-<div class="col-md-6 col-12">
-<p>At Roper Lawyers, we believe in building long-lasting relationships with our clients based on trust, transparency, and results. Our property solicitors take the time to listen to your objectives, explain your options, and develop a strategy that best serves your interests. From conducting thorough due diligence to drafting and negotiating contracts, we handle every aspect of your transaction with the utmost care and attention to detail.</p>
-</div>
-</div>
-<div class="row">
-<div class="col-12">
-  <h2 class="pb-4 m-3 text-center">Property Solicitors in Fuerteventura</h2>
-</div>
-</div>
-<div class="row">
-<div class="col-md-6 col-12">
-<h3>Expert Fuerteventura Property Lawyers</h3>
-<p>In Fuerteventura, our property lawyers bring a wealth of experience and expertise to every transaction. With a deep understanding of Spanish conveyancing laws and regulations, our team offers comprehensive legal support to clients buying or selling real estate in this beautiful region. Whether you're purchasing a vacation home or investing in commercial property, our property solicitors in Fuerteventura have the knowledge and skills to guide you through the process with confidence. We understand that every transaction is unique, which is why we take the time to listen to your needs and develop a customised legal strategy that meets your objectives.</p>
-<p>Our property solicitors in Fuerteventura are committed to delivering tailored legal solutions that meet the unique needs of each client. With a focus on professionalism and attention to detail, we provide expert guidance and representation throughout the entire property conveyancing process.</p>
-</div>
-<div class="col-md-6 col-12">
-<h3>Real Estate Tailored for You</h3>
-<p>Our property solicitors in Fuerteventura offer specialised expertise to meet the individual needs of each client. It doesn’t matter if you're a foreign investor or a local resident, we tailor our legal advice and services to ensure a smooth and successful transaction. Our property lawyers in Fuerteventura can verify legal documentation and our meticulous approach leaves no stone unturned in safeguarding your interests throughout the property conveyancing process.</p>
-<p>We understand the nuances of buying and selling property in Spain, and we want you to have the best experience possible. With the help of our property solicitors in Fuerteventura, you won’t need to worry about your investment. Instead, you can just look forward to enjoying your new home.</p>
-</div>
-</div>
-<div class="row">
-<div class="col-12">
-  <h2 class="pb-4 m-3">Consult Fuerteventura Property Lawyers for a Smooth Transaction</h2>
-</div>
-</div>
-<div class="row">
-<div class="col-12">
-<p>It’s essential to seek the assistance of experienced property lawyers in Fuerteventura. Our team at Roper Lawyers is here to provide the legal support you need to achieve your property goals with confidence. Contact us today to schedule a consultation and experience the difference our expertise can make in your real estate endeavours.</p>
-</div>
-</div>
-</div>
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <p>Our commitment to excellence extends beyond just providing legal services; it encompasses a deep understanding of the local market dynamics and regulatory landscape in Fuerteventura. We recognise that every property transaction is a significant investment, and our property solicitors in Fuerteventura are dedicated to delivering outcomes that align with your goals and expectations. Our personalised approach ensures that we address your specific needs and concerns, providing peace of mind throughout the entire process.</p>
+      </div>
+      <div class="col-md-6 col-12">
+        <p>At Roper Lawyers, we believe in building long-lasting relationships with our clients based on trust, transparency, and results. Our property solicitors take the time to listen to your objectives, explain your options, and develop a strategy that best serves your interests. From conducting thorough due diligence to drafting and negotiating contracts, we handle every aspect of your transaction with the utmost care and attention to detail.</p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12">
+        <h2 class="pb-4 m-3 text-center">Property Solicitors in Fuerteventura</h2>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <h3>Expert Fuerteventura Property Lawyers</h3>
+        <p>In Fuerteventura, our property lawyers bring a wealth of experience and expertise to every transaction. With a deep understanding of Spanish conveyancing laws and regulations, our team offers comprehensive legal support to clients buying or selling real estate in this beautiful region. Whether you're purchasing a vacation home or investing in commercial property, our property solicitors in Fuerteventura have the knowledge and skills to guide you through the process with confidence. We understand that every transaction is unique, which is why we take the time to listen to your needs and develop a customised legal strategy that meets your objectives.</p>
+        <p>Our property solicitors in Fuerteventura are committed to delivering tailored legal solutions that meet the unique needs of each client. With a focus on professionalism and attention to detail, we provide expert guidance and representation throughout the entire property conveyancing process.</p>
+      </div>
+      <div class="col-md-6 col-12">
+        <h3>Real Estate Tailored for You</h3>
+        <p>Our property solicitors in Fuerteventura offer specialised expertise to meet the individual needs of each client. It doesn't matter if you're a foreign investor or a local resident, we tailor our legal advice and services to ensure a smooth and successful transaction. Our property lawyers in Fuerteventura can verify legal documentation and our meticulous approach leaves no stone unturned in safeguarding your interests throughout the property conveyancing process.</p>
+        <p>We understand the nuances of buying and selling property in Spain, and we want you to have the best experience possible. With the help of our property solicitors in Fuerteventura, you won't need to worry about your investment. Instead, you can just look forward to enjoying your new home.</p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12">
+        <h2 class="pb-4 m-3">Consult Fuerteventura Property Lawyers for a Smooth Transaction</h2>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12">
+        <p>It's essential to seek the assistance of experienced property lawyers in Fuerteventura. Our team at Roper Lawyers is here to provide the legal support you need to achieve your property goals with confidence. Contact us today to schedule a consultation and experience the difference our expertise can make in your real estate endeavours.</p>
+      </div>
+    </div>
+  </div>
   <%= render 'main_page_sections/faq' %>
   <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
   <%= render 'main_page_sections/costs' %>
   <%= render 'main_page_sections/logos' %>
-  <%= render 'main_page_sections/footer' %>
 </main>

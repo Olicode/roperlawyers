@@ -19,9 +19,5 @@ Rails.application.routes.draw do
   get 'vv-license', to: 'pages#vv_license'
   get 'privacy-policy', to: 'pages#privacy_policy'
   get 'cookies-policy', to: 'pages#cookies_policy'
-
-  
-  
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,236 +1,117 @@
 <main>
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="https://www.roperlawyers.com/">Roper Lawyers</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <!-- Left aligned items -->
-      <ul class="navbar-nav me-auto left-links">
-        <li class="nav-item mx-2">
-          <a class="nav-link text-white text-decoration-none" href="tel:+44 20 8135 8218">
-            🇬🇧 +44 20 8135 8218
-          </a>
-        </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link text-white text-decoration-none" href="tel:+34 822 11 21 64">
-            🇪🇸 +34 822 11 21 64
-          </a>
-        </li>
-        <li class="nav-item mx-2">
-          <%= link_to "Spain Property Selling and Buying Guide", "/spain-property-guide", 
-                      class: "nav-link text-white text-decoration-none" %>
-        </li>
-        <li class="nav-item mx-2">
-          <!-- Link now points to /free-consultation -->
-          <a class="nav-link text-white text-decoration-none" href="/free-consultation">
-            Free consultation
-          </a>
-        </li>
-        <li class="nav-item mx-2">
-          <!-- VV License link -->
-          <a class="nav-link text-white text-decoration-none" href="/vv-license">
-            VV License
-          </a>
-        </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link text-white text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
-            Contact Our Team
-          </a>
-        </li>
-      </ul>
-
-      <!-- Right aligned items: Buttons for auth-related links -->
-      <ul class="navbar-nav ms-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <p class="nav-link text-muted mb-0">
-              Logged in as <strong><%= current_user.email %></strong>
-            </p>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Dashboard', edit_user_path(current_user), class: "btn btn-outline-secondary m-1" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-secondary m-1", method: :delete %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary m-1" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary m-1" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+  <div class="flash flash-warning alert alert-dismissible fade show" role="alert">
+    <!-- Desktop alert text -->
+    <span class="d-none d-md-inline">
+      This <%= Date.current.strftime("%B") %>, we're accepting only <%= pick_random_number_based_on_month %> new property law clients to ensure every client receives the expert, personalised service they deserve.
+    </span>
+    <!-- Mobile alert text -->
+    <span class="d-inline d-md-none">
+      Only accepting <%= pick_random_number_based_on_month %> new clients this <%= Date.current.strftime("%B") %>.
+    </span>
+    <a data-bs-dismiss="alert" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </a>
   </div>
-  <!-- Calendly widget assets (best placed in your head, if possible) -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-</nav>
 
-
-<div class="flash flash-warning alert alert-dismissible fade show" role="alert">
-  <!-- Desktop alert text -->
-  <span class="d-none d-md-inline">
-    This <%= Date.current.strftime("%B") %>, we're accepting only <%= pick_random_number_based_on_month %> new property law clients to ensure every client receives the expert, personalised service they deserve.
-  </span>
-  <!-- Mobile alert text -->
-  <span class="d-inline d-md-none">
-    Only accepting <%= pick_random_number_based_on_month %> new clients this <%= Date.current.strftime("%B") %>.
-  </span>
-  <a data-bs-dismiss="alert" aria-label="Close">
-    <i class="fas fa-times"></i>
-  </a>
-</div>
-
-<div class="container py-4">
-  <div class="row flex-lg-row-reverse align-items-center g-5">
-    <!-- Image Column -->
+  <div class="container py-4">
+    <div class="row flex-lg-row-reverse align-items-center g-5">
+      <!-- Image Column -->
       <div class="col-md-5 mx-auto col-lg-5 video-width">
-      <div class="iframe-container">
-        <iframe src="https://www.youtube.com/embed/Oue8oQfyUL4?autoplay=0&modestbranding=0&rel=0&fs=0&color=white&controls=0&disablekb=1" width="560" height="315" title="Roper Lawyers Marbella" frameborder="0"></iframe>
-      </div>
+        <div class="iframe-container">
+          <iframe src="https://www.youtube.com/embed/Oue8oQfyUL4?autoplay=0&modestbranding=0&rel=0&fs=0&color=white&controls=0&disablekb=1" width="560" height="315" title="Roper Lawyers Marbella" frameborder="0"></iframe>
+        </div>
       </div>
 
-    <!-- Text Column (make it a flex container to center content vertically) -->
-    <div class="col-lg-6 d-flex align-items-center">
-      <div>
-        <a class="reviews-link" href="#reviews">
-          <strong>Google Reviews</strong>
-          <span class="stars">5.0</span>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-          <i class="fa-sharp fa-solid fa-star stars"></i>
-        </a>
-        <h1 class="display-4 fw-bold lh-1 my-3">
-          <span class="gradient-text">Tenerife Property</span> Lawyers & Conveyancing Experts
-        </h1>
-        <p class="value-proposition">
-          Providing expert, transparent legal guidance for a seamless property journey in Tenerife – backed by over 14 years of proven experience.
-        </p>
-        <div class="d-grid gap-2 d-md-flex mt-3 justify-content-md-start">
-          <div class="d-grid gap-2">
-<%= link_to '/free-consultation', class: "btn btn-outline-secondary btn-lg px-4 p-2 button-gold" do %>
-  <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
-      alt: "Olivier Roper", 
-      class: "olivier-head") %>
-  <p class="mb-0">Book a Free Consultation<br>with Olivier Roper</p>
-<% end %>
-
+      <!-- Text Column (make it a flex container to center content vertically) -->
+      <div class="col-lg-6 d-flex align-items-center">
+        <div>
+          <a class="reviews-link" href="#reviews">
+            <strong>Google Reviews</strong>
+            <span class="stars">5.0</span>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+            <i class="fa-sharp fa-solid fa-star stars"></i>
+          </a>
+          <h1 class="display-4 fw-bold lh-1 my-3">
+            <span class="gradient-text">Tenerife Property</span> Lawyers & Conveyancing Experts
+          </h1>
+          <p class="value-proposition">
+            Providing expert, transparent legal guidance for a seamless property journey in Tenerife – backed by over 14 years of proven experience.
+          </p>
+          <div class="d-grid gap-2 d-md-flex mt-3 justify-content-md-start">
+            <div class="d-grid gap-2">
+              <%= link_to '/free-consultation', class: "btn btn-outline-secondary btn-lg px-4 p-2 button-gold" do %>
+                <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
+                    alt: "Olivier Roper", 
+                    class: "olivier-head") %>
+                <p class="mb-0">Book a Free Consultation<br>with Olivier Roper</p>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-<!-- Contact Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form id="contactUsForm">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
-            <label for="floatingEmail">Email address</label>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" id="submitButton" class="btn btn-primary">Save</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- WhatsApp Button -->
-<div>
-  <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank">
-    <div class="red-dot"></div>
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
-  <script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
-</div>
-
-
-           <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank">
-           <div class="red-dot"></div>
-           <i class="fa-brands fa-whatsapp"></i>
-           </a>
-
-          <script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
-        </div>
-
 </main>  
 
 <div class="container px-4 py-5">
-<div class="row">
-<div class="col-12">
-  <h2 class="pb-4 m-3 text-center">Tenerife English-speaking Lawyers</h2>
-</div>
-</div>
-<div class="row">
-<div class="col-md-6 col-12">
-<p>At Roper Lawyers, we understand the importance of effective communication in the legal process, especially when it comes to purchasing property in a foreign country. That is why all our lawyers are proficient in English, ensuring that you can navigate the complexities of Spanish property law with ease. Our commitment to facilitating a smooth experience extends further, as our company owner, Olivier Roper, is a native bilingual Spanish/English-speaking lawyer. This means you can communicate in the language most comfortable for you, eliminating any language barriers.</p>
-</div>
-<div class="col-md-6 col-12">
-<p>Our <a href="https://www.roperlawyers.com/" style="text-decoration: none; color: inherit;">property lawyers</a>
- in Tenerife have a dedication to delivering high-quality assistance that comes from over 12 years of experience giving advice for buying a property in Tenerife. We prioritise the execution of our property transactions, ensuring that you can acquire your desired estate without encountering unnecessary obstacles. With Roper Lawyers, you can trust in a team of professionals who are not only well-versed in the intricacies of Spanish property law but are also committed to providing you with expert service throughout every step of your property acquisition venture.</p>
-</div>
-</div>
+  <div class="row">
+    <div class="col-12">
+      <h2 class="pb-4 m-3 text-center">Tenerife English-speaking Lawyers</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <p>At Roper Lawyers, we understand the importance of effective communication in the legal process, especially when it comes to purchasing property in a foreign country. That is why all our lawyers are proficient in English, ensuring that you can navigate the complexities of Spanish property law with ease. Our commitment to facilitating a smooth experience extends further, as our company owner, Olivier Roper, is a native bilingual Spanish/English-speaking lawyer. This means you can communicate in the language most comfortable for you, eliminating any language barriers.</p>
+    </div>
+    <div class="col-md-6 col-12">
+      <p>Our <a href="https://www.roperlawyers.com/" style="text-decoration: none; color: inherit;">property lawyers</a> in Tenerife have a dedication to delivering high-quality assistance that comes from over 12 years of experience giving advice for buying a property in Tenerife. We prioritise the execution of our property transactions, ensuring that you can acquire your desired estate without encountering unnecessary obstacles. With Roper Lawyers, you can trust in a team of professionals who are not only well-versed in the intricacies of Spanish property law but are also committed to providing you with expert service throughout every step of your property acquisition venture.</p>
+    </div>
+  </div>
 </div>
 
-  <%= render 'main_page_sections/why_us' %>
-  <%= render 'main_page_sections/about_us' %>
-  <%= render 'main_page_sections/features' %>
-  <div class="container px-4 py-5">
-  <div class="row">
-  <div class="col-12">
-    <h2 class="pb-4 m-3 text-center">Property Solicitors in Tenerife</h2>
-  </div>
-  </div>
-  <div class="row">
-  <div class="col-md-6 col-12">
-  <h3>Experienced Property Lawyers</h3>
-<p>We prioritise your peace of mind by conducting exhaustive due diligence, verifying the legal status of the property, and identifying any potential issues or encumbrances. Our commitment to excellence means that we leave no stone unturned in the pursuit of a seamless and secure real estate transaction for our clients.</p>
-<p>Our team places a strong emphasis on our deep understanding of Spanish conveyancing laws. We are well-versed in the intricacies of the legal framework governing property transactions in Spain, and believe that a robust knowledge of Spanish conveyancing laws is essential. For the seasoned investor or a first-time homebuyer, our expertise in understanding the complexities of Spanish property law ensures that you receive informed and reliable legal support at every stage of the conveyancing process.</p>
-  </div>
-  <div class="col-md-6 col-12">
-  <h3>Expert Legal Advice</h3>
-<p>Our team understands the intricacies of the local real estate landscape, ensuring that you receive guidance that is not only comprehensive but also specifically tailored to your unique situation. We are committed to providing the assurance of a smooth and successful transaction, leveraging our expertise to navigate legal complexities.</p>
-<p>If you need advice on buying a property in Tenerife or <a href="https://www.roperlawyers.com/lanzarote">Lanzarote</a>, our commitment to excellence ensures that you have a trusted partner by your side, offering expert legal advice to safeguard your interests throughout the entire process.</p>
-  </div>
-  </div>
-  <div class="row">
-  <div class="col-12">
-    <h2 class="pb-4 m-3 text-center">Consult Tenerife Property Lawyers for a Smooth Transaction</h2>
-  </div>
-  </div>
-  <div class="row">
-  <div class="col-md-6 col-12">
-  <p>In the current housing climate, the need for experienced property lawyers is more crucial than ever. Our team, recognised for their expertise in Tenerife real estate law, is ready to guide you through a smooth transaction. If you are navigating the intricacies of property acquisition or aiming to sell, Roper Lawyers offers the assurance of seasoned legal support. Take the first step towards achieving your property goals by entrusting your legal matters to a team that prioritises your interests and ensures a seamless transaction from start to finish.</p>
-  </div>
-  <div class="col-md-6 col-12">
-  <p>Do not let the complexities of real estate law overshadow your property aspirations. Seek the assistance of Roper Lawyers and experience the difference that expert legal support can make. Our team is dedicated to lifting the legal burden off your shoulders, allowing you to focus on what matters most – your property goals.</p>
-<p>Whether you are an experienced investor or a first-time buyer, our legal guidance is designed to empower you throughout the entire process. Consult with Tenerife Property Lawyers at Roper Lawyers today and embark on a journey where your property aspirations are supported by a team committed to your success.</p>
-  </div>
-  </div>
-  </div>
+<%= render 'main_page_sections/why_us' %>
+<%= render 'main_page_sections/about_us' %>
+<%= render 'main_page_sections/features' %>
 
-  <%= render 'main_page_sections/faq' %>
-  <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
-  <%= render 'main_page_sections/costs' %>
-  <%= render 'main_page_sections/logos' %>
-  <%= render 'main_page_sections/footer' %>
-</main>
+<div class="container px-4 py-5">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="pb-4 m-3 text-center">Property Solicitors in Tenerife</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <h3>Experienced Property Lawyers</h3>
+      <p>We prioritise your peace of mind by conducting exhaustive due diligence, verifying the legal status of the property, and identifying any potential issues or encumbrances. Our commitment to excellence means that we leave no stone unturned in the pursuit of a seamless and secure real estate transaction for our clients.</p>
+      <p>Our team places a strong emphasis on our deep understanding of Spanish conveyancing laws. We are well-versed in the intricacies of the legal framework governing property transactions in Spain, and believe that a robust knowledge of Spanish conveyancing laws is essential. For the seasoned investor or a first-time homebuyer, our expertise in understanding the complexities of Spanish property law ensures that you receive informed and reliable legal support at every stage of the conveyancing process.</p>
+    </div>
+    <div class="col-md-6 col-12">
+      <h3>Expert Legal Advice</h3>
+      <p>Our team understands the intricacies of the local real estate landscape, ensuring that you receive guidance that is not only comprehensive but also specifically tailored to your unique situation. We are committed to providing the assurance of a smooth and successful transaction, leveraging our expertise to navigate legal complexities.</p>
+      <p>If you need advice on buying a property in Tenerife or <a href="https://www.roperlawyers.com/lanzarote">Lanzarote</a>, our commitment to excellence ensures that you have a trusted partner by your side, offering expert legal advice to safeguard your interests throughout the entire process.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h2 class="pb-4 m-3 text-center">Consult Tenerife Property Lawyers for a Smooth Transaction</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <p>In the current housing climate, the need for experienced property lawyers is more crucial than ever. Our team, recognised for their expertise in Tenerife real estate law, is ready to guide you through a smooth transaction. If you are navigating the intricacies of property acquisition or aiming to sell, Roper Lawyers offers the assurance of seasoned legal support. Take the first step towards achieving your property goals by entrusting your legal matters to a team that prioritises your interests and ensures a seamless transaction from start to finish.</p>
+    </div>
+    <div class="col-md-6 col-12">
+      <p>Do not let the complexities of real estate law overshadow your property aspirations. Seek the assistance of Roper Lawyers and experience the difference that expert legal support can make. Our team is dedicated to lifting the legal burden off your shoulders, allowing you to focus on what matters most – your property goals.</p>
+      <p>Whether you are an experienced investor or a first-time buyer, our legal guidance is designed to empower you throughout the entire process. Consult with Tenerife Property Lawyers at Roper Lawyers today and embark on a journey where your property aspirations are supported by a team committed to your success.</p>
+    </div>
+  </div>
+</div>
+
+<%= render 'main_page_sections/faq' %>
+<%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+<%= render 'main_page_sections/costs' %>
+<%= render 'main_page_sections/logos' %>
+<%= render 'main_page_sections/footer' %>

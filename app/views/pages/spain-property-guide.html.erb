@@ -1,208 +1,127 @@
-<body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark shadow">
-    <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="https://www.roperlawyers.com/">
-        Roper Lawyers
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <!-- Left aligned items -->
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="tel:+442081358218">
-              🇬🇧 +44 20 8135 8218
-            </a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="tel:+34928974241">
-              🇪🇸 +34 928 97 42 41
-            </a>
-          </li>
-          <li class="nav-item mx-2">
-            <%= link_to "Spain Property Selling and Buying Guide", "/spain-property-guide", class: "nav-link" %>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="/free-consultation">
-              Free Consultation
-            </a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="/vv-license">
-              VV License
-            </a>
-          </li>
-          <li class="nav-item mx-2">
-            <a
-              class="nav-link"
-              href="#"
-              data-bs-toggle="modal"
-              data-bs-target="#contactModal"
-            >
-              Contact Our Team
-            </a>
-          </li>
-        </ul>
 
-        <!-- Right aligned items -->
-        <ul class="navbar-nav ms-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item d-flex align-items-center text-white-50 px-2">
-              Logged in as <strong class="ms-1"><%= current_user.email %></strong>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Dashboard', edit_user_path(current_user), class: "btn btn-outline-light mx-1" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-light mx-1", method: :delete %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light mx-1" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Login", new_user_session_path, class: "btn btn-outline-light mx-1" %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+<!-- Main Content -->
+<main class="pt-5" style="padding-top: 30px !important">
+  <div class="container min-vh-100 py-5 px-3 px-md-5">
+    <div class="rounded-4 p-4 p-lg-5">
+      <article class="prose max-w-none">
+        <section class="mb-10">
+          <h2 class="text-2xl font-bold mb-4">Step-by-Step Guide to Buying Property in Spain</h2>
+          <p>Buying property in Spain is an exciting venture – whether you're a British expat seeking sunshine in retirement, an overseas investor looking for a holiday rental, or a first-time buyer ready to own a slice of the Spanish coast. From the vibrant Costa del Sol to the sun-soaked <strong>Canary Islands property purchase</strong> process, Spain offers fantastic opportunities. However, purchasing real estate in a foreign country can also be complex. This comprehensive guide will walk you through the <strong>step-by-step process of buying property in Spain</strong>, highlight why hiring a <strong>property conveyancing Spain</strong> specialist is essential, and warn of fatal errors to avoid. Our goal is to help you buy your Spanish dream home with confidence and ease.</p>
+          <p><em>Ready to start your journey? Follow these steps and expert tips to ensure a smooth transaction. And remember – with the right legal guidance, you can enjoy the process knowing your investment is protected.</em></p>
+        </section>
+
+        <section class="mb-10">
+          <h2 class="text-2xl font-bold mb-4">Step-by-Step Guide Content</h2>
+          <p>Buying a home in Spain involves several stages, from initial planning to final registration. Below is a clear, step-by-step breakdown to help you understand <strong>how to buy property in Spain</strong> successfully. Each step is crucial – skipping or rushing any part could lead to delays or risks. Let's dive in:</p>
+          <p><strong>Step 1: Determine Your Budget and Financial Plan</strong><br>
+          The first step is <strong>planning your budget</strong>. Consider how much you can afford, including purchase price and additional costs (taxes, fees, and moving expenses). If you need financing, explore mortgage options early. Many Spanish banks offer mortgages to foreign buyers, but terms may differ from your home country. British buyers in Spain should also factor in currency exchange fluctuations – for example, changes in the pound-euro rate can affect the final cost. Make sure to have funds available for a down payment (usually around 10% of the property price for the deposit) and ensure you can cover closing costs (typically another ~10-15% of the price once all taxes and fees are included).</p>
+
+          <p><strong>Tip:</strong> It's wise to get a mortgage pre-approval (or at least an initial assessment) if you plan to finance the purchase. This helps define your price range and shows sellers you are a serious buyer. Additionally, plan for ongoing costs like community fees (if buying an apartment or in a development), insurance, and maintenance. Solid financial planning at the outset will set the foundation for a stress-free buying process.</p>
+        </section>
+
+        <section class="mb-10">
+          <h3 class="text-xl font-semibold mt-6">Step 2: Obtain Your NIE (Foreigner Identification Number) and Set Up Banking</h3>
+          <p>In Spain, all foreigners need a <strong>Número de Identificación de Extranjero (NIE)</strong> to purchase property. The NIE is a tax identification number for non-Spaniards, and you'll use it on all official documents, from the purchase contract to tax payments. It's best to apply for your NIE as early as possible, as it can take a few weeks to process. You can obtain an NIE in person in Spain (at a National Police station or Foreigners' Office) or through a Spanish consulate in your home country. A <strong>qualified conveyancing lawyer</strong> can also assist with the NIE application as part of their services.</p>
+
+          <p>At this stage, it's also recommended to <strong>open a Spanish bank account</strong>. While not strictly required by law to buy property, having a local bank account makes it easier to pay deposits, taxes, and utilities. It can also save on foreign exchange fees. Choose a bank that is accustomed to working with international clients – many have English-speaking staff in areas popular with expats. With your NIE and bank account ready, you'll be prepared to handle the financial transactions involved in buying your Spanish home.</p>
+        </section>
+
+        <section class="mb-10">
+          <h3 class="text-xl font-semibold mt-6">Step 3: Hire an English-Speaking Conveyancing Lawyer</h3>
+          <p>One of the <strong>most important steps for British buyers in Spain</strong> (and all international buyers) is to <strong>hire a qualified conveyancing lawyer</strong> <strong>early in the process</strong> – ideally before you even put down any deposit or sign a contract. While it's not a legal requirement to have a lawyer, proceeding without one is extremely risky. A Spanish property transaction involves legal documents in Spanish, regional regulations, and local due diligence that can be very different from what you're used to at home. An experienced, independent lawyer will <strong>protect your interests</strong> at every step, making sure there are no nasty surprises.</p>
+
+          <p><strong>Why hire a lawyer now?</strong> A conveyancing lawyer (known in Spanish as an <em>abogado</em>) will review or draft contracts, verify the property's legal status, and advise you on your rights and obligations. Crucially, they will carry out <strong>due diligence</strong> on the property <strong>before</strong> you commit to the purchase. This includes checking for debts or charges on the property, ensuring the seller actually has legal title, and that all building permissions are in order. Without these checks, you could inadvertently inherit the previous owner's debts or purchase a home with illegal extensions. Hiring an <strong>English-speaking Spanish property lawyer</strong> – such as the experts at <a href="https://www.roperlawyers.com/">Roper Lawyers</a> – gives you peace of mind. They bridge any language gap and guide you through Spanish legal procedures with clarity. It's a small investment that can save you from huge problems and ultimately <strong>remove stress</strong> from the buying experience. <em>(Remember: Notaries in Spain are public officials who formalize the sale, but they are <strong>not</strong> there to represent your personal interests – you still need your own lawyer to look out for you.)</em></p>
+        </section>
+
+        <section class="mb-10">
+          <h3 class="text-xl font-semibold mt-6">Step 4: Start Your Property Search in Spain's Sunny Regions</h3>
+          <p>With your budget set and a lawyer by your side, you can confidently <strong>search for your ideal property</strong>. Spain offers a wide array of options – from modern apartments in Barcelona, to villas on the Costa Blanca, to charming fincas in Andalusia. Many <strong>British buyers in Spain</strong> gravitate toward sunny coastal areas and islands. For example, the <strong>Canary Islands</strong> (Tenerife, Gran Canaria, Lanzarote, Fuerteventura, etc.) are extremely popular for their year-round warm climate and beautiful beaches. Likewise, the Costa del Sol (Marbella, Malaga), Costa Blanca (Alicante, Javea), and Balearic Islands (Mallorca, Ibiza) are hotspots for expats and retirees.</p>
+
+          <p>When searching, consider engaging a reputable local <strong>estate agent</strong> (<em>inmobiliaria</em>) who knows the area well. Look for agents who speak your language and are registered professionals. Your lawyer may even recommend trustworthy agents. <strong>Do your homework on the area</strong>: visit in different seasons if possible, check the neighborhood amenities, and consider factors like healthcare access and transportation – especially if you plan to live there long-term. With a clear idea of what you want and professional help, you'll soon find a property that fits your needs and lifestyle.</p>
+
+          <p><strong>Pro tip:</strong> It's wise to have your lawyer or advisor check any property's basics (like the land registry details) even at the viewing or offer stage. This way, you can be sure the listing information matches the official records (e.g. correct size, ownership, no obvious red flags). When you've found "the one," you're ready to move on to making an offer.</p>
+        </section>
+
+        <section class="mb-10">
+          <h3 class="text-xl font-semibold mt-6">Step 5: Make an Offer and Pay a Reservation Deposit</h3>
+          <p>Once you've found a property you love, the next step is <strong>making a formal offer</strong>. In Spain, offers are often made verbally or in writing via the estate agent. Negotiation is common – don't be afraid to offer below the asking price, especially if the property has been on the market for a while. Once you and the seller agree on a price and basic terms, it's customary to sign a <strong>reservation agreement</strong> (or pre-agreement) and pay a small <strong>reservation deposit</strong> (for example, €3,000 – €6,000, depending on the property price). This <strong>reservation fee</strong> (sometimes called a holding deposit) temporarily takes the property off the market while the contracts are being prepared.</p>
+
+          <p><strong>Important:</strong> <em>Do not sign any agreement or pay any deposit without consulting your lawyer.</em> Your <strong>conveyancing lawyer in Spain</strong> should review the reservation contract to ensure it's fair. Typically, a reservation agreement will state the agreed price, names of buyer and seller, and a timeframe for signing the formal private purchase contract. It may also state that the deposit is non-refundable if you back out (except due to legal issues found). Make sure the reservation deposit will be held in a secure account (for example, with the estate agency or a lawyer's escrow account) and that the terms are reasonable. This initial step is small but significant – it marks your commitment to buy, subject to the next contractual stage.</p>
+        </section>
+
+        <section class="mb-10">
+          <h3 class="text-xl font-semibold mt-6">Step 6: Conduct Thorough Due Diligence on the Property</h3>
+          <p>After the reservation, it's time for your lawyer to perform <strong>due diligence</strong> — essentially, a deep legal inspection of the property. This stage is critical to ensure the property is "clean" and ready to purchase. Your lawyer will <strong>obtain a "Nota Simple"</strong> from the Land Registry, which is a report showing the registered owner, legal description, and any charges or liens (like mortgages) on the property. They will verify that the person selling the property is indeed the legal owner (or has power of attorney to sell). If the property has multiple owners (common if inherited), all must consent to the sale.</p>
+
+          <p>Additionally, the lawyer will check for <strong>debts attached to the property</strong>. In Spain, debts such as unpaid property taxes (<em>IBI</em>), community fees (if it's part of a building or complex), or utility bills can become the responsibility of the new owner if not cleared before transfer. <strong>Ensuring the property is debt-free</strong> at completion is part of the lawyer's job (for instance, <strong>Roper Lawyers' conveyancing services</strong> include making sure the home is free of unpaid debts or encumbrances prior to purchase). Your lawyer may request proof of up-to-date payments on utilities and community charges, and ensure the seller will cancel any existing mortgage on the property.</p>
+
+          <p><strong>Legal checks:</strong> Another key part of due diligence is confirming that the property was built legally and has all required licenses. The lawyer will review the <strong>planning permissions</strong> and building certificates, especially if it's a villa or has had renovations (like added pools, extensions, etc.). Unlicensed construction could lead to fines or even demolition orders, so this must be investigated. If you're buying a rural property or land, there may be additional checks on zoning or rights of way. By the end of this step, you should have full confidence that the property has no legal issues, hidden surprises, or outstanding liabilities. Only once due diligence is satisfactory do you move to the next step.</p>
+        </section>
+
+        <section class="mb-10">
+          <h3 class="text-xl font-semibold mt-6">Step 7: Sign the Private Purchase Contract (Contrato de Arras) and Pay the Deposit</h3>
+          <p>With due diligence clear and financing in place, the next milestone is signing the <strong>purchase contract</strong>. In Spain, this is often a private contract called the <strong>"Contrato de Arras"</strong> (earnest money contract) or an option contract. This is a binding agreement between you and the seller that finalizes the terms of the sale and sets a date for completion (when the property changes hands at the notary). Your lawyer will either draft this contract or review the draft prepared by the seller's side, ensuring all necessary clauses are included to protect you.</p>
+
+          <p>Key points in the contract include: the agreed purchase price, payment schedule, what happens to the deposit if either party withdraws, the target completion date, and any special conditions (for example, subject to obtaining a mortgage or subject to certain repairs being done). In a standard <em>arras penitenciales</em> contract, it's customary for the buyer to pay a <strong>10% deposit</strong> of the purchase price upon signing. The law in Spain says if the buyer backs out after signing an arras contract, they <strong>forfeit their deposit</strong>. If the seller backs out, they must refund <em>double</em> the deposit to the buyer.</p>
+
+          <p>This provides a strong incentive for both parties to follow through. Because of these serious implications, <strong>having your lawyer explain and negotiate the terms is vital</strong> – never sign a Spanish purchase contract you don't fully understand. Once both parties sign the contract and the <strong>10% deposit</strong> is paid (usually to the seller or held by the seller's lawyer/agent), you are officially on the road to owning the property.</p>
+        </section>
+
+        <section class="mb-10">
+          <h3 class="text-xl font-semibold mt-6">Step 8: Finalise Mortgage (If Applicable)</h3>
+          <p>If you are financing the purchase with a mortgage, between the contract signing and completion is when you <strong>finalise your mortgage arrangements</strong>. Hopefully, you began this process earlier (as noted in Step 1), but now the bank will require copies of the signed purchase contract and the results of their property valuation. The bank will do its own valuation of the property you're buying to confirm the loan-to-value ratio. Your lawyer can coordinate with the bank and provide any legal documents they need during this period.</p>
+
+          <p>Make sure you understand the mortgage terms offered – interest rate (fixed or variable), term length, any arrangement fees, and what documents you must sign. <strong>Non-resident buyers</strong> (like Brits not living full-time in Spain) might get a slightly lower loan-to-value (often around 60-70% of the property value, though it can vary). Residents sometimes can get up to 80%. Ensure you have the funds available for the remaining balance of the purchase price plus all costs, since the final completion (Step 9) will require you to pay everything that's due.</p>
+        </section>
+
+        <section class="mb-10">
+          <h3 class="text-xl font-semibold mt-6">Step 9: Completion Day – Sign the Escritura at the Notary and Get the Keys</h3>
+          <p><strong>Completion day</strong> is when you finally become the legal owner of your Spanish property! This takes place in front of a <strong>Notary Public</strong> (<em>Notario</em>), who is a government-authorized official responsible for witnessing property transactions. On the agreed date, all parties (or their representatives) meet at the notary's office. Typically present are: you (the buyer) and/or your legal representative, the seller, both parties' lawyers, a bank representative if a mortgage is involved, and possibly the estate agent.</p>
+
+          <p>At the notary, the <strong>Escritura de Compraventa</strong> (deed of sale) is read aloud (in Spanish; your lawyer can translate key points). This official document transfers the property from seller to buyer. Your lawyer will double-check that all details are correct. Once everyone is satisfied, the deed is signed and sealed by the notary. This is when ownership is officially transferred.</p>
+        </section>
+
+        <section class="mb-10">
+          <h3 class="text-xl font-semibold mt-6">Step 10: Pay Taxes and Finalise Land Registration</h3>
+          <p>After completion, there are <strong>post-sale formalities</strong>. These include:</p>
+          <ul class="list-disc list-inside">
+            <li>Paying <strong>transfer tax (ITP)</strong> for resale property or <strong>VAT/IGIC + stamp duty</strong> if new</li>
+            <li>Covering <strong>notary and land registry fees</strong></li>
+            <li><strong>Registering the title deed</strong> in your name at the Land Registry</li>
+          </ul>
+          <p>Your lawyer usually handles these steps to ensure timely filing and full compliance.</p>
+        </section>
+
+        <section class="mb-10">
+          <h3 class="text-xl font-semibold mt-6">Step 11: Post-Purchase Considerations and Next Steps</h3>
+          <p>After the deal closes, ensure utilities are transferred to your name, the community of owners is notified, insurance is arranged, and – if relevant – you explore Spanish wills options.</p>
+        </section>
+
+        <section class="mb-10">
+          <h2 class="text-2xl font-bold mb-4">Top 7 Fatal Errors to Avoid When Buying Property Without Legal Oversight</h2>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Purchasing a property with unpaid debts or charges that follow the title</li>
+            <li>Title or ownership disputes with heirs or unauthorised sellers</li>
+            <li>Illegal constructions or lack of planning permission</li>
+            <li>Contracts written in Spanish without proper review</li>
+            <li>Falling victim to scams or forged seller identities</li>
+            <li>Missing mandatory tax withholdings or filing deadlines</li>
+            <li>Underestimating costs, paperwork, or failing to register title</li>
+          </ol>
+        </section>
+
+        <section class="mb-10">
+          <h2 class="text-2xl font-bold mb-4">Smooth Sailing with a Qualified Lawyer</h2>
+          <p>Buying a property in Spain should be exciting – and with a qualified <strong>Spanish property lawyer</strong>, it will be. At <a href="https://www.roperlawyers.com/">Roper Lawyers</a>, our <strong>English-speaking conveyancing experts</strong> help British expats and global clients buy safely, legally, and confidently across mainland Spain and the Canary Islands.</p>
+          <p>From due diligence to notary day and beyond, we take the stress off your shoulders and protect your investment every step of the way.</p>
+        </section>
+
+        <section class="bg-blue-50 p-6 rounded-xl mt-12">
+          <p class="mb-4">Let us help you purchase safely and with full confidence. <a href="https://www.roperlawyers.com/" class="text-blue-600 font-semibold hover:underline">Roper Lawyers</a> offers personalised, professional legal support tailored to British and international buyers in Spain.</p>
+          <%= link_to "Book Your Free Consultation →", contact_us_path, class: "inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full" %>
+        </section>
+      </article>
     </div>
-  </nav>
+  </div>
+</main>
 
-  <!-- Main Content -->
-  <main class="pt-5" style="padding-top: 30px !important">
-    <div class="container min-vh-100 py-5 px-3 px-md-5">
-      <div class="rounded-4 p-4 p-lg-5">
-        <article class="prose max-w-none">
-
-  <section class="m-10">
-    <h2 class="text-2xl font-bold mb-4">Step-by-Step Guide to Buying Property in Spain</h2>
-    <p>Buying property in Spain is an exciting venture – whether you're a British expat seeking sunshine in retirement, an overseas investor looking for a holiday rental, or a first-time buyer ready to own a slice of the Spanish coast. From the vibrant Costa del Sol to the sun-soaked <strong>Canary Islands property purchase</strong> process, Spain offers fantastic opportunities. However, purchasing real estate in a foreign country can also be complex. This comprehensive guide will walk you through the <strong>step-by-step process of buying property in Spain</strong>, highlight why hiring a <strong>property conveyancing Spain</strong> specialist is essential, and warn of fatal errors to avoid. Our goal is to help you buy your Spanish dream home with confidence and ease.</p>
-    <p><em>Ready to start your journey? Follow these steps and expert tips to ensure a smooth transaction. And remember – with the right legal guidance, you can enjoy the process knowing your investment is protected.</em></p>
-  </section>
-
-  <section class="mb-10">
-  <h2 class="text-2xl font-bold mb-4">Step-by-Step Guide Content</h2>
-  <p>Buying a home in Spain involves several stages, from initial planning to final registration. Below is a clear, step-by-step breakdown to help you understand <strong>how to buy property in Spain</strong> successfully. Each step is crucial – skipping or rushing any part could lead to delays or risks. Let's dive in:</p>
-  <p><strong>Step 1: Determine Your Budget and Financial Plan</strong><br>
-The first step is <strong>planning your budget</strong>. Consider how much you can afford, including purchase price and additional costs (taxes, fees, and moving expenses). If you need financing, explore mortgage options early. Many Spanish banks offer mortgages to foreign buyers, but terms may differ from your home country. British buyers in Spain should also factor in currency exchange fluctuations – for example, changes in the pound-euro rate can affect the final cost. Make sure to have funds available for a down payment (usually around 10% of the property price for the deposit) and ensure you can cover closing costs (typically another ~10-15% of the price once all taxes and fees are included).</p>
-
-<p><strong>Tip:</strong> It's wise to get a mortgage pre-approval (or at least an initial assessment) if you plan to finance the purchase. This helps define your price range and shows sellers you are a serious buyer. Additionally, plan for ongoing costs like community fees (if buying an apartment or in a development), insurance, and maintenance. Solid financial planning at the outset will set the foundation for a stress-free buying process.</p>
-</section>
-
-<section class="mb-10">
-<h3 class="text-xl font-semibold mt-6">Step 2: Obtain Your NIE (Foreigner Identification Number) and Set Up Banking</h3>
-<p>In Spain, all foreigners need a <strong>Número de Identificación de Extranjero (NIE)</strong> to purchase property. The NIE is a tax identification number for non-Spaniards, and you'll use it on all official documents, from the purchase contract to tax payments. It's best to apply for your NIE as early as possible, as it can take a few weeks to process. You can obtain an NIE in person in Spain (at a National Police station or Foreigners' Office) or through a Spanish consulate in your home country. A <strong>qualified conveyancing lawyer</strong> can also assist with the NIE application as part of their services.</p>
-
-<p>At this stage, it's also recommended to <strong>open a Spanish bank account</strong>. While not strictly required by law to buy property, having a local bank account makes it easier to pay deposits, taxes, and utilities. It can also save on foreign exchange fees. Choose a bank that is accustomed to working with international clients – many have English-speaking staff in areas popular with expats. With your NIE and bank account ready, you'll be prepared to handle the financial transactions involved in buying your Spanish home.</p>
-</section>
-
-<section class="mb-10">
-<h3 class="text-xl font-semibold mt-6">Step 3: Hire an English-Speaking Conveyancing Lawyer</h3>
-<p>One of the <strong>most important steps for British buyers in Spain</strong> (and all international buyers) is to <strong>hire a qualified conveyancing lawyer</strong> <strong>early in the process</strong> – ideally before you even put down any deposit or sign a contract. While it's not a legal requirement to have a lawyer, proceeding without one is extremely risky. A Spanish property transaction involves legal documents in Spanish, regional regulations, and local due diligence that can be very different from what you're used to at home. An experienced, independent lawyer will <strong>protect your interests</strong> at every step, making sure there are no nasty surprises.</p>
-
-<p><strong>Why hire a lawyer now?</strong> A conveyancing lawyer (known in Spanish as an <em>abogado</em>) will review or draft contracts, verify the property's legal status, and advise you on your rights and obligations. Crucially, they will carry out <strong>due diligence</strong> on the property <strong>before</strong> you commit to the purchase. This includes checking for debts or charges on the property, ensuring the seller actually has legal title, and that all building permissions are in order. Without these checks, you could inadvertently inherit the previous owner's debts or purchase a home with illegal extensions. Hiring an <strong>English-speaking Spanish property lawyer</strong> – such as the experts at <a href="https://www.roperlawyers.com/">Roper Lawyers</a> – gives you peace of mind. They bridge any language gap and guide you through Spanish legal procedures with clarity. It's a small investment that can save you from huge problems and ultimately <strong>remove stress</strong> from the buying experience. <em>(Remember: Notaries in Spain are public officials who formalize the sale, but they are <strong>not</strong> there to represent your personal interests – you still need your own lawyer to look out for you.)</em></p>
-</section>
-
-<section class="mb-10">
-  <h3 class="text-xl font-semibold mt-6">Step 4: Start Your Property Search in Spain's Sunny Regions</h3>
-  <p>With your budget set and a lawyer by your side, you can confidently <strong>search for your ideal property</strong>. Spain offers a wide array of options – from modern apartments in Barcelona, to villas on the Costa Blanca, to charming fincas in Andalusia. Many <strong>British buyers in Spain</strong> gravitate toward sunny coastal areas and islands. For example, the <strong>Canary Islands</strong> (Tenerife, Gran Canaria, Lanzarote, Fuerteventura, etc.) are extremely popular for their year-round warm climate and beautiful beaches. Likewise, the Costa del Sol (Marbella, Malaga), Costa Blanca (Alicante, Javea), and Balearic Islands (Mallorca, Ibiza) are hotspots for expats and retirees.</p>
-
-  <p>When searching, consider engaging a reputable local <strong>estate agent</strong> (<em>inmobiliaria</em>) who knows the area well. Look for agents who speak your language and are registered professionals. Your lawyer may even recommend trustworthy agents. <strong>Do your homework on the area</strong>: visit in different seasons if possible, check the neighborhood amenities, and consider factors like healthcare access and transportation – especially if you plan to live there long-term. With a clear idea of what you want and professional help, you'll soon find a property that fits your needs and lifestyle.</p>
-
-  <p><strong>Pro tip:</strong> It's wise to have your lawyer or advisor check any property's basics (like the land registry details) even at the viewing or offer stage. This way, you can be sure the listing information matches the official records (e.g. correct size, ownership, no obvious red flags). When you've found "the one," you're ready to move on to making an offer.</p>
-</section>
-
-<section class="mb-10">
-  <h3 class="text-xl font-semibold mt-6">Step 5: Make an Offer and Pay a Reservation Deposit</h3>
-  <p>Once you've found a property you love, the next step is <strong>making a formal offer</strong>. In Spain, offers are often made verbally or in writing via the estate agent. Negotiation is common – don't be afraid to offer below the asking price, especially if the property has been on the market for a while. Once you and the seller agree on a price and basic terms, it's customary to sign a <strong>reservation agreement</strong> (or pre-agreement) and pay a small <strong>reservation deposit</strong> (for example, €3,000 – €6,000, depending on the property price). This <strong>reservation fee</strong> (sometimes called a holding deposit) temporarily takes the property off the market while the contracts are being prepared.</p>
-
-  <p><strong>Important:</strong> <em>Do not sign any agreement or pay any deposit without consulting your lawyer.</em> Your <strong>conveyancing lawyer in Spain</strong> should review the reservation contract to ensure it's fair. Typically, a reservation agreement will state the agreed price, names of buyer and seller, and a timeframe for signing the formal private purchase contract. It may also state that the deposit is non-refundable if you back out (except due to legal issues found). Make sure the reservation deposit will be held in a secure account (for example, with the estate agency or a lawyer's escrow account) and that the terms are reasonable. This initial step is small but significant – it marks your commitment to buy, subject to the next contractual stage.</p>
-</section>
-
-<section class="mb-10">
-  <h3 class="text-xl font-semibold mt-6">Step 6: Conduct Thorough Due Diligence on the Property</h3>
-  <p>After the reservation, it's time for your lawyer to perform <strong>due diligence</strong> — essentially, a deep legal inspection of the property. This stage is critical to ensure the property is "clean" and ready to purchase. Your lawyer will <strong>obtain a "Nota Simple"</strong> from the Land Registry, which is a report showing the registered owner, legal description, and any charges or liens (like mortgages) on the property. They will verify that the person selling the property is indeed the legal owner (or has power of attorney to sell). If the property has multiple owners (common if inherited), all must consent to the sale.</p>
-
-  <p>Additionally, the lawyer will check for <strong>debts attached to the property</strong>. In Spain, debts such as unpaid property taxes (<em>IBI</em>), community fees (if it's part of a building or complex), or utility bills can become the responsibility of the new owner if not cleared before transfer. <strong>Ensuring the property is debt-free</strong> at completion is part of the lawyer's job (for instance, <strong>Roper Lawyers' conveyancing services</strong> include making sure the home is free of unpaid debts or encumbrances prior to purchase). Your lawyer may request proof of up-to-date payments on utilities and community charges, and ensure the seller will cancel any existing mortgage on the property.</p>
-
-  <p><strong>Legal checks:</strong> Another key part of due diligence is confirming that the property was built legally and has all required licenses. The lawyer will review the <strong>planning permissions</strong> and building certificates, especially if it's a villa or has had renovations (like added pools, extensions, etc.). Unlicensed construction could lead to fines or even demolition orders, so this must be investigated. If you're buying a rural property or land, there may be additional checks on zoning or rights of way. By the end of this step, you should have full confidence that the property has no legal issues, hidden surprises, or outstanding liabilities. Only once due diligence is satisfactory do you move to the next step.</p>
-</section>
-
-<section class="mb-10">
-  <h3 class="text-xl font-semibold mt-6">Step 7: Sign the Private Purchase Contract (Contrato de Arras) and Pay the Deposit</h3>
-  <p>With due diligence clear and financing in place, the next milestone is signing the <strong>purchase contract</strong>. In Spain, this is often a private contract called the <strong>"Contrato de Arras"</strong> (earnest money contract) or an option contract. This is a binding agreement between you and the seller that finalizes the terms of the sale and sets a date for completion (when the property changes hands at the notary). Your lawyer will either draft this contract or review the draft prepared by the seller's side, ensuring all necessary clauses are included to protect you.</p>
-
-  <p>Key points in the contract include: the agreed purchase price, payment schedule, what happens to the deposit if either party withdraws, the target completion date, and any special conditions (for example, subject to obtaining a mortgage or subject to certain repairs being done). In a standard <em>arras penitenciales</em> contract, it's customary for the buyer to pay a <strong>10% deposit</strong> of the purchase price upon signing. The law in Spain says if the buyer backs out after signing an arras contract, they <strong>forfeit their deposit</strong>. If the seller backs out, they must refund <em>double</em> the deposit to the buyer.</p>
-
-  <p>This provides a strong incentive for both parties to follow through. Because of these serious implications, <strong>having your lawyer explain and negotiate the terms is vital</strong> – never sign a Spanish purchase contract you don't fully understand. Once both parties sign the contract and the <strong>10% deposit</strong> is paid (usually to the seller or held by the seller's lawyer/agent), you are officially on the road to owning the property.</p>
-</section>
-
-<section class="mb-10">
-  <h3 class="text-xl font-semibold mt-6">Step 8: Finalise Mortgage (If Applicable)</h3>
-  <p>If you are financing the purchase with a mortgage, between the contract signing and completion is when you <strong>finalise your mortgage arrangements</strong>. Hopefully, you began this process earlier (as noted in Step 1), but now the bank will require copies of the signed purchase contract and the results of their property valuation. The bank will do its own valuation of the property you're buying to confirm the loan-to-value ratio. Your lawyer can coordinate with the bank and provide any legal documents they need during this period.</p>
-
-  <p>Make sure you understand the mortgage terms offered – interest rate (fixed or variable), term length, any arrangement fees, and what documents you must sign. <strong>Non-resident buyers</strong> (like Brits not living full-time in Spain) might get a slightly lower loan-to-value (often around 60-70% of the property value, though it can vary). Residents sometimes can get up to 80%. Ensure you have the funds available for the remaining balance of the purchase price plus all costs, since the final completion (Step 9) will require you to pay everything that's due.</p>
-</section>
-
-<section class="mb-10">
-  <h3 class="text-xl font-semibold mt-6">Step 9: Completion Day – Sign the Escritura at the Notary and Get the Keys</h3>
-  <p><strong>Completion day</strong> is when you finally become the legal owner of your Spanish property! This takes place in front of a <strong>Notary Public</strong> (<em>Notario</em>), who is a government-authorized official responsible for witnessing property transactions. On the agreed date, all parties (or their representatives) meet at the notary's office. Typically present are: you (the buyer) and/or your legal representative, the seller, both parties' lawyers, a bank representative if a mortgage is involved, and possibly the estate agent.</p>
-
-  <p>At the notary, the <strong>Escritura de Compraventa</strong> (deed of sale) is read aloud (in Spanish; your lawyer can translate key points). This official document transfers the property from seller to buyer. Your lawyer will double-check that all details are correct. Once everyone is satisfied, the deed is signed and sealed by the notary. This is when ownership is officially transferred.</p>
-</section>
-
-<section class="mb-10">
-  <h3 class="text-xl font-semibold mt-6">Step 10: Pay Taxes and Finalise Land Registration</h3>
-  <p>After completion, there are <strong>post-sale formalities</strong>. These include:</p>
-  <ul class="list-disc list-inside">
-    <li>Paying <strong>transfer tax (ITP)</strong> for resale property or <strong>VAT/IGIC + stamp duty</strong> if new</li>
-    <li>Covering <strong>notary and land registry fees</strong></li>
-    <li><strong>Registering the title deed</strong> in your name at the Land Registry</li>
-  </ul>
-  <p>Your lawyer usually handles these steps to ensure timely filing and full compliance.</p>
-</section>
-
-<section class="mb-10">
-  <h3 class="text-xl font-semibold mt-6">Step 11: Post-Purchase Considerations and Next Steps</h3>
-  <p>After the deal closes, ensure utilities are transferred to your name, the community of owners is notified, insurance is arranged, and – if relevant – you explore Spanish wills options.</p>
-</section>
-
-<section class="mb-10">
-  <h2 class="text-2xl font-bold mb-4">Top 7 Fatal Errors to Avoid When Buying Property Without Legal Oversight</h2>
-  <ol class="list-decimal list-inside space-y-2">
-    <li>Purchasing a property with unpaid debts or charges that follow the title</li>
-    <li>Title or ownership disputes with heirs or unauthorised sellers</li>
-    <li>Illegal constructions or lack of planning permission</li>
-    <li>Contracts written in Spanish without proper review</li>
-    <li>Falling victim to scams or forged seller identities</li>
-    <li>Missing mandatory tax withholdings or filing deadlines</li>
-    <li>Underestimating costs, paperwork, or failing to register title</li>
-  </ol>
-</section>
-
-<section class="mb-10">
-  <h2 class="text-2xl font-bold mb-4">Smooth Sailing with a Qualified Lawyer</h2>
-  <p>Buying a property in Spain should be exciting – and with a qualified <strong>Spanish property lawyer</strong>, it will be. At <a href="https://www.roperlawyers.com/">Roper Lawyers</a>, our <strong>English-speaking conveyancing experts</strong> help British expats and global clients buy safely, legally, and confidently across mainland Spain and the Canary Islands.</p>
-  <p>From due diligence to notary day and beyond, we take the stress off your shoulders and protect your investment every step of the way.</p>
-</section>
-<section class="bg-blue-50 p-6 rounded-xl mt-12">
-    <p class="mb-4">Let us help you purchase safely and with full confidence. <a href="https://www.roperlawyers.com/" class="text-blue-600 font-semibold hover:underline">Roper Lawyers</a> offers personalised, professional legal support tailored to British and international buyers in Spain.</p>
-    <%= link_to "Book Your Free Consultation →", contact_us_path, class: "inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full" %>
-  </section>
-
-        </article>
-      </div>
-    </div>
-  </main>
-</body>
