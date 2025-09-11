@@ -1,0 +1,66 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: "John"
+  last_name: "Doe"
+  email: "john.doe@example.com"
+  mobile_phone: "+34123456789"
+  full_name_on_passport: "John Michael Doe"
+  passport_number: "AB123456"
+  date_of_birth: <%= Date.parse("1985-06-15") %>
+  expiry_date: <%= Date.parse("2030-06-15") %>
+  nationality: "British"
+  profession: "Engineer"
+  marital_status: "Married"
+  spouse: "Jane Doe"
+  home_address: "123 Main St, London"
+  buying_property_address: "456 Beach Ave, Lanzarote"
+  selling_property_address: "789 Old St, Manchester"
+  father_s_first_name: "Michael"
+  mother_s_first_name: "Sarah"
+  r_origin_bank_details: "HSBC UK"
+  otb_origin_bank_details: "Santander"
+  balance_bank_details: "Barclays"
+  standing_orders_bank_details: "NatWest"
+  needs_poa: true
+  here_till: "2024-12-31"
+  date_of_decease: null
+  father_s_full_name: "Michael John Doe"
+  father_s_vital_status: "Alive"
+  mother_s_full_name: "Sarah Jane Smith"
+  mother_s_vital_status: "Alive"
+  children: "2"
+  outline_of_bequests_and_oder_of_success: "To spouse and children"
+  inheritance_to_be_governed_by: "UK Law"
+  energy_efficiency_certificate_cee: "A"
+  escritura: "Yes"
+  wants_to_holiday_let: true
+  nie_number: "Y1234567L"
+  name_of_the_present_spouse: "Jane Doe"
+  name_of_the_previous_spouses: null
+  date_of_divorce: null
+  tax_resident: true
+  poa_made_in_spain: "yes"
+  currency: "EUR"
+  needs_nie: "yes"
+  needs_mortgage: true
+  has_a_spanish_bank_account: "yes"
+  b_preferred_notary_date: <%= Date.parse("2024-08-15") %>
+  sf_contact_id: "003XX000004TmiQQAS"
+  created_at: "2024-01-01 10:00:00"
+  updated_at: "2024-01-01 10:00:00"
+
+two:
+  first_name: "Jane"
+  last_name: "Smith"
+  email: "jane.smith@example.com"
+  mobile_phone: "+34987654321"
+  nationality: "American"
+  profession: "Doctor"
+  marital_status: "Single"
+  tax_resident: false
+  poa_made_in_spain: "no"
+  needs_nie: "no"
+  has_a_spanish_bank_account: "no"
+  created_at: "2024-01-02 10:00:00"
+  updated_at: "2024-01-02 10:00:00"
