@@ -398,6 +398,11 @@ module UserFieldDefinitions
           description: "If widowed, enter date of spouse's death:",
           conditional: true
         },
+        father_s_full_name: {
+          label: "Full name of your father",
+          type: :text,
+          placeholder: "Full name of your father",
+        },
         father_s_vital_status: {
           label: "Is your father alive?",
           email_label: "Father's Vital Status",
@@ -407,6 +412,11 @@ module UserFieldDefinitions
             { value: "Yes", label: "Yes" },
             { value: "No", label: "No" }
           ]
+        },
+        mother_s_full_name: {
+          label: "Full name of your mother",
+          type: :text,
+          placeholder: "Full name of your mother",
         },
         mother_s_vital_status: {
           label: "Is your mother alive?",
