@@ -1,11 +1,13 @@
 // Import and register all your controllers from the importmap under controllers/*
 
-// import { application } from "./application"
+import { application } from "./application"
 
-// Eager load all controllers defined in the import map under controllers/**/*_controller
-// import { eagerLoadControllersFrom } from "@hotwired/stimulus-webpack-helpers"
-// eagerLoadControllersFrom("controllers", application)
+// Import controllers directly
+import ContactController from "./contact_controller"
+import ReviewController from "./review_controller"
+import UserFormController from "./user_form_controller"
 
-// Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
-// import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
-// lazyLoadControllersFrom("controllers", application)
+// Register controllers
+application.register("contact", ContactController)
+application.register("review", ReviewController)
+application.register("user-form", UserFormController)

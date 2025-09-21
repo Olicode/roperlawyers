@@ -1,0 +1,122 @@
+<%= render_breadcrumb('selling_property', 'lanzarote', 'costa_teguise') %>
+
+<main>
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="pb-4 m-3 text-center">Expert Legal Services for Selling Property in Costa Teguise</h1>
+        </div>
+      </div>
+      <div class="row">
+        <p>Selling property in Costa Teguise, Lanzarote's sophisticated resort destination, requires expert legal guidance to navigate the unique characteristics of this upmarket area. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Costa Teguise property lawyers with over 14 years of experience helping British and Irish clients successfully sell their properties in this prestigious resort town. Our English-speaking team provides comprehensive legal support throughout the entire selling process, from market analysis to final completion.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <%= location_links_for_service('selling_property', 'lanzarote', 'costa_teguise') %>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Why Sell Property in Costa Teguise</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <p>Costa Teguise is known for its upmarket developments, golf course, and sophisticated atmosphere, attracting discerning buyers seeking quality properties in a prestigious location. The area's planned development and high-quality infrastructure make it highly desirable for both permanent residents and holiday home buyers.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>Our expert knowledge of Costa Teguise's premium property market ensures you achieve the best possible price for your property. We handle all legal aspects of the sale, including market positioning, contract negotiation, and tax optimization strategies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Costa Teguise Property Areas</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <h4>Golf Course Area</h4>
+          <p>Premium properties with golf course views and access, highly sought after by buyers seeking luxury lifestyle amenities and excellent rental potential.</p>
+          
+          <h4>Beachfront Properties</h4>
+          <p>Exclusive beachfront locations with direct beach access and stunning ocean views, commanding premium prices in Costa Teguise's property market.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <h4>Luxury Complexes</h4>
+          <p>High-end residential complexes with premium amenities, pools, and landscaped gardens, popular with discerning buyers seeking quality and convenience.</p>
+          
+          <h4>Villa Developments</h4>
+          <p>Exclusive villa developments offering privacy, luxury, and sophisticated design, attracting high-end buyers and investors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Our Costa Teguise Selling Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Premium Market Analysis</h5>
+              <p class="card-text">Expert analysis of Costa Teguise's upmarket property sector and strategic pricing for maximum return.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Luxury Property Marketing</h5>
+              <p class="card-text">Specialized marketing strategies for high-end Costa Teguise properties to attract qualified buyers.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Complete Legal Service</h5>
+              <p class="card-text">Comprehensive legal management from initial valuation to final completion, ensuring a smooth premium property sale.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Contact Our Costa Teguise Property Experts</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12 mx-auto text-center">
+          <p class="lead">Ready to sell your Costa Teguise property? Our expert lawyers specialize in premium property sales and are here to guide you through every step of the process. Contact us today for professional property selling legal services.</p>
+          
+          <div class="mt-4">
+            <%= link_to "Get Expert Legal Advice", "https://wa.me/+34649948377", class: "btn btn-primary btn-lg me-3", style: "background-color: #b29c84; border-color: #b29c84;" %>
+            <%= link_to "Free Consultation", "/free-consultation", class: "btn btn-outline-primary btn-lg", style: "color: #b29c84; border-color: #b29c84;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

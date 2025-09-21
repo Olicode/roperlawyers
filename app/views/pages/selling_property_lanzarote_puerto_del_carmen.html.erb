@@ -1,0 +1,122 @@
+<%= render_breadcrumb('selling_property', 'lanzarote', 'puerto_del_carmen') %>
+
+<main>
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="pb-4 m-3 text-center">Expert Legal Services for Selling Property in Puerto del Carmen</h1>
+        </div>
+      </div>
+      <div class="row">
+        <p>Selling property in Puerto del Carmen, Lanzarote's premier resort destination, requires expert legal guidance to maximize your return and ensure a smooth transaction. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Puerto del Carmen property lawyers with over 14 years of experience helping British and Irish clients successfully sell their properties in this vibrant resort town. Our English-speaking team provides comprehensive legal support throughout the entire selling process, from market valuation to final completion.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <%= location_links_for_service('selling_property', 'lanzarote', 'puerto_del_carmen') %>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Why Sell Property in Puerto del Carmen</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <p>Puerto del Carmen is Lanzarote's most established and popular resort area, offering excellent capital appreciation and strong rental yields. The area's mature tourism infrastructure, beautiful beaches, and year-round appeal make it highly attractive to international buyers.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>Our expert knowledge of Puerto del Carmen's property market ensures you achieve the best possible price for your property. We handle all legal aspects of the sale, including tax optimization, contract negotiation, and completion procedures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Puerto del Carmen Property Areas</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <h4>Old Town Harbor</h4>
+          <p>Traditional fishing village area with authentic Canarian properties and waterfront locations. High demand from buyers seeking character properties with sea views.</p>
+          
+          <h4>Playa Grande Beachfront</h4>
+          <p>Prime beachfront properties with direct beach access and stunning ocean views. These premium locations command the highest prices in Puerto del Carmen.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <h4>Resort Complexes</h4>
+          <p>Modern apartment complexes with pools and amenities, popular with holiday rental investors and permanent residents seeking low-maintenance properties.</p>
+          
+          <h4>Residential Areas</h4>
+          <p>Established residential neighborhoods offering a mix of villas and apartments, perfect for families and long-term residents seeking a quieter lifestyle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Our Puerto del Carmen Selling Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Market Valuation</h5>
+              <p class="card-text">Expert property valuation based on current Puerto del Carmen market conditions and comparable sales data.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Tax Optimization</h5>
+              <p class="card-text">Strategic advice on capital gains tax and plusvalia tax to minimize your tax liability when selling in Puerto del Carmen.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Sale Management</h5>
+              <p class="card-text">Complete management of the selling process from initial marketing to final completion at the notary.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Contact Our Puerto del Carmen Property Experts</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12 mx-auto text-center">
+          <p class="lead">Ready to sell your Puerto del Carmen property? Our expert lawyers are here to guide you through every step of the process, ensuring maximum return and a smooth transaction. Contact us today for professional property selling legal services.</p>
+          
+          <div class="mt-4">
+            <%= link_to "Get Expert Legal Advice", "https://wa.me/+34649948377", class: "btn btn-primary btn-lg me-3", style: "background-color: #b29c84; border-color: #b29c84;" %>
+            <%= link_to "Free Consultation", "/free-consultation", class: "btn btn-outline-primary btn-lg", style: "color: #b29c84; border-color: #b29c84;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

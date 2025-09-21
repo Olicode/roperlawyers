@@ -1,0 +1,115 @@
+<%= render_breadcrumb('selling_property', 'lanzarote') %>
+
+<main>
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="pb-4 m-3 text-center">Expert Legal Services for Selling Property in Lanzarote</h1>
+        </div>
+      </div>
+      <div class="row">
+        <p>Selling property in Lanzarote requires expert legal guidance to navigate Spanish property law, tax obligations, and ensure a smooth transaction. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Lanzarote property lawyers with over 14 years of experience helping British and Irish clients successfully sell their properties across the island. Our English-speaking team provides comprehensive legal support throughout the entire selling process, from initial valuation to final completion.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <%= location_links_for_service('selling_property', 'lanzarote') %>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Why Choose Our Lanzarote Property Selling Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <p>Selling property in Lanzarote involves complex legal procedures, tax calculations, and documentation requirements. Our experienced team handles all aspects of the sale, ensuring compliance with Spanish law while maximizing your return and minimizing stress throughout the process.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>We provide expert guidance on capital gains tax, plusvalia tax, and all legal requirements for property sales in Lanzarote. Our comprehensive service covers everything from contract preparation to final deed signing at the notary.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Our Property Selling Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Legal Documentation</h5>
+              <p class="card-text">Complete preparation of all legal documents required for property sales, including contracts, deeds, and tax declarations.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Tax Optimization</h5>
+              <p class="card-text">Expert advice on capital gains tax, plusvalia tax, and strategies to minimize your tax liability when selling property in Lanzarote.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Transaction Management</h5>
+              <p class="card-text">Full management of the selling process from initial agreement to final completion, ensuring all legal requirements are met.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Contact Our Lanzarote Property Experts</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12 mx-auto text-center">
+          <p class="lead">Ready to sell your Lanzarote property? Our expert lawyers are here to guide you through every step of the process, ensuring a smooth and profitable sale. Contact us today for professional property selling legal services.</p>
+          
+          <div class="mt-4">
+            <%= link_to "Get Expert Legal Advice", "https://wa.me/+34649948377", class: "btn btn-primary btn-lg me-3", style: "background-color: #b29c84; border-color: #b29c84;" %>
+            <%= link_to "Free Consultation", "/free-consultation", class: "btn btn-outline-primary btn-lg", style: "color: #b29c84; border-color: #b29c84;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Roper Lawyers",
+  "image": "https://www.roperlawyers.com/logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Acatife, 9, puerta 41",
+    "addressLocality": "Puerto del Carmen",
+    "postalCode": "35510",
+    "addressRegion": "Las Palmas",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34 928 97 42 41",
+  "url": "https://www.roperlawyers.com"
+}
+</script>

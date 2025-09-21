@@ -1,0 +1,122 @@
+<%= render_breadcrumb('selling_property', 'lanzarote', 'playa_blanca') %>
+
+<main>
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="pb-4 m-3 text-center">Expert Legal Services for Selling Property in Playa Blanca</h1>
+        </div>
+      </div>
+      <div class="row">
+        <p>Selling property in Playa Blanca, Lanzarote's most upmarket resort destination, requires expert legal guidance to maximize returns in this premium market. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Playa Blanca property lawyers with over 14 years of experience helping British and Irish clients successfully sell their luxury properties in this sophisticated southern resort. Our English-speaking team provides comprehensive legal support throughout the entire selling process for high-end properties.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <%= location_links_for_service('selling_property', 'lanzarote', 'playa_blanca') %>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Why Sell Property in Playa Blanca</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <p>Playa Blanca is Lanzarote's most exclusive resort area, known for its luxury developments, premium marina, and sophisticated atmosphere. The area attracts high-end buyers seeking quality properties with marina access, ocean views, and upmarket amenities.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>Our expert knowledge of Playa Blanca's luxury property market ensures you achieve premium prices for your property. We specialize in high-end property sales, handling all legal aspects including luxury property marketing, contract negotiation, and tax optimization for substantial transactions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Playa Blanca Premium Property Areas</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <h4>Marina Rubicón</h4>
+          <p>Luxury marina development with premium apartments, penthouses, and commercial spaces. These exclusive properties command the highest prices in Lanzarote's property market.</p>
+          
+          <h4>Beachfront Luxury</h4>
+          <p>Exclusive beachfront properties with direct beach access and stunning ocean views across to Fuerteventura, representing the pinnacle of Lanzarote luxury real estate.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <h4>Premium Developments</h4>
+          <p>High-end residential complexes with luxury amenities, private pools, and sophisticated design, attracting discerning international buyers.</p>
+          
+          <h4>Exclusive Villas</h4>
+          <p>Luxury villa developments offering privacy, premium finishes, and spectacular views, representing the ultimate in Playa Blanca luxury living.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Our Playa Blanca Luxury Selling Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Luxury Market Expertise</h5>
+              <p class="card-text">Specialized knowledge of Playa Blanca's premium property market and luxury buyer preferences for maximum sale prices.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">High-Value Transactions</h5>
+              <p class="card-text">Expert handling of substantial property transactions with sophisticated tax planning and legal structuring.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Premium Service</h5>
+              <p class="card-text">White-glove legal service tailored to luxury property sales, ensuring discretion and excellence throughout the process.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Contact Our Playa Blanca Luxury Property Experts</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12 mx-auto text-center">
+          <p class="lead">Ready to sell your luxury Playa Blanca property? Our expert lawyers specialize in high-end property sales and are here to guide you through every step of the premium property selling process. Contact us today for professional luxury property legal services.</p>
+          
+          <div class="mt-4">
+            <%= link_to "Get Expert Legal Advice", "https://wa.me/+34649948377", class: "btn btn-primary btn-lg me-3", style: "background-color: #b29c84; border-color: #b29c84;" %>
+            <%= link_to "Free Consultation", "/free-consultation", class: "btn btn-outline-primary btn-lg", style: "color: #b29c84; border-color: #b29c84;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

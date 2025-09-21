@@ -30,11 +30,21 @@
             <%= link_to "#reviews", class: "reviews-link d-block" do %>
               <strong>Google Reviews</strong>
               <span class="stars">5.0</span>
-              <i class="fa-sharp fa-solid fa-star stars"></i>
-              <i class="fa-sharp fa-solid fa-star stars"></i>
-              <i class="fa-sharp fa-solid fa-star stars"></i>
-              <i class="fa-sharp fa-solid fa-star stars"></i>
-              <i class="fa-sharp fa-solid fa-star stars"></i>
+              <svg width="12" height="12" viewBox="0 0 24 24" class="me-1" fill="#FBBC04">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" class="me-1" fill="#FBBC04">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" class="me-1" fill="#FBBC04">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" class="me-1" fill="#FBBC04">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC04">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
             <% end %>
           </div>
 
@@ -145,3 +155,22 @@
   <%= render 'main_page_sections/costs' %>
   <%= render 'main_page_sections/logos' %>
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Roper Lawyers",
+  "image": "https://www.roperlawyers.com/logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Acatife, 9, puerta 41",
+    "addressLocality": "Puerto del Carmen",
+    "postalCode": "35510",
+    "addressRegion": "Las Palmas",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34 928 97 42 41",
+  "url": "https://www.roperlawyers.com"
+}
+</script>

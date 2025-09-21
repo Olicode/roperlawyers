@@ -10,9 +10,11 @@
           <div class="card-body review-data text-start">
           <div class="review-header">
             <h5 class="card-title"><%= review["name"] %></h5>
-            <p class="review-rating">
+            <p class="review-rating d-flex">
                 <% review["rating"].to_i.times do %>
-                  <i class="fa fa-star"></i>
+                  <svg width="16" height="16" viewBox="0 0 24 24" class="me-1" fill="#FBBC04">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
                 <% end %>
               </p>
              <%# <h6 class="review-date"><%= review["Date"] %>

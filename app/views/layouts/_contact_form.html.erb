@@ -1,42 +1,35 @@
 <!-- Modal -->
-<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true" data-controller="contact">
-  <div class="modal-dialog">
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <form id="contactForm" data-contact-target="form" data-action="submit->contact#submit" action="/contact_us" method="post">
+      <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Df4000000oE8m" method="POST">
+
+        <input type="hidden" name="oid" value="00Df4000000oE8m">
+        <input type="hidden" name="retURL" value="<%= request.base_url %>/thank-you">
 
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" id ="contactFormBody">
+        <div class="modal-body">
           <div class="form-floating mb-3">
-            <input type="hidden" name="url" value="<%= request.original_url %>"/>
-            <input type="email" name="email" class="form-control" id="floatingEmail" required placeholder="name@example.com" autocomplete="email">
+            <input type="text" name="first_name" class="form-control" id="floatingFirstName" maxlength="40" placeholder="John" autocomplete="given-name">
+            <label for="floatingFirstName">First Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" name="email" class="form-control" id="floatingEmail" maxlength="80" required placeholder="name@example.com" autocomplete="email">
             <label for="floatingEmail">Your Email address</label>
           </div>
           <div class="form-floating">
-            <textarea name="message" class="form-control" placeholder="Leave a comment here" required id="floatingTextarea2" style="height: 100px"></textarea>
+            <textarea name="description" class="form-control" placeholder="Leave a comment here" required id="floatingTextarea2" style="height: 100px"></textarea>
             <label for="floatingTextarea2">Message</label>
           </div>
           <p class="text-center text-muted small mt-2">We'll never share your info with anyone.</p>
+        </div>        
+        <div class="modal-footer">
+          <button type="submit" class="btn rounded-pill" style="background-color: #b39c84; border-color: #b39c84; color: white;">Send Message</button>
         </div>
-        <div class="modal-body" id ="successMessageBody" data-contact-target="successMessage" style="display:none;">
-          <div class="alert alert-success" role="alert">
-            Your message has been sent successfully. We will get back to you soon. 
-          </div>
-          
-        </div>    
-        <div class="modal-body" id ="errorMessageBody" data-contact-target="errorMessage" style="display:none;">
-          <div class="alert alert-danger" role="alert">
-            Your message could not be sent. Reach out to us directly at 
-          </div>
-          
-        </div>          
-      <div class="modal-footer">
-        
-        <button type="submit" class="btn btn-primary">Send Message <i class="fa ct-spinner fa-spinner fa-spin" data-contact-target="spinner" style="display:none;"></i></button>
-      </div>
+      </form>
     </div>
-    </form>
   </div>
 </div>  

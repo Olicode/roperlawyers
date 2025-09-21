@@ -11,6 +11,12 @@ class PagesController < ApplicationController
     @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
   end
 
+  def puerto_del_carmen_property_conveyancing_lawyer
+    @mtitle = "Puerto del Carmen Property & Conveyancing Lawyer | Roper Lawyers"
+    @mdescription = "Buying or selling property in Puerto del Carmen? Bilingual lawyer with 15+ years' experience. Fast, reliable conveyancing. Free consultation available."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
   def tenerife
     @mtitle = "Tenerife estate agents, find property lawyers in Tenerife"
     @mdescription = "If you need advice for buying a property in Tenerife or you're looking to sell your property in Spain, contact our team. We can guide you through the process today."
@@ -51,9 +57,228 @@ class PagesController < ApplicationController
     @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 
+  def reviews
+    @mtitle = "Client Reviews & Testimonials | Roper Lawyers"
+    @mdescription = "Read genuine client reviews and testimonials for Roper Lawyers. See why UK, Irish & international clients trust our Spanish property law services."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def our_story
+    @mtitle = "Our Story – English-Speaking Property Lawyers in Spain | Roper Lawyers"
+    @mdescription = "Meet Roper Lawyers: 14+ years helping UK, Irish & European clients with Spanish property law. Bilingual experts in conveyancing, inheritance & wills."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def services
+    @mtitle = "Legal Services for Spanish Property Law | Roper Lawyers"
+    @mdescription = "Comprehensive Spanish property law services: conveyancing, wills, inheritance, holiday rental licenses, NIE numbers & tax advice for non-residents."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def property_buying_guide
+    @mtitle = "How to Buy Property in Spain: A Complete Guide for Expats | Roper Lawyers"
+    @mdescription = "Complete step-by-step guide for UK, Irish & European expats buying property in Spain. NIE numbers, legal checks, costs, taxes & common pitfalls explained."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def holiday_rental_rules_2025
+    @mtitle = "VV Licenses & Holiday Rental Rules 2025: Canary Islands Complete Guide | Roper Lawyers"
+    @mdescription = "Complete guide to VV licenses and new 2025 holiday rental regulations in the Canary Islands. Legal requirements, community approval, tax obligations & compliance."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
   def contact_us
     TransactionalMailer.contact_us(ENV['MAILER_TO'] || "rcvdtest@yopmail.com", params[:email],params[:url], params[:message]).deliver!
     render json: { success: true }
+  end
+
+  def buying_property
+    @mtitle = "Buying Property in Spain | Expert Legal Guidance | Roper Lawyers"
+    @mdescription = "Expert legal guidance for buying property in Spain. English-speaking lawyers with 15+ years' experience. Secure conveyancing services. Free consultation."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def selling_property
+    @mtitle = "Selling Property in Spain | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert legal services for selling property in Spain. Bilingual lawyers ensuring smooth transactions. Tax advice and conveyancing support. Free consultation."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def wills
+    @mtitle = "Spanish Wills & Testament Services | Expert Legal Advice | Roper Lawyers"
+    @mdescription = "Expert Spanish will and testament services. Bilingual lawyers ensuring your assets are protected. International will advice. Free consultation available."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def inheritance
+    @mtitle = "Spanish Inheritance Law | Expert Legal Guidance | Roper Lawyers"
+    @mdescription = "Expert guidance on Spanish inheritance law. Bilingual lawyers helping with probate, succession planning, and inheritance tax. Free consultation available."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def new_build_registration
+    @mtitle = "New Build Registration Spain | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert new build registration services in Spain. Bilingual lawyers handling declarations, permits, and legal compliance. Free consultation available."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def holiday_rental_license
+    @mtitle = "Holiday Rental License Spain | VV License Experts | Roper Lawyers"
+    @mdescription = "Expert holiday rental licensing in Spain. VV license applications, compliance, and legal support. Bilingual lawyers with 15+ years' experience."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  # Lanzarote-specific pages
+  def buying_property_lanzarote
+    @mtitle = "Buying Property in Lanzarote | Expert Legal Guidance | Roper Lawyers"
+    @mdescription = "Expert legal guidance for buying property in Lanzarote. English-speaking lawyers with 15+ years' experience. Secure conveyancing services."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def selling_property_lanzarote
+    @mtitle = "Selling Property in Lanzarote | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert legal services for selling property in Lanzarote. Bilingual lawyers ensuring smooth transactions. Tax advice and conveyancing support."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def wills_lanzarote
+    @mtitle = "Lanzarote Wills & Testament Services | Expert Legal Advice | Roper Lawyers"
+    @mdescription = "Expert Spanish will and testament services in Lanzarote. Bilingual lawyers ensuring your assets are protected. Free consultation available."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def inheritance_lanzarote
+    @mtitle = "Lanzarote Inheritance Law | Expert Legal Guidance | Roper Lawyers"
+    @mdescription = "Expert guidance on Spanish inheritance law in Lanzarote. Bilingual lawyers helping with probate, succession planning, and inheritance tax."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def new_build_registration_lanzarote
+    @mtitle = "New Build Registration Lanzarote | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert new build registration services in Lanzarote. Bilingual lawyers handling declarations, permits, and legal compliance."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def holiday_rental_license_lanzarote
+    @mtitle = "Holiday Rental License Lanzarote | VV License Experts | Roper Lawyers"
+    @mdescription = "Expert holiday rental licensing in Lanzarote. VV license applications, compliance, and legal support. Bilingual lawyers with 15+ years' experience."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  # Puerto del Carmen pages
+  def buying_property_lanzarote_puerto_del_carmen
+    @mtitle = "Buying Property Puerto del Carmen | Expert Legal Guidance | Roper Lawyers"
+    @mdescription = "Expert legal guidance for buying property in Puerto del Carmen, Lanzarote. English-speaking lawyers with 15+ years' experience."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def selling_property_lanzarote_puerto_del_carmen
+    @mtitle = "Selling Property Puerto del Carmen | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert legal services for selling property in Puerto del Carmen, Lanzarote. Bilingual lawyers ensuring smooth transactions."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def wills_lanzarote_puerto_del_carmen
+    @mtitle = "Puerto del Carmen Wills & Testament | Expert Legal Advice | Roper Lawyers"
+    @mdescription = "Expert Spanish will and testament services in Puerto del Carmen, Lanzarote. Bilingual lawyers ensuring your assets are protected."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def inheritance_lanzarote_puerto_del_carmen
+    @mtitle = "Puerto del Carmen Inheritance Law | Expert Legal Guidance | Roper Lawyers"
+    @mdescription = "Expert guidance on Spanish inheritance law in Puerto del Carmen, Lanzarote. Bilingual lawyers helping with probate and succession."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def new_build_registration_lanzarote_puerto_del_carmen
+    @mtitle = "New Build Registration Puerto del Carmen | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert new build registration services in Puerto del Carmen, Lanzarote. Bilingual lawyers handling declarations and permits."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def holiday_rental_license_lanzarote_puerto_del_carmen
+    @mtitle = "Holiday Rental License Puerto del Carmen | VV License Experts | Roper Lawyers"
+    @mdescription = "Expert holiday rental licensing in Puerto del Carmen, Lanzarote. VV license applications and compliance support."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  # Playa Blanca pages
+  def buying_property_lanzarote_playa_blanca
+    @mtitle = "Buying Property Playa Blanca | Expert Legal Guidance | Roper Lawyers"
+    @mdescription = "Expert legal guidance for buying property in Playa Blanca, Lanzarote. English-speaking lawyers with 15+ years' experience."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def selling_property_lanzarote_playa_blanca
+    @mtitle = "Selling Property Playa Blanca | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert legal services for selling property in Playa Blanca, Lanzarote. Bilingual lawyers ensuring smooth transactions."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def wills_lanzarote_playa_blanca
+    @mtitle = "Playa Blanca Wills & Testament | Expert Legal Advice | Roper Lawyers"
+    @mdescription = "Expert Spanish will and testament services in Playa Blanca, Lanzarote. Bilingual lawyers ensuring your assets are protected."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def inheritance_lanzarote_playa_blanca
+    @mtitle = "Playa Blanca Inheritance Law | Expert Legal Guidance | Roper Lawyers"
+    @mdescription = "Expert guidance on Spanish inheritance law in Playa Blanca, Lanzarote. Bilingual lawyers helping with probate and succession."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def new_build_registration_lanzarote_playa_blanca
+    @mtitle = "New Build Registration Playa Blanca | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert new build registration services in Playa Blanca, Lanzarote. Bilingual lawyers handling declarations and permits."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def holiday_rental_license_lanzarote_playa_blanca
+    @mtitle = "Holiday Rental License Playa Blanca | VV License Experts | Roper Lawyers"
+    @mdescription = "Expert holiday rental licensing in Playa Blanca, Lanzarote. VV license applications and compliance support."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  # Costa Teguise pages
+  def buying_property_lanzarote_costa_teguise
+    @mtitle = "Buying Property Costa Teguise | Expert Legal Guidance | Roper Lawyers"
+    @mdescription = "Expert legal guidance for buying property in Costa Teguise, Lanzarote. English-speaking lawyers with 15+ years' experience."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def selling_property_lanzarote_costa_teguise
+    @mtitle = "Selling Property Costa Teguise | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert legal services for selling property in Costa Teguise, Lanzarote. Bilingual lawyers ensuring smooth transactions."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def wills_lanzarote_costa_teguise
+    @mtitle = "Costa Teguise Wills & Testament | Expert Legal Advice | Roper Lawyers"
+    @mdescription = "Expert Spanish will and testament services in Costa Teguise, Lanzarote. Bilingual lawyers ensuring your assets are protected."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def inheritance_lanzarote_costa_teguise
+    @mtitle = "Costa Teguise Inheritance Law | Expert Legal Guidance | Roper Lawyers"
+    @mdescription = "Expert guidance on Spanish inheritance law in Costa Teguise, Lanzarote. Bilingual lawyers helping with probate and succession."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def new_build_registration_lanzarote_costa_teguise
+    @mtitle = "New Build Registration Costa Teguise | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert new build registration services in Costa Teguise, Lanzarote. Bilingual lawyers handling declarations and permits."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def holiday_rental_license_lanzarote_costa_teguise
+    @mtitle = "Holiday Rental License Costa Teguise | VV License Experts | Roper Lawyers"
+    @mdescription = "Expert holiday rental licensing in Costa Teguise, Lanzarote. VV license applications and compliance support."
+    @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
+  end
+
+  def thank_you
+    @mtitle = "Thank You | Roper Lawyers"
+    @mdescription = "Thank you for contacting Roper Lawyers. We will get back to you soon."
   end
 end
 

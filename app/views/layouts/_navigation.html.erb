@@ -1,77 +1,197 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="https://www.roperlawyers.com/">Roper Lawyers</a>
-
-      <div class="d-flex align-items-center">
-        <!-- Call button visible on mobile only -->
-        <a href="tel:+34928974241" class="d-lg-none me-2">
-          <i class="fas fa-phone-alt text-white"></i>
+<!-- Top Bar -->
+<div class="fixed-top bg-light" style="padding: 6px 0; font-size: 1rem; z-index: 1030; height: 38px; margin: 0; border: none;">
+  <div class="container" style="height: 100%;">
+    <div class="d-flex justify-content-between align-items-center h-100">
+      <!-- Phone numbers (left) -->
+      <div class="d-flex gap-4">
+        <a class="text-dark text-decoration-none" href="tel:+442081358218">
+          🇬🇧 +44 20 8135 8218
         </a>
-        <!-- Hamburger menu button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none;">
-          <span class="navbar-toggler-icon" style="filter: brightness(0) invert(1);"></span>
-        </button>
+        <a class="text-dark text-decoration-none" href="tel:+34928974241">
+          🇪🇸 +34 928 97 42 41
+        </a>
       </div>
+      
+      
+      <!-- Client Login (right) -->
+      <div>
+        <% if user_signed_in? %>
+          <span class="text-muted me-3"><%= current_user.email %></span>
+          <%= link_to 'Dashboard', edit_user_path(current_user), class: "text-dark text-decoration-none me-2" %>
+          <%= link_to "Logout", destroy_user_session_path, class: "text-dark text-decoration-none", method: :delete %>
+        <% else %>
+          <%= link_to "Client Login", new_user_session_path, class: "text-dark text-decoration-none" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white" style="top: 38px; margin: 0; padding: 0.5rem 0; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    <div class="container">
+      <a class="navbar-brand" href="/" style="font-family: 'Times New Roman', serif; color: #b29c84 !important; font-weight: normal; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.2em;">Roper Lawyers</a>
+
+      <!-- Hamburger menu button for mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none;">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <!-- Left aligned items -->
-        <ul class="navbar-nav me-auto left-links">
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white text-decoration-none" href="tel:+44 20 8135 8218">
-              🇬🇧 +44 20 8135 8218
+        <!-- Main navigation items (desktop left) -->
+        <ul class="navbar-nav me-auto d-none d-lg-flex">
+          <!-- About Us Dropdown -->
+          <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+            <a class="nav-link dropdown-toggle text-dark" href="/our-story" id="aboutDropdown" role="button" 
+               aria-expanded="false">
+              About Us
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+              <li><a class="dropdown-item" href="/our-story">Our Story</a></li>
+              <li><a class="dropdown-item" href="/team">Meet the Team</a></li>
+              <li><a class="dropdown-item" href="/why-choose-us">Why Choose Us</a></li>
+            </ul>
+          </li>
+          
+          <!-- Buying Property -->
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold" href="/buying-property">Buying Property</a>
+          </li>
+          
+          <!-- Holiday Rental Licences -->
+          <li class="nav-item">
+            <a class="nav-link text-dark position-relative" href="/holiday-rental-license">
+              Holiday Rental Licences
+              <span class="badge rounded-pill ms-1" style="background-color: rgba(179, 156, 132, 0.15); color: #b39c84; font-size: 0.65rem; font-weight: normal; vertical-align: top;">New Regulations</span>
             </a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white text-decoration-none" href="tel:+34 928 97 42 41">
-              🇪🇸 +34 928 97 42 41
+          
+          <!-- Services Dropdown -->
+          <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+            <a class="nav-link dropdown-toggle text-dark" href="/services" id="servicesDropdown" role="button" 
+               aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+              <li><a class="dropdown-item" href="/selling-property">Selling Property</a></li>
+              <li><a class="dropdown-item" href="/wills">Wills</a></li>
+              <li><a class="dropdown-item" href="/inheritance">Inheritance</a></li>
+              <li><a class="dropdown-item" href="/new-build-registration">New-Build Registration</a></li>
+            </ul>
+          </li>
+          
+          <!-- Guides Dropdown -->
+          <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="guidesDropdown" role="button" 
+               aria-expanded="false">
+              Guides
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="guidesDropdown">
+              <li><a class="dropdown-item" href="/property-buying-guide">How to Buy Property in Spain</a></li>
+              <li><a class="dropdown-item" href="/holiday-rental-rules-2025">Holiday Rental Rules 2025</a></li>
+              <li><a class="dropdown-item" href="/blog">Blog & News</a></li>
+            </ul>
+          </li>
+          
+          <!-- Reviews -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/reviews">Reviews</a>
+          </li>
+          
+          <!-- Contact -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+          </li>
+        </ul>
+
+        <!-- Mobile navigation items -->
+        <ul class="navbar-nav w-100 d-lg-none">
+          <!-- Mobile consultation button at top -->
+          <li class="nav-item mb-3">
+            <a class="btn w-100 fw-bold py-3 rounded-pill" href="#" data-bs-toggle="modal" data-bs-target="#contactModal" 
+               style="background-color: #b29c84; border-color: #b29c84; color: white; font-size: 1.1rem;">
+              📞 Free Consultation
             </a>
           </li>
-          <li class="nav-item mx-2">
-            <%= link_to "Spain Property Guide", "/spain-property-guide", 
-                        class: "nav-link text-white text-decoration-none" %>
+          
+          <!-- About Us -->
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold" href="/our-story">About Us</a>
           </li>
-          <li class="nav-item mx-2">
-            <!-- Link now points to /free-consultation -->
-            <a class="nav-link text-white text-decoration-none" href="/free-consultation">
-              Free consultation
-            </a>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/our-story">Our Story</a>
           </li>
-          <li class="nav-item mx-2">
-            <!-- VV License link -->
-            <a class="nav-link text-white text-decoration-none" href="/vv-license">
-              VV License
-            </a>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/team">Meet the Team</a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
-              Contact
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/why-choose-us">Why Choose Us</a>
+          </li>
+          
+          <!-- Reviews -->
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold" href="/reviews">Reviews</a>
+          </li>
+          
+          <!-- Services -->
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold">Services</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/buying-property">Buying Property</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/selling-property">Selling Property</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/wills">Wills</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/inheritance">Inheritance</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/new-build-registration">New-Build Registration</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/holiday-rental-license">Holiday Rental License (VV)</a>
+          </li>
+          
+          <!-- Guides -->
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold">Guides</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/property-buying-guide">Property Buying Guide</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/holiday-rental-rules-2025">Holiday Rental Rules 2025</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a class="nav-link text-muted" href="/blog">Blog & News</a>
+          </li>
+          
+          <!-- Contact -->
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-bold" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+          </li>
+          
+          <!-- Free Consultation -->
+          <li class="nav-item mt-3">
+            <a class="btn w-100 fw-bold py-2 rounded-pill" href="#" data-bs-toggle="modal" data-bs-target="#contactModal" 
+               style="background-color: #b29c84; border-color: #b29c84; color: white;">
+              Free Consultation
             </a>
           </li>
         </ul>
 
-        <!-- Right aligned items: Buttons for auth-related links -->
-        <ul class="navbar-nav ms-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <p class="nav-link text-muted mb-0">
-                Logged in as <strong><%= current_user.email %></strong>
-              </p>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Dashboard', edit_user_path(current_user), class: "btn btn-outline-secondary m-1" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-secondary m-1", method: :delete %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-secondary m-1" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary m-1" %>
-            </li>
-          <% end %>
+        <!-- Desktop Free Consultation button (far right) -->
+        <ul class="navbar-nav ms-auto d-none d-lg-flex">
+          <li class="nav-item">
+            <a class="btn rounded-pill d-flex align-items-center justify-content-center hero-primary-btn" href="/free-consultation" 
+               style="background-color: #b39c84; border: none; color: white; padding: 0.75rem 1.5rem; font-size: 1.125rem; text-decoration: none; width: fit-content; min-height: 48px; transition: background-color 0.2s ease;">
+              <span style="font-size: 1.125rem; font-weight: 500; letter-spacing: 0.8px;">Book Free Consultation</span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -79,3 +199,108 @@
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </nav>
+
+<script>
+function showDropdown(element) {
+  const dropdown = element.querySelector('.dropdown-menu');
+  const toggle = element.querySelector('.dropdown-toggle');
+  
+  if (dropdown && toggle) {
+    dropdown.classList.add('show');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+}
+
+function hideDropdown(element) {
+  const dropdown = element.querySelector('.dropdown-menu');
+  const toggle = element.querySelector('.dropdown-toggle');
+  
+  if (dropdown && toggle) {
+    dropdown.classList.remove('show');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+}
+
+// Enhanced dropdown functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdowns = document.querySelectorAll('.dropdown-menu');
+  
+  dropdowns.forEach(function(dropdown) {
+    dropdown.addEventListener('mouseenter', function() {
+      this.classList.add('show');
+      const toggle = this.parentElement.querySelector('.dropdown-toggle');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+    
+    dropdown.addEventListener('mouseleave', function() {
+      this.classList.remove('show');
+      const toggle = this.parentElement.querySelector('.dropdown-toggle');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+  
+  // Allow clicks on dropdown toggles with href attributes
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle[href]:not([href="#"])');
+  dropdownToggles.forEach(function(toggle) {
+    toggle.addEventListener('click', function(e) {
+      // Only prevent default if the link is empty or just #
+      if (!this.href || this.href.endsWith('#')) {
+        e.preventDefault();
+      }
+      // If it has a real href, let it navigate normally
+    });
+  });
+});
+</script>
+
+<style>
+/* Force no gaps between navigation elements */
+.fixed-top.bg-light {
+  margin: 0 !important;
+  padding: 6px 0 !important;
+  border: none !important;
+  height: 38px !important;
+}
+
+nav.navbar {
+  margin: 0 !important;
+  border: none !important;
+  padding: 0.5rem 0 !important;
+}
+
+/* Ensure seamless connection */
+.fixed-top.bg-light + nav.navbar {
+  border-top: none !important;
+  margin-top: 0 !important;
+}
+
+/* Adjust body padding for seamless header */
+body {
+  padding-top: 94px !important; /* 38px top bar + 56px navbar exactly */
+}
+
+/* Mobile adjustments */
+@media (max-width: 991.98px) {
+  body {
+    padding-top: 94px !important;
+  }
+  
+  /* Hide top bar on mobile to save space */
+  .fixed-top.bg-light {
+    display: none;
+  }
+  
+  /* Adjust main navbar position on mobile */
+  nav.navbar {
+    top: 0 !important;
+  }
+  
+  body {
+    padding-top: 56px !important; /* Just navbar height on mobile */
+  }
+}
+</style>

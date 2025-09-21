@@ -1,0 +1,122 @@
+<%= render_breadcrumb('buying_property', 'lanzarote', 'playa_blanca') %>
+
+<main>
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="pb-4 m-3 text-center">Expert Legal Guidance for Buying Property in Playa Blanca</h1>
+        </div>
+      </div>
+      <div class="row">
+        <p>Buying property in Playa Blanca, Lanzarote's most upmarket resort destination, offers exceptional investment opportunities in one of the Canary Islands' most prestigious locations. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Playa Blanca property lawyers with over 14 years of experience helping British and Irish clients successfully purchase luxury properties in this sophisticated southern resort. Our English-speaking team provides comprehensive legal support specifically tailored to Playa Blanca's premium property market, from marina apartments to luxury villas with ocean views.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <%= location_links_for_service('buying_property', 'lanzarote', 'playa_blanca') %>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Why Buy Property in Playa Blanca</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <p>Playa Blanca is Lanzarote's most exclusive resort area, known for its upmarket developments, luxury marina, and sophisticated atmosphere. Located in the south of the island with stunning views across to Fuerteventura, Playa Blanca offers the highest quality properties and attracts discerning tourists and residents seeking premium accommodation and amenities.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>The area features luxury developments like Marina Rubicón, premium beachfront properties, and exclusive residential complexes with golf course access. Our expert knowledge of Playa Blanca's high-end property market ensures you find the perfect luxury investment or dream home in this prestigious location.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Playa Blanca Property Areas</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <h4>Marina Rubicón</h4>
+          <p>Luxury marina development with premium apartments, penthouses, and commercial spaces. Direct marina access and high-end amenities make this area highly sought after by luxury property investors.</p>
+          
+          <h4>Playa Blanca Beachfront</h4>
+          <p>Exclusive beachfront properties with direct beach access and stunning ocean views. These premium locations offer the highest rental yields and capital appreciation potential in Lanzarote.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <h4>Residential Complexes</h4>
+          <p>Luxury residential developments with golf course access, private pools, and premium amenities. Perfect for permanent residence or high-end holiday rentals.</p>
+          
+          <h4>Faro Park Area</h4>
+          <p>Established residential area with a mix of luxury villas and apartments, offering excellent sea views and proximity to amenities while maintaining a quieter, more residential feel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Our Playa Blanca Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Luxury Property Due Diligence</h5>
+              <p class="card-text">Comprehensive checks specific to high-end Playa Blanca properties, including marina rights, golf course access, and luxury amenity compliance.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Premium Investment Analysis</h5>
+              <p class="card-text">Expert analysis of luxury property investment potential, rental yields for high-end properties, and capital growth prospects in Playa Blanca.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Marina & Golf Rights</h5>
+              <p class="card-text">Specialized advice on marina berth rights, golf course memberships, and exclusive amenity access that comes with luxury Playa Blanca properties.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Contact Our Playa Blanca Property Experts</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12 mx-auto text-center">
+          <p class="lead">Ready to invest in luxury Playa Blanca property? Our expert lawyers are here to guide you through every step of the process, ensuring a smooth and secure luxury property transaction. Contact us today for specialized Playa Blanca property legal services.</p>
+          
+          <div class="mt-4">
+            <%= link_to "Get Expert Legal Advice", "https://wa.me/+34649948377", class: "btn btn-primary btn-lg me-3", style: "background-color: #b29c84; border-color: #b29c84;" %>
+            <%= link_to "Free Consultation", "/free-consultation", class: "btn btn-outline-primary btn-lg", style: "color: #b29c84; border-color: #b29c84;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

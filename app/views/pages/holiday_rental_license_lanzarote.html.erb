@@ -1,0 +1,96 @@
+<%= render_breadcrumb('holiday_rental_license', 'lanzarote') %>
+
+<main>
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="pb-4 m-3 text-center">Expert Holiday Rental License Services in Lanzarote</h1>
+        </div>
+      </div>
+      <div class="row">
+        <p>Obtaining a holiday rental license in Lanzarote requires expert knowledge of Canary Islands tourism law, local regulations, and complex licensing procedures. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Lanzarote holiday rental license lawyers with over 14 years of experience helping British and Irish clients successfully obtain their VV (Vivienda Vacacional) licenses. Our English-speaking team provides comprehensive legal support throughout the entire licensing process, from initial applications to compliance management.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <%= location_links_for_service('holiday_rental_license', 'lanzarote') %>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Why You Need a Holiday Rental License in Lanzarote</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <p>Operating a holiday rental property in Lanzarote without proper licensing is illegal and can result in significant fines. The VV license ensures your property meets all safety, accessibility, and quality standards required by Canary Islands tourism law.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>Our expert team handles all aspects of the licensing process, including property inspections, documentation preparation, and ongoing compliance management. We ensure your holiday rental business operates legally and successfully in Lanzarote's competitive tourism market.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Our Holiday Rental License Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">VV License Applications</h5>
+              <p class="card-text">Complete preparation and submission of VV license applications, ensuring compliance with all Canary Islands requirements.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Property Compliance</h5>
+              <p class="card-text">Expert guidance on meeting all safety, accessibility, and quality standards required for holiday rental properties.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Ongoing Support</h5>
+              <p class="card-text">Continued legal support for license renewals, compliance updates, and regulatory changes affecting your rental business.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Contact Our Lanzarote Holiday Rental Experts</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12 mx-auto text-center">
+          <p class="lead">Ready to start your holiday rental business in Lanzarote? Our expert lawyers provide comprehensive VV license services to ensure your property meets all legal requirements. Contact us today for professional holiday rental licensing advice.</p>
+          
+          <div class="mt-4">
+            <%= link_to "Get Expert Legal Advice", "https://wa.me/+34649948377", class: "btn btn-primary btn-lg me-3", style: "background-color: #b29c84; border-color: #b29c84;" %>
+            <%= link_to "Free Consultation", "/free-consultation", class: "btn btn-outline-primary btn-lg", style: "color: #b29c84; border-color: #b29c84;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

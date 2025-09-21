@@ -1,0 +1,115 @@
+<%= render_breadcrumb('wills', 'lanzarote') %>
+
+<main>
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="pb-4 m-3 text-center">Expert Will Writing Services in Lanzarote</h1>
+        </div>
+      </div>
+      <div class="row">
+        <p>Creating a will in Lanzarote is essential for protecting your assets and ensuring your wishes are carried out according to Spanish law. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Lanzarote will writing lawyers with over 14 years of experience helping British and Irish clients create comprehensive wills that comply with Spanish succession law. Our English-speaking team provides expert guidance on Spanish wills, international estate planning, and inheritance tax optimization.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <%= location_links_for_service('wills', 'lanzarote') %>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Why You Need a Spanish Will in Lanzarote</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <p>Spanish succession law differs significantly from UK and Irish law, particularly regarding forced heirship rules and inheritance tax. Having a properly drafted Spanish will ensures your Lanzarote assets are distributed according to your wishes while minimizing tax liabilities and legal complications for your beneficiaries.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>Our expert will writing service covers all aspects of Spanish succession law, including forced heirship provisions, usufruct arrangements, and strategies to optimize inheritance tax for your beneficiaries. We ensure your will is valid under Spanish law and properly executed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Our Will Writing Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Spanish Will Drafting</h5>
+              <p class="card-text">Professional drafting of Spanish wills that comply with local succession law and protect your Lanzarote assets.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Inheritance Tax Planning</h5>
+              <p class="card-text">Expert advice on minimizing inheritance tax liabilities and optimizing your estate for your beneficiaries.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">International Estate Planning</h5>
+              <p class="card-text">Comprehensive planning for clients with assets in multiple jurisdictions, ensuring coordinated estate planning.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Contact Our Lanzarote Will Writing Experts</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12 mx-auto text-center">
+          <p class="lead">Protect your assets and loved ones with a professionally drafted Spanish will. Our expert lawyers provide comprehensive will writing services tailored to your specific circumstances. Contact us today for expert will writing advice.</p>
+          
+          <div class="mt-4">
+            <%= link_to "Get Expert Legal Advice", "https://wa.me/+34649948377", class: "btn btn-primary btn-lg me-3", style: "background-color: #b29c84; border-color: #b29c84;" %>
+            <%= link_to "Free Consultation", "/free-consultation", class: "btn btn-outline-primary btn-lg", style: "color: #b29c84; border-color: #b29c84;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Roper Lawyers",
+  "image": "https://www.roperlawyers.com/logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Acatife, 9, puerta 41",
+    "addressLocality": "Puerto del Carmen",
+    "postalCode": "35510",
+    "addressRegion": "Las Palmas",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34 928 97 42 41",
+  "url": "https://www.roperlawyers.com"
+}
+</script>

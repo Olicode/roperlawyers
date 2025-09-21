@@ -1,0 +1,177 @@
+<%= render_breadcrumb('buying_property', 'lanzarote') %>
+
+<main>
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="pb-4 m-3 text-center">Expert Legal Guidance for Buying Property in Lanzarote</h1>
+        </div>
+      </div>
+      <div class="row">
+        <p>Buying property in Lanzarote, one of the Canary Islands' most popular destinations, offers excellent investment opportunities and lifestyle benefits. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Lanzarote property lawyers with over 14 years of experience helping British and Irish clients successfully purchase their dream homes on this beautiful volcanic island. Our English-speaking team provides comprehensive legal support specifically tailored to Lanzarote's unique property market, ensuring every aspect of your purchase is handled professionally and efficiently.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <%= location_links_for_service('buying_property') %>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Why Choose Lanzarote for Property Investment</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <p>Lanzarote offers unique advantages for property buyers, from its year-round subtropical climate to its UNESCO Biosphere Reserve status that protects the island's natural beauty. The island's stable property market, excellent rental yields, and growing tourism industry make it an attractive investment destination. Whether you're looking for a holiday home in Puerto del Carmen, a luxury villa in Playa Blanca, or a family residence in Costa Teguise, Lanzarote offers diverse property options to suit every budget and lifestyle.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>Our expert knowledge of Lanzarote's property market, local regulations, and planning restrictions ensures you make an informed investment decision. We understand the unique characteristics of different areas across the island and can advise on the best locations for your specific needs, whether you're seeking rental income potential, capital growth, or simply the perfect place to call home in the Canary Islands.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Our Lanzarote Property Purchase Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Lanzarote Due Diligence</h5>
+              <p class="card-text">Comprehensive property checks specific to Lanzarote, including title verification, planning permissions, and compliance with island building regulations.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Local Market Expertise</h5>
+              <p class="card-text">Expert knowledge of Lanzarote's property market trends, pricing, and investment potential across different areas of the island.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Tourism License Advice</h5>
+              <p class="card-text">Specialized guidance on tourist rental licenses and holiday let regulations specific to Lanzarote's tourism market.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Contract Negotiation</h5>
+              <p class="card-text">Expert review and negotiation of purchase contracts, ensuring favorable terms and protecting your interests in Lanzarote property transactions.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Completion Support</h5>
+              <p class="card-text">Full support through completion including notary attendance in Lanzarote, deed signing, and post-completion property registration.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Ongoing Legal Support</h5>
+              <p class="card-text">Continued legal assistance for Lanzarote property matters, utility connections, community issues, and future transactions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Popular Areas in Lanzarote for Property Investment</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to "Puerto del Carmen", "/buying-property/lanzarote/puerto-del-carmen", class: "text-decoration-none", style: "color: #b29c84;" %></h5>
+              <p class="card-text">Lanzarote's largest resort town offering excellent rental yields, beachfront properties, and established tourism infrastructure. Perfect for investment properties and holiday homes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to "Playa Blanca", "/buying-property/lanzarote/playa-blanca", class: "text-decoration-none", style: "color: #b29c84;" %></h5>
+              <p class="card-text">Upmarket resort area in southern Lanzarote known for luxury properties, marina developments, and proximity to Fuerteventura. Ideal for high-end investments.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to "Costa Teguise", "/buying-property/lanzarote/costa-teguise", class: "text-decoration-none", style: "color: #b29c84;" %></h5>
+              <p class="card-text">Family-friendly resort area with golf courses, beaches, and residential developments. Excellent for permanent residence and family holiday homes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Contact Our Lanzarote Property Experts</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12 mx-auto text-center">
+          <p class="lead">Ready to buy your dream property in Lanzarote? Our expert lawyers are here to guide you through every step of the process, ensuring a smooth and secure transaction. Contact us today for specialized Lanzarote property legal services.</p>
+          
+          <div class="mt-4">
+            <%= link_to "Get Expert Legal Advice", "https://wa.me/+34649948377", class: "btn btn-primary btn-lg me-3", style: "background-color: #b29c84; border-color: #b29c84;" %>
+            <%= link_to "Free Consultation", "/free-consultation", class: "btn btn-outline-primary btn-lg", style: "color: #b29c84; border-color: #b29c84;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Roper Lawyers",
+  "image": "https://www.roperlawyers.com/logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Acatife, 9, puerta 41",
+    "addressLocality": "Puerto del Carmen",
+    "postalCode": "35510",
+    "addressRegion": "Las Palmas",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34 928 97 42 41",
+  "url": "https://www.roperlawyers.com"
+}
+</script>

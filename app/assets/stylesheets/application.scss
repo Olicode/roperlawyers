@@ -19,6 +19,30 @@
 @import "font-awesome";
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,300,700");
 
+/* Global Helvetica font for entire website */
+*, 
+*::before, 
+*::after {
+  font-family: Helvetica, Arial, sans-serif !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* Override Bootstrap defaults */
+body, 
+.btn, 
+.form-control, 
+.nav-link, 
+h1, h2, h3, h4, h5, h6,
+p, span, div, a {
+  font-family: Helvetica, Arial, sans-serif !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* Preserve Times New Roman for logo only */
+.navbar-brand {
+  font-family: 'Times New Roman', serif !important;
+}
+
 .left-links .nav-link:hover {
   color: grey !important;
 }

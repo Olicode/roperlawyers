@@ -1,0 +1,96 @@
+<%= render_breadcrumb('inheritance', 'lanzarote') %>
+
+<main>
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="pb-4 m-3 text-center">Expert Inheritance Legal Services in Lanzarote</h1>
+        </div>
+      </div>
+      <div class="row">
+        <p>Dealing with inheritance matters in Lanzarote requires expert knowledge of Spanish succession law, tax obligations, and complex legal procedures. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Lanzarote inheritance lawyers with over 14 years of experience helping British and Irish clients navigate the Spanish inheritance process. Our English-speaking team provides comprehensive legal support for all inheritance matters, from probate proceedings to inheritance tax optimization.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <%= location_links_for_service('inheritance', 'lanzarote') %>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Understanding Spanish Inheritance Law</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <p>Spanish inheritance law includes forced heirship rules that differ significantly from UK and Irish law. Understanding these requirements is crucial for both inheriting assets and planning your own estate. Our expert team guides you through the complex legal framework governing inheritances in Lanzarote.</p>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>We handle all aspects of inheritance proceedings, including probate applications, inheritance tax calculations, property transfers, and dispute resolution. Our comprehensive service ensures compliance with Spanish law while protecting your interests throughout the process.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Our Inheritance Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Probate Proceedings</h5>
+              <p class="card-text">Complete management of Spanish probate proceedings, including court applications and legal documentation.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Inheritance Tax Advice</h5>
+              <p class="card-text">Expert guidance on inheritance tax obligations, exemptions, and strategies to minimize tax liabilities.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Property Transfer</h5>
+              <p class="card-text">Professional handling of inherited property transfers, including registry updates and tax compliance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Contact Our Lanzarote Inheritance Experts</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12 mx-auto text-center">
+          <p class="lead">Dealing with inheritance matters in Spain? Our expert lawyers provide comprehensive inheritance legal services to guide you through every step of the process. Contact us today for professional inheritance advice.</p>
+          
+          <div class="mt-4">
+            <%= link_to "Get Expert Legal Advice", "https://wa.me/+34649948377", class: "btn btn-primary btn-lg me-3", style: "background-color: #b29c84; border-color: #b29c84;" %>
+            <%= link_to "Free Consultation", "/free-consultation", class: "btn btn-outline-primary btn-lg", style: "color: #b29c84; border-color: #b29c84;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
