@@ -280,5 +280,40 @@ class PagesController < ApplicationController
     @mtitle = "Thank You | Roper Lawyers"
     @mdescription = "Thank you for contacting Roper Lawyers. We will get back to you soon."
   end
+
+  def step2_contact
+    @mtitle = "Complete Your Inquiry | Roper Lawyers"
+    @mdescription = "Complete your inquiry with additional information."
+    # Get parameters from Salesforce redirect (if any)
+    @first_name = params[:first_name] || session[:contact_first_name]
+    @last_name = params[:last_name] || session[:contact_last_name]
+    @email = params[:email] || session[:contact_email]
+    
+    # Store in session for form pre-population
+    session[:contact_first_name] = @first_name
+    session[:contact_last_name] = @last_name
+    session[:contact_email] = @email
+  end
+
+  # Team pages
+  def team
+    @mtitle = "Meet the Team | Expert Spanish Property Lawyers | Roper Lawyers"
+    @mdescription = "Meet our expert team of bilingual Spanish property lawyers. Led by Olivier Roper, with 15+ years' experience helping international clients."
+  end
+
+  def team_olivier_roper
+    @mtitle = "Olivier Roper | Founding Partner & Lead Property Lawyer | Roper Lawyers"
+    @mdescription = "Olivier Roper, bilingual Spanish property lawyer with 15+ years' experience. Expert in conveyancing, inheritance law, and Spanish legal systems."
+  end
+
+  def team_rachel_jane_buckett
+    @mtitle = "Rachel Jane Buckett | Senior Legal Assistant | Roper Lawyers"
+    @mdescription = "Rachel Jane Buckett, experienced legal assistant specializing in Spanish property transactions and client support at Roper Lawyers."
+  end
+
+  def why_choose_us
+    @mtitle = "Why Choose Roper Lawyers | Expert Spanish Property Law Specialists"
+    @mdescription = "Discover why Roper Lawyers is the trusted choice for Spanish property law. 14+ years experience, bilingual service, transparent pricing, and proven success for international clients."
+  end
 end
 

@@ -1,0 +1,537 @@
+<% content_for :head do %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Roper Lawyers",
+  "url": "https://www.roperlawyers.com/why-choose-us",
+  "logo": "https://www.roperlawyers.com/logo.png",
+  "description": "Expert Spanish property law specialists with 14+ years experience helping international clients with property transactions, inheritance, and legal services across Spain.",
+  "foundingDate": "2010",
+  "founder": {
+    "@type": "Person",
+    "name": "Olivier Roper",
+    "jobTitle": "Founding Partner & Lead Property Lawyer",
+    "url": "https://www.roperlawyers.com/team/olivier-roper"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Spain"
+    },
+    {
+      "@type": "Place", 
+      "name": "Canary Islands"
+    },
+    {
+      "@type": "Place",
+      "name": "Lanzarote"
+    }
+  ],
+  "serviceType": [
+    "Property Law",
+    "Conveyancing",
+    "Inheritance Law",
+    "Legal Consultation",
+    "Property Registration",
+    "Holiday Rental Licensing"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "50+"
+  },
+  "priceRange": "Transparent fixed fees available",
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Law Degree, University of Barcelona"
+    }
+  ]
+}
+</script>
+<% end %>
+
+<%= render_manual_breadcrumb([
+  { name: "Home", url: "/" },
+  { name: "Why Choose Us", url: nil }
+]) %>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero-section py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-4 mb-4" style="font-weight: 700; color: #1a1a1a; line-height: 1.2;">
+            Why Choose Roper Lawyers for Your Spanish Property Needs?
+          </h1>
+          <p class="lead mb-4" style="font-size: 1.25rem; color: #495057; line-height: 1.6;">
+            With <strong>14+ years of experience</strong> and hundreds of successful property transactions, we're the trusted choice for international clients seeking expert Spanish property law services.
+          </p>
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a href="/free-consultation" class="btn btn-lg rounded-pill" 
+               style="background-color: #b39c84; border-color: #b39c84; color: white; padding: 0.75rem 2rem; text-decoration: none;">
+              Get Free Legal Consultation
+            </a>
+            <a href="/team" class="btn btn-lg btn-outline-secondary rounded-pill" 
+               style="color: #b39c84; border-color: #b39c84; padding: 0.75rem 2rem; text-decoration: none;">
+              Meet Our Expert Team
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Differentiators Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h2 class="text-center mb-5" style="color: #1a1a1a; font-weight: 600;">
+            What Makes Roper Lawyers Different
+          </h2>
+          <div class="row g-4">
+            <!-- Experience -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                  <div class="mb-3" style="color: #b39c84; font-size: 3rem; font-weight: 700;">
+                    14+
+                  </div>
+                  <h4 class="card-title h5 mb-3" style="color: #1a1a1a;">Years of Experience</h4>
+                  <p class="card-text" style="color: #6c757d;">
+                    Established expertise in Spanish property law with deep understanding of local legal systems and international client needs.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bilingual Service -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                  <div class="mb-3" style="color: #b39c84; font-size: 2.5rem;">
+                    🇬🇧🇪🇸
+                  </div>
+                  <h4 class="card-title h5 mb-3" style="color: #1a1a1a;">Fully Bilingual</h4>
+                  <p class="card-text" style="color: #6c757d;">
+                    Native-level English and Spanish communication ensures no language barriers in your legal transactions.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Transparent Pricing -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                  <div class="mb-3" style="color: #b39c84; font-size: 2.5rem; font-weight: 600;">
+                    €
+                  </div>
+                  <h4 class="card-title h5 mb-3" style="color: #1a1a1a;">Transparent Pricing</h4>
+                  <p class="card-text" style="color: #6c757d;">
+                    Clear, fixed-fee structures with no hidden costs. You'll know exactly what you're paying before we start.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Local Presence -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                  <div class="mb-3" style="color: #b39c84; font-size: 2.5rem;">
+                    📍
+                  </div>
+                  <h4 class="card-title h5 mb-3" style="color: #1a1a1a;">Local Presence</h4>
+                  <p class="card-text" style="color: #6c757d;">
+                    Based in Spain with deep local connections to notaries, registries, and government offices.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- International Focus -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                  <div class="mb-3" style="color: #b39c84; font-size: 2.5rem;">
+                    🌍
+                  </div>
+                  <h4 class="card-title h5 mb-3" style="color: #1a1a1a;">International Expertise</h4>
+                  <p class="card-text" style="color: #6c757d;">
+                    Specialized in helping UK, Irish, and international clients navigate Spanish property law with confidence.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proven Track Record -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                  <div class="mb-3" style="color: #b39c84; font-size: 3rem; font-weight: 700;">
+                    1080+
+                  </div>
+                  <h4 class="card-title h5 mb-3" style="color: #1a1a1a;">Successful Cases</h4>
+                  <p class="card-text" style="color: #6c757d;">
+                    Over 1080 completed property transactions, inheritance cases, and legal consultations with satisfied clients.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Services Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="mb-4" style="color: #1a1a1a; font-weight: 600;">
+            Comprehensive Spanish Property Legal Services
+          </h2>
+          <p class="lead mb-5" style="color: #6c757d;">
+            From property purchases to inheritance matters, we provide end-to-end legal support for all your Spanish property needs.
+          </p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="card border-0 h-100 shadow-sm">
+            <div class="card-body p-4">
+              <h4 class="card-title mb-3" style="color: #b39c84;">Property Transactions</h4>
+              <ul class="list-unstyled">
+                <li class="mb-2">✓ <strong>Property Buying:</strong> Complete conveyancing services</li>
+                <li class="mb-2">✓ <strong>Property Selling:</strong> Legal documentation and transfers</li>
+                <li class="mb-2">✓ <strong>Due Diligence:</strong> Property searches and legal checks</li>
+                <li class="mb-2">✓ <strong>Contract Review:</strong> Purchase agreement analysis</li>
+              </ul>
+              <a href="/buying-property" class="btn btn-outline-primary btn-sm" 
+                 style="color: #b39c84; border-color: #b39c84;">
+                Learn More About Property Services
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card border-0 h-100 shadow-sm">
+            <div class="card-body p-4">
+              <h4 class="card-title mb-3" style="color: #b39c84;">Inheritance & Estate Planning</h4>
+              <ul class="list-unstyled">
+                <li class="mb-2">✓ <strong>Spanish Wills:</strong> Drafting and registration</li>
+                <li class="mb-2">✓ <strong>Inheritance Law:</strong> Succession planning</li>
+                <li class="mb-2">✓ <strong>Estate Administration:</strong> Probate processes</li>
+                <li class="mb-2">✓ <strong>Tax Planning:</strong> Inheritance tax optimization</li>
+              </ul>
+              <a href="/inheritance" class="btn btn-outline-primary btn-sm" 
+                 style="color: #b39c84; border-color: #b39c84;">
+                Learn More About Inheritance Services
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card border-0 h-100 shadow-sm">
+            <div class="card-body p-4">
+              <h4 class="card-title mb-3" style="color: #b39c84;">Property Registration & Licensing</h4>
+              <ul class="list-unstyled">
+                <li class="mb-2">✓ <strong>New Build Registration:</strong> Property title registration</li>
+                <li class="mb-2">✓ <strong>Holiday Rental Licenses:</strong> VV license applications</li>
+                <li class="mb-2">✓ <strong>Property Regularization:</strong> Compliance matters</li>
+                <li class="mb-2">✓ <strong>Planning Permissions:</strong> Development applications</li>
+              </ul>
+              <a href="/holiday-rental-license" class="btn btn-outline-primary btn-sm" 
+                 style="color: #b39c84; border-color: #b39c84;">
+                Learn More About Licensing Services
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card border-0 h-100 shadow-sm">
+            <div class="card-body p-4">
+              <h4 class="card-title mb-3" style="color: #b39c84;">Legal Consultation & Support</h4>
+              <ul class="list-unstyled">
+                <li class="mb-2">✓ <strong>Free Consultation:</strong> Initial legal assessment</li>
+                <li class="mb-2">✓ <strong>Ongoing Support:</strong> Long-term legal partnerships</li>
+                <li class="mb-2">✓ <strong>Document Translation:</strong> Legal document services</li>
+                <li class="mb-2">✓ <strong>Court Representation:</strong> Litigation support when needed</li>
+              </ul>
+              <a href="/free-consultation" class="btn btn-outline-primary btn-sm" 
+                 style="color: #b39c84; border-color: #b39c84;">
+                Book Your Free Consultation
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Success Stories Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="mb-4" style="color: #1a1a1a; font-weight: 600;">
+            What Our Clients Say About Us
+          </h2>
+          <p class="lead mb-5" style="color: #6c757d;">
+            Don't just take our word for it. Here's what our satisfied clients have to say about their experience with Roper Lawyers.
+          </p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="card border-0 h-100 shadow-sm">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <div class="text-warning">★★★★★</div>
+              </div>
+              <blockquote class="mb-3">
+                <p class="fst-italic">"Olivier made our property purchase in Lanzarote completely stress-free. His bilingual expertise and knowledge of Spanish law was invaluable."</p>
+              </blockquote>
+              <cite class="text-muted">— Sarah & James, UK Property Buyers</cite>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card border-0 h-100 shadow-sm">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <div class="text-warning">★★★★★</div>
+              </div>
+              <blockquote class="mb-3">
+                <p class="fst-italic">"Professional, transparent, and efficient. Roper Lawyers handled our inheritance matter with great care and expertise."</p>
+              </blockquote>
+              <cite class="text-muted">— Michael O'Connor, Dublin</cite>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card border-0 h-100 shadow-sm">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <div class="text-warning">★★★★★</div>
+              </div>
+              <blockquote class="mb-3">
+                <p class="fst-italic">"Clear communication throughout the process. We always knew what was happening and what the costs would be."</p>
+              </blockquote>
+              <cite class="text-muted">— Emma & David, Manchester</cite>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12 text-center">
+          <a href="/reviews" class="btn btn-outline-secondary" 
+             style="color: #b39c84; border-color: #b39c84;">
+            Read More Client Reviews
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Spain Property Law is Complex Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h2 class="mb-4" style="color: #1a1a1a; font-weight: 600;">
+            Why You Need Expert Spanish Property Legal Support
+          </h2>
+          <p class="mb-3" style="color: #6c757d; font-size: 1.1rem;">
+            Spanish property law is complex, with unique regulations that differ significantly from UK, Irish, and other international legal systems.
+          </p>
+          <ul class="list-unstyled mb-4">
+            <li class="mb-3">
+              <strong style="color: #b39c84;">🏛️ Complex Legal Framework:</strong>
+              <span class="text-muted">Spanish property law involves multiple legal codes, regional variations, and EU regulations.</span>
+            </li>
+            <li class="mb-3">
+              <strong style="color: #b39c84;">📋 Extensive Documentation:</strong>
+              <span class="text-muted">Property transactions require numerous certificates, searches, and legal declarations.</span>
+            </li>
+            <li class="mb-3">
+              <strong style="color: #b39c84;">💰 Tax Implications:</strong>
+              <span class="text-muted">Multiple taxes apply including ITP, IVA, inheritance tax, and ongoing property taxes.</span>
+            </li>
+            <li class="mb-3">
+              <strong style="color: #b39c84;">🌐 International Considerations:</strong>
+              <span class="text-muted">Cross-border issues, currency implications, and international tax treaties.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-white p-4 rounded-4 shadow-sm">
+            <h4 class="mb-3" style="color: #b39c84;">Common Property Law Pitfalls We Help You Avoid:</h4>
+            <ul class="list-unstyled">
+              <li class="mb-2">❌ Incomplete property searches</li>
+              <li class="mb-2">❌ Hidden debts and charges</li>
+              <li class="mb-2">❌ Planning permission issues</li>
+              <li class="mb-2">❌ Incorrect tax calculations</li>
+              <li class="mb-2">❌ Documentation errors</li>
+              <li class="mb-2">❌ Deadline violations</li>
+            </ul>
+            <div class="bg-light p-3 rounded mt-3">
+              <p class="mb-0 small text-muted">
+                <strong>With Roper Lawyers:</strong> We identify and resolve these issues before they become costly problems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Getting Started Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="mb-4" style="color: #1a1a1a; font-weight: 600;">
+            Ready to Start Your Spanish Property Journey?
+          </h2>
+          <p class="lead mb-4" style="color: #6c757d;">
+            Take the first step with a free, no-obligation consultation. We'll assess your needs and provide clear guidance on the next steps.
+          </p>
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="text-center">
+                <div class="mb-3" style="color: #b39c84; font-size: 2rem; font-weight: 600;">1</div>
+                <h5>Free Consultation</h5>
+                <p class="text-muted small">Discuss your property needs and get initial legal guidance</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="text-center">
+                <div class="mb-3" style="color: #b39c84; font-size: 2rem; font-weight: 600;">2</div>
+                <h5>Clear Proposal</h5>
+                <p class="text-muted small">Receive transparent pricing and detailed service outline</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="text-center">
+                <div class="mb-3" style="color: #b39c84; font-size: 2rem; font-weight: 600;">3</div>
+                <h5>Expert Support</h5>
+                <p class="text-muted small">Comprehensive legal support throughout your property journey</p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a href="/free-consultation" class="btn btn-lg rounded-pill" 
+               style="background-color: #b39c84; border-color: #b39c84; color: white; padding: 0.75rem 2rem; text-decoration: none;">
+              Book Your Free Consultation
+            </a>
+            <a href="tel:+34928974241" class="btn btn-lg btn-outline-secondary rounded-pill" 
+               style="color: #b39c84; border-color: #b39c84; padding: 0.75rem 2rem; text-decoration: none;">
+              Call Us: 🇪🇸 +34 928 97 42 41
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-center mb-5" style="color: #1a1a1a; font-weight: 600;">
+            Frequently Asked Questions
+          </h2>
+          <div class="accordion" id="whyChooseUsAccordion">
+            <div class="accordion-item border-0 mb-3 shadow-sm">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                  How much do your legal services cost?
+                </button>
+              </h3>
+              <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#whyChooseUsAccordion">
+                <div class="accordion-body">
+                  <p>We offer transparent, fixed-fee pricing for most services. Property purchase legal fees typically range from €1,200-€2,500 depending on complexity. We provide detailed quotes upfront with no hidden costs.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item border-0 mb-3 shadow-sm">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                  Do you work with clients who don't speak Spanish?
+                </button>
+              </h3>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#whyChooseUsAccordion">
+                <div class="accordion-body">
+                  <p>Absolutely. Our founder Olivier Roper is fully bilingual (English/Spanish), and our team is experienced in working with international clients. We handle all Spanish documentation and translate everything into clear English.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item border-0 mb-3 shadow-sm">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                  How long does a typical property purchase take?
+                </button>
+              </h3>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#whyChooseUsAccordion">
+                <div class="accordion-body">
+                  <p>Most property purchases in Spain take 4-8 weeks from signing the private contract to completion. However, this can vary depending on factors like mortgage applications, property searches, and document preparation.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item border-0 mb-3 shadow-sm">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                  Can you help with properties outside of Lanzarote?
+                </button>
+              </h3>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#whyChooseUsAccordion">
+                <div class="accordion-body">
+                  <p>While we specialize in Lanzarote and the Canary Islands, we can assist with properties throughout Spain through our network of qualified legal professionals. Contact us to discuss your specific location needs.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+/* Page-specific styles */
+.hero-section {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #b39c84;
+  color: white;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(179, 156, 132, 0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  
+  .lead {
+    font-size: 1.1rem;
+  }
+}
+</style>

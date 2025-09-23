@@ -1,13 +1,14 @@
 <%= render_breadcrumb('selling_property', 'lanzarote', 'costa_teguise') %>
 
 <main>
+  <%= render 'main_page_sections/service_hero', locals: {
+    location_display: 'Costa Teguise, Lanzarote',
+    headline: 'Expert Selling Property Lawyers in Costa Teguise:<br>Premium Property Legal Services'.html_safe,
+    subheadline: '14+ years helping UK, Irish & international clients successfully sell their properties in Costa Teguise. Expert legal support for Lanzarote\'s sophisticated resort destination.'
+  } %>
+
   <section>
     <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="pb-4 m-3 text-center">Expert Legal Services for Selling Property in Costa Teguise</h1>
-        </div>
-      </div>
       <div class="row">
         <p>Selling property in Costa Teguise, Lanzarote's sophisticated resort destination, requires expert legal guidance to navigate the unique characteristics of this upmarket area. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Costa Teguise property lawyers with over 14 years of experience helping British and Irish clients successfully sell their properties in this prestigious resort town. Our English-speaking team provides comprehensive legal support throughout the entire selling process, from market analysis to final completion.</p>
       </div>

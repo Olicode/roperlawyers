@@ -1,13 +1,14 @@
 <%= render_breadcrumb('selling_property', 'lanzarote', 'puerto_del_carmen') %>
 
 <main>
+  <%= render 'main_page_sections/service_hero', locals: {
+    location_display: 'Puerto del Carmen, Lanzarote',
+    headline: 'Expert Selling Property Lawyers in Puerto del Carmen:<br>Trusted Legal Support for Property Sales'.html_safe,
+    subheadline: '14+ years helping UK, Irish & international clients successfully sell their properties in Puerto del Carmen. Our bilingual legal team ensures smooth transactions and maximum returns.'
+  } %>
+
   <section>
     <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="pb-4 m-3 text-center">Expert Legal Services for Selling Property in Puerto del Carmen</h1>
-        </div>
-      </div>
       <div class="row">
         <p>Selling property in Puerto del Carmen, Lanzarote's premier resort destination, requires expert legal guidance to maximize your return and ensure a smooth transaction. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Puerto del Carmen property lawyers with over 14 years of experience helping British and Irish clients successfully sell their properties in this vibrant resort town. Our English-speaking team provides comprehensive legal support throughout the entire selling process, from market valuation to final completion.</p>
       </div>

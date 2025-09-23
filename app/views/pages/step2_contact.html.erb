@@ -1,0 +1,135 @@
+<div class="container-fluid" style="padding-top: 50px; padding-bottom: 50px;">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card shadow-sm border-0" style="border-radius: 15px;">
+        <div class="card-body p-5">
+          <!-- Progress Indicator -->
+          <div class="text-center mb-4">
+            <div class="d-flex justify-content-center align-items-center mb-3">
+              <div class="step-indicator completed">1</div>
+              <div class="step-line"></div>
+              <div class="step-indicator active">2</div>
+            </div>
+            <small class="text-muted">Step 2 of 2</small>
+          </div>
+
+          <!-- Welcome Message -->
+          <div class="text-center mb-4">
+            <h2 class="h4 mb-2" style="color: #b39c84;" id="welcomeMessage">
+              Complete Your Inquiry
+            </h2>
+            <p class="text-muted">Just a few more details to help us assist you better.</p>
+          </div>
+
+          <!-- Step 2 Form: Submit to Salesforce -->
+          <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Df4000000oE8m" method="POST">
+            <!-- Salesforce Hidden Fields -->
+            <input type="hidden" name="oid" value="00Df4000000oE8m">
+            <input type="hidden" name="retURL" value="http://localhost:3000/thank-you">
+            <input type="hidden" name="lead_source" value="Website - Step 2">
+            
+            <!-- Carry over data from Step 1 -->
+            <input type="hidden" name="first_name" id="hiddenFirstName" value="">
+            <input type="hidden" name="last_name" id="hiddenLastName" value="">
+            <input type="hidden" name="email" id="hiddenEmail" value="">
+
+            <!-- Step 2 Fields -->
+            <div class="form-floating mb-3">
+              <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" style="border-radius: 10px;">
+              <label for="mobile">Mobile Number</label>
+              <small class="form-text text-muted">Optional - helps us reach you faster</small>
+            </div>
+            
+            <div class="form-floating mb-4">
+              <textarea class="form-control" id="description" name="description" placeholder="How can we help you?" style="height: 120px; border-radius: 10px;"></textarea>
+              <label for="description">How can we help you?</label>
+              <small class="form-text text-muted">Tell us about your legal needs</small>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-between">
+              <a href="/" class="btn btn-outline-secondary rounded-pill px-4">
+                ← Back to Home
+              </a>
+              <button type="submit" class="btn btn-primary rounded-pill px-4" style="background-color: #b39c84; border-color: #b39c84;">
+                Send Message →
+              </button>
+            </div>
+          </form>
+
+          <!-- Privacy Note -->
+          <div class="text-center mt-4">
+            <small class="text-muted">
+              <i class="fas fa-lock me-1"></i>
+              Your information is secure and will never be shared with third parties.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.step-indicator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+}
+
+.step-indicator.completed {
+  background-color: #28a745;
+}
+
+.step-indicator.active {
+  background-color: #b39c84;
+}
+
+.step-line {
+  width: 60px;
+  height: 2px;
+  background-color: #28a745;
+  margin: 0 10px;
+}
+
+.card {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.form-control:focus {
+  border-color: #b39c84;
+  box-shadow: 0 0 0 0.2rem rgba(179, 156, 132, 0.25);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get data from sessionStorage
+  const step1Data = sessionStorage.getItem('contactStep1');
+  
+  if (step1Data) {
+    const data = JSON.parse(step1Data);
+    console.log('Step 1 data found:', data);
+    
+    // Populate hidden fields
+    document.getElementById('hiddenFirstName').value = data.first_name || '';
+    document.getElementById('hiddenLastName').value = data.last_name || '';
+    document.getElementById('hiddenEmail').value = data.email || '';
+    
+    // Update welcome message
+    if (data.first_name) {
+      document.getElementById('welcomeMessage').textContent = `Hi ${data.first_name}, tell us more`;
+    }
+  } else {
+    console.log('No Step 1 data found, user may have accessed Step 2 directly');
+    // Optionally redirect back to home page
+    // window.location.href = '/';
+  }
+});
+</script>

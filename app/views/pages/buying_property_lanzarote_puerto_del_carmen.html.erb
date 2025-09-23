@@ -1,13 +1,14 @@
 <%= render_breadcrumb('buying_property', 'lanzarote', 'puerto_del_carmen') %>
 
 <main>
+  <%= render 'main_page_sections/service_hero', locals: {
+    location_display: 'Puerto del Carmen, Lanzarote',
+    headline: 'Expert Property Lawyers in Puerto del Carmen:<br>Trusted Legal Support for Property Purchases'.html_safe,
+    subheadline: '14+ years helping UK, Irish & international clients purchase properties in Puerto del Carmen. Expert legal support for Lanzarote\'s premier resort destination with exceptional investment opportunities.'
+  } %>
+
   <section>
     <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="pb-4 m-3 text-center">Expert Legal Guidance for Buying Property in Puerto del Carmen</h1>
-        </div>
-      </div>
       <div class="row">
         <p>Buying property in Puerto del Carmen, Lanzarote's premier resort destination, offers exceptional investment opportunities in one of the Canary Islands' most established tourism markets. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Puerto del Carmen property lawyers with over 14 years of experience helping British and Irish clients successfully purchase properties in this vibrant coastal town. Our English-speaking team provides comprehensive legal support specifically tailored to Puerto del Carmen's dynamic property market, from beachfront apartments to luxury villas.</p>
       </div>

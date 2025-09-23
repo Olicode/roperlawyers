@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   get 'consultation', to: 'pages#consultation'
   get 'reviews', to: 'pages#reviews'
   get 'our-story', to: 'pages#our_story'
+  get 'team', to: 'pages#team'
+  get 'team/olivier-roper', to: 'pages#team_olivier_roper'
+  get 'team/rachel-jane-buckett', to: 'pages#team_rachel_jane_buckett'
+  get 'why-choose-us', to: 'pages#why_choose_us'
   get 'services', to: 'pages#services'
   get 'property-buying-guide', to: 'pages#property_buying_guide'
   get 'holiday-rental-rules-2025', to: 'pages#holiday_rental_rules_2025'
@@ -61,5 +65,6 @@ Rails.application.routes.draw do
   get 'holiday-rental-license/lanzarote/playa-blanca', to: 'pages#holiday_rental_license_lanzarote_playa_blanca'
   get 'holiday-rental-license/lanzarote/costa-teguise', to: 'pages#holiday_rental_license_lanzarote_costa_teguise'
   get 'thank-you', to: 'pages#thank_you'
+  get 'step2-contact', to: 'pages#step2_contact'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

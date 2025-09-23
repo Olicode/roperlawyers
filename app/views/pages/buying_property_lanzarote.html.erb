@@ -1,13 +1,14 @@
 <%= render_breadcrumb('buying_property', 'lanzarote') %>
 
 <main>
+  <%= render 'main_page_sections/service_hero', locals: {
+    location_display: 'Lanzarote',
+    headline: 'Expert Property Lawyers in Lanzarote:<br>Trusted Legal Support for Buying Property'.html_safe,
+    subheadline: '14+ years helping UK, Irish & international clients successfully purchase their dream homes in Lanzarote. Our bilingual English-Spanish legal team ensures stress-free property transactions on this beautiful Canary Island.'
+  } %>
+
   <section>
     <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="pb-4 m-3 text-center">Expert Legal Guidance for Buying Property in Lanzarote</h1>
-        </div>
-      </div>
       <div class="row">
         <p>Buying property in Lanzarote, one of the Canary Islands' most popular destinations, offers excellent investment opportunities and lifestyle benefits. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Lanzarote property lawyers with over 14 years of experience helping British and Irish clients successfully purchase their dream homes on this beautiful volcanic island. Our English-speaking team provides comprehensive legal support specifically tailored to Lanzarote's unique property market, ensuring every aspect of your purchase is handled professionally and efficiently.</p>
       </div>

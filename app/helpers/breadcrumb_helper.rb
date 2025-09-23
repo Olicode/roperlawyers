@@ -29,17 +29,25 @@ module BreadcrumbHelper
   def render_breadcrumb(service, location = nil, area = nil)
     breadcrumbs = breadcrumb_for_page(service, location, area)
     
-    content_tag :nav, class: "breadcrumb-nav mb-4", "aria-label": "breadcrumb" do
-      content_tag :ol, class: "breadcrumb" do
-        breadcrumbs.map.with_index do |crumb, index|
-          content_tag :li, class: "breadcrumb-item #{'active' if crumb[:url].nil?}" do
-            if crumb[:url]
-              link_to crumb[:name], crumb[:url], class: "text-decoration-none", style: "color: #b29c84;"
-            else
-              content_tag :span, crumb[:name], class: "text-muted"
-            end
+    # Generate BreadcrumbList schema markup
+    schema_markup = generate_breadcrumb_schema(breadcrumbs)
+    
+    content_tag :section, class: "breadcrumb-section", style: "background-color: #f8f9fa; border-bottom: 1px solid #e9ecef; padding: 0.75rem 0;" do
+      schema_markup +
+      content_tag(:div, class: "container") do
+        content_tag :nav, class: "breadcrumb-nav", "aria-label": "breadcrumb" do
+          content_tag :ol, class: "breadcrumb mb-0" do
+            breadcrumbs.map.with_index do |crumb, index|
+              content_tag :li, class: "breadcrumb-item #{'active' if crumb[:url].nil?}" do
+                if crumb[:url]
+                  link_to crumb[:name], crumb[:url], class: "text-decoration-none", style: "color: #b29c84;"
+                else
+                  content_tag :span, crumb[:name], class: "text-muted"
+                end
+              end
+            end.join.html_safe
           end
-        end.join.html_safe
+        end
       end
     end
   end
@@ -67,6 +75,56 @@ module BreadcrumbHelper
     end
   end
   
+  def render_manual_breadcrumb(items)
+    # Generate schema markup for manual breadcrumbs
+    schema_markup = generate_breadcrumb_schema(items)
+    
+    content_tag :section, class: "breadcrumb-section", style: "background-color: #f8f9fa; border-bottom: 1px solid #e9ecef; padding: 0.75rem 0;" do
+      schema_markup +
+      content_tag(:div, class: "container") do
+        content_tag :nav, "aria-label": "breadcrumb" do
+          content_tag :ol, class: "breadcrumb mb-0" do
+            items.map.with_index do |item, index|
+              content_tag :li, class: "breadcrumb-item #{'active' if item[:url].nil?}" do
+                if item[:url]
+                  link_to item[:name], item[:url], class: "text-decoration-none", style: "color: #b29c84;"
+                else
+                  content_tag :span, item[:name], class: "text-muted", "aria-current": "page"
+                end
+              end
+            end.join.html_safe
+          end
+        end
+      end
+    end
+  end
+
+  def generate_breadcrumb_schema(breadcrumbs)
+    schema_items = breadcrumbs.map.with_index do |crumb, index|
+      item = {
+        "@type" => "ListItem",
+        "position" => index + 1,
+        "name" => crumb[:name]
+      }
+      
+      if crumb[:url]
+        item["item"] = "https://www.roperlawyers.com#{crumb[:url]}"
+      end
+      
+      item
+    end
+    
+    schema = {
+      "@context" => "https://schema.org",
+      "@type" => "BreadcrumbList",
+      "itemListElement" => schema_items
+    }
+    
+    content_tag :script, type: "application/ld+json" do
+      schema.to_json.html_safe
+    end
+  end
+
   private
   
   def service_display_name(service)

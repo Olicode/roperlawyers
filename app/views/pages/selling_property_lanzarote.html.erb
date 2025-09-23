@@ -1,13 +1,14 @@
 <%= render_breadcrumb('selling_property', 'lanzarote') %>
 
 <main>
+  <%= render 'main_page_sections/service_hero', locals: {
+    location_display: 'Lanzarote',
+    headline: 'Expert Selling Property Lawyers in Lanzarote:<br>Trusted Legal Support for Property Sales'.html_safe,
+    subheadline: '14+ years helping UK, Irish & international clients successfully sell their properties in Lanzarote. Our bilingual legal team ensures smooth transactions and maximum returns.'
+  } %>
+
   <section>
     <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="pb-4 m-3 text-center">Expert Legal Services for Selling Property in Lanzarote</h1>
-        </div>
-      </div>
       <div class="row">
         <p>Selling property in Lanzarote requires expert legal guidance to navigate Spanish property law, tax obligations, and ensure a smooth transaction. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Lanzarote property lawyers with over 14 years of experience helping British and Irish clients successfully sell their properties across the island. Our English-speaking team provides comprehensive legal support throughout the entire selling process, from initial valuation to final completion.</p>
       </div>

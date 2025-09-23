@@ -1,13 +1,14 @@
 <%= render_breadcrumb('wills', 'lanzarote') %>
 
 <main>
+  <%= render 'main_page_sections/service_hero', locals: {
+    location_display: 'Lanzarote',
+    headline: 'Expert Will Writing Lawyers in Lanzarote:<br>Spanish Wills & Estate Planning'.html_safe,
+    subheadline: '14+ years helping UK, Irish & international clients create comprehensive wills that comply with Spanish succession law. Protect your Lanzarote assets with expert estate planning.'
+  } %>
+
   <section>
     <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="pb-4 m-3 text-center">Expert Will Writing Services in Lanzarote</h1>
-        </div>
-      </div>
       <div class="row">
         <p>Creating a will in Lanzarote is essential for protecting your assets and ensuring your wishes are carried out according to Spanish law. At <%= link_to "Roper Lawyers", "https://roperlawyers.com" %>, we are specialist Lanzarote will writing lawyers with over 14 years of experience helping British and Irish clients create comprehensive wills that comply with Spanish succession law. Our English-speaking team provides expert guidance on Spanish wills, international estate planning, and inheritance tax optimization.</p>
       </div>

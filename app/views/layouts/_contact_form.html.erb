@@ -2,34 +2,122 @@
 <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Df4000000oE8m" method="POST">
+      <form id="salesforceContactForm" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Df4000000oE8m" method="POST" data-turbo="false" data-remote="false">
 
         <input type="hidden" name="oid" value="00Df4000000oE8m">
-        <input type="hidden" name="retURL" value="<%= request.base_url %>/thank-you">
+        <input type="hidden" name="retURL" value="http://localhost:3000/thank-you">
 
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
+          <h5 class="modal-title">Get In Touch</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        
         <div class="modal-body">
           <div class="form-floating mb-3">
-            <input type="text" name="first_name" class="form-control" id="floatingFirstName" maxlength="40" placeholder="John" autocomplete="given-name">
-            <label for="floatingFirstName">First Name</label>
+            <input type="text" name="first_name" class="form-control" id="first_name" maxlength="40" required placeholder="John" autocomplete="given-name">
+            <label for="first_name">First Name *</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="email" name="email" class="form-control" id="floatingEmail" maxlength="80" required placeholder="name@example.com" autocomplete="email">
-            <label for="floatingEmail">Your Email address</label>
+            <input type="text" name="last_name" class="form-control" id="last_name" maxlength="80" required placeholder="Smith" autocomplete="family-name">
+            <label for="last_name">Last Name *</label>
           </div>
-          <div class="form-floating">
-            <textarea name="description" class="form-control" placeholder="Leave a comment here" required id="floatingTextarea2" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">Message</label>
+          <div class="form-floating mb-3">
+            <input type="email" name="email" class="form-control" id="email" maxlength="80" required placeholder="name@example.com" autocomplete="email">
+            <label for="email">Email *</label>
           </div>
-          <p class="text-center text-muted small mt-2">We'll never share your info with anyone.</p>
-        </div>        
+          <div class="form-floating mb-3">
+            <input type="tel" name="phone" class="form-control" id="phone" maxlength="40" placeholder="+34 123 456 789" autocomplete="tel">
+            <label for="phone">Phone</label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea name="description" class="form-control" placeholder="Tell us about your legal needs..." id="description" style="height: 120px"></textarea>
+            <label for="description">Description</label>
+          </div>
+          <p class="text-center text-muted small">We'll never share your info with anyone.</p>
+        </div>
+        
         <div class="modal-footer">
-          <button type="submit" class="btn rounded-pill" style="background-color: #b39c84; border-color: #b39c84; color: white;">Send Message</button>
+          <button type="submit" class="btn rounded-pill" style="background-color: #b39c84; border-color: #b39c84; color: white;">
+            Send Message
+          </button>
         </div>
       </form>
     </div>
   </div>
-</div>  
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('salesforceContactForm');
+  
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      console.log('Form submitted!'); // Debug log
+      
+      // Show loading state
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      
+      // Create a hidden iframe to submit the form
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.name = 'salesforceFrame';
+      document.body.appendChild(iframe);
+      
+      // Set the form target to the iframe
+      form.target = 'salesforceFrame';
+      
+      // Submit the form to Salesforce in the background
+      form.submit();
+      
+      // Close the modal and redirect after a short delay
+      setTimeout(function() {
+        console.log('Redirecting to thank you page...'); // Debug log
+        
+        // Try multiple ways to close the modal
+        const modalElement = document.getElementById('contactModal');
+        
+        // Method 1: Try Bootstrap 5 API
+        if (window.bootstrap && window.bootstrap.Modal) {
+          const modal = window.bootstrap.Modal.getInstance(modalElement);
+          if (modal) {
+            modal.hide();
+          }
+        }
+        
+        // Method 2: Try jQuery if available (fallback)
+        if (window.$ && window.$.fn.modal) {
+          window.$('#contactModal').modal('hide');
+        }
+        
+        // Method 3: Manual close (fallback)
+        if (modalElement) {
+          modalElement.style.display = 'none';
+          modalElement.classList.remove('show');
+          const backdrop = document.querySelector('.modal-backdrop');
+          if (backdrop) {
+            backdrop.remove();
+          }
+          document.body.classList.remove('modal-open');
+          document.body.style.overflow = '';
+          document.body.style.paddingRight = '';
+        }
+        
+        // Redirect to thank you page
+        window.location.href = '/thank-you';
+        
+        // Clean up the iframe
+        if (document.body.contains(iframe)) {
+          document.body.removeChild(iframe);
+        }
+      }, 1500);
+    });
+  } else {
+    console.log('Form not found!'); // Debug log
+  }
+});
+</script>

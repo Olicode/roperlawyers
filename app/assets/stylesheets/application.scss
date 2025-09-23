@@ -542,3 +542,23 @@ main {
     background: transparent !important;
   }
 
+  /* Smaller breadcrumb font size */
+  .breadcrumb {
+    font-size: 0.875rem; /* 14px - smaller than default Bootstrap */
+  }
+  
+  .breadcrumb-item {
+    font-size: 0.875rem;
+  }
+  
+  /* Even smaller on mobile */
+  @media (max-width: 767.98px) {
+    .breadcrumb {
+      font-size: 0.8rem; /* 12.8px on mobile */
+    }
+    
+    .breadcrumb-item {
+      font-size: 0.8rem;
+    }
+  }
+

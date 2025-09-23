@@ -1,0 +1,244 @@
+<% content_for :head do %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Roper Lawyers",
+  "url": "https://www.roperlawyers.com/team",
+  "logo": "https://www.roperlawyers.com/logo.png",
+  "description": "Spanish property law and conveyancing specialists serving clients across Spain.",
+  "founder": {
+    "@type": "Person",
+    "name": "Olivier Roper",
+    "jobTitle": "Founder & Lawyer",
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Barcelona" },
+    "url": "https://www.roperlawyers.com/team/olivier-roper"
+  },
+  "employee": [
+    {
+      "@type": "Person",
+      "name": "Rachel Buckett",
+      "jobTitle": "Legal Assistant",
+      "url": "https://www.roperlawyers.com/team/rachel-jane-buckett"
+    }
+  ],
+  "areaServed": "Spain"
+}
+</script>
+<% end %>
+
+<main>
+  <%= render_manual_breadcrumb([
+    { name: "Home", url: "/" },
+    { name: "Team", url: nil }
+  ]) %>
+
+  <!-- Hero Section -->
+  <section class="hero-section" style="min-height: 50vh; display: flex; align-items: center; padding: 3rem 0; margin-top: 0; background: white;">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 mx-auto text-center">
+          <!-- Main Headline -->
+          <h1 class="hero-headline mb-4" style="font-size: 2.5rem; font-weight: 700; line-height: 1.1; color: #1a1a1a; letter-spacing: 0.5px;">
+            Meet the Roper Lawyers Team
+          </h1>
+          
+          <!-- Subheadline -->
+          <p class="hero-subtext mb-4" style="font-size: 1.25rem; color: #212529; line-height: 1.5; max-width: 90%; margin: 0 auto;">
+            At <strong>Roper Lawyers</strong>, every case is handled with precision, care, and commitment.<br>
+            Our team brings together international expertise and Spanish legal training to guide you through property transactions across Spain.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Members Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          
+          <!-- Olivier Roper Profile Card -->
+          <div class="card border-0 shadow-sm mb-5">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <div class="p-4 d-flex align-items-center justify-content-center h-100">
+                  <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers.jpg", 
+                      alt: "Olivier Roper - Founder & Property Lawyer", 
+                      class: "img-fluid rounded-4",
+                      style: "max-width: 100%; height: auto; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.1);") %>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body p-5">
+                  <h2 class="card-title h3 mb-3" style="color: #b39c84; font-weight: 600;">
+                    Olivier Roper – Founder & Lawyer
+                  </h2>
+                  <p class="text-muted mb-3" style="font-style: italic;">
+                    <strong>Law Degree, University of Barcelona</strong>
+                  </p>
+                  <p class="card-text mb-4" style="font-size: 1.1rem; line-height: 1.6;">
+                    Founder of Roper Lawyers and specialist in <strong>Spanish property law, conveyancing, and inheritance</strong>.
+                  </p>
+                  <a href="/team/olivier-roper" class="btn rounded-pill" 
+                     style="background-color: #b39c84; border-color: #b39c84; color: white; padding: 0.75rem 1.5rem; text-decoration: none; transition: background-color 0.2s ease;">
+                    Read Olivier's full profile →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <hr class="my-5" style="border-color: #e9ecef; opacity: 0.5;">
+
+          <!-- Rachel Jane Buckett Profile Card -->
+          <div class="card border-0 shadow-sm mb-5">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <div class="p-4 d-flex align-items-center justify-content-center h-100">
+                  <% begin %>
+                    <%= image_tag("team/rachel-jane-buckett.jpg", 
+                        alt: "Rachel Jane Buckett - Legal Assistant", 
+                        class: "img-fluid rounded-4",
+                        style: "max-width: 100%; height: auto; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.1);") %>
+                  <% rescue %>
+                    <!-- Temporary placeholder until photo is added -->
+                    <div class="bg-light rounded-4 d-flex align-items-center justify-content-center" 
+                         style="width: 100%; aspect-ratio: 1; max-width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                      <div class="text-center">
+                        <div class="mb-3" style="font-size: 3rem; color: #b39c84; font-weight: 600;">
+                          RB
+                        </div>
+                        <p class="text-muted small mb-0">Photo coming soon</p>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body p-5">
+                  <h2 class="card-title h3 mb-3" style="color: #b39c84; font-weight: 600;">
+                    Rachel Jane Buckett – Legal Assistant
+                  </h2>
+                  <p class="card-text mb-4" style="font-size: 1.1rem; line-height: 1.6;">
+                    Living in Lanzarote for over <strong>17 years</strong>, Rachel supports our clients with documentation, updates, and coordination across Spain.
+                  </p>
+                  <a href="/team/rachel-jane-buckett" class="btn rounded-pill" 
+                     style="background-color: #b39c84; border-color: #b39c84; color: white; padding: 0.75rem 1.5rem; text-decoration: none; transition: background-color 0.2s ease;">
+                    Read Rachel's full profile →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h3 class="mb-4" style="color: #1a1a1a; font-weight: 600;">
+            Ready to Work with Our Expert Team?
+          </h3>
+          <p class="lead mb-4" style="color: #6c757d;">
+            Our experienced lawyers and legal assistants are here to guide you through every step of your Spanish property transaction.
+          </p>
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a href="/free-consultation" class="btn rounded-pill" 
+               style="background-color: #b39c84; border-color: #b39c84; color: white; padding: 0.75rem 1.5rem; font-size: 1.125rem; text-decoration: none;">
+              Book Free Consultation
+            </a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal" 
+               class="btn rounded-pill btn-outline-secondary" 
+               style="color: #b39c84; border-color: #b39c84; padding: 0.75rem 1.5rem; font-size: 1.125rem; text-decoration: none;">
+              Contact Our Team
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+/* Breadcrumb styles */
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+  color: #6c757d;
+}
+
+/* Hero Section Styles */
+.hero-section {
+  background: white;
+  margin-top: 0 !important;
+  border-top: none;
+}
+
+/* Remove any default margins from main elements */
+main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Hero text styling */
+.hero-headline {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.hero-subtext {
+  font-weight: 400;
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1) !important;
+}
+
+/* Button hover effects */
+.btn {
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #9d8670 !important;
+  border-color: #9d8670 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 40vh;
+    padding: 2rem 0;
+  }
+  
+  .hero-headline {
+    font-size: 2rem !important;
+  }
+  
+  .hero-subtext {
+    font-size: 1.1rem !important;
+  }
+  
+  .card-body {
+    padding: 2rem !important;
+  }
+}
+</style>
