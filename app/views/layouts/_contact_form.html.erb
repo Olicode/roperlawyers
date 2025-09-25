@@ -5,7 +5,8 @@
       <form id="salesforceContactForm" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Df4000000oE8m" method="POST" data-turbo="false" data-remote="false">
 
         <input type="hidden" name="oid" value="00Df4000000oE8m">
-        <input type="hidden" name="retURL" value="http://localhost:3000/thank-you">
+        <input type="hidden" name="retURL" value="https://roperlawyers.com/thank-you">
+        <input type="hidden" id="00NNt000004etQ5" name="00NNt000004etQ5" value="1" checked>
 
         <div class="modal-header">
           <h5 class="modal-title">Get In Touch</h5>
@@ -18,20 +19,17 @@
             <label for="first_name">First Name *</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" name="last_name" class="form-control" id="last_name" maxlength="80" required placeholder="Smith" autocomplete="family-name">
-            <label for="last_name">Last Name *</label>
-          </div>
-          <div class="form-floating mb-3">
             <input type="email" name="email" class="form-control" id="email" maxlength="80" required placeholder="name@example.com" autocomplete="email">
             <label for="email">Email *</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="tel" name="phone" class="form-control" id="phone" maxlength="40" placeholder="+34 123 456 789" autocomplete="tel">
-            <label for="phone">Phone</label>
+            <textarea name="description" class="form-control" placeholder="Tell us about your legal requirements..." id="description" style="height: 120px" required></textarea>
+            <label for="description">Description *</label>
           </div>
-          <div class="form-floating mb-3">
-            <textarea name="description" class="form-control" placeholder="Tell us about your legal needs..." id="description" style="height: 120px"></textarea>
-            <label for="description">Description</label>
+          
+          <!-- reCAPTCHA Widget -->
+          <div class="mb-3 d-flex justify-content-center">
+            <div class="g-recaptcha" data-sitekey="6Lfx69QrAAAAAHr9zWT2dLhCmbDGcJMIG4MZ02Xo"></div>
           </div>
           <p class="text-center text-muted small">We'll never share your info with anyone.</p>
         </div>
@@ -52,6 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (form) {
     form.addEventListener('submit', function(e) {
+      // Check reCAPTCHA
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        e.preventDefault();
+        alert('Please complete the reCAPTCHA verification.');
+        return;
+      }
+      
       e.preventDefault();
       
       console.log('Form submitted!'); // Debug log

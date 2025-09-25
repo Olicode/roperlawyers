@@ -176,9 +176,10 @@
           
           <!-- Free Consultation -->
           <li class="nav-item mt-3">
-            <a class="btn w-100 fw-bold py-2 rounded-pill" href="#" data-bs-toggle="modal" data-bs-target="#contactModal" 
-               style="background-color: #b29c84; border-color: #b29c84; color: white;">
-              Free Consultation
+            <a href="/free-consultation"
+               class="btn w-100 fw-bold py-2 rounded-pill text-decoration-none" 
+               style="background-color: #b39c84; border-color: #b39c84; color: white;">
+              Book Free Consultation
             </a>
           </li>
         </ul>
@@ -186,8 +187,9 @@
         <!-- Desktop Free Consultation button (far right) -->
         <ul class="navbar-nav ms-auto d-none d-lg-flex">
           <li class="nav-item">
-            <a class="btn rounded-pill d-flex align-items-center justify-content-center hero-primary-btn" href="/free-consultation" 
-               style="background-color: #b39c84; border: none; color: white; padding: 0.75rem 1.5rem; font-size: 1.125rem; text-decoration: none; width: fit-content; min-height: 48px; transition: background-color 0.2s ease;">
+            <a href="/free-consultation"
+               class="btn rounded-pill d-flex align-items-center justify-content-center text-decoration-none" 
+               style="background-color: #b39c84; border: none; color: white; padding: 0.75rem 1.5rem; font-size: 1.125rem; width: fit-content; min-height: 48px; transition: background-color 0.2s ease;">
               <span style="font-size: 1.125rem; font-weight: 500; letter-spacing: 0.8px;">Book Free Consultation</span>
             </a>
           </li>
@@ -197,6 +199,30 @@
     <!-- Calendly widget assets -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    
+    <!-- Google Calendar Button Styling -->
+    <style>
+      /* Force white text on Google Calendar buttons */
+      .calendar-btn-white-text,
+      .calendar-btn-white-text *,
+      [data-calendar-button] *,
+      [data-calendar-button],
+      div[id*="consultation-btn"] a,
+      div[id*="consultation-btn"] a *,
+      div[id*="consultation-btn"] button,
+      div[id*="consultation-btn"] button * {
+        color: white !important;
+        text-decoration: none !important;
+      }
+      
+      /* Additional specificity for Google Calendar generated elements */
+      div[style*="background-color: #b29c84"] a,
+      div[style*="background-color: #b29c84"] a *,
+      div[style*="background-color: #b39c84"] a,
+      div[style*="background-color: #b39c84"] a * {
+        color: white !important;
+      }
+    </style>
 </nav>
 
 <script>

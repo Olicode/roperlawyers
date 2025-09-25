@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'team/olivier-roper', to: 'pages#team_olivier_roper'
   get 'team/rachel-jane-buckett', to: 'pages#team_rachel_jane_buckett'
   get 'why-choose-us', to: 'pages#why_choose_us'
+  
   get 'services', to: 'pages#services'
   get 'property-buying-guide', to: 'pages#property_buying_guide'
   get 'holiday-rental-rules-2025', to: 'pages#holiday_rental_rules_2025'
