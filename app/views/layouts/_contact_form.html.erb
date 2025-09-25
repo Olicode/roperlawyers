@@ -18,6 +18,12 @@
             <input type="text" name="first_name" class="form-control" id="first_name" maxlength="40" required placeholder="John" autocomplete="given-name">
             <label for="first_name">First Name *</label>
           </div>
+          
+          <!-- Honeypot field - hidden from users but visible to bots -->
+          <div style="position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden;">
+            <input type="text" name="last_name" id="last_name" value="" autocomplete="off" tabindex="-1">
+            <label for="last_name">Last Name (leave blank)</label>
+          </div>
           <div class="form-floating mb-3">
             <input type="email" name="email" class="form-control" id="email" maxlength="80" required placeholder="name@example.com" autocomplete="email">
             <label for="email">Email *</label>
@@ -132,7 +138,14 @@ document.addEventListener('DOMContentLoaded', function() {
       
       console.log('Form submission initiated - triggering invisible reCAPTCHA');
       
-      // Validate form fields first
+      // Check honeypot field first (bot detection)
+      const honeypotField = form.querySelector('#last_name');
+      if (honeypotField && honeypotField.value.trim() !== '') {
+        console.log('Bot detected - honeypot field filled');
+        return; // Silently fail for bots
+      }
+      
+      // Validate form fields
       const firstNameField = form.querySelector('#first_name');
       const emailField = form.querySelector('#email');
       const descriptionField = form.querySelector('#description');
