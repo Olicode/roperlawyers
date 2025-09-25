@@ -31,10 +31,11 @@
             <label for="description">Description *</label>
           </div>
           
-          <!-- reCAPTCHA Widget -->
-          <div class="mb-3 d-flex justify-content-center">
-            <div class="g-recaptcha" data-sitekey="6Lfx69QrAAAAAHr9zWT2dLhCmbDGcJMIG4MZ02Xo"></div>
-          </div>
+          <!-- Invisible reCAPTCHA -->
+          <div class="g-recaptcha" 
+               data-sitekey="6Le1R9UrAAAAAEpk0m5v-dUwbY9W9hKgyzaNZLgH" 
+               data-callback="onRecaptchaSuccess" 
+               data-size="invisible"></div>
           <p class="text-center text-muted small">We'll never share your info with anyone.</p>
         </div>
         
@@ -49,82 +50,116 @@
 </div>
 
 <script>
+// Global variables for form submission
+let formSubmissionPending = false;
+
+// Callback function for when invisible reCAPTCHA is successful
+function onRecaptchaSuccess(token) {
+  console.log('reCAPTCHA completed successfully');
+  const form = document.getElementById('salesforceContactForm');
+  
+  if (form && formSubmissionPending) {
+    formSubmissionPending = false;
+    
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    // Create a hidden iframe to submit the form
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.name = 'salesforceFrame';
+    document.body.appendChild(iframe);
+    
+    // Set the form target to the iframe
+    form.target = 'salesforceFrame';
+    
+    // Submit the form to Salesforce in the background
+    form.submit();
+    
+    // Close the modal and redirect after a short delay
+    setTimeout(function() {
+      console.log('Redirecting to thank you page...'); // Debug log
+      
+      // Try multiple ways to close the modal
+      const modalElement = document.getElementById('contactModal');
+      
+      // Method 1: Try Bootstrap 5 API
+      if (window.bootstrap && window.bootstrap.Modal) {
+        const modal = window.bootstrap.Modal.getInstance(modalElement);
+        if (modal) {
+          modal.hide();
+        }
+      }
+      
+      // Method 2: Try jQuery if available (fallback)
+      if (window.$ && window.$.fn.modal) {
+        window.$('#contactModal').modal('hide');
+      }
+      
+      // Method 3: Manual close (fallback)
+      if (modalElement) {
+        modalElement.style.display = 'none';
+        modalElement.classList.remove('show');
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) {
+          backdrop.remove();
+        }
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+      }
+      
+      // Redirect to thank you page
+      window.location.href = '/thank-you';
+      
+      // Clean up the iframe
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+    }, 1500);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('salesforceContactForm');
   
   if (form) {
     form.addEventListener('submit', function(e) {
-      // Check reCAPTCHA
-      const recaptchaResponse = grecaptcha.getResponse();
-      if (!recaptchaResponse) {
-        e.preventDefault();
-        alert('Please complete the reCAPTCHA verification.');
+      e.preventDefault();
+      
+      console.log('Form submission initiated - triggering invisible reCAPTCHA');
+      
+      // Validate form fields first
+      const firstNameField = form.querySelector('#first_name');
+      const emailField = form.querySelector('#email');
+      const descriptionField = form.querySelector('#description');
+      
+      if (!firstNameField.value.trim()) {
+        alert('Please enter your first name.');
+        firstNameField.focus();
         return;
       }
       
-      e.preventDefault();
+      if (!emailField.value.trim()) {
+        alert('Please enter your email address.');
+        emailField.focus();
+        return;
+      }
       
-      console.log('Form submitted!'); // Debug log
+      if (!descriptionField.value.trim()) {
+        alert('Please enter a description of your legal requirements.');
+        descriptionField.focus();
+        return;
+      }
       
-      // Show loading state
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Sending...';
-      submitBtn.disabled = true;
+      // Set flag to indicate form submission is pending
+      formSubmissionPending = true;
       
-      // Create a hidden iframe to submit the form
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'salesforceFrame';
-      document.body.appendChild(iframe);
-      
-      // Set the form target to the iframe
-      form.target = 'salesforceFrame';
-      
-      // Submit the form to Salesforce in the background
-      form.submit();
-      
-      // Close the modal and redirect after a short delay
-      setTimeout(function() {
-        console.log('Redirecting to thank you page...'); // Debug log
-        
-        // Try multiple ways to close the modal
-        const modalElement = document.getElementById('contactModal');
-        
-        // Method 1: Try Bootstrap 5 API
-        if (window.bootstrap && window.bootstrap.Modal) {
-          const modal = window.bootstrap.Modal.getInstance(modalElement);
-          if (modal) {
-            modal.hide();
-          }
-        }
-        
-        // Method 2: Try jQuery if available (fallback)
-        if (window.$ && window.$.fn.modal) {
-          window.$('#contactModal').modal('hide');
-        }
-        
-        // Method 3: Manual close (fallback)
-        if (modalElement) {
-          modalElement.style.display = 'none';
-          modalElement.classList.remove('show');
-          const backdrop = document.querySelector('.modal-backdrop');
-          if (backdrop) {
-            backdrop.remove();
-          }
-          document.body.classList.remove('modal-open');
-          document.body.style.overflow = '';
-          document.body.style.paddingRight = '';
-        }
-        
-        // Redirect to thank you page
-        window.location.href = '/thank-you';
-        
-        // Clean up the iframe
-        if (document.body.contains(iframe)) {
-          document.body.removeChild(iframe);
-        }
-      }, 1500);
+      // Execute invisible reCAPTCHA
+      grecaptcha.execute();
     });
   } else {
     console.log('Form not found!'); // Debug log
