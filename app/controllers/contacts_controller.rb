@@ -7,11 +7,16 @@ class ContactsController < ApplicationController
   # POST /contacts or /contacts.json
   def create
     @contact = Contact.new(contact_params)
-    if @contact.save
-      ContactMailer.send_email(@contact).deliver_now
-      redirect_to root_url, notice: "Message Sent!"
-    else
-      render :new, status: :unprocessable_entity
+    
+    respond_to do |format|
+      if @contact.save
+        ContactMailer.send_email(@contact).deliver_now
+        format.html { redirect_to root_url, notice: "Message Sent!" }
+        format.json { render json: { success: true, message: "Message sent successfully!" } }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: { success: false, errors: @contact.errors.full_messages } }
+      end
     end
   end
 
