@@ -1,9 +1,10 @@
 <!-- Mobile Sticky Contact Button -->
 <div class="d-lg-none">
-  <a class="mobile-contact-btn" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
-    <i class="fas fa-calendar-check me-2"></i>
-    Book Consultation
-  </a>
+  <div class="mobile-contact-bar">
+    <a class="mobile-contact-btn" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+      Book Consultation
+    </a>
+  </div>
 </div>
 
 <!-- Desktop WhatsApp Button -->
@@ -18,30 +19,39 @@
 <script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
 
 <style>
-/* Mobile sticky contact button */
-.mobile-contact-btn {
+/* Mobile sticky contact bar */
+.mobile-contact-bar {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-top: 1px solid #e9ecef;
+  padding: 12px 20px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-contact-btn {
   background-color: #b29c84;
   color: white !important;
   padding: 12px 24px;
   border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 1000;
+  box-shadow: none;
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
+  border: none;
 }
 
 .mobile-contact-btn:hover {
   background-color: #9d8a6f;
   color: white !important;
-  transform: translateX(-50%) translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  box-shadow: none;
 }
 
 /* Clean WhatsApp button with no background effects */
@@ -81,8 +91,13 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .whatsapp-btn {
-    bottom: 90px; /* Above mobile contact button */
+    bottom: 80px; /* Above mobile contact bar */
     right: 20px;
+  }
+  
+  /* Add padding to body to account for fixed contact bar */
+  body {
+    padding-bottom: 70px;
   }
 }
 </style>
