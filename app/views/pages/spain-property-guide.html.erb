@@ -121,8 +121,25 @@
 
         <section class="bg-blue-50 p-6 rounded-xl mt-12">
           <p class="mb-4">Let us help you purchase safely and with full confidence. <a href="https://www.roperlawyers.com/" class="text-blue-600 font-semibold hover:underline">Roper Lawyers</a> offers personalised, professional legal support tailored to British and international buyers in Spain.</p>
-          <%= link_to "Book Your Free Consultation →", contact_us_path, class: "inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full" %>
+          <!-- Desktop: Link to contact page, Mobile: Open Calendly widget -->
+          <a href="/contact" class="d-none d-md-inline-block btn btn-primary rounded-pill fw-bold py-3 px-4 text-decoration-none">Book Your Free Consultation →</a>
+          <a href="#" onclick="openCalendlyWidget()" class="d-md-none btn btn-primary rounded-pill fw-bold py-3 px-4 text-decoration-none">Book Your Free Consultation →</a>
         </section>
+
+        <!-- Calendly widget script for mobile -->
+        <script>
+          function openCalendlyWidget() {
+            if (window.Calendly) {
+              window.Calendly.initPopupWidget({url: 'https://calendly.com/roperlawyers/30min'});
+            } else {
+              // Fallback to contact page if Calendly script not loaded
+              window.location.href = '/contact';
+            }
+          }
+        </script>
+        
+        <!-- Load Calendly script -->
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </article>
     </div>
   </div>
