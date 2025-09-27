@@ -2,7 +2,7 @@
 <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <%= form_with model: Contact.new, url: contacts_path, id: "railsContactForm", local: false do |form| %>
+      <%= form_with model: Contact.new, url: contacts_path, id: "railsContactForm", local: false, data: { turbo: false } do |form| %>
 
         <div class="modal-header">
           <h5 class="modal-title">Get In Touch</h5>
@@ -39,10 +39,17 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('railsContactForm');
+  let isSubmitting = false; // Prevent double submission
   
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      
+      // Prevent double submission
+      if (isSubmitting) {
+        console.log('Form submission already in progress');
+        return;
+      }
       
       console.log('Rails contact form submitted');
       
@@ -69,6 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
       
+      // Set submission flag
+      isSubmitting = true;
+      
       // Show loading state
       const submitBtn = form.querySelector('input[type="submit"]');
       const originalValue = submitBtn.value;
@@ -84,10 +94,16 @@ document.addEventListener('DOMContentLoaded', function() {
         body: formData,
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+          'Accept': 'application/json'
         }
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
         if (data.success) {
           console.log('Email sent successfully!');
@@ -116,18 +132,19 @@ document.addEventListener('DOMContentLoaded', function() {
           
         } else {
           console.error('Form submission failed:', data.errors);
-          alert('There was an error sending your message. Please check your information and try again.');
+          const errorMessage = data.errors && data.errors.length > 0 
+            ? data.errors.join(', ') 
+            : 'There was an error sending your message. Please check your information and try again.';
+          alert(errorMessage);
         }
-        
-        // Reset button
-        submitBtn.value = originalValue;
-        submitBtn.disabled = false;
       })
       .catch(error => {
         console.error('Error:', error);
         alert('There was an error sending your message. Please try again.');
-        
-        // Reset button
+      })
+      .finally(() => {
+        // Reset submission flag and button state
+        isSubmitting = false;
         submitBtn.value = originalValue;
         submitBtn.disabled = false;
       });
@@ -137,3 +154,4 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+

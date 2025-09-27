@@ -8,6 +8,8 @@ class PagesController < ApplicationController
   end
 
   def lanzarote_conveyancing_lawyer
+    @mtitle = "Lanzarote Conveyancing Lawyer | Expert Property Legal Services | Roper Lawyers"
+    @mdescription = "Expert conveyancing lawyer in Lanzarote with 15+ years' experience. Bilingual property legal services for UK, Irish & international clients. Free consultation."
     @reviews = JSON.parse(File.read(File.join('public', 'lanzarote_reviews.json')))
   end
 
@@ -54,6 +56,8 @@ class PagesController < ApplicationController
   end
 
   def home
+    @mtitle = "Spanish Property Lawyers | Expert Legal Services | Roper Lawyers"
+    @mdescription = "Expert Spanish property lawyers with 15+ years' experience. Bilingual legal services for UK, Irish & international clients. Conveyancing, wills, inheritance & VV licenses."
     @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 
@@ -84,6 +88,12 @@ class PagesController < ApplicationController
   def holiday_rental_rules_2025
     @mtitle = "VV Licenses & Holiday Rental Rules 2025: Canary Islands Complete Guide | Roper Lawyers"
     @mdescription = "Complete guide to VV licenses and new 2025 holiday rental regulations in the Canary Islands. Legal requirements, community approval, tax obligations & compliance."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def blog
+    @mtitle = "Legal News & Insights | Spanish Property Law Blog | Roper Lawyers"
+    @mdescription = "Stay updated with the latest Spanish property law news, legal insights, and expert guidance from Roper Lawyers. Holiday rental regulations, property buying guides & more."
     @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 
@@ -282,8 +292,8 @@ class PagesController < ApplicationController
   end
 
   def step2_contact
-    @mtitle = "Complete Your Inquiry | Roper Lawyers"
-    @mdescription = "Complete your inquiry with additional information."
+    @mtitle = "Complete Your Legal Inquiry | Step 2 Contact Form | Roper Lawyers"
+    @mdescription = "Complete your legal inquiry with detailed information. Step 2 of our consultation process for personalized Spanish property law guidance."
     # Get parameters from Salesforce redirect (if any)
     @first_name = params[:first_name] || session[:contact_first_name]
     @last_name = params[:last_name] || session[:contact_last_name]
@@ -314,6 +324,47 @@ class PagesController < ApplicationController
   def why_choose_us
     @mtitle = "Why Choose Roper Lawyers | Expert Spanish Property Law Specialists"
     @mdescription = "Discover why Roper Lawyers is the trusted choice for Spanish property law. 14+ years experience, bilingual service, transparent pricing, and proven success for international clients."
+  end
+
+  # Missing controller actions
+  def spain_property_guide
+    @mtitle = "Complete Spain Property Guide | Buying & Selling Guide | Roper Lawyers"
+    @mdescription = "Comprehensive guide to Spanish property law. Expert advice on buying, selling, legal requirements, taxes, and procedures. Free legal consultation available."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def free_consultation
+    @mtitle = "Free Legal Consultation | Spanish Property Law | Roper Lawyers"
+    @mdescription = "Book your free consultation with expert Spanish property lawyers. Get personalized legal advice for buying, selling, wills, inheritance, and VV licenses."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def consultation
+    @mtitle = "Legal Consultation Services | Spanish Property Law | Roper Lawyers"
+    @mdescription = "Professional legal consultation services for Spanish property law. Expert advice on conveyancing, inheritance, wills, and holiday rental licenses."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def vv_license
+    @mtitle = "VV License Services | Holiday Rental Licensing | Roper Lawyers"
+    @mdescription = "Expert VV license services for holiday rental properties in Spain. Complete licensing support, compliance guidance, and legal assistance."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
+  end
+
+  def privacy_policy
+    @mtitle = "Privacy Policy | Data Protection | Roper Lawyers"
+    @mdescription = "Privacy policy and data protection information for Roper Lawyers. How we collect, use, and protect your personal information."
+  end
+
+  def cookies_policy
+    @mtitle = "Cookies Policy | Website Usage Information | Roper Lawyers"
+    @mdescription = "Cookies policy for Roper Lawyers website. Information about how we use cookies and similar technologies to improve your browsing experience."
+  end
+
+  def contact
+    @mtitle = "Contact Us | Schedule a Consultation | Roper Lawyers"
+    @mdescription = "Contact Roper Lawyers for expert Spanish property law advice. Schedule a free consultation with our bilingual legal team. Multiple ways to get in touch."
+    @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 end
 

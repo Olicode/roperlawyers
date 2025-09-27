@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'property-buying-guide', to: 'pages#property_buying_guide'
   get 'holiday-rental-rules-2025', to: 'pages#holiday_rental_rules_2025'
   get 'vv-license', to: 'pages#vv_license'
+  get 'blog', to: 'pages#blog'
   get 'privacy-policy', to: 'pages#privacy_policy'
   get 'cookies-policy', to: 'pages#cookies_policy'
   get 'buying-property', to: 'pages#buying_property'
@@ -67,5 +68,10 @@ Rails.application.routes.draw do
   get 'holiday-rental-license/lanzarote/costa-teguise', to: 'pages#holiday_rental_license_lanzarote_costa_teguise'
   get 'thank-you', to: 'pages#thank_you'
   get 'step2-contact', to: 'pages#step2_contact'
+  get 'contact', to: 'pages#contact'
+  
+  # SEO Sitemap
+  get 'sitemap.xml', to: 'sitemaps#index', defaults: { format: 'xml' }
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
