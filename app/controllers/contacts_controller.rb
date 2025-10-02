@@ -1,4 +1,7 @@
 class ContactsController < ApplicationController
+  # Skip CSRF verification for contact_notification endpoint
+  skip_before_action :verify_authenticity_token, only: [:contact_notification]
+  
   # GET /contacts/new
   def new
     @contact = Contact.new
@@ -32,9 +35,90 @@ class ContactsController < ApplicationController
     end
   end
 
-  private
-    # Only allow a list of trusted parameters through.
-    def contact_params
-      params.require(:contact).permit(:email, :message)
+  def test_email
+    begin
+      # Test email with sample data
+      test_data = {
+        first_name: 'Test',
+        last_name: 'User',
+        email: 'test@example.com',
+        mobile_phone: '1234567890',
+        message: 'This is a test email from the contact form system.'
+      }
+      
+      Rails.logger.info "Sending test email to: info@roperlawyers.com"
+      ContactMailer.propertybase_notification(test_data).deliver_now
+      Rails.logger.info "Test email sent successfully"
+      
+      render json: { success: true, message: 'Test email sent successfully' }
+      
+    rescue => e
+      Rails.logger.error "Test email error: #{e.message}"
+      render json: { success: false, message: e.message }, status: :internal_server_error
     end
+  end
+
+  def contact_notification
+    begin
+      # Extract form data
+      form_data = {
+        first_name: params.dig(:contact, :FirstName),
+        last_name: params.dig(:contact, :LastName),
+        email: params.dig(:contact, :Email),
+        mobile_phone: params.dig(:contact, :MobilePhone),
+        message: params.dig(:contact, :Contact_Form_Message)
+      }
+      
+      # Send email notification
+      Rails.logger.info "Attempting to send email notification to: info@roperlawyers.com"
+      ContactMailer.propertybase_notification(form_data).deliver_now
+      Rails.logger.info "Email notification sent successfully"
+      
+      # Submit to PropertyBase server-side
+      submit_to_propertybase(form_data)
+      
+      render json: { success: true, message: 'Form submitted and email sent successfully' }
+      
+    rescue => e
+      Rails.logger.error "Contact notification error: #{e.message}"
+      render json: { success: false, message: e.message }, status: :internal_server_error
+    end
+  end
+
+  private
+
+  def submit_to_propertybase(form_data)
+    begin
+      # Prepare data for PropertyBase
+      propertybase_data = {
+        'contact[FirstName]' => form_data[:first_name],
+        'contact[LastName]' => form_data[:last_name],
+        'contact[Email]' => form_data[:email],
+        'contact[MobilePhone]' => form_data[:mobile_phone],
+        'contact[Contact_Form_Message]' => form_data[:message],
+        'h_5c972f06be11bb485b8901a14ec8d41f359cd881' => ''
+      }
+      
+      # Submit to PropertyBase
+      uri = URI('https://front-desk.propertybase.com/forms/5c972f06be11bb485b8901a14ec8d41f359cd881')
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      
+      request = Net::HTTP::Post.new(uri)
+      request.set_form_data(propertybase_data)
+      
+      response = http.request(request)
+      
+      Rails.logger.info "PropertyBase submission response: #{response.code} #{response.message}"
+      
+    rescue => e
+      Rails.logger.error "PropertyBase submission error: #{e.message}"
+      # Don't raise error - we still want to send the email even if PropertyBase fails
+    end
+  end
+
+  # Only allow a list of trusted parameters through.
+  def contact_params
+    params.require(:contact).permit(:email, :message)
+  end
 end

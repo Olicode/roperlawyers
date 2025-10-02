@@ -2,8 +2,7 @@
 <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <%= form_with model: Contact.new, url: contacts_path, id: "railsContactForm", local: false, data: { turbo: false } do |form| %>
-
+      <form id="propertybaseContactForm" action="https://front-desk.propertybase.com/forms/5c972f06be11bb485b8901a14ec8d41f359cd881" method="post" accept-charset="UTF-8" target="_blank">
         <div class="modal-header">
           <h5 class="modal-title">Get In Touch</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -11,68 +10,91 @@
         
         <div class="modal-body">
           <div class="form-floating mb-3">
-            <%= form.email_field :email, class: "form-control", id: "email", required: true, placeholder: "name@example.com", autocomplete: "email" %>
+            <input type="text" name="contact[FirstName]" class="form-control" id="firstName" required placeholder="First Name" autocomplete="given-name" />
+            <label for="firstName">First Name *</label>
+          </div>
+          
+          <div class="form-floating mb-3">
+            <input type="text" name="contact[LastName]" class="form-control" id="lastName" required placeholder="Last Name" autocomplete="family-name" />
+            <label for="lastName">Last Name *</label>
+          </div>
+          
+          <div class="form-floating mb-3">
+            <input type="email" name="contact[Email]" class="form-control" id="email" required placeholder="name@example.com" autocomplete="email" />
             <label for="email">Email *</label>
           </div>
+          
           <div class="form-floating mb-3">
-            <%= form.text_area :message, class: "form-control", placeholder: "Tell us about your legal requirements...", id: "message", style: "height: 120px", required: true %>
+            <input type="tel" name="contact[MobilePhone]" class="form-control" id="mobilePhone" placeholder="Mobile Phone" autocomplete="tel" />
+            <label for="mobilePhone">Mobile Phone</label>
+          </div>
+          
+          <div class="form-floating mb-3">
+            <textarea name="contact[Contact_Form_Message__c]" class="form-control" id="message" placeholder="Tell us about your legal requirements..." style="height: 120px" required></textarea>
             <label for="message">Message *</label>
           </div>
           
-          <!-- Honeypot field - hidden from users but visible to bots -->
-          <div style="position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden;">
-            <input type="text" name="last_name" id="last_name" value="" autocomplete="off" tabindex="-1">
-            <label for="last_name">Last Name (leave blank)</label>
-          </div>
+          <!-- Keep this honeypot exactly as provided (must remain empty) -->
+          <input type="text" name="h_5c972f06be11bb485b8901a14ec8d41f359cd881" value="" style="display:none">
           
           <p class="text-center text-muted small">We'll never share your info with anyone.</p>
         </div>
         
         <div class="modal-footer">
-          <%= form.submit "Send Message", class: "btn rounded-pill", style: "background-color: #b39c84; border-color: #b39c84; color: white;" %>
+          <button type="submit" class="btn rounded-pill" style="background-color: #b39c84; border-color: #b39c84; color: white;">Send Message</button>
         </div>
-      <% end %>
+      </form>
     </div>
   </div>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('railsContactForm');
+  const form = document.getElementById('propertybaseContactForm');
   let isSubmitting = false; // Prevent double submission
   
   if (form) {
     form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
       // Prevent double submission
       if (isSubmitting) {
         console.log('Form submission already in progress');
+        e.preventDefault();
         return;
       }
       
-      console.log('Rails contact form submitted');
+      console.log('PropertyBase contact form submitted');
       
-      // Check honeypot field first (bot detection)
-      const honeypotField = form.querySelector('#last_name');
-      if (honeypotField && honeypotField.value.trim() !== '') {
-        console.log('Bot detected - honeypot field filled');
-        return; // Silently fail for bots
-      }
-      
-      // Validate form fields
+      // Validate required fields
+      const firstNameField = form.querySelector('#firstName');
+      const lastNameField = form.querySelector('#lastName');
       const emailField = form.querySelector('#email');
       const messageField = form.querySelector('#message');
+      
+      if (!firstNameField.value.trim()) {
+        alert('Please enter your first name.');
+        firstNameField.focus();
+        e.preventDefault();
+        return;
+      }
+      
+      if (!lastNameField.value.trim()) {
+        alert('Please enter your last name.');
+        lastNameField.focus();
+        e.preventDefault();
+        return;
+      }
       
       if (!emailField.value.trim()) {
         alert('Please enter your email address.');
         emailField.focus();
+        e.preventDefault();
         return;
       }
       
       if (!messageField.value.trim()) {
         alert('Please enter your message.');
         messageField.focus();
+        e.preventDefault();
         return;
       }
       
@@ -80,77 +102,25 @@ document.addEventListener('DOMContentLoaded', function() {
       isSubmitting = true;
       
       // Show loading state
-      const submitBtn = form.querySelector('input[type="submit"]');
-      const originalValue = submitBtn.value;
-      submitBtn.value = 'Sending...';
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalValue = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
       
-      // Prepare form data
-      const formData = new FormData(form);
-      
-      // Submit form via fetch
-      fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-          'Accept': 'application/json'
+      // Let the form submit naturally to PropertyBase
+      // Close the modal and redirect to thank you page
+      setTimeout(function() {
+        // Close the modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+        if (modal) {
+          modal.hide();
         }
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (data.success) {
-          console.log('Email sent successfully!');
-          
-          // Close the modal
-          const modalElement = document.getElementById('contactModal');
-          
-          // Method 1: Try Bootstrap 5 API
-          if (window.bootstrap && window.bootstrap.Modal) {
-            const modal = window.bootstrap.Modal.getInstance(modalElement);
-            if (modal) {
-              modal.hide();
-            }
-          }
-          
-          // Method 2: Try jQuery if available (fallback)
-          if (window.$ && window.$.fn.modal) {
-            window.$('#contactModal').modal('hide');
-          }
-          
-          // Show success message
-          alert('Thank you for your message! We\'ll get back to you soon.');
-          
-          // Reset form
-          form.reset();
-          
-        } else {
-          console.error('Form submission failed:', data.errors);
-          const errorMessage = data.errors && data.errors.length > 0 
-            ? data.errors.join(', ') 
-            : 'There was an error sending your message. Please check your information and try again.';
-          alert(errorMessage);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error sending your message. Please try again.');
-      })
-      .finally(() => {
-        // Reset submission flag and button state
-        isSubmitting = false;
-        submitBtn.value = originalValue;
-        submitBtn.disabled = false;
-      });
+        // Redirect to thank you page
+        window.location.href = '/thank-you';
+      }, 1000);
     });
   } else {
-    console.log('Rails form not found!');
+    console.log('PropertyBase form not found!');
   }
 });
 </script>

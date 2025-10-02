@@ -1,24 +1,121 @@
 <html>
 <section>
 <div class="row justify-content-center">
-<div class="col-10 col-md-10 col-lg-3">
+<div class="col-10 col-md-10 col-lg-6">
 <div class="text-center mt-5 mb-3">
-<h3>Contact</h3>
-<%= simple_form_for(@contact) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<h3>Contact Us</h3>
+<p class="text-muted">Get in touch with our legal team for expert advice on Spanish property law.</p>
+</div>
 
-  <div class="form-inputs">
-    <%= f.input :email %>
-    <%= f.input :message %>
+<form class="needs-validation" novalidate id="standaloneContactForm" action="https://front-desk.propertybase.com/forms/5c972f06be11bb485b8901a14ec8d41f359cd881" method="post" accept-charset="UTF-8" target="_blank">
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First Name *</label>
+    <input type="text" name="contact[FirstName]" class="form-control" id="firstName" required placeholder="First Name" autocomplete="given-name" />
   </div>
-
-  <div class="form-actions btn btn-primary">
-    <%= f.button :submit, 'Send' %>
+  
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name *</label>
+    <input type="text" name="contact[LastName]" class="form-control" id="lastName" required placeholder="Last Name" autocomplete="family-name" />
   </div>
+  
+  <div class="mb-3">
+    <label for="email" class="form-label">Email *</label>
+    <input type="email" name="contact[Email]" class="form-control" id="email" required placeholder="name@example.com" autocomplete="email" />
   </div>
+  
+  <div class="mb-3">
+    <label for="mobilePhone" class="form-label">Mobile Phone</label>
+    <input type="tel" name="contact[MobilePhone]" class="form-control" id="mobilePhone" placeholder="Mobile Phone" autocomplete="tel" />
   </div>
+  
+  <div class="mb-3">
+    <label for="message" class="form-label">Message *</label>
+    <textarea name="contact[Contact_Form_Message__c]" class="form-control" id="message" placeholder="Tell us about your legal requirements..." rows="4" required></textarea>
   </div>
-<% end %>
+  
+  <!-- Keep this honeypot exactly as provided (must remain empty) -->
+  <input type="text" name="h_5c972f06be11bb485b8901a14ec8d41f359cd881" value="" style="display:none">
+  
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary rounded-pill px-4" style="background-color: #b39c84; border-color: #b39c84; color: white;">
+      Send Message
+    </button>
+  </div>
+  
+  <p class="text-center text-muted small mt-3">We'll never share your info with anyone.</p>
+</form>
+</div>
+</div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('standaloneContactForm');
+  let isSubmitting = false;
+  
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      // Prevent double submission
+      if (isSubmitting) {
+        console.log('Form submission already in progress');
+        e.preventDefault();
+        return;
+      }
+      
+      console.log('Standalone PropertyBase contact form submitted');
+      
+      // Validate required fields
+      const firstNameField = form.querySelector('#firstName');
+      const lastNameField = form.querySelector('#lastName');
+      const emailField = form.querySelector('#email');
+      const messageField = form.querySelector('#message');
+      
+      if (!firstNameField.value.trim()) {
+        alert('Please enter your first name.');
+        firstNameField.focus();
+        e.preventDefault();
+        return;
+      }
+      
+      if (!lastNameField.value.trim()) {
+        alert('Please enter your last name.');
+        lastNameField.focus();
+        e.preventDefault();
+        return;
+      }
+      
+      if (!emailField.value.trim()) {
+        alert('Please enter your email address.');
+        emailField.focus();
+        e.preventDefault();
+        return;
+      }
+      
+      if (!messageField.value.trim()) {
+        alert('Please enter your message.');
+        messageField.focus();
+        e.preventDefault();
+        return;
+      }
+      
+      // Set submission flag
+      isSubmitting = true;
+      
+      // Show loading state
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalValue = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      
+      // Let the form submit naturally to PropertyBase
+      // Redirect to thank you page after a short delay
+      setTimeout(function() {
+        window.location.href = '/thank-you';
+      }, 1000);
+    });
+  } else {
+    console.log('Standalone PropertyBase form not found!');
+  }
+});
+</script>
 </html>

@@ -28,6 +28,9 @@ class User < ApplicationRecord
 
   # These callbacks will send emails to info@roperlawyers.com
   after_commit :send_updates_to_admin, on: [:update]
+  
+  # Salesforce sync callbacks
+  after_commit :sync_with_salesforce, on: [:create, :update]
 
   def full_name
     "#{first_name} #{last_name}"
@@ -53,6 +56,14 @@ class User < ApplicationRecord
   end
 
   private
+
+  def sync_with_salesforce
+    # Only sync if we have the minimum required fields for Salesforce
+    return unless email.present? && (first_name.present? || last_name.present?)
+    
+    # Use background job for better performance and error handling
+    SalesforceSyncJob.perform_later(self)
+  end
 
   def send_updates_to_admin
     # Only send email if one of the specified fields changed

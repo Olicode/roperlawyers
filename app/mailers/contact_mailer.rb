@@ -16,4 +16,10 @@ class ContactMailer < ApplicationMailer
 
     mail to: @contact.email
   end
+
+  def propertybase_notification(form_data)
+    @form_data = form_data
+
+    mail to: 'info@roperlawyers.com', subject: 'New Contact Form Submission - PropertyBase'
+  end
 end

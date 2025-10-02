@@ -69,7 +69,7 @@ class PagesController < ApplicationController
 
   def our_story
     @mtitle = "Our Story – English-Speaking Property Lawyers in Spain | Roper Lawyers"
-    @mdescription = "Meet Roper Lawyers: 14+ years helping UK, Irish & European clients with Spanish property law. Bilingual experts in conveyancing, inheritance & wills."
+    @mdescription = "Meet Roper Lawyers: 15+ years helping UK, Irish & European clients with Spanish property law. Bilingual experts in conveyancing, inheritance & wills."
     @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 
@@ -291,6 +291,11 @@ class PagesController < ApplicationController
     @mdescription = "Thank you for contacting Roper Lawyers. We will get back to you soon."
   end
 
+  def propertybase_success
+    @mtitle = "Thank You | Roper Lawyers"
+    @mdescription = "Thank you for contacting Roper Lawyers. We will get back to you soon."
+  end
+
   def step2_contact
     @mtitle = "Complete Your Legal Inquiry | Step 2 Contact Form | Roper Lawyers"
     @mdescription = "Complete your legal inquiry with detailed information. Step 2 of our consultation process for personalized Spanish property law guidance."
@@ -323,7 +328,7 @@ class PagesController < ApplicationController
 
   def why_choose_us
     @mtitle = "Why Choose Roper Lawyers | Expert Spanish Property Law Specialists"
-    @mdescription = "Discover why Roper Lawyers is the trusted choice for Spanish property law. 14+ years experience, bilingual service, transparent pricing, and proven success for international clients."
+    @mdescription = "Discover why Roper Lawyers is the trusted choice for Spanish property law. 15+ years experience, bilingual service, transparent pricing, and proven success for international clients."
   end
 
   # Missing controller actions

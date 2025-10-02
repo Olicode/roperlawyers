@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        sync_user_with_salesforce
+        # Salesforce sync is now handled by model callbacks
 
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        sync_user_with_salesforce
+        # Salesforce sync is now handled by model callbacks
 
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
@@ -82,112 +82,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
     
-    def sync_user_with_salesforce
-      begin
-        if @user.sf_contact_id.blank?
-          sf_contact_id = SalesforceService.create_or_update_contact(SalesforceAdapter.adapt_to(@user))
-          @user.update!(sf_contact_id: sf_contact_id) unless sf_contact_id == false
-        else
-          SalesforceService.update_contact(SalesforceAdapter.adapt_to(@user).merge!(Id: @user.sf_contact_id))
-        end
-
-        upload_documents_to_salesforce
-      rescue => e
-        ErrorNotifier.call(message: "Error syncing user with Salesforce: #{e.message}")
-      end
-    end
-
-    def upload_documents_to_salesforce
-      if user_params[:nie_document].present?
-        SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:nie_document], "NIE"))
-      end
-  
-      if user_params[:passport_document].present?
-        SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:passport_document], "Passport"))
-      end
-        
-      if user_params[:nota_simple_documents]&.reject(&:blank?)&.present?
-        user_params[:nota_simple_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Nota Simple"))
-        end
-      end
-        
-      if user_params[:title_deed_documents]&.reject(&:blank?)&.present?
-        user_params[:title_deed_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Title Deed"))
-        end
-      end
-        
-      if user_params[:vv_license_documents]&.reject(&:blank?)&.present?
-        user_params[:vv_license_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "VV License"))
-        end
-      end
-        
-      if user_params[:first_occupation_license_documents]&.reject(&:blank?)&.present?
-        user_params[:first_occupation_license_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "First Occupation License"))
-        end
-      end
-        
-      if user_params[:cee_documents]&.reject(&:blank?)&.present?
-        user_params[:cee_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "CEE"))
-        end
-      end
-        
-      if user_params[:civil_liability_insurance_policy_documents]&.reject(&:blank?)&.present?
-        user_params[:civil_liability_insurance_policy_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Civil Liability Insurance Policy"))
-        end
-      end
-        
-      if user_params[:habitability_certificate_documents]&.reject(&:blank?)&.present?
-        user_params[:habitability_certificate_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Habitability Certificate"))
-        end
-      end
-        
-      if user_params[:municipal_certificate_documents]&.reject(&:blank?)&.present?
-        user_params[:municipal_certificate_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Municipal Certificate"))
-        end
-      end
-        
-      if user_params[:property_tax_receipt_documents]&.reject(&:blank?)&.present?
-        user_params[:property_tax_receipt_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Property Tax Receipt (IBI)"))
-        end
-      end
-        
-      if user_params[:floor_plan_documents]&.reject(&:blank?)&.present?
-        user_params[:floor_plan_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Floor Plan"))
-        end
-      end
-        
-      if user_params[:community_approval_documents]&.reject(&:blank?)&.present?
-        user_params[:community_approval_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Community Approval"))
-        end
-      end
-        
-      if user_params[:water_bill_documents]&.reject(&:blank?)&.present?
-        user_params[:water_bill_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Water Bill"))
-        end
-      end
-        
-      if user_params[:electricity_bill_documents]&.reject(&:blank?)&.present?
-        user_params[:electricity_bill_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "Electricity Bill"))
-        end
-      end
-        
-      if user_params[:igic_registration_modelo_400_document].present?
-        SalesforceService.upload_file(sf_file_upload_attrs_map(@user, user_params[:igic_registration_modelo_400_document], "IGIC Registration Modelo 400"))
-      end
-    end
 
     # Only allow a list of trusted parameters through.
     def user_params

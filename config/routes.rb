@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :contacts, only: %i[new create]
+  post 'contact_notification', to: 'contacts#contact_notification'
+  get 'test_email', to: 'contacts#test_email'
   devise_for :users
   resources :users
   root to: 'pages#home'
@@ -67,8 +69,12 @@ Rails.application.routes.draw do
   get 'holiday-rental-license/lanzarote/playa-blanca', to: 'pages#holiday_rental_license_lanzarote_playa_blanca'
   get 'holiday-rental-license/lanzarote/costa-teguise', to: 'pages#holiday_rental_license_lanzarote_costa_teguise'
   get 'thank-you', to: 'pages#thank_you'
+  get 'propertybase-success', to: 'pages#propertybase_success'
   get 'step2-contact', to: 'pages#step2_contact'
   get 'contact', to: 'pages#contact'
+  
+  # Webhooks
+  post 'webhooks/propertybase', to: 'webhooks#propertybase'
   
   # SEO Sitemap
   get 'sitemap.xml', to: 'sitemaps#index', defaults: { format: 'xml' }

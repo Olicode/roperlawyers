@@ -1,0 +1,22 @@
+New Contact Form Submission - PropertyBase
+
+Contact Details:
+================
+
+First Name: <%= @form_data[:first_name] || 'Not provided' %>
+Last Name: <%= @form_data[:last_name] || 'Not provided' %>
+Email: <%= @form_data[:email] || 'Not provided' %>
+Mobile Phone: <%= @form_data[:mobile_phone] || 'Not provided' %>
+
+Message:
+========
+<%= @form_data[:message] || 'No message provided' %>
+
+Submission Details:
+==================
+Submitted at: <%= Time.current.strftime("%B %d, %Y at %I:%M %p") %>
+Source: Website Contact Form (PropertyBase)
+
+---
+This email was automatically generated from your website contact form.
+Please respond to the client directly using the email address provided above.
