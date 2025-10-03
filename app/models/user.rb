@@ -72,16 +72,22 @@ class User < ApplicationRecord
     changed = previous_changes.keys & monitored_fields
     return if changed.empty?
 
-    if previous_changes.keys.include?("id")
-      # Always send on create
-      AdminMailer.send_user_updates(self).deliver_now
-      update_column(:last_admin_update_sent_at, Time.current)
-    else
-      # Throttle for updates only
-      if last_admin_update_sent_at.nil? || last_admin_update_sent_at < 1.hour.ago
+    begin
+      if previous_changes.keys.include?("id")
+        # Always send on create
         AdminMailer.send_user_updates(self).deliver_now
         update_column(:last_admin_update_sent_at, Time.current)
+      else
+        # Throttle for updates only
+        if last_admin_update_sent_at.nil? || last_admin_update_sent_at < 1.hour.ago
+          AdminMailer.send_user_updates(self).deliver_now
+          update_column(:last_admin_update_sent_at, Time.current)
+        end
       end
+    rescue => e
+      # Log the error but don't break the form submission
+      Rails.logger.error "Failed to send admin update email: #{e.message}"
+      # Optionally, you could store this in a failed jobs queue or send to an error tracking service
     end
   end
 end

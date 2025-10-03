@@ -5,7 +5,7 @@ ActionMailer::Base.smtp_settings = {
   port:            587,
   authentication: :plain,
   user_name:      'apikey',
-  password:       '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'
+  password:       ENV['SENDGRID_API_KEY'] || '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'
 }
 
 ActionMailer::Base.default :from => 'Roper Lawyers<info@roperlawyers.com>'

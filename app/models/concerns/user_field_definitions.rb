@@ -431,7 +431,8 @@ module UserFieldDefinitions
         children: {
           label: "Children & dependents",
           type: :text,
-          placeholder: "Children (Name | DOB DD/MM/YYYY)"
+          placeholder: "Children (Name | DOB DD/MM/YYYY)",
+          description: "Please enter your children & dependants full name, date of birth, and place of birth."
         },
         outline_of_bequests_and_oder_of_success: {
           label: "Beneficiaries & gifts",
