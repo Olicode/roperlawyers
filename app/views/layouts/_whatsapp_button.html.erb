@@ -1,10 +1,26 @@
 <!-- Mobile Sticky Contact Button -->
 <div class="d-lg-none">
   <div class="mobile-contact-bar">
-        <a class="mobile-contact-btn" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
-          Book Consultation
-          <i class="bi bi-arrow-right-short ms-1"></i>
-        </a>
+    <div class="mobile-buttons-container">
+      <a class="mobile-contact-btn" href="/free-consultation">
+        Book Free Consultation
+        <i class="bi bi-arrow-right-short ms-1"></i>
+      </a>
+      
+      <!-- Button Subtext -->
+      <div class="mobile-button-subtext" id="mobile-subtext">
+        <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
+            alt: "Olivier Roper", 
+            class: "rounded-circle me-2",
+            style: "width: 20px; height: 20px; object-fit: cover;") %>
+        Speak directly to Olivier Roper
+      </div>
+      
+      <a class="mobile-contact-btn-secondary" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+        Contact Us
+        <i class="bi bi-envelope ms-1"></i>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -35,24 +51,87 @@
   align-items: center;
 }
 
+.mobile-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 300px;
+}
+
 .mobile-contact-btn {
   background-color: #b29c84;
   color: white !important;
   padding: 12px 24px;
   border-radius: 25px;
   text-decoration: none;
-  font-weight: bold;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
   box-shadow: none;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
   border: none;
+  transform: scale(1);
+}
+
+.mobile-contact-btn.scrolled {
+  transform: scale(0.9);
+  font-size: 1.0125rem;
 }
 
 .mobile-contact-btn:hover {
   background-color: #9d8a6f;
   color: white !important;
   box-shadow: none;
+}
+
+.mobile-contact-btn-secondary {
+  background-color: #f8f9fa;
+  color: #6c757d !important;
+  padding: 12px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+  transform: scale(1);
+}
+
+.mobile-contact-btn-secondary.scrolled {
+  transform: scale(0.9);
+  font-size: 1.0125rem;
+}
+
+.mobile-contact-btn-secondary:hover {
+  background-color: #e9ecef;
+  color: #495057 !important;
+  box-shadow: none;
+}
+
+.mobile-button-subtext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin: 4px 0;
+  transition: opacity 0.3s ease, height 0.3s ease, margin 0.3s ease;
+  overflow: hidden;
+}
+
+.mobile-button-subtext.hidden {
+  opacity: 0;
+  height: 0;
+  margin: 0;
 }
 
 /* Clean WhatsApp button with no background effects */
@@ -98,7 +177,59 @@
   
   /* Add padding to body to account for fixed contact bar */
   body {
-    padding-bottom: 70px;
+    padding-bottom: 140px;
   }
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  let isScrolling = false;
+  let scrollTimer = null;
+  const subtext = document.getElementById('mobile-subtext');
+  const primaryBtn = document.querySelector('.mobile-contact-btn');
+  const secondaryBtn = document.querySelector('.mobile-contact-btn-secondary');
+  
+  if (subtext) {
+    function handleScroll() {
+      if (!isScrolling) {
+        isScrolling = true;
+        subtext.classList.add('hidden');
+        
+        // Add scrolled class to buttons when scrolling
+        if (primaryBtn) primaryBtn.classList.add('scrolled');
+        if (secondaryBtn) secondaryBtn.classList.add('scrolled');
+      }
+      
+      // Clear existing timer
+      clearTimeout(scrollTimer);
+      
+      // Set timer to show subtext when scrolling stops
+      scrollTimer = setTimeout(function() {
+        isScrolling = false;
+        subtext.classList.remove('hidden');
+        
+        // Remove scrolled class from buttons when scrolling stops
+        if (primaryBtn) primaryBtn.classList.remove('scrolled');
+        if (secondaryBtn) secondaryBtn.classList.remove('scrolled');
+      }, 150); // Show again after 150ms of no scrolling
+    }
+    
+    // Throttle scroll events for better performance
+    let ticking = false;
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    }
+    
+    function onScroll() {
+      requestTick();
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+});
+</script>
