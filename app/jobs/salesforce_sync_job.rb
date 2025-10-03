@@ -3,12 +3,20 @@ class SalesforceSyncJob < ApplicationJob
   queue_as :default
 
   def perform(user)
-    if user.sf_contact_id.blank?
-      sf_contact_id = SalesforceService.create_or_update_contact(SalesforceAdapter.adapt_to(user))
-      user.update!(sf_contact_id: sf_contact_id) unless sf_contact_id == false
-    else
-      SalesforceService.update_contact(SalesforceAdapter.adapt_to(user).merge!(Id: user.sf_contact_id))
+    begin
+      if user.sf_contact_id.blank?
+        sf_contact_id = SalesforceService.create_or_update_contact(SalesforceAdapter.adapt_to(user))
+        user.update!(sf_contact_id: sf_contact_id) unless sf_contact_id == false
+      else
+        SalesforceService.update_contact(SalesforceAdapter.adapt_to(user).merge!(Id: user.sf_contact_id))
+      end
+    rescue => e
+      Rails.logger.error "Salesforce sync failed for user #{user.id}: #{e.message}"
+      # Don't re-raise the error - let the form submission succeed
+      return
+    end
 
+    begin
       if user.nie_document.attached?
         SalesforceService.upload_file(sf_file_upload_attrs_map(user, user.nie_document, "NIE"))
       end
@@ -20,6 +28,9 @@ class SalesforceSyncJob < ApplicationJob
       if user.igic_registration_modelo_400_document.attached?
         SalesforceService.upload_file(sf_file_upload_attrs_map(user, user.igic_registration_modelo_400_document, "IGIC Registration Modelo 400"))
       end
+    rescue => e
+      Rails.logger.error "Document upload failed for user #{user.id}: #{e.message}"
+    end
 
       user.nota_simple_documents.each do |document|
         begin
