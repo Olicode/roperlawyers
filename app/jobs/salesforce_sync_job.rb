@@ -32,71 +32,70 @@ class SalesforceSyncJob < ApplicationJob
       Rails.logger.error "Document upload failed for user #{user.id}: #{e.message}"
     end
 
-      user.nota_simple_documents.each do |document|
-        begin
-          Rails.logger.info "Uploading Nota Simple document: #{document.inspect}"
-          SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Nota Simple"))
-          Rails.logger.info "Successfully uploaded Nota Simple document"
-        rescue => e
-          Rails.logger.error "Error uploading Nota Simple document: #{e.message}"
-          Rails.logger.error e.backtrace.join("\n")
-        end
+    user.nota_simple_documents.each do |document|
+      begin
+        Rails.logger.info "Uploading Nota Simple document: #{document.inspect}"
+        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Nota Simple"))
+        Rails.logger.info "Successfully uploaded Nota Simple document"
+      rescue => e
+        Rails.logger.error "Error uploading Nota Simple document: #{e.message}"
+        Rails.logger.error e.backtrace.join("\n")
       end
+    end
 
-      user.title_deed_documents.each do |document|
-        begin
-          Rails.logger.info "Uploading Title Deed document: #{document.inspect}"
-          SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Title Deed"))
-          Rails.logger.info "Successfully uploaded Title Deed document"
-        rescue => e
-          Rails.logger.error "Error uploading Title Deed document: #{e.message}"
-          Rails.logger.error e.backtrace.join("\n")
-        end
+    user.title_deed_documents.each do |document|
+      begin
+        Rails.logger.info "Uploading Title Deed document: #{document.inspect}"
+        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Title Deed"))
+        Rails.logger.info "Successfully uploaded Title Deed document"
+      rescue => e
+        Rails.logger.error "Error uploading Title Deed document: #{e.message}"
+        Rails.logger.error e.backtrace.join("\n")
       end
+    end
 
-      user.vv_license_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "VV License"))
-      end
+    user.vv_license_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "VV License"))
+    end
 
-      user.first_occupation_license_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "First Occupation License"))
-      end
+    user.first_occupation_license_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "First Occupation License"))
+    end
 
-      user.cee_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "CEE"))
-      end
+    user.cee_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "CEE"))
+    end
 
-      user.civil_liability_insurance_policy_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Civil Liability Insurance Policy"))
-      end
+    user.civil_liability_insurance_policy_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Civil Liability Insurance Policy"))
+    end
 
-      user.habitability_certificate_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Habitability Certificate"))
-      end
+    user.habitability_certificate_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Habitability Certificate"))
+    end
 
-      user.municipal_certificate_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Municipal Certificate"))
-      end
+    user.municipal_certificate_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Municipal Certificate"))
+    end
 
-      user.property_tax_receipt_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Property Tax Receipt (IBI)"))
-      end
+    user.property_tax_receipt_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Property Tax Receipt (IBI)"))
+    end
 
-      user.floor_plan_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Floor Plan"))
-      end
+    user.floor_plan_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Floor Plan"))
+    end
 
-      user.community_approval_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Community Approval"))
-      end
+    user.community_approval_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Community Approval"))
+    end
 
-      user.water_bill_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Water Bill"))
-      end
+    user.water_bill_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Water Bill"))
+    end
 
-      user.electricity_bill_documents.each do |document|
-        SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Electricity Bill"))
-      end
+    user.electricity_bill_documents.each do |document|
+      SalesforceService.upload_file(sf_file_upload_attrs_map(user, document, "Electricity Bill"))
     end
   end
 end
