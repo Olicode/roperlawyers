@@ -350,7 +350,14 @@ module UsersHelper
       stimulus_attrs['data-user-form-target'] = field_config[:stimulus_target]
     end
     
-    content_tag :div, class: "form-floating mb-3" do
+    content = ""
+    
+    # Add description if present
+    if field_config[:description]
+      content += content_tag(:p, field_config[:description], class: "mb-2 text-muted")
+    end
+    
+    content += content_tag :div, class: "form-floating mb-3" do
       form.text_field(field_name, 
         class: css_classes, 
         placeholder: placeholder,
@@ -360,6 +367,8 @@ module UsersHelper
       ) +
       form.label(field_name, field_config[:label])
     end
+    
+    content.html_safe
   end
 
   def render_textarea_field(form, field_name, field_config, options)
