@@ -100,7 +100,7 @@ class UsersController < ApplicationController
           :children,
           :outline_of_bequests_and_oder_of_success, :inheritance_to_be_governed_by,
           :poa_made_in_spain, :poa_for, :needs_nie, :home_address, :currency, :needs_mortgage, :wants_to_holiday_let,
-          :has_a_spanish_bank_account, :date_of_birth, :igic_registration_modelo_400_document, :energy_efficiency_certificate_cee,
+          :has_a_spanish_bank_account, :date_of_birth, :place_of_birth, :igic_registration_modelo_400_document, :energy_efficiency_certificate_cee,
           :escritura,
           :fx_quote_referral_consent,
           { requested_services: [] },

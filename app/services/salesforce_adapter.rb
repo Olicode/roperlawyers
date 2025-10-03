@@ -15,6 +15,7 @@ class SalesforceAdapter
       to_sf: ->(value) { value&.iso8601 },
       from_sf: ->(value) { value }
     },
+    place_of_birth: { sf_field: 'Place_of_Birth__c' },
     expiry_date: { 
       sf_field: 'Expiry_Date__c',
       to_sf: ->(value) { value&.iso8601 },

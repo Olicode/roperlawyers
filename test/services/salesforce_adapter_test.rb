@@ -268,7 +268,7 @@ class SalesforceAdapterTest < ActiveSupport::TestCase
   test "all expected fields are present in mapping" do
     expected_fields = [
       :first_name, :last_name, :email, :mobile_phone, :full_name_on_passport,
-      :passport_number, :date_of_birth, :expiry_date, :nationality, :profession,
+      :passport_number, :date_of_birth, :place_of_birth, :expiry_date, :nationality, :profession,
       :marital_status, :spouse, :home_address, :buying_property_address,
       :selling_property_address, :father_s_first_name, :mother_s_first_name,
       :r_origin_bank_details, :otb_origin_bank_details, :balance_bank_details,

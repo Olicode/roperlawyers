@@ -572,9 +572,15 @@ module UsersHelper
   def render_select_field(form, field_name, field_config, options)
     css_classes = "form-control form-select #{options[:class]}".strip
     
+    # Get current value or use default if field is empty
+    current_value = form.object.send(field_name)
+    if current_value.blank? && field_config[:default]
+      current_value = field_config[:default]
+    end
+    
     content = content_tag(:div, class: "form-floating mb-3") do
       form.select(field_name,
-        options_for_select(field_config[:options].map { |opt| [opt, opt] }, form.object.send(field_name)),
+        options_for_select(field_config[:options].map { |opt| [opt, opt] }, current_value),
         { include_blank: "Select" },
         class: css_classes,
         **options.except(:class)

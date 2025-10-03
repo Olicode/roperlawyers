@@ -26,6 +26,12 @@ module UserFieldDefinitions
         full_name_on_passport: { label: "Full name on passport", type: :text },
         passport_number: { label: "Passport number", type: :text },
         date_of_birth: { label: "Date of birth", type: :date, form_group: :passport_dates },
+        place_of_birth: { 
+          label: "Place of birth", 
+          type: :text, 
+          form_group: :passport_dates,
+          email_label: "Place of Birth"
+        },
         expiry_date: { label: "Passport expiry date", type: :date, form_group: :passport_dates },
         nationality: { 
           label: "Nationality", 
@@ -450,6 +456,7 @@ module UserFieldDefinitions
             "Nationality at the time of death",
             "Habitual place of residence at the time of death"
           ],
+          default: "Law of country of current nationality",
           note: "Most people making a will choose the 'Law of country of current nationality'."
         }
       }
