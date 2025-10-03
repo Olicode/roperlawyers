@@ -2,7 +2,7 @@
 <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <form id="propertybaseContactForm" action="https://front-desk.propertybase.com/forms/5c972f06be11bb485b8901a14ec8d41f359cd881" method="post" accept-charset="UTF-8" target="_blank">
+      <form id="propertybaseContactForm" action="https://front-desk.propertybase.com/forms/5c972f06be11bb485b8901a14ec8d41f359cd881" method="post" accept-charset="UTF-8">
         <div class="modal-header">
           <h5 class="modal-title">Get In Touch</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -36,6 +36,9 @@
           
           <!-- Keep this honeypot exactly as provided (must remain empty) -->
           <input type="text" name="h_5c972f06be11bb485b8901a14ec8d41f359cd881" value="" style="display:none">
+          
+          <!-- Success URL redirect -->
+          <input type="hidden" name="success_url" value="http://www.roperlawyers.com/thank-you" />
           
           <p class="text-center text-muted small">We'll never share your info with anyone.</p>
         </div>
