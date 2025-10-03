@@ -61,6 +61,7 @@ export default class extends Controller {
     "serviceRegistry",
     "serviceActivities",
     "serviceWill",
+    "serviceDonation",
     // Section toggles
     "sectionPurchase",
     "sectionSale",
@@ -258,6 +259,7 @@ export default class extends Controller {
       ...(this.serviceSaleTargets || []),
       ...(this.serviceNewBuildTargets || []),
       ...(this.serviceWillTargets || []),
+      ...(this.serviceDonationTargets || []),
       ...(this.serviceVvTargets || []),
       ...(this.serviceRegistryTargets || []),
       ...(this.serviceActivitiesTargets || []),
@@ -267,6 +269,7 @@ export default class extends Controller {
       this.serviceSaleTarget,
       this.serviceNewBuildTarget,
       this.serviceWillTarget,
+      this.serviceDonationTarget,
       this.serviceVvTarget,
       this.serviceRegistryTarget,
       this.serviceActivitiesTarget,

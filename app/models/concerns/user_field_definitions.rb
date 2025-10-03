@@ -70,7 +70,8 @@ module UserFieldDefinitions
               description: "If you would like us to prepare any of the following legal documents, please tick below:",
               options: [
                 { value: "Will & Last Testament", label: "Will & Last Testament", stimulus_target: "serviceWill" },
-                { value: "New Build Declaration", label: "New Build Declaration", stimulus_target: "serviceNewBuild" }
+                { value: "New Build Declaration", label: "New Build Declaration", stimulus_target: "serviceNewBuild" },
+                { value: "Donation", label: "Donation", stimulus_target: "serviceDonation" }
               ]
             },
             {
