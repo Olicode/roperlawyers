@@ -55,6 +55,15 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (form) {
     form.addEventListener('submit', function(e) {
+      // If first and last names are the same, treat as spam and just thank the user
+      const fnVal = (form.querySelector('#firstName')?.value || '').trim().toLowerCase();
+      const lnVal = (form.querySelector('#lastName')?.value || '').trim().toLowerCase();
+      if (fnVal && lnVal && fnVal === lnVal) {
+        e.preventDefault();
+        window.location.href = '/thank-you';
+        return;
+      }
+
       // Prevent double submission
       if (isSubmitting) {
         console.log('Form submission already in progress');

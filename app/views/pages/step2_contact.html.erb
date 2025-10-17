@@ -131,5 +131,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Optionally redirect back to home page
     // window.location.href = '/';
   }
+
+  // Guard: if first and last names match, skip posting to Salesforce and go to thank-you
+  const form = document.querySelector('form[action^="https://webto.salesforce.com/"]');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      const fn = (document.getElementById('hiddenFirstName')?.value || '').trim().toLowerCase();
+      const ln = (document.getElementById('hiddenLastName')?.value || '').trim().toLowerCase();
+      if (fn && ln && fn === ln) {
+        e.preventDefault();
+        window.location.href = '/thank-you';
+      }
+    });
+  }
 });
 </script>

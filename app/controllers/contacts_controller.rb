@@ -69,6 +69,16 @@ class ContactsController < ApplicationController
         message: params.dig(:contact, :Contact_Form_Message)
       }
       
+      # Guard: if first and last names are identical (case-insensitive), skip email and Salesforce
+      if form_data[:first_name].present? && form_data[:last_name].present? && form_data[:first_name].to_s.strip.casecmp?(form_data[:last_name].to_s.strip)
+        Rails.logger.info "Contact submission skipped due to identical first and last names"
+        respond_to do |format|
+          format.html { redirect_to thank_you_path }
+          format.json { render json: { success: true, message: 'Thank you' } }
+        end
+        return
+      end
+
       # Send email notification
       Rails.logger.info "Attempting to send email notification to: info@roperlawyers.com"
       ContactMailer.propertybase_notification(form_data).deliver_now
