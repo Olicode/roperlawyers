@@ -354,7 +354,7 @@ module UsersHelper
     
     # Add description if present
     if field_config[:description]
-      content += content_tag(:p, field_config[:description], class: "mb-2 text-muted")
+      content += content_tag(:p, raw(field_config[:description]), class: "mb-2 text-muted")
     end
     
     content += content_tag :div, class: "form-floating mb-3" do
@@ -392,7 +392,7 @@ module UsersHelper
     
     # Add description if present
     if field_config[:description]
-      content += content_tag(:p, field_config[:description], class: "mb-2 text-muted")
+      content += content_tag(:p, raw(field_config[:description]), class: "mb-2 text-muted")
     end
     
     # Add example if present
@@ -491,7 +491,7 @@ module UsersHelper
     field_id = "user_#{field_name}"
     
     if field_config[:description]
-      content_tag(:p, field_config[:description], class: "mt-3") +
+      content_tag(:p, raw(field_config[:description]), class: "mt-3") +
       content_tag(:div, class: "form-check mb-3", **stimulus_attrs) do
         if field_config[:virtual]
           check_box_tag(field_name, "1", false, class: "form-check-input", id: field_id) +
@@ -613,7 +613,7 @@ module UsersHelper
       
       # Add description if present
       if field_config[:description]
-        content += content_tag(:p, field_config[:description], class: "mb-2 text-muted small")
+        content += content_tag(:p, raw(field_config[:description]), class: "mb-2 text-muted small")
       end
       
       # Add file upload container
