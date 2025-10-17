@@ -21,7 +21,8 @@ module UserFieldDefinitions
           email_label: "Tax resident",
           type: :boolean, 
           form_type: :checkbox,
-          description: "Are you a tax resident in Spain?<br><small class='text-muted'>You're tax resident if you spend over 183 days a year in Spain or your main ties are here.<br>If you live mostly abroad, you're non-resident—even if you own or rent out property in Spain.</small>"
+          description: "Are you a tax resident in Spain?<br><small class='text-muted'>You're tax resident if you spend over 183 days a year in Spain or your main ties are here.<br>If you live mostly abroad, you're non-resident even if you own or rent out property in Spain.</small>",
+          separator_after: true
         },
         full_name_on_passport: { label: "Full name on passport", type: :text },
         passport_number: { label: "Passport number", type: :text },

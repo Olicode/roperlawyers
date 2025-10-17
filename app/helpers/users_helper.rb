@@ -490,7 +490,7 @@ module UsersHelper
     
     field_id = "user_#{field_name}"
     
-    if field_config[:description]
+    field_html = if field_config[:description]
       content_tag(:p, raw(field_config[:description]), class: "mt-3") +
       content_tag(:div, class: "form-check mb-3", **stimulus_attrs) do
         if field_config[:virtual]
@@ -518,6 +518,13 @@ module UsersHelper
         end
       end
     end
+    
+    # Add separator if specified
+    if field_config[:separator_after]
+      field_html += content_tag(:hr, "", class: "my-4", style: "color: #b29c84;")
+    end
+    
+    field_html
   end
 
   def render_radio_field(form, field_name, field_config, options)
