@@ -544,7 +544,6 @@ module UserFieldDefinitions
         municipal_certificate_documents: {
           label: "Upload Municipal Certificate",
           email_label: "Municipal Certificate",
-          email_label: "Municipal Certificate",
           type: :attachments,
           file_types: "PDF, JPG, PNG",
         },
