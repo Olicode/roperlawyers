@@ -2,7 +2,7 @@
 <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <form id="propertybaseContactForm" action="https://front-desk.propertybase.com/forms/5c972f06be11bb485b8901a14ec8d41f359cd881" method="post" accept-charset="UTF-8">
+      <form id="propertybaseContactForm" action="/contact_notification" method="post" accept-charset="UTF-8">
         <div class="modal-header">
           <h5 class="modal-title">Get In Touch</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -30,15 +30,15 @@
           </div>
           
           <div class="form-floating mb-3">
-            <textarea name="contact[Contact_Form_Message__c]" class="form-control" id="message" placeholder="Tell us about your legal requirements..." style="height: 120px" required></textarea>
+            <textarea name="contact[Contact_Form_Message]" class="form-control" id="message" placeholder="Tell us about your legal requirements..." style="height: 120px" required></textarea>
             <label for="message">Message *</label>
           </div>
           
           <!-- Keep this honeypot exactly as provided (must remain empty) -->
           <input type="text" name="h_5c972f06be11bb485b8901a14ec8d41f359cd881" value="" style="display:none">
           
-          <!-- Success URL redirect -->
-          <input type="hidden" name="success_url" value="http://www.roperlawyers.com/thank-you" />
+          <!-- CSRF token for Rails -->
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
           
           <p class="text-center text-muted small">We'll never share your info with anyone.</p>
         </div>
@@ -58,11 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (form) {
     form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Always prevent default, we'll handle with AJAX
+      
       // If first and last names are the same, treat as spam and just thank the user
       const fnVal = (form.querySelector('#firstName')?.value || '').trim().toLowerCase();
       const lnVal = (form.querySelector('#lastName')?.value || '').trim().toLowerCase();
       if (fnVal && lnVal && fnVal === lnVal) {
-        e.preventDefault();
         // Close the modal if open
         const modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
         if (modal) { modal.hide(); }
@@ -73,11 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
       // Prevent double submission
       if (isSubmitting) {
         console.log('Form submission already in progress');
-        e.preventDefault();
         return;
       }
       
-      console.log('PropertyBase contact form submitted');
+      console.log('Contact form submitted');
       
       // Validate required fields
       const firstNameField = form.querySelector('#firstName');
@@ -88,28 +88,24 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!firstNameField.value.trim()) {
         alert('Please enter your first name.');
         firstNameField.focus();
-        e.preventDefault();
         return;
       }
       
       if (!lastNameField.value.trim()) {
         alert('Please enter your last name.');
         lastNameField.focus();
-        e.preventDefault();
         return;
       }
       
       if (!emailField.value.trim()) {
         alert('Please enter your email address.');
         emailField.focus();
-        e.preventDefault();
         return;
       }
       
       if (!messageField.value.trim()) {
         alert('Please enter your message.');
         messageField.focus();
-        e.preventDefault();
         return;
       }
       
@@ -122,20 +118,43 @@ document.addEventListener('DOMContentLoaded', function() {
       submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
       
-      // Let the form submit naturally to PropertyBase
-      // Close the modal and redirect to thank you page
-      setTimeout(function() {
-        // Close the modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
-        if (modal) {
-          modal.hide();
+      // Submit via AJAX
+      const formData = new FormData(form);
+      
+      fetch('/contact_notification', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
         }
-        // Redirect to thank you page
-        window.location.href = '/thank-you';
-      }, 1000);
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Close the modal
+          const modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+          if (modal) {
+            modal.hide();
+          }
+          // Redirect to thank you page
+          window.location.href = '/thank-you';
+        } else {
+          alert('Error: ' + (data.message || 'Failed to send message'));
+          submitBtn.textContent = originalValue;
+          submitBtn.disabled = false;
+          isSubmitting = false;
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+        submitBtn.textContent = originalValue;
+        submitBtn.disabled = false;
+        isSubmitting = false;
+      });
     });
   } else {
-    console.log('PropertyBase form not found!');
+    console.log('Contact form not found!');
   }
 });
 </script>
