@@ -15,26 +15,7 @@ module UserFieldDefinitions
         home_address: { label: "Home address", type: :text },
         profession: { label: "Profession", type: :text },
         marital_status: { label: "Marital status", type: :text, form_group: :marital },
-        spouse: { label: "Spouse full name", type: :text, form_group: :marital },
-        tax_resident: { 
-          label: "Yes – I am a tax resident in Spain",
-          email_label: "Tax resident",
-          type: :boolean, 
-          form_type: :checkbox,
-          description: "Are you a tax resident in Spain?<br><small class='text-muted'>You're tax resident if you spend over 183 days a year in Spain or your main ties are here.<br>If you live mostly abroad, you're non-resident even if you own or rent out property in Spain.</small>",
-          stimulus_target: "taxResident",
-          conditional_fields: {
-            true => [:tax_representative_form]
-          }
-        },
-        tax_representative_form: {
-          label: "Who is your tax representative?",
-          type: :text,
-          required: true,
-          conditional: true,
-          stimulus_target: "taxRepresentativeForm",
-          separator_after: true
-        }
+        spouse: { label: "Spouse full name", type: :text, form_group: :marital }
       }
     },
 
@@ -120,6 +101,24 @@ module UserFieldDefinitions
           type: :textarea,
           style: "height: 120px;",
           id: "property_sale_selling_property_address"
+        },
+        tax_resident: { 
+          label: "Yes – I am a tax resident in Spain",
+          email_label: "Tax resident",
+          type: :boolean, 
+          form_type: :checkbox,
+          description: "Are you a tax resident in Spain?<br><small class='text-muted'>You're tax resident if you spend over 183 days a year in Spain or your main ties are here.<br>If you live mostly abroad, you're non-resident even if you own or rent out property in Spain.</small>",
+          stimulus_target: "taxResident",
+          conditional_fields: {
+            true => [:tax_representative_form]
+          }
+        },
+        tax_representative_form: {
+          label: "Who is your tax representative?",
+          type: :text,
+          required: true,
+          conditional: true,
+          stimulus_target: "taxRepresentativeForm"
         }
       }
     },
