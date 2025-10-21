@@ -89,6 +89,96 @@ module UserFieldDefinitions
       }
     },
 
+    # NIE Information
+    nie_information: {
+      title: "NIE number",
+      form_section: true,
+      description: "An NIE (Foreigner Identification Number) is required for most official processes in Spain, including legal, financial, and administrative transactions.",
+      fields: {
+        needs_nie: { 
+          label: "Would you like us to apply for your NIE?", 
+          email_label: "Needs NIE",
+          type: :radio,
+          options: [
+            { value: "no", label: "No – I already have an NIE", stimulus_target: "nieNoRadio" },
+            { value: "yes", label: "Yes – please apply on my behalf", stimulus_target: "nieYesRadio" }
+          ],
+          conditional_fields: {
+            "no" => [:nie_number, :nie_document],
+            "yes" => [:father_s_first_name, :mother_s_first_name]
+          }
+        },
+        nie_number: { label: "NIE number", type: :text, conditional: true },
+        nie_document: { 
+          label: "Upload a copy of your NIE document", 
+          email_label: "NIE Document",
+          type: :attachment,
+          file_types: "PDF, JPG, PNG",
+          conditional: true
+        },
+        father_s_first_name: { 
+          label: "Father's first name", 
+          type: :text, 
+          conditional: true, 
+          form_group: :parents,
+          form_group_description: "Please enter your parents' first names so we can apply for your NIE:"
+        },
+        mother_s_first_name: { 
+          label: "Mother's first name", 
+          type: :text, 
+          conditional: true, 
+          form_group: :parents
+        }
+      }
+    },
+
+    # Power of Attorney
+    power_of_attorney: {
+      title: "Power of Attorney (PoA)",
+      form_section: true,
+      description: "By granting us a Power of Attorney, we'll handle everything for you.",
+      conditional_display: { field: "requested_services", hide_if_only_contains: "Will & Last Testament" },
+      stimulus_target: "poaSection",
+      fields: {
+        needs_poa: {
+          label: "Would you like to grant us PoA?",
+          email_label: "Needs PoA",
+          type: :radio,
+          stimulus_target: "needsPoa",
+          options: [
+            { value: "yes", label: "Yes – please act on my behalf", stimulus_target: "needsPoaYes" },
+            { value: "no", label: "No – I do not require PoA", stimulus_target: "needsPoaNo" },
+            { value: "already", label: "Another person holds PoA and will act on my behalf – please let us know and send us a copy", stimulus_target: "needsPoaAlready" }
+          ],
+          conditional_fields: {
+            "yes" => [:poa_for, :poa_made_in_spain]
+          }
+        },
+        poa_for: {
+          label: "Which matters should your PoA cover?",
+          email_label: "POA For",
+          type: :radio,
+          conditional: true,
+          options: [
+            { value: "buying", label: "Buying – purchase property on my behalf" },
+            { value: "selling", label: "Selling – sell property on my behalf" },
+            { value: "both", label: "Buying & Selling – handle both purchase and sale" },
+            { value: "all", label: "Buying, Selling & Mortgage – full conveyancing and mortgage powers" }
+          ]
+        },
+        poa_made_in_spain: {
+          label: "Where would you like to sign your PoA?",
+          email_label: "POA Made in Spain",
+          type: :radio,
+          conditional: true,
+          options: [
+            { value: "yes", label: "In Spain – sign before a Spanish notary with one of our team accompanying you" },
+            { value: "no", label: "At your local notary – we'll send a draft for you to sign and have it returned by courier" }
+          ]
+        }
+      }
+    },
+
     # Property Sale Details
     property_sale: {
       title: "Property Sale Details",
@@ -274,96 +364,6 @@ module UserFieldDefinitions
           placeholder: "Enter utility standing order bank name and IBAN",
           conditional: true,
           stimulus_target: "utilityAccount"
-        }
-      }
-    },
-
-    # NIE Information
-    nie_information: {
-      title: "NIE number",
-      form_section: true,
-      description: "An NIE (Foreigner Identification Number) is required for most official processes in Spain, including legal, financial, and administrative transactions.",
-      fields: {
-        needs_nie: { 
-          label: "Would you like us to apply for your NIE?", 
-          email_label: "Needs NIE",
-          type: :radio,
-          options: [
-            { value: "no", label: "No – I already have an NIE", stimulus_target: "nieNoRadio" },
-            { value: "yes", label: "Yes – please apply on my behalf", stimulus_target: "nieYesRadio" }
-          ],
-          conditional_fields: {
-            "no" => [:nie_number, :nie_document],
-            "yes" => [:father_s_first_name, :mother_s_first_name]
-          }
-        },
-        nie_number: { label: "NIE number", type: :text, conditional: true },
-        nie_document: { 
-          label: "Upload a copy of your NIE document", 
-          email_label: "NIE Document",
-          type: :attachment,
-          file_types: "PDF, JPG, PNG",
-          conditional: true
-        },
-        father_s_first_name: { 
-          label: "Father's first name", 
-          type: :text, 
-          conditional: true, 
-          form_group: :parents,
-          form_group_description: "Please enter your parents' first names so we can apply for your NIE:"
-        },
-        mother_s_first_name: { 
-          label: "Mother's first name", 
-          type: :text, 
-          conditional: true, 
-          form_group: :parents
-        }
-      }
-    },
-
-    # Power of Attorney
-    power_of_attorney: {
-      title: "Power of Attorney (PoA)",
-      form_section: true,
-      description: "By granting us a Power of Attorney, we'll handle everything for you.",
-      conditional_display: { field: "requested_services", hide_if_only_contains: "Will & Last Testament" },
-      stimulus_target: "poaSection",
-      fields: {
-        needs_poa: {
-          label: "Would you like to grant us PoA?",
-          email_label: "Needs PoA",
-          type: :radio,
-          stimulus_target: "needsPoa",
-          options: [
-            { value: "yes", label: "Yes – please act on my behalf", stimulus_target: "needsPoaYes" },
-            { value: "no", label: "No – I do not require PoA", stimulus_target: "needsPoaNo" },
-            { value: "already", label: "Another person holds PoA and will act on my behalf – please let us know and send us a copy", stimulus_target: "needsPoaAlready" }
-          ],
-          conditional_fields: {
-            "yes" => [:poa_for, :poa_made_in_spain]
-          }
-        },
-        poa_for: {
-          label: "Which matters should your PoA cover?",
-          email_label: "POA For",
-          type: :radio,
-          conditional: true,
-          options: [
-            { value: "buying", label: "Buying – purchase property on my behalf" },
-            { value: "selling", label: "Selling – sell property on my behalf" },
-            { value: "both", label: "Buying & Selling – handle both purchase and sale" },
-            { value: "all", label: "Buying, Selling & Mortgage – full conveyancing and mortgage powers" }
-          ]
-        },
-        poa_made_in_spain: {
-          label: "Where would you like to sign your PoA?",
-          email_label: "POA Made in Spain",
-          type: :radio,
-          conditional: true,
-          options: [
-            { value: "yes", label: "In Spain – sign before a Spanish notary with one of our team accompanying you" },
-            { value: "no", label: "At your local notary – we'll send a draft for you to sign and have it returned by courier" }
-          ]
         }
       }
     },
