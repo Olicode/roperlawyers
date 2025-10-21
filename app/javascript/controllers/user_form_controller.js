@@ -328,21 +328,21 @@ export default class extends Controller {
 
   // NIE
   toggleSections() {
-    const nieNoVisible = this.nieNoRadioTarget.checked ? "block" : "none";
-    const nieYesVisible = this.nieYesRadioTarget.checked ? "block" : "none";
+    const nieNoVisible = this.nieNoRadioTarget.checked;
+    const nieYesVisible = this.nieYesRadioTarget.checked;
     
     // Toggle NIE number and document fields (when "No" is selected)
     if (this.hasNieNumberTarget) {
-      this.nieNumberTarget.style.display = nieNoVisible;
+      this.animateToggle(this.nieNumberTarget, nieNoVisible);
     }
     
     if (this.hasNieDocumentTarget) {
-      this.nieDocumentTarget.style.display = nieNoVisible;
+      this.animateToggle(this.nieDocumentTarget, nieNoVisible);
     }
 
     // Toggle parent name fields (when "Yes" is selected) - grouped field
     if (this.hasFatherSFirstNameTarget) {
-      this.fatherSFirstNameTarget.style.display = nieYesVisible;
+      this.animateToggle(this.fatherSFirstNameTarget, nieYesVisible);
     }
 
     // Ensure POA section visibility updates when NIE Yes is selected
@@ -356,15 +356,15 @@ export default class extends Controller {
    * Show/hide PoA details section based on radio selection.
    */
   togglePoaDetails() {
-    const isVisible = this.needsPoaYesTarget.checked ? "block" : "none";
+    const isVisible = this.needsPoaYesTarget.checked;
     
     // Toggle POA conditional fields using Stimulus targets
     if (this.hasPoaForTarget) {
-      this.poaForTarget.style.display = isVisible;
+      this.animateToggle(this.poaForTarget, isVisible);
     }
     
     if (this.hasPoaMadeInSpainTarget) {
-      this.poaMadeInSpainTarget.style.display = isVisible;
+      this.animateToggle(this.poaMadeInSpainTarget, isVisible);
     }
   }
 
@@ -386,29 +386,29 @@ export default class extends Controller {
    */
   toggleSpouseSections() {
     // Toggle current spouse field (when "Yes" is selected for currently married)
-    const currentSpouseVisible = this.currentlyMarriedTrueTarget.checked ? "block" : "none";
+    const currentSpouseVisible = this.currentlyMarriedTrueTarget.checked;
     if (this.hasNameOfThePresentSpouseTarget) {
-      this.nameOfThePresentSpouseTarget.style.display = currentSpouseVisible;
+      this.animateToggle(this.nameOfThePresentSpouseTarget, currentSpouseVisible);
     }
 
     // Toggle previous spouse fields (when "Yes" is selected for previously married)
-    const previousSpouseVisible = this.previouslyMarriedTrueTarget.checked ? "block" : "none";
+    const previousSpouseVisible = this.previouslyMarriedTrueTarget.checked;
     if (this.hasNameOfThePreviousSpousesTarget) {
-      this.nameOfThePreviousSpousesTarget.style.display = previousSpouseVisible;
+      this.animateToggle(this.nameOfThePreviousSpousesTarget, previousSpouseVisible);
     }
     if (this.hasDateOfDivorceTarget) {
-      this.dateOfDivorceTarget.style.display = previousSpouseVisible;
+      this.animateToggle(this.dateOfDivorceTarget, previousSpouseVisible);
     }
     if (this.hasDateOfDeceaseTarget) {
-      this.dateOfDeceaseTarget.style.display = previousSpouseVisible;
+      this.animateToggle(this.dateOfDeceaseTarget, previousSpouseVisible);
     }
 
     // Keep legacy section toggles for backward compatibility
     if (this.hasCurrentSpouseSectionTarget) {
-      this.currentSpouseSectionTarget.style.display = currentSpouseVisible;
+      this.animateToggle(this.currentSpouseSectionTarget, currentSpouseVisible);
     }
     if (this.hasPreviousSpouseSectionTarget) {
-      this.previousSpouseSectionTarget.style.display = previousSpouseVisible;
+      this.animateToggle(this.previousSpouseSectionTarget, previousSpouseVisible);
     }
   }
 
@@ -416,9 +416,9 @@ export default class extends Controller {
    * Show/hide title deed upload section based on radio selection.
    */
   toggleTitleDeedUpload() {
-    const uploadVisible = this.canProvideTitleDeedUploadNowTarget.checked ? "block" : "none";
+    const uploadVisible = this.canProvideTitleDeedUploadNowTarget.checked;
     if (this.hasTitleDeedDocumentsTarget) {
-      this.titleDeedDocumentsTarget.style.display = uploadVisible;
+      this.animateToggle(this.titleDeedDocumentsTarget, uploadVisible);
     }
   }
 
@@ -426,9 +426,9 @@ export default class extends Controller {
    * Show/hide CEE upload section based on radio selection.
    */
   toggleCeeUpload() {
-    const uploadVisible = this.energyEfficiencyCertificateCeeProvidedTarget.checked ? "block" : "none";
+    const uploadVisible = this.energyEfficiencyCertificateCeeProvidedTarget.checked;
     if (this.hasCeeDocumentsTarget) {
-      this.ceeDocumentsTarget.style.display = uploadVisible;
+      this.animateToggle(this.ceeDocumentsTarget, uploadVisible);
     }
   }
 
@@ -710,14 +710,14 @@ export default class extends Controller {
     if (!this.hasROriginBankDetailsTarget) return;
     
     const shouldShow = this.hasPayYesTarget && this.payYesTarget.checked;
-    this.rOriginBankDetailsTarget.style.display = shouldShow ? "block" : "none";
+    this.animateToggle(this.rOriginBankDetailsTarget, shouldShow);
   }
 
   toggleUtilitySection() {
     if (!this.hasStandingOrdersBankDetailsTarget) return;
     
     const shouldShow = this.hasHasSpanishAccountYesTarget && this.hasSpanishAccountYesTarget.checked;
-    this.standingOrdersBankDetailsTarget.style.display = shouldShow ? "block" : "none";
+    this.animateToggle(this.standingOrdersBankDetailsTarget, shouldShow);
   }
 
   syncAccounts() {
@@ -789,6 +789,43 @@ export default class extends Controller {
   }
 
   /**
+   * Animate toggle helper - smooth show/hide with transitions
+   */
+  animateToggle(element, shouldShow) {
+    if (!element) return;
+    
+    // Add transition if not already present
+    if (!element.style.transition) {
+      element.style.transition = 'opacity 0.3s ease, max-height 0.3s ease';
+      element.style.overflow = 'hidden';
+    }
+    
+    if (shouldShow) {
+      // Show with animation
+      element.style.display = 'block';
+      element.style.maxHeight = '0px';
+      element.style.opacity = '0';
+      
+      // Force reflow
+      element.offsetHeight;
+      
+      // Animate in
+      setTimeout(() => {
+        element.style.maxHeight = '2000px';
+        element.style.opacity = '1';
+      }, 10);
+    } else {
+      // Hide with animation
+      element.style.maxHeight = '0px';
+      element.style.opacity = '0';
+      
+      setTimeout(() => {
+        element.style.display = 'none';
+      }, 300);
+    }
+  }
+
+  /**
    * Set up generic conditional field display based on data attributes
    */
   setupConditionalFields() {
@@ -798,6 +835,10 @@ export default class extends Controller {
     conditionalFields.forEach(conditionalField => {
       const conditionFieldName = conditionalField.getAttribute('data-condition-field');
       const conditionValue = conditionalField.getAttribute('data-condition-value');
+      
+      // Add transition styles
+      conditionalField.style.transition = 'opacity 0.3s ease, max-height 0.3s ease';
+      conditionalField.style.overflow = 'hidden';
       
       // Find the condition field (checkbox)
       const conditionInput = this.element.querySelector(`#user_${conditionFieldName}`);
@@ -810,7 +851,30 @@ export default class extends Controller {
             const isChecked = conditionInput.checked;
             const shouldShow = (conditionValue === 'true' && isChecked) || 
                              (conditionValue === 'false' && !isChecked);
-            conditionalField.style.display = shouldShow ? 'block' : 'none';
+            
+            if (shouldShow) {
+              // Show with animation
+              conditionalField.style.display = 'block';
+              conditionalField.style.maxHeight = '0px';
+              conditionalField.style.opacity = '0';
+              
+              // Force reflow
+              conditionalField.offsetHeight;
+              
+              // Animate in
+              setTimeout(() => {
+                conditionalField.style.maxHeight = '1000px';
+                conditionalField.style.opacity = '1';
+              }, 10);
+            } else {
+              // Hide with animation
+              conditionalField.style.maxHeight = '0px';
+              conditionalField.style.opacity = '0';
+              
+              setTimeout(() => {
+                conditionalField.style.display = 'none';
+              }, 300);
+            }
             
             // Update required attribute on input fields inside
             const inputs = conditionalField.querySelectorAll('input, textarea, select');

@@ -34,7 +34,15 @@ module UserFieldDefinitions
           conditional: true,
           stimulus_target: "taxRepresentativeForm",
           separator_after: true
-        },
+        }
+      }
+    },
+
+    # Passport Details
+    passport: {
+      title: "Passport details",
+      form_section: true,
+      fields: {
         full_name_on_passport: { label: "Full name on passport", type: :text },
         passport_number: { label: "Passport number", type: :text },
         date_of_birth: { label: "Date of birth", type: :date, form_group: :passport_dates },
@@ -54,7 +62,7 @@ module UserFieldDefinitions
           label: "Upload a copy of your passport",
           email_label: "Passport",
           type: :attachment,
-          file_types: "PDF, J PG, PNG"
+          file_types: "PDF, JPG, PNG"
         }
       }
     },
