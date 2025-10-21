@@ -606,7 +606,7 @@ export default class extends Controller {
         ? [this.servicePurchaseTarget]
         : [];
       const checked = purchaseCheckboxes.some((cb) => cb.checked);
-      this.sectionPurchaseTarget.style.display = checked ? "block" : "none";
+      this.animateToggle(this.sectionPurchaseTarget, checked);
     }
     
     // Show/hide Sale section
@@ -620,7 +620,7 @@ export default class extends Controller {
         ? [this.serviceSaleTarget]
         : [];
       const checked = saleCheckboxes.some((cb) => cb.checked);
-      this.sectionSaleTarget.style.display = checked ? "block" : "none";
+      this.animateToggle(this.sectionSaleTarget, checked);
     }
 
     // Show/hide New Build section
@@ -634,7 +634,7 @@ export default class extends Controller {
         ? [this.serviceNewBuildTarget]
         : [];
       const checked = newBuildCheckboxes.some((cb) => cb.checked);
-      this.sectionNewBuildTarget.style.display = checked ? "block" : "none";
+      this.animateToggle(this.sectionNewBuildTarget, checked);
     }
 
     // Show/hide Will section
@@ -648,7 +648,7 @@ export default class extends Controller {
         ? [this.serviceWillTarget]
         : [];
       const checked = willCheckboxes.some((cb) => cb.checked);
-      this.sectionWillTarget.style.display = checked ? "block" : "none";
+      this.animateToggle(this.sectionWillTarget, checked);
     }
 
     // Show/hide Short Term section if any related service is checked
@@ -657,7 +657,7 @@ export default class extends Controller {
         (this.hasServiceVvTarget && this.serviceVvTarget.checked) ||
         (this.hasServiceRegistryTarget && this.serviceRegistryTarget.checked) ||
         (this.hasServiceActivitiesTarget && this.serviceActivitiesTarget.checked);
-      this.sectionShortTermTarget.style.display = checked ? "block" : "none";
+      this.animateToggle(this.sectionShortTermTarget, checked);
     }
 
     // Show/hide Documents section (sale or short-term compliance)
@@ -668,7 +668,7 @@ export default class extends Controller {
         (this.hasServiceRegistryTarget && this.serviceRegistryTarget.checked) ||
         (this.hasServiceActivitiesTarget && this.serviceActivitiesTarget.checked);
 
-      this.sectionDocumentsTarget.style.display = checked ? "block" : "none";
+      this.animateToggle(this.sectionDocumentsTarget, checked);
     }
 
     // VV License upload: show only if Registry or Activities is selected and NOT VV License (supports multiple checkboxes)
@@ -677,8 +677,8 @@ export default class extends Controller {
         this.serviceRegistryTarget.checked ||
         this.serviceActivitiesTarget.checked;
       const vvChecked = this.serviceVvTarget.checked;
-      this.vvLicenseUploadSectionTarget.style.display =
-        registryOrActivitiesChecked && !vvChecked ? "block" : "none";
+      const shouldShow = registryOrActivitiesChecked && !vvChecked;
+      this.animateToggle(this.vvLicenseUploadSectionTarget, shouldShow);
     }
 
     // Civil Liability and IGIC: hide when only selling (show for holiday lets)
@@ -689,14 +689,10 @@ export default class extends Controller {
       !(this.hasServiceRegistryTarget && this.serviceRegistryTarget.checked) &&
       !(this.hasServiceActivitiesTarget && this.serviceActivitiesTarget.checked);
     if (this.hasCivilLiabilitySectionTarget) {
-      this.civilLiabilitySectionTarget.style.display = isOnlySelling
-        ? "none"
-        : "block";
+      this.animateToggle(this.civilLiabilitySectionTarget, !isOnlySelling);
     }
     if (this.hasIgicRegistrationSectionTarget) {
-      this.igicRegistrationSectionTarget.style.display = isOnlySelling
-        ? "none"
-        : "block";
+      this.animateToggle(this.igicRegistrationSectionTarget, !isOnlySelling);
     }
     
     // Water/Electricity Bills: Show for both Sale and VV Licence
@@ -704,16 +700,16 @@ export default class extends Controller {
     
     // Hide certain fields when ONLY selling (not for VV Licence)
     if (this.hasFirstOccupationLicenseFieldTarget) {
-      this.firstOccupationLicenseFieldTarget.style.display = isOnlySelling ? "none" : "block";
+      this.animateToggle(this.firstOccupationLicenseFieldTarget, !isOnlySelling);
     }
     if (this.hasMunicipalCertificateFieldTarget) {
-      this.municipalCertificateFieldTarget.style.display = isOnlySelling ? "none" : "block";
+      this.animateToggle(this.municipalCertificateFieldTarget, !isOnlySelling);
     }
     if (this.hasFloorPlanFieldTarget) {
-      this.floorPlanFieldTarget.style.display = isOnlySelling ? "none" : "block";
+      this.animateToggle(this.floorPlanFieldTarget, !isOnlySelling);
     }
     if (this.hasCommunityApprovalFieldTarget) {
-      this.communityApprovalFieldTarget.style.display = isOnlySelling ? "none" : "block";
+      this.animateToggle(this.communityApprovalFieldTarget, !isOnlySelling);
     }
   }
 
