@@ -24,14 +24,25 @@ module UsersHelper
     
     field_name = section_data[:conditional_display][:field]
     contains_value = section_data[:conditional_display][:contains]
+    contains_any = section_data[:conditional_display][:contains_any]
     field_value = user.send(field_name)
     
     if field_value.is_a?(String) && field_value.present?
       begin
         parsed_value = JSON.parse(field_value)
-        parsed_value.include?(contains_value) if parsed_value.is_a?(Array)
+        if parsed_value.is_a?(Array)
+          if contains_any
+            contains_any.any? { |value| parsed_value.include?(value) }
+          elsif contains_value
+            parsed_value.include?(contains_value)
+          end
+        end
       rescue JSON::ParserError
-        field_value.include?(contains_value)
+        if contains_any
+          contains_any.any? { |value| field_value.include?(value) }
+        elsif contains_value
+          field_value.include?(contains_value)
+        end
       end
     else
       false
@@ -199,10 +210,48 @@ module UsersHelper
   end
 
   def render_section_fields(form, fields, user)
-    render_fields_in_order(form, fields)
+    render_fields_in_order(form, fields, user)
+  end
+  
+  # Helper method to check if a field should be displayed based on service selection
+  def should_display_field?(user, field_config)
+    return true unless field_config[:conditional_display_service]
+    
+    service = field_config[:conditional_display_service]
+    field_value = user.requested_services
+    
+    if field_value.is_a?(String) && field_value.present?
+      begin
+        parsed_value = JSON.parse(field_value)
+        parsed_value.include?(service) if parsed_value.is_a?(Array)
+      rescue JSON::ParserError
+        field_value.include?(service)
+      end
+    else
+      false
+    end
+  end
+  
+  # Helper method to check if a field should be hidden based on service selection
+  def should_hide_field?(user, field_config)
+    return false unless field_config[:hide_for_service]
+    
+    service = field_config[:hide_for_service]
+    field_value = user.requested_services
+    
+    if field_value.is_a?(String) && field_value.present?
+      begin
+        parsed_value = JSON.parse(field_value)
+        parsed_value.include?(service) if parsed_value.is_a?(Array)
+      rescue JSON::ParserError
+        field_value.include?(service)
+      end
+    else
+      false
+    end
   end
 
-  def render_fields_in_order(form, fields)
+  def render_fields_in_order(form, fields, user)
     output = []
     current_group = nil
     group_fields = []
@@ -210,6 +259,10 @@ module UsersHelper
     fields.each do |field_name, field_config|
       # Skip conditional fields that don't have their own form_group - they'll be rendered by their parent field
       next if field_config[:conditional] && !field_config[:form_group]
+      
+      # Skip fields that should be hidden or not displayed based on service selection
+      next if should_hide_field?(user, field_config)
+      next unless should_display_field?(user, field_config)
       
       field_group = field_config[:form_group]
       
