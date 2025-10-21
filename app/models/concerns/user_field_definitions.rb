@@ -611,16 +611,14 @@ module UserFieldDefinitions
           email_label: "Water Bill",
           type: :attachments,
           file_types: "PDF, JPG, PNG",
-          stimulus_target: "waterBillSection",
-          conditional_display_service: "VV Licence"
+          stimulus_target: "waterBillSection"
         },
         electricity_bill_documents: {
           label: "Upload Electricity Bill",
           email_label: "Electricity Bill",
           type: :attachments,
           file_types: "PDF, JPG, PNG",
-          stimulus_target: "electricityBillSection",
-          conditional_display_service: "VV Licence"
+          stimulus_target: "electricityBillSection"
         },
       }
     },
