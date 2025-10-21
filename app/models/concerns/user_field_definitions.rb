@@ -48,47 +48,6 @@ module UserFieldDefinitions
       }
     },
 
-    # Requested Services
-    requested_services: {
-      title: "Requested Services",
-      form_section: true,
-      description: "Please tick all the services you would like us to assist you with:",
-      fields: {
-        requested_services: {
-          label: "Services",
-          type: :checkbox_group,
-          sections: [
-            {
-              title: "Property Transactions",
-              description: "If you're buying or selling a property, please select the relevant option:",
-              options: [
-                { value: "Purchase", label: "I am purchasing a property", stimulus_target: "servicePurchase" },
-                { value: "Sale", label: "I am selling a property", stimulus_target: "serviceSale" }
-              ]
-            },
-            {
-              title: "Legal Documents",
-              description: "If you would like us to prepare any of the following legal documents, please tick below:",
-              options: [
-                { value: "Will & Last Testament", label: "Will & Last Testament", stimulus_target: "serviceWill" },
-                { value: "New Build Declaration", label: "New Build Declaration", stimulus_target: "serviceNewBuild" },
-                { value: "Donation", label: "Donation", stimulus_target: "serviceDonation" }
-              ]
-            },
-            {
-              title: "Holiday Let Compliance (Short-Term Rentals)",
-              description: "If you plan to holiday let your property, three legal steps are required. Tick any you'd like us to handle:",
-              options: [
-                { value: "VV Licence", label: "Apply for VV Licence", stimulus_target: "serviceVv" },
-                { value: "Unified Registry", label: "Register with the Unified Registry", stimulus_target: "serviceRegistry" },
-                { value: "Classified Activities", label: "Submit Classified Activities Declaration", stimulus_target: "serviceActivities" }
-              ]
-            }
-          ]
-        }
-      }
-    },
-
     # NIE Information
     nie_information: {
       title: "NIE number",
@@ -174,6 +133,47 @@ module UserFieldDefinitions
           options: [
             { value: "yes", label: "In Spain – sign before a Spanish notary with one of our team accompanying you" },
             { value: "no", label: "At your local notary – we'll send a draft for you to sign and have it returned by courier" }
+          ]
+        }
+      }
+    },
+
+    # Requested Services
+    requested_services: {
+      title: "Requested Services",
+      form_section: true,
+      description: "Please tick all the services you would like us to assist you with:",
+      fields: {
+        requested_services: {
+          label: "Services",
+          type: :checkbox_group,
+          sections: [
+            {
+              title: "Property Transactions",
+              description: "If you're buying or selling a property, please select the relevant option:",
+              options: [
+                { value: "Purchase", label: "I am purchasing a property", stimulus_target: "servicePurchase" },
+                { value: "Sale", label: "I am selling a property", stimulus_target: "serviceSale" }
+              ]
+            },
+            {
+              title: "Legal Documents",
+              description: "If you would like us to prepare any of the following legal documents, please tick below:",
+              options: [
+                { value: "Will & Last Testament", label: "Will & Last Testament", stimulus_target: "serviceWill" },
+                { value: "New Build Declaration", label: "New Build Declaration", stimulus_target: "serviceNewBuild" },
+                { value: "Donation", label: "Donation", stimulus_target: "serviceDonation" }
+              ]
+            },
+            {
+              title: "Holiday Let Compliance (Short-Term Rentals)",
+              description: "If you plan to holiday let your property, three legal steps are required. Tick any you'd like us to handle:",
+              options: [
+                { value: "VV Licence", label: "Apply for VV Licence", stimulus_target: "serviceVv" },
+                { value: "Unified Registry", label: "Register with the Unified Registry", stimulus_target: "serviceRegistry" },
+                { value: "Classified Activities", label: "Submit Classified Activities Declaration", stimulus_target: "serviceActivities" }
+              ]
+            }
           ]
         }
       }
