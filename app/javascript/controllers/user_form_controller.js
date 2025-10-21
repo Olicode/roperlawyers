@@ -237,11 +237,18 @@ export default class extends Controller {
         this.servicePurchaseTarget,
         this.serviceSaleTarget,
         this.serviceNewBuildTarget,
+        this.serviceWillTarget,
+        this.serviceDonationTarget,
+        this.serviceVvTarget,
+        this.serviceRegistryTarget,
+        this.serviceActivitiesTarget,
       ].forEach((el) => {
-        el.addEventListener(
-          "change",
-          this.updatePoaSectionVisibility.bind(this)
-        );
+        if (el) {
+          el.addEventListener(
+            "change",
+            this.updatePoaSectionVisibility.bind(this)
+          );
+        }
       });
       // Listen to NIE Yes radio for PoA visibility
       if (this.hasNieYesRadioTarget) {
@@ -374,16 +381,29 @@ export default class extends Controller {
   }
 
   /**
-   * Show/hide PoA main section based on NIE Yes or service checkboxes.
+   * Show/hide PoA main section. Show always except when ONLY Will & Last Testament is selected.
    */
   updatePoaSectionVisibility() {
     if (!this.hasPoaSectionTarget) return;
-    const shouldShow =
-      (this.hasNieYesRadioTarget && this.nieYesRadioTarget.checked) ||
-      (this.hasServicePurchaseTarget && this.servicePurchaseTarget.checked) ||
-      (this.hasServiceSaleTarget && this.serviceSaleTarget.checked) ||
-      (this.hasServiceNewBuildTarget && this.serviceNewBuildTarget.checked);
-    this.poaSectionTarget.style.display = shouldShow ? "block" : "none";
+    
+    // Check which services are selected
+    const purchaseChecked = this.hasServicePurchaseTarget && this.servicePurchaseTarget.checked;
+    const saleChecked = this.hasServiceSaleTarget && this.serviceSaleTarget.checked;
+    const newBuildChecked = this.hasServiceNewBuildTarget && this.serviceNewBuildTarget.checked;
+    const willChecked = this.hasServiceWillTarget && this.serviceWillTarget.checked;
+    const donationChecked = this.hasServiceDonationTarget && this.serviceDonationTarget.checked;
+    const vvChecked = this.hasServiceVvTarget && this.serviceVvTarget.checked;
+    const registryChecked = this.hasServiceRegistryTarget && this.serviceRegistryTarget.checked;
+    const activitiesChecked = this.hasServiceActivitiesTarget && this.serviceActivitiesTarget.checked;
+    
+    // Check if ANY service other than Will is selected
+    const otherServicesChecked = purchaseChecked || saleChecked || newBuildChecked || 
+                                  donationChecked || vvChecked || registryChecked || activitiesChecked;
+    
+    // Hide ONLY if Will is the only service selected
+    const shouldHide = willChecked && !otherServicesChecked;
+    
+    this.poaSectionTarget.style.display = shouldHide ? "none" : "block";
   }
 
   /**

@@ -320,7 +320,7 @@ module UserFieldDefinitions
       title: "Power of Attorney (PoA)",
       form_section: true,
       description: "By granting us a Power of Attorney, we'll handle everything for you.",
-      conditional_display: { field: "requested_services", contains: "Purchase" },
+      conditional_display: { field: "requested_services", hide_if_only_contains: "Will & Last Testament" },
       stimulus_target: "poaSection",
       fields: {
         needs_poa: {

@@ -25,26 +25,38 @@ module UsersHelper
     field_name = section_data[:conditional_display][:field]
     contains_value = section_data[:conditional_display][:contains]
     contains_any = section_data[:conditional_display][:contains_any]
+    hide_if_only_contains = section_data[:conditional_display][:hide_if_only_contains]
     field_value = user.send(field_name)
     
     if field_value.is_a?(String) && field_value.present?
       begin
         parsed_value = JSON.parse(field_value)
         if parsed_value.is_a?(Array)
-          if contains_any
+          # Handle hide_if_only_contains logic
+          if hide_if_only_contains
+            # Show the section unless the array contains ONLY the specified value
+            return false if parsed_value.length == 1 && parsed_value.include?(hide_if_only_contains)
+            return true
+          elsif contains_any
             contains_any.any? { |value| parsed_value.include?(value) }
           elsif contains_value
             parsed_value.include?(contains_value)
           end
         end
       rescue JSON::ParserError
-        if contains_any
+        if hide_if_only_contains
+          # For non-JSON strings, check if it's exactly the value we want to hide for
+          return false if field_value.strip == hide_if_only_contains
+          return true
+        elsif contains_any
           contains_any.any? { |value| field_value.include?(value) }
         elsif contains_value
           field_value.include?(contains_value)
         end
       end
     else
+      # If no value, show by default for hide_if_only_contains
+      return true if hide_if_only_contains
       false
     end
   end
