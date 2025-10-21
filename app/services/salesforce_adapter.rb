@@ -28,6 +28,7 @@ class SalesforceAdapter
     home_address: { sf_field: 'Home_Address_del__c' },
     buying_property_address: { sf_field: 'Buying_Property_Address__c' },
     selling_property_address: { sf_field: 'Selling_Property_Address__c' },
+    selling_property_in_community: { sf_field: 'Selling_Property_in_Community__c' },
     father_s_first_name: { sf_field: 'Father_s_First_Name__c' },
     mother_s_first_name: { sf_field: 'Mother_s_First_Name__c' },
     r_origin_bank_details: { sf_field: 'R_Origin_Bank_Details__c' },

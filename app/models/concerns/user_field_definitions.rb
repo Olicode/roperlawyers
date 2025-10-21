@@ -102,6 +102,12 @@ module UserFieldDefinitions
           style: "height: 120px;",
           id: "property_sale_selling_property_address"
         },
+        selling_property_in_community: {
+          label: "Is the property you are selling part of a Community of Owners?",
+          email_label: "Selling Property in Community",
+          type: :select,
+          options: ["Yes", "No", "Unsure"]
+        },
         tax_resident: { 
           label: "Yes – I am a tax resident in Spain",
           email_label: "Tax resident",
