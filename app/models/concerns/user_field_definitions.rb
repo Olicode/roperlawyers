@@ -153,7 +153,8 @@ module UserFieldDefinitions
               description: "If you're buying or selling a property, please select the relevant option:",
               options: [
                 { value: "Purchase", label: "I am purchasing a property", stimulus_target: "servicePurchase" },
-                { value: "Sale", label: "I am selling a property", stimulus_target: "serviceSale" }
+                { value: "Sale", label: "I am selling a property", stimulus_target: "serviceSale" },
+                { value: "Mortgage Cancelation", label: "Mortgage Cancelation", stimulus_target: "serviceMortgageCancelation" }
               ]
             },
             {
