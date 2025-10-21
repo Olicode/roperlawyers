@@ -197,7 +197,20 @@ module UserFieldDefinitions
           label: "Is the property you are selling part of a Community of Owners?",
           email_label: "Selling Property in Community",
           type: :select,
-          options: ["Yes", "No", "Unsure"]
+          options: ["Yes", "No", "Unsure"],
+          stimulus_target: "sellingPropertyInCommunity",
+          conditional_fields: {
+            "Yes" => [:community_contact_details]
+          }
+        },
+        community_contact_details: {
+          label: "Community of Owners / Management Contact Details",
+          email_label: "Community Contact Details",
+          type: :textarea,
+          style: "height: 120px;",
+          conditional: true,
+          stimulus_target: "communityContactDetails",
+          description: "Please provide contact details for your Community of Owners or property management company (name, phone, email)."
         },
         tax_resident: { 
           label: "Yes – I am a tax resident in Spain",

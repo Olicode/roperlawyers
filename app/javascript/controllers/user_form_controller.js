@@ -875,56 +875,79 @@ export default class extends Controller {
       conditionalField.style.transition = 'opacity 0.3s ease, max-height 0.3s ease';
       conditionalField.style.overflow = 'hidden';
       
-      // Find the condition field (checkbox)
+      // Find the condition field (checkbox, radio, or select)
       const conditionInput = this.element.querySelector(`#user_${conditionFieldName}`);
       
       if (conditionInput) {
         // Set up the toggle function
         const toggleConditionalField = () => {
-          // For checkboxes, check if checked matches the condition
+          let shouldShow = false;
+          
+          // Handle different input types
           if (conditionInput.type === 'checkbox') {
             const isChecked = conditionInput.checked;
-            const shouldShow = (conditionValue === 'true' && isChecked) || 
-                             (conditionValue === 'false' && !isChecked);
-            
-            if (shouldShow) {
-              // Show with animation
-              conditionalField.style.display = 'block';
-              conditionalField.style.maxHeight = '0px';
-              conditionalField.style.opacity = '0';
-              
-              // Force reflow
-              conditionalField.offsetHeight;
-              
-              // Animate in
-              setTimeout(() => {
-                conditionalField.style.maxHeight = '1000px';
-                conditionalField.style.opacity = '1';
-              }, 10);
-            } else {
-              // Hide with animation
-              conditionalField.style.maxHeight = '0px';
-              conditionalField.style.opacity = '0';
-              
-              setTimeout(() => {
-                conditionalField.style.display = 'none';
-              }, 300);
-            }
-            
-            // Update required attribute on input fields inside
-            const inputs = conditionalField.querySelectorAll('input, textarea, select');
-            inputs.forEach(input => {
-              if (shouldShow) {
-                input.setAttribute('required', 'required');
-              } else {
-                input.removeAttribute('required');
+            shouldShow = (conditionValue === 'true' && isChecked) || 
+                        (conditionValue === 'false' && !isChecked);
+          } else if (conditionInput.tagName === 'SELECT' || conditionInput.type === 'select-one') {
+            // For select dropdowns
+            shouldShow = conditionInput.value === conditionValue;
+          } else if (conditionInput.type === 'radio') {
+            // For radio buttons, need to check if any radio with this name is selected with the value
+            const radioGroup = this.element.querySelectorAll(`input[name="${conditionInput.name}"]`);
+            radioGroup.forEach(radio => {
+              if (radio.checked && radio.value === conditionValue) {
+                shouldShow = true;
               }
             });
           }
+          
+          if (shouldShow) {
+            // Show with animation
+            conditionalField.style.display = 'block';
+            conditionalField.style.maxHeight = '0px';
+            conditionalField.style.opacity = '0';
+            
+            // Force reflow
+            conditionalField.offsetHeight;
+            
+            // Animate in
+            setTimeout(() => {
+              conditionalField.style.maxHeight = '1000px';
+              conditionalField.style.opacity = '1';
+            }, 10);
+          } else {
+            // Hide with animation
+            conditionalField.style.maxHeight = '0px';
+            conditionalField.style.opacity = '0';
+            
+            setTimeout(() => {
+              conditionalField.style.display = 'none';
+            }, 300);
+          }
+          
+          // Update required attribute on input fields inside
+          const inputs = conditionalField.querySelectorAll('input, textarea, select');
+          inputs.forEach(input => {
+            if (shouldShow) {
+              if (conditionalField.getAttribute('data-required') === 'true') {
+                input.setAttribute('required', 'required');
+              }
+            } else {
+              input.removeAttribute('required');
+            }
+          });
         };
         
         // Listen for changes
         conditionInput.addEventListener('change', toggleConditionalField);
+        
+        // For radio buttons, also listen to all radios in the group
+        if (conditionInput.type === 'radio') {
+          const radioGroup = this.element.querySelectorAll(`input[name="${conditionInput.name}"]`);
+          radioGroup.forEach(radio => {
+            radio.addEventListener('change', toggleConditionalField);
+          });
+        }
         
         // Initialize on page load
         toggleConditionalField();

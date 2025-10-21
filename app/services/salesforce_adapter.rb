@@ -29,6 +29,7 @@ class SalesforceAdapter
     buying_property_address: { sf_field: 'Buying_Property_Address__c' },
     selling_property_address: { sf_field: 'Selling_Property_Address__c' },
     selling_property_in_community: { sf_field: 'Selling_Property_in_Community__c' },
+    community_contact_details: { sf_field: 'Community_Contact_Details__c' },
     seller_mortgage_status: { 
       sf_field: 'Seller_Mortgage_Status__c',
       to_sf: ->(value) { 
