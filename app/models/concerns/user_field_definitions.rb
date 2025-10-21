@@ -215,6 +215,16 @@ module UserFieldDefinitions
           required: true,
           conditional: true,
           stimulus_target: "taxRepresentativeForm"
+        },
+        seller_mortgage_status: {
+          label: "Do you currently have a mortgage on the property?",
+          email_label: "Seller Mortgage Status",
+          type: :radio,
+          options: [
+            { value: "outstanding", label: "Yes — the mortgage is still outstanding" },
+            { value: "paid_off", label: "Yes — but it has been paid off" },
+            { value: "no_mortgage", label: "No" }
+          ]
         }
       }
     },

@@ -29,6 +29,25 @@ class SalesforceAdapter
     buying_property_address: { sf_field: 'Buying_Property_Address__c' },
     selling_property_address: { sf_field: 'Selling_Property_Address__c' },
     selling_property_in_community: { sf_field: 'Selling_Property_in_Community__c' },
+    seller_mortgage_status: { 
+      sf_field: 'Seller_Mortgage_Status__c',
+      to_sf: ->(value) { 
+        case value
+        when 'outstanding' then 'Active'
+        when 'paid_off' then 'Redeemed'
+        when 'no_mortgage' then 'None'
+        else value
+        end
+      },
+      from_sf: ->(value) { 
+        case value
+        when 'Active' then 'outstanding'
+        when 'Redeemed' then 'paid_off'
+        when 'None' then 'no_mortgage'
+        else value
+        end
+      }
+    },
     father_s_first_name: { sf_field: 'Father_s_First_Name__c' },
     mother_s_first_name: { sf_field: 'Mother_s_First_Name__c' },
     r_origin_bank_details: { sf_field: 'R_Origin_Bank_Details__c' },
