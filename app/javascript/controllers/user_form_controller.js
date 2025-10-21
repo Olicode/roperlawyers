@@ -84,6 +84,11 @@ export default class extends Controller {
     "titleDeedSendLaterRadio",
     "titleDeedCantFindRadio",
     "titleDeedUploadSection",
+    // Document fields that conditionally show/hide
+    "firstOccupationLicenseField",
+    "municipalCertificateField",
+    "floorPlanField",
+    "communityApprovalField",
   ];
 
   connect() {
@@ -673,12 +678,22 @@ export default class extends Controller {
         ? "none"
         : "block";
     }
-    // Water/Electricity Bills: hide when only selling (show for holiday lets)
-    if (this.hasWaterBillSectionTarget) {
-      this.waterBillSectionTarget.style.display = isOnlySelling ? "none" : "block";
+    
+    // Water/Electricity Bills: Show for both Sale and VV Licence
+    // (Previously these were hidden for Sale, now they show for both)
+    
+    // Hide certain fields when ONLY selling (not for VV Licence)
+    if (this.hasFirstOccupationLicenseFieldTarget) {
+      this.firstOccupationLicenseFieldTarget.style.display = isOnlySelling ? "none" : "block";
     }
-    if (this.hasElectricityBillSectionTarget) {
-      this.electricityBillSectionTarget.style.display = isOnlySelling ? "none" : "block";
+    if (this.hasMunicipalCertificateFieldTarget) {
+      this.municipalCertificateFieldTarget.style.display = isOnlySelling ? "none" : "block";
+    }
+    if (this.hasFloorPlanFieldTarget) {
+      this.floorPlanFieldTarget.style.display = isOnlySelling ? "none" : "block";
+    }
+    if (this.hasCommunityApprovalFieldTarget) {
+      this.communityApprovalFieldTarget.style.display = isOnlySelling ? "none" : "block";
     }
   }
 

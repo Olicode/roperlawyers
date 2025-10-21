@@ -553,7 +553,8 @@ module UserFieldDefinitions
           type: :attachments,
           file_types: "PDF, JPG, PNG",
           description: "If you do not have this document, our office can manage the application on your behalf and liaise with the relevant authorities.",
-          conditional_display_service: "VV Licence"
+          conditional_display_service: "VV Licence",
+          stimulus_target: "firstOccupationLicenseField"
         },
         habitability_certificate_documents: {
           label: "Upload Habitability Certificate",
@@ -567,7 +568,8 @@ module UserFieldDefinitions
           email_label: "Municipal Certificate",
           type: :attachments,
           file_types: "PDF, JPG, PNG",
-          hide_for_service: "Sale"
+          hide_for_service: "Sale",
+          stimulus_target: "municipalCertificateField"
         },
         property_tax_receipt_documents: {
           label: "Upload Annual Property Tax Receipt (IBI)",
@@ -580,7 +582,8 @@ module UserFieldDefinitions
           email_label: "Floor Plan",
           type: :attachments,
           file_types: "PDF, JPG, PNG",
-          hide_for_service: "Sale"
+          hide_for_service: "Sale",
+          stimulus_target: "floorPlanField"
         },
         community_approval_documents: {
           label: "Upload Community Approval",
@@ -588,7 +591,8 @@ module UserFieldDefinitions
           type: :attachments,
           file_types: "PDF, JPG, PNG",
           description: "Certificate issued by the community of owners confirming that short-term rentals are permitted within the building or development.",
-          hide_for_service: "Sale"
+          hide_for_service: "Sale",
+          stimulus_target: "communityApprovalField"
         },
         civil_liability_insurance_policy_documents: {
           label: "Upload Civil Liability Insurance Policy",
