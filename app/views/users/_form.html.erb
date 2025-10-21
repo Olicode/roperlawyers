@@ -27,6 +27,8 @@
 
       <%= render_user_form_section(form, :nie_information, user) %>
 
+      <%= render_user_form_section(form, :power_of_attorney, user, id: "section_poa", "data-user-form-target": "poaSection") %>
+
       <%= render_user_form_section(form, :requested_services, user) %>
 
       <%= render_user_form_section(form, :property_sale, user, id: "section_property_sale", "data-user-form-target": "sectionSale", style: "display:none") %>
@@ -38,8 +40,6 @@
         <hr class="hr mb-3" style="color: #b29c84;">
         <%= render_user_form_section(form, :bank_details, user, no_wrapper: true) %>
       </div>
-
-      <%= render_user_form_section(form, :power_of_attorney, user, id: "section_poa", "data-user-form-target": "poaSection", style: "display:none") %>
 
       <%= render_user_form_section(form, :will_testament, user, id: "section_will", "data-user-form-target": "sectionWill", style: "display:none") %>
 
