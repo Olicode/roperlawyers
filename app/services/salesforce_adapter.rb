@@ -64,6 +64,7 @@ class SalesforceAdapter
       to_sf: ->(value) { value ? 'Yes' : 'No' },
       from_sf: ->(value) { value == 'Yes' || value == true || false }
     },
+    tax_representative_form: { sf_field: 'Tax_Representative_form__c' },
     poa_made_in_spain: { 
       sf_field: 'PoA_made_in_Spain__c',
       to_sf: ->(value) { value == 'yes' ? 'Yes' : 'No' },

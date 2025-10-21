@@ -87,6 +87,9 @@ export default class extends Controller {
   ];
 
   connect() {
+    // Set up generic conditional field listeners
+    this.setupConditionalFields();
+    
     // NIE toggle
     if (
       this.hasNieNoRadioTarget &&
@@ -783,6 +786,51 @@ export default class extends Controller {
     
     // Mirror the reservation deposit account value to other fields when they change
     this.syncAccounts();
+  }
+
+  /**
+   * Set up generic conditional field display based on data attributes
+   */
+  setupConditionalFields() {
+    // Find all elements with data-condition-field attribute
+    const conditionalFields = this.element.querySelectorAll('[data-condition-field]');
+    
+    conditionalFields.forEach(conditionalField => {
+      const conditionFieldName = conditionalField.getAttribute('data-condition-field');
+      const conditionValue = conditionalField.getAttribute('data-condition-value');
+      
+      // Find the condition field (checkbox)
+      const conditionInput = this.element.querySelector(`#user_${conditionFieldName}`);
+      
+      if (conditionInput) {
+        // Set up the toggle function
+        const toggleConditionalField = () => {
+          // For checkboxes, check if checked matches the condition
+          if (conditionInput.type === 'checkbox') {
+            const isChecked = conditionInput.checked;
+            const shouldShow = (conditionValue === 'true' && isChecked) || 
+                             (conditionValue === 'false' && !isChecked);
+            conditionalField.style.display = shouldShow ? 'block' : 'none';
+            
+            // Update required attribute on input fields inside
+            const inputs = conditionalField.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+              if (shouldShow) {
+                input.setAttribute('required', 'required');
+              } else {
+                input.removeAttribute('required');
+              }
+            });
+          }
+        };
+        
+        // Listen for changes
+        conditionInput.addEventListener('change', toggleConditionalField);
+        
+        // Initialize on page load
+        toggleConditionalField();
+      }
+    });
   }
 
   /**
