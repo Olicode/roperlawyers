@@ -87,6 +87,9 @@ class ContactsController < ApplicationController
       # Submit to PropertyBase server-side
       submit_to_propertybase(form_data)
       
+      # Create contact in Salesforce
+      create_salesforce_contact(form_data)
+      
       render json: { success: true, message: 'Form submitted and email sent successfully' }
       
     rescue => e
@@ -124,6 +127,31 @@ class ContactsController < ApplicationController
     rescue => e
       Rails.logger.error "PropertyBase submission error: #{e.message}"
       # Don't raise error - we still want to send the email even if PropertyBase fails
+    end
+  end
+
+  def create_salesforce_contact(form_data)
+    begin
+      # Prepare data for Salesforce
+      salesforce_data = {
+        FirstName: form_data[:first_name],
+        LastName: form_data[:last_name],
+        Email: form_data[:email],
+        MobilePhone: form_data[:mobile_phone],
+        Contact_Form_Message__c: form_data[:message],
+        LeadSource: 'Website Contact Form'
+      }
+      
+      Rails.logger.info "Creating contact in Salesforce: #{salesforce_data[:Email]}"
+      
+      # Use create_or_update_contact to upsert based on email
+      sf_contact_id = SalesforceService.create_or_update_contact(salesforce_data)
+      
+      Rails.logger.info "Salesforce contact created/updated successfully: #{sf_contact_id}"
+      
+    rescue => e
+      Rails.logger.error "Salesforce contact creation error: #{e.message}"
+      # Don't raise error - we still want the form submission to succeed even if Salesforce fails
     end
   end
 
