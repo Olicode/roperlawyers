@@ -129,8 +129,16 @@ document.addEventListener('DOMContentLoaded', function() {
           'Accept': 'application/json'
         }
       })
-      .then(response => response.json())
+      .then(response => {
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers.get('content-type'));
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
+        console.log('Response data:', data);
         if (data.success) {
           // Close the modal
           const modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
@@ -147,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       })
       .catch(error => {
-        console.error('Error:', error);
+        console.error('Error details:', error);
         alert('An error occurred. Please try again.');
         submitBtn.textContent = originalValue;
         submitBtn.disabled = false;
