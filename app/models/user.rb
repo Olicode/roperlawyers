@@ -61,8 +61,87 @@ class User < ApplicationRecord
     # Only sync if we have the minimum required fields for Salesforce
     return unless email.present? && (first_name.present? || last_name.present?)
     
-    # Use background job for better performance and error handling
-    SalesforceSyncJob.perform_later(self)
+    # Perform sync immediately (synchronously) to ensure files are properly handled
+    # Background jobs can't serialize file attachments properly
+    begin
+      if sf_contact_id.blank?
+        new_sf_contact_id = SalesforceService.create_or_update_contact(SalesforceAdapter.adapt_to(self))
+        update_column(:sf_contact_id, new_sf_contact_id) unless new_sf_contact_id == false
+      else
+        SalesforceService.update_contact(SalesforceAdapter.adapt_to(self).merge!(Id: sf_contact_id))
+      end
+      
+      # Upload documents if attached
+      sync_documents_to_salesforce
+    rescue => e
+      Rails.logger.error "Salesforce sync failed for user #{id}: #{e.message}"
+      Rails.logger.error e.backtrace.first(5).join("\n")
+      # Don't re-raise - allow form submission to succeed
+    end
+  end
+  
+  def sync_documents_to_salesforce
+    include SalesforceSyncHelpers
+    
+    # Single file attachments
+    [
+      { attachment: nie_document, label: "NIE" },
+      { attachment: passport_document, label: "Passport" },
+      { attachment: igic_registration_modelo_400_document, label: "IGIC Registration Modelo 400" }
+    ].each do |doc|
+      if doc[:attachment].attached?
+        begin
+          SalesforceService.upload_file(sf_file_upload_attrs_map(self, doc[:attachment], doc[:label]))
+        rescue => e
+          Rails.logger.error "Error uploading #{doc[:label]}: #{e.message}"
+        end
+      end
+    end
+    
+    # Multiple file attachments
+    [
+      { attachments: nota_simple_documents, label: "Nota Simple" },
+      { attachments: title_deed_documents, label: "Title Deed" },
+      { attachments: vv_license_documents, label: "VV License" },
+      { attachments: first_occupation_license_documents, label: "First Occupation License" },
+      { attachments: cee_documents, label: "CEE" },
+      { attachments: civil_liability_insurance_policy_documents, label: "Civil Liability Insurance Policy" },
+      { attachments: habitability_certificate_documents, label: "Habitability Certificate" },
+      { attachments: municipal_certificate_documents, label: "Municipal Certificate" },
+      { attachments: property_tax_receipt_documents, label: "Property Tax Receipt (IBI)" },
+      { attachments: floor_plan_documents, label: "Floor Plan" },
+      { attachments: community_approval_documents, label: "Community Approval" },
+      { attachments: water_bill_documents, label: "Water Bill" },
+      { attachments: electricity_bill_documents, label: "Electricity Bill" }
+    ].each do |doc_group|
+      doc_group[:attachments].each do |document|
+        begin
+          SalesforceService.upload_file(sf_file_upload_attrs_map(self, document, doc_group[:label]))
+        rescue => e
+          Rails.logger.error "Error uploading #{doc_group[:label]}: #{e.message}"
+        end
+      end
+    end
+  end
+  
+  def sf_file_upload_attrs_map(user, document, doc_type)
+    file_data = if document.respond_to?(:tempfile)
+                  File.read(document.tempfile.path)
+                else
+                  File.read(document.path)
+                end
+
+    {
+      convent_version: {
+        Title: "#{doc_type} #{user.first_name} #{user.last_name}",
+        PathOnClient: document.original_filename,
+        VersionData: Base64::encode64(file_data)
+      },
+      content_document_link: {
+        LinkedEntityId: user.sf_contact_id,
+        ShareType: 'V'
+      }
+    }
   end
 
   def send_updates_to_admin

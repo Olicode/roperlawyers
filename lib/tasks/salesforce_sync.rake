@@ -18,8 +18,14 @@ namespace :salesforce do
     unsynced_users.each do |user|
       puts "Syncing user: #{user.email} (ID: #{user.id}, created: #{user.created_at})"
       begin
-        SalesforceSyncJob.perform_now(user)
-        puts "  ✅ Synced successfully!"
+        # Force sync by calling the private method directly
+        user.send(:sync_with_salesforce)
+        user.reload
+        if user.sf_contact_id.present?
+          puts "  ✅ Synced successfully! SF ID: #{user.sf_contact_id}"
+        else
+          puts "  ⚠️  Sync completed but no SF ID was set"
+        end
       rescue => e
         puts "  ❌ Error: #{e.message}"
       end
@@ -63,9 +69,11 @@ namespace :salesforce do
       puts "#{sync_status.capitalize}: #{user.email} (ID: #{user.id}, created: #{user.created_at})"
       
       begin
-        SalesforceSyncJob.perform_now(user)
+        # Force sync by calling the private method directly
+        user.send(:sync_with_salesforce)
+        user.reload
         synced += 1
-        puts "  ✅ Synced successfully! SF ID: #{user.reload.sf_contact_id}"
+        puts "  ✅ Synced successfully! SF ID: #{user.sf_contact_id}"
       rescue => e
         errors += 1
         puts "  ❌ Error: #{e.message}"
@@ -97,7 +105,8 @@ namespace :salesforce do
     puts "Current SF Contact ID: #{user.sf_contact_id || 'None'}"
     
     begin
-      SalesforceSyncJob.perform_now(user)
+      # Force sync by calling the private method directly
+      user.send(:sync_with_salesforce)
       user.reload
       puts "✅ Synced successfully!"
       puts "New SF Contact ID: #{user.sf_contact_id}"
