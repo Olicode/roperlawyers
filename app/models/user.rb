@@ -28,7 +28,7 @@ class User < ApplicationRecord
   has_many_attached :electricity_bill_documents
 
   # These callbacks will send emails to info@roperlawyers.com
-  after_commit :send_updates_to_admin, on: [:update]
+  after_commit :send_updates_to_admin, on: [:create, :update]
   
   # Salesforce sync callbacks
   after_commit :sync_with_salesforce, on: [:create, :update]
