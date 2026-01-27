@@ -90,11 +90,17 @@ class ContactsController < ApplicationController
       # Create contact in Salesforce
       create_salesforce_contact(form_data)
       
-      render json: { success: true, message: 'Form submitted and email sent successfully' }
+      respond_to do |format|
+        format.html { redirect_to thank_you_path }
+        format.json { render json: { success: true, message: 'Form submitted and email sent successfully' } }
+      end
       
     rescue => e
       Rails.logger.error "Contact notification error: #{e.message}"
-      render json: { success: false, message: e.message }, status: :internal_server_error
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: 'An error occurred. Please try again.' }
+        format.json { render json: { success: false, message: e.message }, status: :internal_server_error }
+      end
     end
   end
 

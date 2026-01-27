@@ -64,9 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const fnVal = (form.querySelector('#firstName')?.value || '').trim().toLowerCase();
       const lnVal = (form.querySelector('#lastName')?.value || '').trim().toLowerCase();
       if (fnVal && lnVal && fnVal === lnVal) {
-        // Close the modal if open
-        const modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
-        if (modal) { modal.hide(); }
         window.location.href = '/thank-you';
         return;
       }
@@ -140,12 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(data => {
         console.log('Response data:', data);
         if (data.success) {
-          // Close the modal
-          const modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
-          if (modal) {
-            modal.hide();
-          }
-          // Redirect to thank you page
+          // Redirect to thank you page (no need to close modal, redirect handles it)
           window.location.href = '/thank-you';
         } else {
           alert('Error: ' + (data.message || 'Failed to send message'));
