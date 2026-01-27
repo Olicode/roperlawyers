@@ -29,9 +29,6 @@ class User < ApplicationRecord
 
   # These callbacks will send emails to info@roperlawyers.com
   after_commit :send_updates_to_admin, on: [:create, :update]
-  
-  # Salesforce sync callbacks
-  after_commit :sync_with_salesforce, on: [:create, :update]
 
   def full_name
     "#{first_name} #{last_name}"
@@ -58,71 +55,6 @@ class User < ApplicationRecord
 
   private
 
-  def sync_with_salesforce
-    # Only sync if we have the minimum required fields for Salesforce
-    return unless email.present? && (first_name.present? || last_name.present?)
-    
-    # Perform sync immediately (synchronously) to ensure files are properly handled
-    # Background jobs can't serialize file attachments properly
-    begin
-      if sf_contact_id.blank?
-        new_sf_contact_id = SalesforceService.create_or_update_contact(SalesforceAdapter.adapt_to(self))
-        update_column(:sf_contact_id, new_sf_contact_id) unless new_sf_contact_id == false
-      else
-        SalesforceService.update_contact(SalesforceAdapter.adapt_to(self).merge!(Id: sf_contact_id))
-      end
-      
-      # Upload documents if attached
-      sync_documents_to_salesforce
-    rescue => e
-      Rails.logger.error "Salesforce sync failed for user #{id}: #{e.message}"
-      Rails.logger.error e.backtrace.first(5).join("\n")
-      # Don't re-raise - allow form submission to succeed
-    end
-  end
-  
-  def sync_documents_to_salesforce
-    # Single file attachments
-    [
-      { attachment: nie_document, label: "NIE" },
-      { attachment: passport_document, label: "Passport" },
-      { attachment: igic_registration_modelo_400_document, label: "IGIC Registration Modelo 400" }
-    ].each do |doc|
-      if doc[:attachment].attached?
-        begin
-          SalesforceService.upload_file(sf_file_upload_attrs_map(self, doc[:attachment], doc[:label]))
-        rescue => e
-          Rails.logger.error "Error uploading #{doc[:label]}: #{e.message}"
-        end
-      end
-    end
-    
-    # Multiple file attachments
-    [
-      { attachments: nota_simple_documents, label: "Nota Simple" },
-      { attachments: title_deed_documents, label: "Title Deed" },
-      { attachments: vv_license_documents, label: "VV License" },
-      { attachments: first_occupation_license_documents, label: "First Occupation License" },
-      { attachments: cee_documents, label: "CEE" },
-      { attachments: civil_liability_insurance_policy_documents, label: "Civil Liability Insurance Policy" },
-      { attachments: habitability_certificate_documents, label: "Habitability Certificate" },
-      { attachments: municipal_certificate_documents, label: "Municipal Certificate" },
-      { attachments: property_tax_receipt_documents, label: "Property Tax Receipt (IBI)" },
-      { attachments: floor_plan_documents, label: "Floor Plan" },
-      { attachments: community_approval_documents, label: "Community Approval" },
-      { attachments: water_bill_documents, label: "Water Bill" },
-      { attachments: electricity_bill_documents, label: "Electricity Bill" }
-    ].each do |doc_group|
-      doc_group[:attachments].each do |document|
-        begin
-          SalesforceService.upload_file(sf_file_upload_attrs_map(self, document, doc_group[:label]))
-        rescue => e
-          Rails.logger.error "Error uploading #{doc_group[:label]}: #{e.message}"
-        end
-      end
-    end
-  end
-
   def send_updates_to_admin
     # Only send email if one of the specified fields changed
     monitored_fields = UserFieldDefinitions.all_field_names
@@ -131,17 +63,8 @@ class User < ApplicationRecord
     return if changed.empty?
 
     begin
-      if previous_changes.keys.include?("id")
-        # Always send on create
-        AdminMailer.send_user_updates(self).deliver_now
-        update_column(:last_admin_update_sent_at, Time.current)
-      else
-        # Throttle for updates only
-        if last_admin_update_sent_at.nil? || last_admin_update_sent_at < 1.hour.ago
-          AdminMailer.send_user_updates(self).deliver_now
-          update_column(:last_admin_update_sent_at, Time.current)
-        end
-      end
+      AdminMailer.send_user_updates(self).deliver_now
+      update_column(:last_admin_update_sent_at, Time.current)
     rescue => e
       # Log the error but don't break the form submission
       Rails.logger.error "Failed to send admin update email: #{e.message}"
