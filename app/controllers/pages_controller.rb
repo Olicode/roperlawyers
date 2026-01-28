@@ -85,9 +85,9 @@ class PagesController < ApplicationController
     @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 
-  def holiday_rental_rules_2025
-    @mtitle = "VV Licenses & Holiday Rental Rules 2025: Canary Islands Complete Guide | Roper Lawyers"
-    @mdescription = "Complete guide to VV licenses and new 2025 holiday rental regulations in the Canary Islands. Legal requirements, community approval, tax obligations & compliance."
+  def canary_islands_holiday_rental_laws
+    @mtitle = "Canary Islands Holiday Rental Laws 2026 | NRA & N2 Compliance"
+    @mdescription = "Stay compliant with Canary Islands rental laws in 2026. Learn about the mandatory March 2nd N2 reporting deadline, NRA numbers, and the Sustainable Planning Law."
     @reviews = JSON.parse(File.read(File.join('public','reviews.json')))
   end
 

@@ -36,7 +36,7 @@ class SitemapsController < ApplicationController
       '/why-choose-us',
       '/services',
       '/property-buying-guide',
-      '/holiday-rental-rules-2025',
+      '/canary-islands-holiday-rental-laws',
       '/vv-license',
       '/blog',
       '/privacy-policy',
@@ -96,8 +96,8 @@ class SitemapsController < ApplicationController
     case path
     when '/blog', '/reviews'
       Date.current # These might be updated frequently
-    when /holiday-rental-rules-2025/
-      Date.parse('2024-12-01') # Specific content date
+    when /canary-islands-holiday-rental-laws/
+      Date.parse('2026-01-01') # Specific content date
     else
       Date.current - 30.days # Default to 30 days ago for static content
     end
@@ -109,7 +109,7 @@ class SitemapsController < ApplicationController
       'weekly'
     when '/reviews', '/contact'
       'monthly'
-    when /holiday-rental-rules-2025/, /property-buying-guide/
+    when /canary-islands-holiday-rental-laws/, /property-buying-guide/
       'yearly'
     else
       'monthly'

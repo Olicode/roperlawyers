@@ -28,7 +28,8 @@ Rails.application.routes.draw do
   
   get 'services', to: 'pages#services'
   get 'property-buying-guide', to: 'pages#property_buying_guide'
-  get 'holiday-rental-rules-2025', to: 'pages#holiday_rental_rules_2025'
+  get 'canary-islands-holiday-rental-laws', to: 'pages#canary_islands_holiday_rental_laws'
+  get 'holiday-rental-rules-2025', to: redirect('/canary-islands-holiday-rental-laws', status: 301)
   get 'vv-license', to: 'pages#vv_license'
   get 'blog', to: 'pages#blog'
   get 'privacy-policy', to: 'pages#privacy_policy'
