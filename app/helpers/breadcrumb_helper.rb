@@ -52,25 +52,54 @@ module BreadcrumbHelper
     end
   end
   
-  def location_links_for_service(service, current_location = nil, current_area = nil)
-    locations = [
-      { name: "Puerto del Carmen", slug: "puerto-del-carmen" },
-      { name: "Playa Blanca", slug: "playa-blanca" },
-      { name: "Costa Teguise", slug: "costa-teguise" }
-    ]
+  def location_links_for_service(service, current_island = nil, current_area = nil)
+    # Detect current island from context if not provided
+    current_island ||= @page_data&.[]('island')&.downcase&.gsub(' ', '')
     
-    base_url = "/#{service.gsub('_', '-')}/lanzarote"
+    island_hotspots = {
+      'lanzarote' => [
+        { name: "Puerto del Carmen", slug: "puerto-del-carmen" },
+        { name: "Playa Blanca", slug: "playa-blanca" },
+        { name: "Costa Teguise", slug: "costa-teguise" }
+      ],
+      'tenerife' => [
+        { name: "Adeje", slug: "adeje" },
+        { name: "Los Cristianos", slug: "los-cristianos" },
+        { name: "Las Américas", slug: "las-americas" }
+      ],
+      'grancanaria' => [
+        { name: "Maspalomas", slug: "maspalomas" },
+        { name: "Meloneras", slug: "meloneras" },
+        { name: "Las Palmas", slug: "las-palmas" }
+      ]
+    }
+
+    # If we are on a specific island, show other areas on that island
+    if current_island && island_hotspots[current_island]
+      links = island_hotspots[current_island].map do |loc|
+        next if current_area == loc[:slug]
+        url = "/#{service.gsub('_', '-')}/#{current_island}/#{loc[:slug]}"
+        link_to loc[:name], url, class: "btn btn-outline-primary btn-sm", style: "color: #b29c84; border-color: #b29c84;"
+      end.compact
+      
+      title = "Other #{current_island.titleize} Areas for #{service_display_name(service)}:"
+    else
+      # If we are on a global page, show high-level island links
+      links = [
+        { name: "Lanzarote", url: "/#{service.gsub('_', '-')}/lanzarote" },
+        { name: "Tenerife", url: "/#{service.gsub('_', '-')}/tenerife" },
+        { name: "Gran Canaria", url: "/#{service.gsub('_', '-')}/grancanaria" },
+        { name: "Marbella", url: "/marbella" }
+      ].map do |loc|
+        link_to loc[:name], loc[:url], class: "btn btn-outline-primary btn-sm", style: "color: #b29c84; border-color: #b29c84;"
+      end
+      title = "Explore #{service_display_name(service)} by Location:"
+    end
     
     content_tag :div, class: "location-links mb-4 p-3 bg-light rounded" do
-      content_tag(:h4, "#{service_display_name(service)} in Other Lanzarote Areas:", class: "h6 mb-3") +
+      content_tag(:h4, title, class: "h6 mb-3") +
       content_tag(:div, class: "d-flex flex-wrap gap-2") do
-        locations.map do |location|
-          unless current_area == location[:slug]
-            link_to location[:name], "#{base_url}/#{location[:slug]}", 
-                    class: "btn btn-outline-primary btn-sm", 
-                    style: "color: #b29c84; border-color: #b29c84;"
-          end
-        end.compact.join.html_safe
+        links.join.html_safe
       end
     end
   end

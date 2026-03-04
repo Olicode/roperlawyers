@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get 'services', to: 'pages#services'
   get 'property-buying-guide', to: 'pages#property_buying_guide'
   get 'canary-islands-holiday-rental-laws', to: 'pages#canary_islands_holiday_rental_laws'
+  get 'canary-islands-tourist-use-legal-trap', to: 'pages#tourist_use_trap'
+  get 'n2-reporting-guide', to: redirect('/canary-islands-tourist-use-legal-trap', status: 301)
   get 'holiday-rental-rules-2025', to: redirect('/canary-islands-holiday-rental-laws', status: 301)
   get 'vv-license', to: 'pages#vv_license'
   get 'blog', to: 'pages#blog'
@@ -39,6 +41,16 @@ Rails.application.routes.draw do
   get 'buying-property/lanzarote/puerto-del-carmen', to: 'pages#buying_property_lanzarote_puerto_del_carmen'
   get 'buying-property/lanzarote/playa-blanca', to: 'pages#buying_property_lanzarote_playa_blanca'
   get 'buying-property/lanzarote/costa-teguise', to: 'pages#buying_property_lanzarote_costa_teguise'
+  
+  # Tenerife Buying Property Hotspots
+  get 'buying-property/tenerife/adeje', to: 'pages#buying_property_detail', defaults: { metadata_key: 'buying_property_tenerife_adeje' }
+  get 'buying-property/tenerife/los-cristianos', to: 'pages#buying_property_detail', defaults: { metadata_key: 'buying_property_tenerife_los_cristianos' }
+  get 'buying-property/tenerife/las-americas', to: 'pages#buying_property_detail', defaults: { metadata_key: 'buying_property_tenerife_las_americas' }
+
+  # Gran Canaria Buying Property Hotspots
+  get 'buying-property/grancanaria/maspalomas', to: 'pages#buying_property_detail', defaults: { metadata_key: 'buying_property_grancanaria_maspalomas' }
+  get 'buying-property/grancanaria/meloneras', to: 'pages#buying_property_detail', defaults: { metadata_key: 'buying_property_grancanaria_meloneras' }
+  get 'buying-property/grancanaria/las-palmas', to: 'pages#buying_property_detail', defaults: { metadata_key: 'buying_property_grancanaria_las_palmas' }
   
   get 'selling-property', to: 'pages#selling_property'
   get 'selling-property/lanzarote', to: 'pages#selling_property_lanzarote'

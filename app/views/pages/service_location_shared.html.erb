@@ -1,0 +1,124 @@
+<% 
+  # This is a shared template for location-service pages.
+  # Content is dynamically populated from @page_metadata.
+  data = @page_data || {}
+  service_key = data['service_key'] || params[:metadata_key]&.split('_')&.[](0..1)&.join('_') || action_name.split('_')[0..1].join('_')
+  island = data['island'] || 'Canary Islands'
+  location = data['location_name'] || 'Local Area'
+%>
+
+<%= render_breadcrumb(service_key, island, location) %>
+
+<main>
+  <%= render 'main_page_sections/service_hero', locals: {
+    location_display: "#{location}, #{island}",
+    headline: (data['headline'] || "Expert Property Lawyers in #{location}").html_safe,
+    subheadline: data['subheadline'] || "Bilingual legal support for your property needs in #{location}."
+  } %>
+
+  <section>
+    <div class="container px-4 py-5">
+      <div class="row">
+        <p><%= data['intro_text'] %></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  </section>
+
+  <section>
+    <div class="container px-4 py-5">
+      <%= location_links_for_service(service_key) %>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center"><%= data['why_choose_headline'] || "Why Choose #{location} for Investment" %></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <p><%= data['why_choose_text1'] %></p>
+        </div>
+        <div class="col-md-6 col-12">
+          <p><%= data['why_choose_text2'] %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <% if data['features'].present? %>
+    <section class="bg-light">
+      <div class="container px-4 py-5">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="pb-4 m-3 text-center"><%= data['features_headline'] || "Our #{location} Services" %></h2>
+          </div>
+        </div>
+        <div class="row">
+          <% data['features'].each do |feature| %>
+            <div class="col-md-4 col-12 mb-4">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: #b29c84;"><%= feature['title'] %></h5>
+                  <p class="card-text text-muted small"><%= feature['description'] %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  <% end %>
+
+  <% if data['amenities'].present? %>
+    <section>
+      <div class="container px-4 py-5">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="pb-4 m-3 text-center"><%= data['amenities_headline'] || "#{location} Features & Amenities" %></h2>
+          </div>
+        </div>
+        <div class="row">
+          <% data['amenities'].each do |amenity| %>
+            <div class="col-md-4 col-12 mb-4">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: #b29c84;"><%= amenity['title'] %></h5>
+                  <p class="card-text text-muted small"><%= amenity['description'] %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  <% end %>
+
+  <section class="bg-light">
+    <div class="container px-4 py-5">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="pb-4 m-3 text-center">Contact Our <%= location %> Property Experts</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12 mx-auto text-center">
+          <p class="lead"><%= data['cta_text'] || "Ready to secure your property in #{location}? Our expert lawyers are here to guide you through every step." %></p>
+          
+          <div class="mt-4">
+            <a href="https://wa.me/+34649948377" class="btn btn-primary btn-lg rounded-pill me-3" style="background-color: #b29c84; border-color: #b29c84;">
+              Get Expert Legal Advice
+            </a>
+            <a href="/free-consultation" class="btn btn-outline-primary btn-lg rounded-pill" style="color: #b29c84; border-color: #b29c84;">
+              Free Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%= render 'main_page_sections/structured_data' if data['include_schema'] %>
