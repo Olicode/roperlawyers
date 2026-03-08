@@ -108,6 +108,12 @@ class SalesforceAdapter
       to_sf: ->(value) { value == 'yes' ? 'Yes' : 'No' },
       from_sf: ->(value) { value }
     },
+    bank_account_opening: {
+      sf_field: 'Bank_Account_Opening__c',
+      to_sf: ->(value) { value ? 'Yes' : 'No' },
+      from_sf: ->(value) { value == 'Yes' }
+    },
+    home_tax_id_tin: { sf_field: 'Home_Tax_ID_TIN__c' },
     b_preferred_notary_date: { 
       sf_field: 'B_Preferred_Notary_date__c',
       to_sf: ->(value) { value.present? ? Date.parse(value)&.iso8601 : nil },

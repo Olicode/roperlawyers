@@ -388,6 +388,19 @@ module UserFieldDefinitions
           placeholder: "Enter utility standing order bank name and IBAN",
           conditional: true,
           stimulus_target: "utilityAccount"
+        },
+        bank_account_opening: {
+          label: "Would you like us to assist with opening a Spanish bank account for you?",
+          type: :boolean,
+          form_type: :checkbox,
+          stimulus_target: "bankAccountOpening",
+          conditional_fields: { true => [:home_tax_id_tin] }
+        },
+        home_tax_id_tin: {
+          label: "Home Country Tax ID (TIN)",
+          type: :text,
+          conditional: true,
+          stimulus_target: "homeTaxIdTin"
         }
       }
     },

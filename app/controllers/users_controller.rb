@@ -209,6 +209,7 @@ class UsersController < ApplicationController
           :has_a_spanish_bank_account, :date_of_birth, :place_of_birth, :igic_registration_modelo_400_document, :energy_efficiency_certificate_cee,
           :escritura,
           :fx_quote_referral_consent,
+          :bank_account_opening, :home_tax_id_tin,
           { requested_services: [] },
           nota_simple_documents: [], 
           title_deed_documents: [], 
