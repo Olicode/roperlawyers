@@ -1,9 +1,166 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// ==============================
+// Progress Bar
+// ==============================
+.form-progress-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    padding: 1rem 0 0.75rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.form-progress-track {
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+}
+
+.form-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #b29c84, #c4ad94);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+
+.form-progress-steps {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.progress-step {
+    transition: color 0.3s ease, font-weight 0.3s ease;
+
+    &.active {
+        color: #b29c84;
+        font-weight: 600;
+    }
+
+    &.completed {
+        color: #6c757d;
+        font-weight: 500;
+    }
+}
+
+// ==============================
+// Form Labels & Fields
+// ==============================
+.form-label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.4rem;
+}
+
+.field-help-text {
+    font-size: 0.875rem;
+    color: #888;
+    margin-top: 0.3rem;
+    line-height: 1.4;
+}
+
+// Larger inputs for accessibility
+.form-control-lg {
+    min-height: 48px;
+    font-size: 1rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+
+    &:focus {
+        border-color: #b29c84;
+        box-shadow: 0 0 0 0.2rem rgba(178, 156, 132, 0.2);
+    }
+}
+
+// ==============================
+// Section Headers
+// ==============================
+.card h4 {
+    font-size: 1.4rem;
+    color: #333;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0ebe5;
+    margin-bottom: 1.25rem !important;
+}
+
+// ==============================
+// Radio & Checkbox — Larger Hit Areas
+// ==============================
+.form-check {
+    padding: 0.5rem 0 0.5rem 2rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    width: 1.25em;
+    height: 1.25em;
+    margin-top: 0;
+
+    &:checked {
+        background-color: #b29c84;
+        border-color: #b29c84;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.2rem rgba(178, 156, 132, 0.25);
+    }
+}
+
+.form-check-label {
+    font-size: 1rem;
+    padding-left: 0.35rem;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+// ==============================
+// Submit Button
+// ==============================
+.form-submit-btn {
+    min-height: 56px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    background-color: #b29c84;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+    &:hover {
+        background-color: #9e8a74;
+        color: white;
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &:disabled {
+        background-color: #c4b8a8;
+        cursor: not-allowed;
+    }
+}
+
+// ==============================
+// File Upload
+// ==============================
 .file-upload-container {
     width: 100%;
 }
+
 .file-upload-label {
     display: flex;
     flex-direction: column;
@@ -12,15 +169,18 @@
     width: 100%;
     min-height: 150px;
     border: 2px dashed #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 20px;
     text-align: center;
     cursor: pointer;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
+
 .file-upload-label:hover {
-    border-color: #999;
+    border-color: #b29c84;
+    background-color: rgba(178, 156, 132, 0.03);
 }
+
 .upload-icon {
     font-size: 2rem;
     margin-bottom: 20px;
@@ -28,6 +188,7 @@
     width: 1em;
     height: 1em;
 }
+
 .file-upload-input {
     position: absolute;
     width: 0.1px;
@@ -36,35 +197,15 @@
     overflow: hidden;
     z-index: -1;
 }
+
 .upload-text {
     margin-bottom: 4px;
+    font-size: 1rem;
 }
+
 .file-types {
     font-size: 0.8rem;
     color: #666;
-}
-
-/* Mobile responsiveness for cards */
-@media (max-width: 767px) {
-    .card-shadow {
-      box-shadow: none !important;
-      padding: 0 !important;
-      margin-bottom: 2rem !important;
-    }
-
-    .card {
-      border: none !important;
-    }
-
-    .card h4 {
-      margin-top: 2rem !important;
-      margin-bottom: 1rem !important;
-      font-size: 1.4rem !important;
-    }
-
-    .form-floating {
-      margin-bottom: 1rem !important;
-    }
 }
 
 .file-upload-label.dragover {
@@ -100,4 +241,39 @@
 
 .hidden-section {
     display: none !important;
+}
+
+// ==============================
+// Card Styling
+// ==============================
+.card-shadow {
+    border: 1px solid #f0ebe5;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+// ==============================
+// Mobile Responsiveness
+// ==============================
+@media (max-width: 767px) {
+    .card-shadow {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0.5rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .card {
+        border: none !important;
+    }
+
+    .card h4 {
+        margin-top: 1.5rem !important;
+        margin-bottom: 1rem !important;
+        font-size: 1.3rem !important;
+    }
+
+    .form-progress-steps {
+        font-size: 0.7rem;
+    }
 }

@@ -10,9 +10,9 @@ module UserFieldDefinitions
       fields: {
         first_name: { label: "First name", type: :text, required: true, form_group: :name },
         last_name: { label: "Last name", type: :text, required: true, form_group: :name },
-        email: { label: "Email address", type: :text, required: true },
-        mobile_phone: { label: "Mobile phone number", type: :text, required: true },
-        home_address: { label: "Home address", type: :text },
+        email: { label: "Email address", type: :text, required: true, help_text: "We'll use this to send you updates about your case" },
+        mobile_phone: { label: "Mobile phone number", type: :text, required: true, help_text: "Include country code, e.g. +44 7700 900000" },
+        home_address: { label: "Home address", type: :text, help_text: "Your main residence address (not the Spanish property)" },
         profession: { label: "Profession", type: :text },
         marital_status: { label: "Marital status", type: :text, form_group: :marital },
         spouse: { label: "Spouse full name", type: :text, form_group: :marital }
@@ -24,7 +24,7 @@ module UserFieldDefinitions
       title: "Passport details",
       form_section: true,
       fields: {
-        full_name_on_passport: { label: "Full name on passport", type: :text },
+        full_name_on_passport: { label: "Full name on passport", type: :text, help_text: "Exactly as it appears on your passport" },
         passport_number: { label: "Passport number", type: :text },
         date_of_birth: { label: "Date of birth", type: :date, form_group: :passport_dates },
         place_of_birth: { 
@@ -67,7 +67,7 @@ module UserFieldDefinitions
             "yes" => [:father_s_first_name, :mother_s_first_name]
           }
         },
-        nie_number: { label: "NIE number", type: :text, conditional: true },
+        nie_number: { label: "NIE number", type: :text, conditional: true, help_text: "A 9-character code starting with X, Y, or Z" },
         nie_document: { 
           label: "Upload a copy of your NIE document", 
           email_label: "NIE Document",

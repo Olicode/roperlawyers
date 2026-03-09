@@ -406,7 +406,7 @@ module UsersHelper
   end
 
   def render_text_field(form, field_name, field_config, options)
-    css_classes = "form-control #{options[:class]}".strip
+    css_classes = "form-control form-control-lg #{options[:class]}".strip
     required = field_config[:required] || options[:required] || false
     placeholder = field_config[:placeholder] || field_config[:label]
     
@@ -422,22 +422,24 @@ module UsersHelper
       content += content_tag(:p, raw(field_config[:description]), class: "mb-2 text-muted")
     end
     
-    content += content_tag :div, class: "form-floating mb-3" do
-      form.text_field(field_name, 
+    content += content_tag :div, class: "mb-4" do
+      label_html = form.label(field_name, field_config[:label], class: "form-label fw-semibold")
+      input_html = form.text_field(field_name, 
         class: css_classes, 
         placeholder: placeholder,
         required: required,
         **stimulus_attrs,
         **options.except(:class, :required)
-      ) +
-      form.label(field_name, field_config[:label])
+      )
+      help_html = field_config[:help_text] ? content_tag(:div, field_config[:help_text], class: "form-text field-help-text") : "".html_safe
+      label_html + input_html + help_html
     end
     
     content.html_safe
   end
 
   def render_textarea_field(form, field_name, field_config, options)
-    css_classes = "form-control #{options[:class]}".strip
+    css_classes = "form-control form-control-lg #{options[:class]}".strip
     placeholder = field_config[:placeholder] || field_config[:label]
     style = field_config[:style] || ""
     
@@ -468,15 +470,16 @@ module UsersHelper
       end
     end
     
-    content += content_tag(:div, class: "form-floating mb-3") do
-      textarea_field = form.text_area(field_name, field_options)
-      
-      # Use custom ID for label if provided
+    content += content_tag(:div, class: "mb-4") do
+      # Label above
       if field_config[:id]
-        textarea_field + label_tag(field_config[:id], field_config[:label])
+        label_html = label_tag(field_config[:id], field_config[:label], class: "form-label fw-semibold")
       else
-        textarea_field + form.label(field_name, field_config[:label])
+        label_html = form.label(field_name, field_config[:label], class: "form-label fw-semibold")
       end
+      textarea_html = form.text_area(field_name, field_options)
+      help_html = field_config[:help_text] ? content_tag(:div, field_config[:help_text], class: "form-text field-help-text") : "".html_safe
+      label_html + textarea_html + help_html
     end
     
     content.html_safe
@@ -531,19 +534,21 @@ module UsersHelper
   end
 
   def render_date_field(form, field_name, field_config, options)
-    css_classes = "form-control #{options[:class]}".strip
+    css_classes = "form-control form-control-lg #{options[:class]}".strip
     stimulus_attrs = {}
     if field_config[:stimulus_target]
       stimulus_attrs['data-user-form-target'] = field_config[:stimulus_target]
     end
     
-    content_tag(:div, class: "form-floating mb-3", **stimulus_attrs) do
-      form.date_field(field_name, 
+    content_tag(:div, class: "mb-4", **stimulus_attrs) do
+      label_html = form.label(field_name, field_config[:label], class: "form-label fw-semibold")
+      input_html = form.date_field(field_name, 
         class: css_classes, 
         placeholder: "YYYY-MM-DD",
         **options.except(:class)
-      ) +
-      form.label(field_name, field_config[:label])
+      )
+      help_html = field_config[:help_text] ? content_tag(:div, field_config[:help_text], class: "form-text field-help-text") : "".html_safe
+      label_html + input_html + help_html
     end
   end
 
@@ -642,7 +647,7 @@ module UsersHelper
   end
 
   def render_select_field(form, field_name, field_config, options)
-    css_classes = "form-control form-select #{options[:class]}".strip
+    css_classes = "form-control form-control-lg form-select #{options[:class]}".strip
     
     # Get current value or use default if field is empty
     current_value = form.object.send(field_name)
@@ -650,14 +655,16 @@ module UsersHelper
       current_value = field_config[:default]
     end
     
-    content = content_tag(:div, class: "form-floating mb-3") do
-      form.select(field_name,
+    content = content_tag(:div, class: "mb-4") do
+      label_html = form.label(field_name, field_config[:label], class: "form-label fw-semibold")
+      select_html = form.select(field_name,
         options_for_select(field_config[:options].map { |opt| [opt, opt] }, current_value),
         { include_blank: "Select" },
         class: css_classes,
         **options.except(:class)
-      ) +
-      form.label(field_name, field_config[:label])
+      )
+      help_html = field_config[:help_text] ? content_tag(:div, field_config[:help_text], class: "form-text field-help-text") : "".html_safe
+      label_html + select_html + help_html
     end
     
     # Add note if present

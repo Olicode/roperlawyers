@@ -13,7 +13,7 @@ export default class extends Controller {
     "payNo",
     "sameBox",
     "reservationDepositAccount",
-    "privateContractAccount", 
+    "privateContractAccount",
     "remainingBalanceAccount",
     "hasSpanishAccountYes",
     "hasSpanishAccountNo",
@@ -89,12 +89,21 @@ export default class extends Controller {
     "municipalCertificateField",
     "floorPlanField",
     "communityApprovalField",
+    // Progress bar
+    "progressBar",
+    "progressFill",
+    "progressSteps",
+    // Bank account opening
+    "bankAccountOpening",
+    "homeTaxIdTin",
   ];
 
   connect() {
     // Set up generic conditional field listeners
     this.setupConditionalFields();
-    
+
+    // Set up progress bar
+    this.initProgressBar();
     // NIE toggle
     if (
       this.hasNieNoRadioTarget &&
@@ -342,12 +351,12 @@ export default class extends Controller {
   toggleSections() {
     const nieNoVisible = this.nieNoRadioTarget.checked;
     const nieYesVisible = this.nieYesRadioTarget.checked;
-    
+
     // Toggle NIE number and document fields (when "No" is selected)
     if (this.hasNieNumberTarget) {
       this.animateToggle(this.nieNumberTarget, nieNoVisible);
     }
-    
+
     if (this.hasNieDocumentTarget) {
       this.animateToggle(this.nieDocumentTarget, nieNoVisible);
     }
@@ -369,12 +378,12 @@ export default class extends Controller {
    */
   togglePoaDetails() {
     const isVisible = this.needsPoaYesTarget.checked;
-    
+
     // Toggle POA conditional fields using Stimulus targets
     if (this.hasPoaForTarget) {
       this.animateToggle(this.poaForTarget, isVisible);
     }
-    
+
     if (this.hasPoaMadeInSpainTarget) {
       this.animateToggle(this.poaMadeInSpainTarget, isVisible);
     }
@@ -385,7 +394,7 @@ export default class extends Controller {
    */
   updatePoaSectionVisibility() {
     if (!this.hasPoaSectionTarget) return;
-    
+
     // Check which services are selected
     const purchaseChecked = this.hasServicePurchaseTarget && this.servicePurchaseTarget.checked;
     const saleChecked = this.hasServiceSaleTarget && this.serviceSaleTarget.checked;
@@ -395,14 +404,14 @@ export default class extends Controller {
     const vvChecked = this.hasServiceVvTarget && this.serviceVvTarget.checked;
     const registryChecked = this.hasServiceRegistryTarget && this.serviceRegistryTarget.checked;
     const activitiesChecked = this.hasServiceActivitiesTarget && this.serviceActivitiesTarget.checked;
-    
+
     // Check if ANY service other than Will is selected
-    const otherServicesChecked = purchaseChecked || saleChecked || newBuildChecked || 
-                                  donationChecked || vvChecked || registryChecked || activitiesChecked;
-    
+    const otherServicesChecked = purchaseChecked || saleChecked || newBuildChecked ||
+      donationChecked || vvChecked || registryChecked || activitiesChecked;
+
     // Hide ONLY if Will is the only service selected
     const shouldHide = willChecked && !otherServicesChecked;
-    
+
     this.poaSectionTarget.style.display = shouldHide ? "none" : "block";
   }
 
@@ -513,9 +522,8 @@ export default class extends Controller {
             <div class="d-flex align-items-center">
               <span class="me-2"><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-file-text'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'></path><polyline points='14 2 14 8 20 8'></polyline></svg></span>
               <span class="file-name">${file.name}</span>
-              <span class="badge bg-secondary ms-2">${
-                file.type || "file"
-              }</span>
+              <span class="badge bg-secondary ms-2">${file.type || "file"
+            }</span>
             </div>
             <button type="button" class="btn btn-sm btn-outline-danger delete-file" data-file-id="${id}">Remove</button>
           `;
@@ -603,12 +611,12 @@ export default class extends Controller {
       const purchaseCheckboxes = this.servicePurchaseTargets?.length
         ? this.servicePurchaseTargets
         : this.servicePurchaseTarget
-        ? [this.servicePurchaseTarget]
-        : [];
+          ? [this.servicePurchaseTarget]
+          : [];
       const checked = purchaseCheckboxes.some((cb) => cb.checked);
       this.animateToggle(this.sectionPurchaseTarget, checked);
     }
-    
+
     // Show/hide Sale section
     if (
       this.hasSectionSaleTarget &&
@@ -617,8 +625,8 @@ export default class extends Controller {
       const saleCheckboxes = this.serviceSaleTargets?.length
         ? this.serviceSaleTargets
         : this.serviceSaleTarget
-        ? [this.serviceSaleTarget]
-        : [];
+          ? [this.serviceSaleTarget]
+          : [];
       const checked = saleCheckboxes.some((cb) => cb.checked);
       this.animateToggle(this.sectionSaleTarget, checked);
     }
@@ -631,8 +639,8 @@ export default class extends Controller {
       const newBuildCheckboxes = this.serviceNewBuildTargets?.length
         ? this.serviceNewBuildTargets
         : this.serviceNewBuildTarget
-        ? [this.serviceNewBuildTarget]
-        : [];
+          ? [this.serviceNewBuildTarget]
+          : [];
       const checked = newBuildCheckboxes.some((cb) => cb.checked);
       this.animateToggle(this.sectionNewBuildTarget, checked);
     }
@@ -645,8 +653,8 @@ export default class extends Controller {
       const willCheckboxes = this.serviceWillTargets?.length
         ? this.serviceWillTargets
         : this.serviceWillTarget
-        ? [this.serviceWillTarget]
-        : [];
+          ? [this.serviceWillTarget]
+          : [];
       const checked = willCheckboxes.some((cb) => cb.checked);
       this.animateToggle(this.sectionWillTarget, checked);
     }
@@ -694,10 +702,10 @@ export default class extends Controller {
     if (this.hasIgicRegistrationSectionTarget) {
       this.animateToggle(this.igicRegistrationSectionTarget, !isOnlySelling);
     }
-    
+
     // Water/Electricity Bills: Show for both Sale and VV Licence
     // (Previously these were hidden for Sale, now they show for both)
-    
+
     // Hide certain fields when ONLY selling (not for VV Licence)
     if (this.hasFirstOccupationLicenseFieldTarget) {
       this.animateToggle(this.firstOccupationLicenseFieldTarget, !isOnlySelling);
@@ -739,14 +747,14 @@ export default class extends Controller {
   // Bank Details Section Toggle Methods
   toggleReservationDepositAccount() {
     if (!this.hasROriginBankDetailsTarget) return;
-    
+
     const shouldShow = this.hasPayYesTarget && this.payYesTarget.checked;
     this.animateToggle(this.rOriginBankDetailsTarget, shouldShow);
   }
 
   toggleUtilitySection() {
     if (!this.hasStandingOrdersBankDetailsTarget) return;
-    
+
     const shouldShow = this.hasHasSpanishAccountYesTarget && this.hasSpanishAccountYesTarget.checked;
     this.animateToggle(this.standingOrdersBankDetailsTarget, shouldShow);
   }
@@ -755,10 +763,10 @@ export default class extends Controller {
     if (!this.hasSameBoxTarget) {
       return;
     }
-    
+
     const checkbox = this.sameBoxTarget.querySelector('input[type="checkbox"]');
     const shouldSync = checkbox ? checkbox.checked : false;
-    
+
     if (shouldSync) {
       // Copy reservation deposit account to private contract and remaining balance
       if (this.hasReservationDepositAccountTarget && this.hasPrivateContractAccountTarget) {
@@ -766,7 +774,7 @@ export default class extends Controller {
         const contractInput = this.privateContractAccountTarget;
         if (contractInput) contractInput.value = reservationValue;
       }
-      
+
       if (this.hasReservationDepositAccountTarget && this.hasRemainingBalanceAccountTarget) {
         const reservationValue = this.reservationDepositAccountTarget.value || '';
         const balanceInput = this.remainingBalanceAccountTarget;
@@ -781,7 +789,7 @@ export default class extends Controller {
       this.hasPrivateContractAccountTarget &&
       this.hasRemainingBalanceAccountTarget
     ) {
-      
+
       const checkbox = this.sameBoxTarget.querySelector('input[type="checkbox"]');
       if (checkbox) {
         checkbox.addEventListener(
@@ -789,19 +797,19 @@ export default class extends Controller {
           this.syncAccounts.bind(this)
         );
       }
-      
+
       // Attach input listeners to the actual input fields within the targets
       const contractInput = this.privateContractAccountTarget;
       const balanceInput = this.remainingBalanceAccountTarget;
       const reservationInput = this.rOriginBankDetailsTarget?.querySelector('input');
-      
+
       if (contractInput) {
         contractInput.addEventListener("input", this.mirrorAccounts.bind(this));
       }
       if (balanceInput) {
         balanceInput.addEventListener("input", this.mirrorAccounts.bind(this));
       }
-      
+
       // Also listen to reservation input changes for mirroring
       if (reservationInput) {
         reservationInput.addEventListener("input", this.mirrorAccounts.bind(this));
@@ -814,7 +822,7 @@ export default class extends Controller {
     if (!this.hasSameBoxTarget || !checkbox || !checkbox.checked) {
       return;
     }
-    
+
     // Mirror the reservation deposit account value to other fields when they change
     this.syncAccounts();
   }
@@ -824,22 +832,22 @@ export default class extends Controller {
    */
   animateToggle(element, shouldShow) {
     if (!element) return;
-    
+
     // Add transition if not already present
     if (!element.style.transition) {
       element.style.transition = 'opacity 0.3s ease, max-height 0.3s ease';
       element.style.overflow = 'hidden';
     }
-    
+
     if (shouldShow) {
       // Show with animation
       element.style.display = 'block';
       element.style.maxHeight = '0px';
       element.style.opacity = '0';
-      
+
       // Force reflow
       element.offsetHeight;
-      
+
       // Animate in
       setTimeout(() => {
         element.style.maxHeight = '2000px';
@@ -849,10 +857,68 @@ export default class extends Controller {
       // Hide with animation
       element.style.maxHeight = '0px';
       element.style.opacity = '0';
-      
+
       setTimeout(() => {
         element.style.display = 'none';
       }, 300);
+    }
+  }
+
+  /**
+   * Initialize scroll-based progress bar
+   */
+  initProgressBar() {
+    if (!this.hasProgressFillTarget || !this.hasProgressStepsTarget) return;
+
+    this._scrollHandler = this.updateProgressBar.bind(this);
+    window.addEventListener('scroll', this._scrollHandler, { passive: true });
+    this.updateProgressBar();
+  }
+
+  /**
+   * Update progress bar based on scroll position through form sections
+   */
+  updateProgressBar() {
+    if (!this.hasProgressFillTarget) return;
+
+    const sections = this.element.querySelectorAll('[data-progress-section]');
+    if (sections.length === 0) return;
+
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+
+    // Calculate overall scroll percentage
+    const scrollPercent = Math.min(100, Math.round((scrollTop / (docHeight - windowHeight)) * 100));
+    this.progressFillTarget.style.width = `${scrollPercent}%`;
+
+    // Determine which section is currently visible
+    const viewportMiddle = scrollTop + windowHeight * 0.4;
+    let activeIndex = 0;
+
+    sections.forEach((section, index) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top + scrollTop;
+      if (sectionTop <= viewportMiddle) {
+        activeIndex = index;
+      }
+    });
+
+    // Update step labels
+    const steps = this.progressStepsTarget.querySelectorAll('.progress-step');
+    steps.forEach((step, index) => {
+      step.classList.remove('active', 'completed');
+      if (index < activeIndex) {
+        step.classList.add('completed');
+      } else if (index === activeIndex) {
+        step.classList.add('active');
+      }
+    });
+  }
+
+  disconnect() {
+    if (this._scrollHandler) {
+      window.removeEventListener('scroll', this._scrollHandler);
     }
   }
 
@@ -862,28 +928,28 @@ export default class extends Controller {
   setupConditionalFields() {
     // Find all elements with data-condition-field attribute
     const conditionalFields = this.element.querySelectorAll('[data-condition-field]');
-    
+
     conditionalFields.forEach(conditionalField => {
       const conditionFieldName = conditionalField.getAttribute('data-condition-field');
       const conditionValue = conditionalField.getAttribute('data-condition-value');
-      
+
       // Add transition styles
       conditionalField.style.transition = 'opacity 0.3s ease, max-height 0.3s ease';
       conditionalField.style.overflow = 'hidden';
-      
+
       // Find the condition field (checkbox, radio, or select)
       const conditionInput = this.element.querySelector(`#user_${conditionFieldName}`);
-      
+
       if (conditionInput) {
         // Set up the toggle function
         const toggleConditionalField = () => {
           let shouldShow = false;
-          
+
           // Handle different input types
           if (conditionInput.type === 'checkbox') {
             const isChecked = conditionInput.checked;
-            shouldShow = (conditionValue === 'true' && isChecked) || 
-                        (conditionValue === 'false' && !isChecked);
+            shouldShow = (conditionValue === 'true' && isChecked) ||
+              (conditionValue === 'false' && !isChecked);
           } else if (conditionInput.tagName === 'SELECT' || conditionInput.type === 'select-one') {
             // For select dropdowns
             shouldShow = conditionInput.value === conditionValue;
@@ -896,16 +962,16 @@ export default class extends Controller {
               }
             });
           }
-          
+
           if (shouldShow) {
             // Show with animation
             conditionalField.style.display = 'block';
             conditionalField.style.maxHeight = '0px';
             conditionalField.style.opacity = '0';
-            
+
             // Force reflow
             conditionalField.offsetHeight;
-            
+
             // Animate in
             setTimeout(() => {
               conditionalField.style.maxHeight = '1000px';
@@ -915,12 +981,12 @@ export default class extends Controller {
             // Hide with animation
             conditionalField.style.maxHeight = '0px';
             conditionalField.style.opacity = '0';
-            
+
             setTimeout(() => {
               conditionalField.style.display = 'none';
             }, 300);
           }
-          
+
           // Update required attribute on input fields inside
           const inputs = conditionalField.querySelectorAll('input, textarea, select');
           inputs.forEach(input => {
@@ -933,10 +999,10 @@ export default class extends Controller {
             }
           });
         };
-        
+
         // Listen for changes
         conditionInput.addEventListener('change', toggleConditionalField);
-        
+
         // For radio buttons, also listen to all radios in the group
         if (conditionInput.type === 'radio') {
           const radioGroup = this.element.querySelectorAll(`input[name="${conditionInput.name}"]`);
@@ -944,7 +1010,7 @@ export default class extends Controller {
             radio.addEventListener('change', toggleConditionalField);
           });
         }
-        
+
         // Initialize on page load
         toggleConditionalField();
       }
