@@ -1,235 +1,140 @@
-<!-- Mobile Sticky Contact Button -->
+<!-- Mobile Sticky Contact Bar (Capsule Layout) -->
 <div class="d-lg-none">
   <div class="mobile-contact-bar">
     <div class="mobile-buttons-container">
-      <a class="mobile-contact-btn" href="/free-consultation">
-        Book Free Consultation
-        <i class="bi bi-arrow-right-short ms-1"></i>
-      </a>
       
-      <!-- Button Subtext -->
-      <div class="mobile-button-subtext" id="mobile-subtext">
-        <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
-            alt: "Olivier Roper", 
-            class: "rounded-circle me-2",
-            style: "width: 20px; height: 20px; object-fit: cover;") %>
-        Speak directly to Olivier Roper
-      </div>
-      
-      <a class="mobile-contact-btn-secondary" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
-        Contact Us
-        <i class="bi bi-envelope ms-1"></i>
+      <!-- Primary Profile Capsule Button -->
+      <a class="mobile-contact-btn-capsule" href="/free-consultation">
+        <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", alt: "Olivier Roper", class: "capsule-avatar") %>
+        <div class="capsule-text">
+          <span class="capsule-title">Book a free consultation</span>
+          <span class="capsule-subtitle">Lawyer Olivier Roper</span>
+        </div>
       </a>
+
+      <!-- WhatsApp Circle Button -->
+      <a class="mobile-contact-btn-circle" href="https://wa.me/+34649948377" target="_blank" title="Chat with us on WhatsApp" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" class="whatsapp-icon-white">
+          <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/>
+        </svg>
+      </a>
+
     </div>
   </div>
 </div>
 
-<!-- Mobile WhatsApp Button -->
-<div class="d-lg-none">
-  <a class="whatsapp-btn" href="https://wa.me/+34649948377" target="_blank" title="Chat with us on WhatsApp">
-    <svg viewBox="0 0 24 24" class="whatsapp-icon">
-      <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/>
-    </svg>
-  </a>
-</div>
-
-<script src="https://kit.fontawesome.com/6640eefe98.js" crossorigin="anonymous"></script>
-
 <style>
-/* Mobile sticky contact bar */
+/* Mobile sticky contact bar - Modern Apple-like */
 .mobile-contact-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: white;
-  border-top: 1px solid #e9ecef;
-  padding: 12px 20px;
+  background-color: transparent; /* Removed full-width white bar */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-top: none;
+  padding: 12px 16px;
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom)); /* iOS safe area */
+  pointer-events: none; /* Allows scrolling on the invisible areas around the buttons */
 }
 
 .mobile-buttons-container {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   width: 100%;
-  max-width: 300px;
+  max-width: 450px;
+  pointer-events: auto; /* Re-enables clicking on the buttons themselves */
 }
 
-.mobile-contact-btn {
-  background-color: #b29c84;
-  color: white !important;
-  padding: 12px 24px;
-  border-radius: 25px;
+/* Primary Profile Capsule Button */
+.mobile-contact-btn-capsule {
+  background-color: rgba(255, 255, 255, 0.90); /* Subtle glass white */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 6px 16px 6px 6px;
+  border-radius: 50px; /* Capsule shape */
   text-decoration: none;
-  font-size: 1.125rem;
-  font-weight: 500;
-  letter-spacing: 0.8px;
-  box-shadow: none;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  border: none;
-  transform: scale(1);
+  flex: 1; /* Takes up main space */
+  transition: all 0.2s ease;
+  border: 1px solid rgba(229, 229, 234, 0.8); /* Subtle light grey border */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* Slightly stronger shadow since it floats */
 }
 
-.mobile-contact-btn.scrolled {
-  transform: scale(0.9);
-  font-size: 1.0125rem;
+.mobile-contact-btn-capsule:active {
+  transform: scale(0.98);
+  background-color: #f2f2f7;
 }
 
-.mobile-contact-btn:hover {
-  background-color: #9d8a6f;
-  color: white !important;
-  box-shadow: none;
-}
-
-.mobile-contact-btn-secondary {
-  background-color: #f8f9fa;
-  color: #6c757d !important;
-  padding: 12px 24px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: 1.125rem;
-  font-weight: 500;
-  letter-spacing: 0.8px;
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  border: 1px solid #e9ecef;
-  transform: scale(1);
-}
-
-.mobile-contact-btn-secondary.scrolled {
-  transform: scale(0.9);
-  font-size: 1.0125rem;
-}
-
-.mobile-contact-btn-secondary:hover {
-  background-color: #e9ecef;
-  color: #495057 !important;
-  box-shadow: none;
-}
-
-.mobile-button-subtext {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  color: #6c757d;
-  margin: 4px 0;
-  transition: opacity 0.3s ease, height 0.3s ease, margin 0.3s ease;
-  overflow: hidden;
-}
-
-.mobile-button-subtext.hidden {
-  opacity: 0;
-  height: 0;
-  margin: 0;
-}
-
-/* Clean WhatsApp button with no background effects */
-.whatsapp-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: #25d366;
-  color: white;
+.capsule-avatar {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.capsule-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.capsule-title {
+  font-size: 0.95rem; /* ~15px */
+  font-weight: 600;
+  color: #1D1D1F;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.capsule-subtitle {
+  font-size: 0.8rem; /* ~13px */
+  font-weight: 500;
+  color: #6C757D;
+  line-height: 1.2;
+}
+
+/* WhatsApp Circle Button */
+.mobile-contact-btn-circle {
+  background-color: #25D366;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  box-shadow: none;
-  z-index: 1000;
-  transition: all 0.3s ease;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
   border: none;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); /* Soft green glow */
 }
 
-.whatsapp-btn:hover {
-  background: #128c7e;
-  color: white;
-  transform: scale(1.1);
-  box-shadow: none;
+.mobile-contact-btn-circle:active {
+  transform: scale(0.95);
+  background-color: #1DA851;
 }
 
-.whatsapp-icon {
-  width: 32px;
-  height: 32px;
-  color: white;
+.whatsapp-icon-white {
+  width: 28px;
+  height: 28px;
+  color: #FFFFFF; /* Pure white SVG inside green circle */
 }
 
-
-/* Responsive adjustments */
+/* Body padding adjustment */
 @media (max-width: 768px) {
-  .whatsapp-btn {
-    bottom: 80px; /* Above mobile contact bar */
-    right: 20px;
-  }
-  
-  /* Add padding to body to account for fixed contact bar */
   body {
-    padding-bottom: 140px;
+    padding-bottom: 90px; 
   }
 }
 </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  let isScrolling = false;
-  let scrollTimer = null;
-  const subtext = document.getElementById('mobile-subtext');
-  const primaryBtn = document.querySelector('.mobile-contact-btn');
-  const secondaryBtn = document.querySelector('.mobile-contact-btn-secondary');
-  
-  if (subtext) {
-    function handleScroll() {
-      if (!isScrolling) {
-        isScrolling = true;
-        subtext.classList.add('hidden');
-        
-        // Add scrolled class to buttons when scrolling
-        if (primaryBtn) primaryBtn.classList.add('scrolled');
-        if (secondaryBtn) secondaryBtn.classList.add('scrolled');
-      }
-      
-      // Clear existing timer
-      clearTimeout(scrollTimer);
-      
-      // Set timer to show subtext when scrolling stops
-      scrollTimer = setTimeout(function() {
-        isScrolling = false;
-        subtext.classList.remove('hidden');
-        
-        // Remove scrolled class from buttons when scrolling stops
-        if (primaryBtn) primaryBtn.classList.remove('scrolled');
-        if (secondaryBtn) secondaryBtn.classList.remove('scrolled');
-      }, 150); // Show again after 150ms of no scrolling
-    }
-    
-    // Throttle scroll events for better performance
-    let ticking = false;
-    function requestTick() {
-      if (!ticking) {
-        requestAnimationFrame(handleScroll);
-        ticking = true;
-      }
-    }
-    
-    function onScroll() {
-      requestTick();
-      ticking = false;
-    }
-    
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
-});
-</script>
