@@ -57,6 +57,8 @@
 
   <%= render partial: 'layouts/whatsapp_button' %>
   <%= render partial: "layouts/contact_form"%>
-  <%= render partial: "layouts/footer"%>
+  <% unless content_for?(:hide_footer) %>
+    <%= render partial: "layouts/footer" %>
+  <% end %>
   </body>
 </html>

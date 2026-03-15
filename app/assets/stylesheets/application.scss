@@ -529,17 +529,32 @@ main {
     }
   }
 
-  /* Remove outer card shadow and borders on Calendly widget */
-  .calendly-inline-widget > div,
-  .calendly-inline-widget > div > div {
-    box-shadow: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
 
-  /* Remove all background, if needed */
-  .calendly-inline-widget * {
-    background: transparent !important;
+
+  /* Full page widget iframe wrapper - constrained to standard container width */
+  .calendar-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;    /* Centers the widget in the page */
+    padding: 20px 0;
+    
+    /* Ensure there is enough vertical space to scroll naturally */
+    height: auto;
+    min-height: 900px;
+  }
+  
+  /* On very small mobile devices, let it take full width */
+  @media (max-width: 767.98px) {
+    .calendar-wrapper {
+      padding: 0;
+      min-height: calc(100vh - 56px); /* Mobile nav height calculation */
+    }
+  }
+  
+  /* Ensure no padding on parent sections when doing full page embeds */
+  .no-padding-main {
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   /* Smaller breadcrumb font size */
