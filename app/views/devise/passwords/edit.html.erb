@@ -1,27 +1,38 @@
-<h2>Change your password</h2>
+<div class="row justify-content-center">
+  <div class="col-10 col-md-10 col-lg-4 mb-5">
+    <div class="text-center mt-5 mb-3">
+      <h3>Change your password</h3>
+    </div>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, data: { turbo: false } }) do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :reset_password_token, as: :hidden %>
+      <%= f.full_error :reset_password_token %>
 
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
+      <div class="form-floating mb-3">
+        <%= f.input_field :password, class: "form-control",
+                    required: true,
+                    autofocus: true,
+                    placeholder: "New password",
+                    autocomplete: "new-password" %>
+        <%= f.label :password, ("New password" + (@minimum_password_length ? " (#{@minimum_password_length} characters min)" : "")) %>
+      </div>
 
-  <div class="form-inputs">
-    <%= f.input :password,
-                label: "New password",
-                required: true,
-                autofocus: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                label: "Confirm your new password",
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+      <div class="form-floating mb-3">
+        <%= f.input_field :password_confirmation, class: "form-control",
+                    required: true,
+                    placeholder: "Confirm your new password",
+                    autocomplete: "new-password" %>
+        <%= f.label :password_confirmation, "Confirm your new password" %>
+      </div>
+
+      <div class="form-actions d-grid gap-2 form-group mt-3">
+        <%= f.button :submit, "Change my password", class: "btn-primary btn-lg" %>
+      </div>
+    <% end %>
+
+    <div class="text-center mt-4">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

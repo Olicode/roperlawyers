@@ -1,59 +1,67 @@
-<div class="row justify-content-center">
-  <div class="col-12 col-md-10 col-lg-6">
-    <h1 style="font-family: 'Times New Roman', Times, serif; color: #b29c84; text-align: center; margin-top: 3rem; margin-bottom: 1rem; letter-spacing: 0.2em;">ROPER LAWYERS</h1>
-    <div class="text-center mb-4">
-      <h2>Your Submitted Information</h2>
-      <p class="text-muted">Review the details you've provided. You can edit this information if needed.</p>
+<div class="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8 font-sans">
+  <!-- Header Section -->
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between mb-8">
+    <div>
+      <h1 class="text-2xl font-light text-[#b29c84] tracking-widest uppercase mb-1">Roper Lawyers</h1>
+      <h2 class="text-3xl font-semibold text-gray-900">Welcome, <%= @user.first_name || 'Client' %></h2>
+      <p class="text-sm text-gray-500 mt-1">Review and manage your submitted information</p>
     </div>
+    
+    <div class="mt-6 md:mt-0 flex space-x-3">
+      <%= link_to 'Edit Information', edit_user_path(@user), class: "inline-flex items-center px-5 py-2.5 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-[#b29c84] hover:bg-[#9a8772] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#b29c84] transition-all duration-200" %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "inline-flex items-center px-5 py-2.5 border border-gray-300 rounded-full shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#b29c84] transition-all duration-200 cursor-pointer" %>
+    </div>
+  </div>
 
+  <!-- Dashboard Grid -->
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    
+    <% delay = 0.2 %>
+    
     <% UserFieldDefinitions.all_non_attachment_fields.each do |section_key, section_data| %>
       <% next unless section_data[:form_section] %>
       <% next unless should_display_section?(@user, section_data) %>
       <% next unless section_has_content?(@user, section_data) %>
       
-      <div class="card p-4 mb-4 card-shadow">
-        <h4 class="mb-3 border-bottom pb-2"><%= section_data[:title] %></h4>
-              
-        <div class="row">
-          <% fields_with_values = section_data[:fields].select do |field_name, field_config| %>
-            <% !field_config[:virtual] && field_has_value?(@user, field_name, field_config) %>
-          <% end %>
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow duration-300">
+        <h3 class="text-lg font-medium text-gray-900 border-b border-gray-100 pb-3 mb-4"><%= section_data[:title] %></h3>
+        
+        <div class="space-y-4">
+          <% fields_with_values = section_data[:fields].select { |field_name, field_config| !field_config[:virtual] && field_has_value?(@user, field_name, field_config) } %>
           
-          <% fields_with_values.each_with_index do |(field_name, field_config), index| %>
-            <div class="col-md-6 mb-3">
-              <p><strong><%= field_config[:email_label] || field_config[:label] %>:</strong><br>
-              <%= render_user_field_value(@user, field_name, field_config) %></p>
+          <% fields_with_values.each do |field_name, field_config| %>
+            <div>
+              <dt class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1"><%= field_config[:email_label] || field_config[:label] %></dt>
+              <dd class="text-sm text-gray-900 break-words"><%= render_user_field_value(@user, field_name, field_config) %></dd>
             </div>
           <% end %>
         </div>
       </div>
+      <% delay += 0.1 %>
     <% end %>
 
     <!-- Consolidated Documents Section -->
-    <% attachment_fields = UserFieldDefinitions.all_attachment_fields.select do |field_data| %>
-      <% field_has_value?(@user, field_data[:field_name], field_data[:field_config]) %>
-    <% end %>
+    <% attachment_fields = UserFieldDefinitions.all_attachment_fields.select { |field_data| field_has_value?(@user, field_data[:field_name], field_data[:field_config]) } %>
     <% if attachment_fields.any? %>
-      <div class="card p-4 mb-4 card-shadow">
-        <h4 class="mb-3 border-bottom pb-2">Uploaded Documents</h4>
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:col-span-2 lg:col-span-3 hover:shadow-md transition-shadow duration-300">
+        <h3 class="text-lg font-medium text-gray-900 border-b border-gray-100 pb-3 mb-4">Uploaded Documents</h3>
         
-        <div class="row">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <% attachment_fields.each do |field_data| %>
-            <div class="col-md-6 mb-3">
-              <p><strong><%= field_data[:field_config][:email_label] || field_data[:field_config][:label] %>:</strong><br>
-              <%= render_user_field_value(@user, field_data[:field_name], field_data[:field_config]) %></p>
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 flex flex-col justify-center">
+              <dt class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1 truncate"><%= field_data[:field_config][:email_label] || field_data[:field_config][:label] %></dt>
+              <dd class="text-sm font-medium text-[#b29c84] truncate underline-offset-2 hover:underline">
+                <%= render_user_field_value(@user, field_data[:field_name], field_data[:field_config]) %>
+              </dd>
             </div>
           <% end %>
         </div>
       </div>
     <% end %>
 
-    <!-- Actions -->
-    <div class="row justify-content-center mb-5">
-      <%= link_to 'Edit Your Information', edit_user_path(@user), class: "btn btn-lg mb-2 col-md-5 m-2", style: "background-color: #b29c84; color: white;" %>
-      <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-secondary btn-lg col-md-5 m-2", method: :delete %>
-    </div>
-
-    <p class="mt-5 mb-3 text-muted text-center">Roper Lawyers &copy; 2010-<%= Date.today.year %></p>
+  </div>
+  
+  <div class="max-w-7xl mx-auto mt-12 text-center pb-8">
+    <p class="text-xs text-gray-400">Roper Lawyers &copy; 2010-<%= Date.today.year %></p>
   </div>
 </div>

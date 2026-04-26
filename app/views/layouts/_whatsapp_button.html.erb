@@ -56,9 +56,7 @@
 
 /* Primary Profile Capsule Button */
 .mobile-contact-btn-capsule {
-  background-color: rgba(255, 255, 255, 0.90); /* Subtle glass white */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: #1D1D1F; /* Rich dark charcoal */
   padding: 6px 16px 6px 6px;
   border-radius: 50px; /* Capsule shape */
   text-decoration: none;
@@ -66,13 +64,13 @@
   align-items: center;
   flex: 1; /* Takes up main space */
   transition: all 0.2s ease;
-  border: 1px solid rgba(229, 229, 234, 0.8); /* Subtle light grey border */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* Slightly stronger shadow since it floats */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border for dark bg */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15); /* Slightly stronger shadow since it floats */
 }
 
 .mobile-contact-btn-capsule:active {
   transform: scale(0.98);
-  background-color: #f2f2f7;
+  background-color: #000000;
 }
 
 .capsule-avatar {
@@ -81,6 +79,7 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle 1px light border against dark background */
 }
 
 .capsule-text {
@@ -90,17 +89,17 @@
 }
 
 .capsule-title {
-  font-size: 0.95rem; /* ~15px */
-  font-weight: 600;
-  color: #1D1D1F;
+  font-size: 1rem; /* 16px */
+  font-weight: 700; /* Bold */
+  color: #FFFFFF;
   line-height: 1.2;
   margin-bottom: 2px;
 }
 
 .capsule-subtitle {
-  font-size: 0.8rem; /* ~13px */
-  font-weight: 500;
-  color: #6C757D;
+  font-size: 0.8125rem; /* ~13px */
+  font-weight: 300; /* Lighter font weight */
+  color: #FFFFFF; /* Pure white text */
   line-height: 1.2;
 }
 

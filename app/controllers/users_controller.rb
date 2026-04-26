@@ -210,6 +210,7 @@ class UsersController < ApplicationController
           :escritura,
           :fx_quote_referral_consent,
           :bank_account_opening, :home_tax_id_tin,
+          :selling_property_in_community, :community_contact_details, :tax_representative_form,
           { requested_services: [] },
           nota_simple_documents: [], 
           title_deed_documents: [], 

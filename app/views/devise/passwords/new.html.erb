@@ -1,18 +1,32 @@
-<h2>Forgot your password?</h2>
+<div class="row justify-content-center">
+  <div class="col-10 col-md-10 col-lg-4 mb-5">
+    <div class="text-center mt-5 mb-3">
+      <h3>Forgot your password?</h3>
+      <p>Enter your email below to receive reset instructions</p>
+    </div>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, data: { turbo: false } }) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
+      <div class="form-floating mb-3">
+        <%= f.input_field :email, class: "form-control #{"is-invalid" if resource.errors[:email].any?}",
+                    required: true,
+                    autofocus: true,
+                    placeholder: "name@example.com",
+                    autocomplete: "email" %>
+        <%= f.label :email, "Email address" %>
+        <div class="invalid-feedback d-block mt-1">
+          <%= resource.errors[:email].join(", ") if resource.errors[:email].any? %>
+        </div>
+      </div>
+
+      <div class="form-actions d-grid gap-2 form-group mt-3">
+        <%= f.button :submit, "Send reset instructions", class: "btn-primary btn-lg" %>
+      </div>
+    <% end %>
+
+    <div class="text-center mt-4">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

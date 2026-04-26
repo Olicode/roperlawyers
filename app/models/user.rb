@@ -48,9 +48,14 @@ class User < ApplicationRecord
   end
 
   def salesforce_requested_services
-    return "" unless requested_services && requested_services.is_a?(String)
+    return "" if requested_services.blank?
+    return "" unless requested_services.is_a?(String)
 
-    JSON.parse(requested_services)&.join(";")
+    begin
+      JSON.parse(requested_services)&.join(";")
+    rescue JSON::ParserError
+      ""
+    end
   end
 
   private

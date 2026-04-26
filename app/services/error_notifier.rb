@@ -10,7 +10,7 @@ class ErrorNotifier
   end
 
   def call
-    Sentry.capture_message(message)
+    Rails.logger.error("ERROR NOTIFIER TRIGGERED: #{message}"); Sentry.capture_message(message)
   end
 
   private

@@ -1023,17 +1023,14 @@ export default class extends Controller {
    */
   disableOnSubmit(event) {
     const button = event.target;
-    const form = button.closest("form");
-    if (form && form.checkValidity()) {
-      setTimeout(() => {
-        button.disabled = true;
-        if (button.tagName === "INPUT" && button.type === "submit") {
-          button.value = "Submitting...";
-        } else {
-          button.innerText = "Submitting...";
-        }
-      }, 100);
-    }
+    setTimeout(() => {
+      button.disabled = true;
+      if (button.tagName === "INPUT" && button.type === "submit") {
+        button.value = "Submitting...";
+      } else {
+        button.innerText = "Submitting...";
+      }
+    }, 100);
     // Do not call event.preventDefault() or event.stopPropagation()
   }
 }
