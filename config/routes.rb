@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'grancanaria', to: 'pages#grancanaria'
   get 'fuerteventura', to: 'pages#fuerteventura'
   get 'marbella', to: 'pages#marbella'
+  get 'malaga', to: 'pages#malaga'
   #get 'review_page', to: 'pages#review_page'
   get 'madrid', to: 'pages#madrid'
   get 'ibiza', to: 'pages#ibiza'

@@ -46,14 +46,16 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFJ6828"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <%= render partial: "layouts/navigation"%>
   
-  <%= yield %>
+  <main class="flex-grow-1 d-flex flex-column">
+    <%= yield %>
+  </main>
 
   <%= render partial: 'layouts/whatsapp_button' %>
   <%= render partial: "layouts/contact_form"%>

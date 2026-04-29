@@ -9,6 +9,7 @@ class PagesController < ApplicationController
   def grancanaria; end
   def fuerteventura; end
   def marbella; end
+  def malaga; end
   def madrid; end
   def ibiza; end
   def reviews; end

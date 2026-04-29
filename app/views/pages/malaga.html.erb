@@ -1,0 +1,296 @@
+<main>
+  <!-- Hero Section -->
+  <section class="hero-section" style="min-height: 80vh; display: flex; align-items: center; padding: 4rem 0; margin-top: 0; background: white;">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <!-- Content Column -->
+      <div class="col-lg-6">
+          <!-- Google Reviews -->
+          <div class="mb-4">
+            <a class="reviews-link d-inline-flex align-items-center text-decoration-none" href="https://www.google.com/maps/place/Roper+Lawyers/@28.9208706,-13.6682914,17z/data=!4m8!3m7!1s0xc4625151db852d7:0x4e4d25ec171214f4!8m2!3d28.9208706!4d-13.6657165!9m1!1b1!16s%2Fg%2F11hdxxw7zb?entry=ttu&g_ep=EgoyMDI1MDkxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+              <!-- Google Logo -->
+              <svg width="16" height="16" viewBox="0 0 24 24" class="me-2">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              <strong class="me-2" style="font-size: 1rem; color: #333; font-family: 'Product Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Google</strong>
+              <span class="stars me-2" style="font-size: 1rem; color: #5F6368;">5.0</span>
+              <!-- Google-style stars -->
+              <div class="stars d-flex">
+              <svg width="12" height="12" viewBox="0 0 24 24" class="me-1" fill="#FBBC04">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" class="me-1" fill="#FBBC04">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" class="me-1" fill="#FBBC04">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" class="me-1" fill="#FBBC04">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBC04">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              </div>
+            </a>
+          </div>
+
+          <!-- Scarcity Message -->
+          <div class="mb-4">
+            <div class="d-inline-flex align-items-center px-3 py-2 rounded-pill" 
+                 style="background-color: rgba(179, 156, 132, 0.08); border: 1px solid rgba(179, 156, 132, 0.2);">
+              <span style="color: #b39c84; font-weight: 500; font-size: 0.85rem;">
+                Limited to <%= pick_random_number_based_on_month %> clients this <%= Date.current.strftime("%B") %> for best service.
+              </span>
+              <a href="#" class="text-decoration-none d-inline-flex align-items-center secondary-link ms-2" 
+                 data-bs-toggle="modal" data-bs-target="#contactModal"
+                 style="color: #212529; font-weight: 500; font-size: 0.85rem; transition: all 0.2s ease;">
+                <span class="link-text">Contact us</span> <span class="arrow ms-1">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="hero-headline mb-4" style="font-size: 2.8rem; font-weight: 700; line-height: 1.1; color: #1a1a1a; letter-spacing: 0.5px;">
+            Property Lawyers in <span class="gradient-text">Malaga</span>:<br>
+            Expert Legal Support for Luxury Property
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="hero-subtext mb-5" style="font-size: 1.125rem; color: #212529; line-height: 1.5; max-width: 90%;">
+            15+ years helping international clients with premium property transactions in Malaga. Our bilingual English–Spanish legal team ensures seamless purchases in Spain's most prestigious destination.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="d-none d-lg-flex flex-column flex-sm-row gap-3 mb-3 align-items-start">
+            <!-- Primary CTA Column -->
+            <div class="d-flex flex-column align-items-start">
+              <a href="/free-consultation" class="btn rounded-pill d-flex align-items-center justify-content-center hero-primary-btn" 
+                 style="background-color: #b39c84; border: none; color: white; padding: 0.75rem 1.5rem; font-size: 1.125rem; text-decoration: none; width: fit-content; min-height: 48px; transition: background-color 0.2s ease;">
+                <span style="font-size: 1.125rem; font-weight: 500; letter-spacing: 0.8px;">Book Free Consultation</span>
+              </a>
+              
+              <!-- Button Subtext -->
+              <div class="mt-2 d-flex align-items-center justify-content-center" style="font-size: 0.85rem; color: #6c757d; width: 100%;">
+                <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
+                    alt: "Olivier Roper", 
+                    class: "rounded-circle me-2",
+                    style: "width: 24px; height: 24px; object-fit: cover;") %>
+                Speak directly to Olivier Roper
+              </div>
+            </div>
+            
+           <!-- Secondary CTA -->
+           <a href="/why-choose-us" class="btn rounded-pill d-flex align-items-center justify-content-center text-decoration-none hero-secondary-btn" 
+              style="color: #000000; background-color: #f8f9fa; border: none; font-weight: 400; font-size: 1.125rem; padding: 0.75rem 1.5rem; min-height: 48px; width: fit-content; transition: background-color 0.2s ease;">
+             <span style="font-size: 1.125rem; font-weight: 400;">See Why Expats Trust Us</span>
+           </a>
+          </div>
+        </div>
+
+        <!-- Video Column -->
+        <div class="col-lg-6">
+          <div class="text-center">
+            <div class="ratio ratio-16x9 rounded-4 overflow-hidden" style="box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: translateZ(0);">
+              <iframe src="https://www.youtube.com/embed/pIkI52m_LpU?autoplay=0&modestbranding=0&rel=0&fs=0&color=white&controls=0&disablekb=1" title="Roper Lawyers Malaga" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="pb-5 pt-3" style="background: white;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <blockquote class="mb-0" style="font-style: italic; color: #6c757d; font-size: 1.25rem; line-height: 1.6;">
+            "Professional, transparent, and efficient service for our Malaga property purchase"
+            <footer class="mt-3" style="font-style: normal; font-weight: 500; color: #333; font-size: 1rem;">
+              — International Property Buyer
+            </footer>
+          </blockquote>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <div class="container px-4 py-5">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="pb-4 m-3 text-center">English-Speaking Real Estate Lawyers in Malaga</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <p>At Roper Lawyers, communication is key. All our property lawyers in Malaga are fluent in English, offering you clear, concise, and straightforward legal advice. With a commitment to delivering top-quality service, our team ensures that you fully understand every aspect of the property transaction. We pride ourselves on making the purchase of your property in Malaga a smooth and confident experience.</p>
+      </div>
+      <div class="col-md-6 col-12">
+        <p>Our English-speaking real estate lawyers in Malaga bring not only linguistic proficiency but also a deep understanding of cultural nuances, ensuring effective communication with clients from diverse backgrounds. This ensures that you receive personalised and transparent guidance throughout the entire property transaction process, further enhancing your confidence in choosing Roper Lawyers as your trusted legal partner.</p>
+      </div>
+    </div>
+  </div>
+  <%= render 'main_page_sections/why_us' %>
+  <%= render 'main_page_sections/about_us' %>
+  <%= render 'main_page_sections/features' %>
+  
+  <div class="container px-4 py-5">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="pb-4 m-3 text-center">Property Solicitors in Malaga</h2>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <h3>Experienced Property Lawyers</h3>
+        <p>Our team of <a href="https://www.roperlawyers.com/">property lawyers in Spain</a> and the UK is comprised of seasoned and highly skilled property lawyers in Malaga, bringing a wealth of experience to the table. With a combined tenure of over 12 years, our legal experts specialise in providing comprehensive services to clients involved in real estate transactions. We take pride in our meticulous approach, ensuring that each property transfer is executed with precision and care.</p>
+        <p>Having navigated countless transactions, each experienced real estate lawyer in Malaga from our team possesses an in-depth understanding of Spanish conveyancing laws and regulations. This expertise allows us to anticipate challenges and address them proactively, reducing potential obstacles in your property journey. Trust in a Malaga property lawyer from Roper Lawyers to guide you seamlessly through the complexities of real estate transactions, and provide unwavering support at every step.</p>
+      </div>
+      <div class="col-md-6 col-12">
+        <h3>Tailored Legal Advice</h3>
+        <p>Our property solicitors in Malaga and <a href="https://www.roperlawyers.com/lanzarote">Lanzarote</a> pride themselves on offering personalised and specialised expertise, providing tailored legal advice that caters to the unique needs of each client engaged in real estate transactions. Whether you are a foreign investor seeking a lucrative opportunity or a local resident looking to sell property, our dedicated team ensures a seamless and successful transaction.</p>
+        <p>With a commitment to thorough due diligence, a Malaga property lawyer from Roper Lawyers will dive into the intricacies of each case. This includes verifying legal status, identifying potential issues, and proactively addressing them to safeguard your interests. Regardless of the complexity, our tailored approach ensures that you receive the precise legal guidance necessary for a smooth and trouble-free property transaction. Trust in our expertise to navigate the nuances of real estate law, ensuring your peace of mind throughout the entire process.</p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12">
+        <h2 class="pb-4 m-3">Consult Malaga Property Lawyers for a Smooth Transaction</h2>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12">
+        <p>In the current housing climate, navigating the complexities of property conveyancing in Spain requires experienced professionals. Roper Lawyers is here to handle the legal intricacies, allowing you to focus on your property goals.</p>
+        <p>Contact our team of property conveyancing solicitors today to schedule a consultation. Let us guide you through the process, providing the expertise you need for a seamless and successful property transaction. Trust our Malaga property lawyers for all your property legal needs in Spain.</p>
+      </div>
+    </div>
+  </div>
+  <%= render 'main_page_sections/faq' %>
+  <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
+  <%= render 'main_page_sections/purchase_process' %>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <%= render 'main_page_sections/costs' %>
+  <%= render 'main_page_sections/logos' %>
+</main>
+
+<style>
+/* Hero Section Styles */
+.hero-section {
+  background: white;
+  margin-top: 0 !important;
+  border-top: none;
+}
+
+/* Remove any default margins from main elements */
+main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.reviews-link {
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.reviews-link:hover {
+  color: #b29c84;
+}
+
+/* Hero text styling */
+.hero-headline {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.hero-subtext {
+  font-weight: 400;
+}
+
+/* Hero button hover effects */
+.hero-primary-btn:hover {
+  background-color: #9d8670 !important;
+}
+
+.hero-secondary-btn:hover {
+  background-color: #e9ecef !important;
+}
+
+/* Secondary link hover effects */
+.secondary-link:hover .link-text {
+  text-decoration: underline !important;
+}
+
+/* Video container responsive */
+.iframe-container {
+  aspect-ratio: 16 / 9;
+  max-width: 500px;
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 70vh;
+    padding: 3rem 0;
+  }
+  
+  .hero-headline {
+    font-size: 2.2rem !important;
+    line-height: 1.1;
+  }
+  
+  .hero-subtext {
+    font-size: 1.1rem !important;
+    max-width: 100% !important;
+  }
+  
+  .btn {
+    padding: 0.8rem 1.5rem !important;
+    font-size: 0.95rem !important;
+  }
+  
+  .d-inline-flex {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.75rem;
+  }
+  
+  .iframe-container {
+    max-width: 100%;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    min-height: 60vh;
+    padding: 2rem 0;
+  }
+  
+  .hero-headline {
+    font-size: 1.8rem !important;
+    line-height: 1.2;
+  }
+  
+  .hero-subtext {
+    font-size: 1rem !important;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.3rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .d-flex.flex-column.flex-sm-row {
+    flex-direction: column !important;
+  }
+}
+</style>
