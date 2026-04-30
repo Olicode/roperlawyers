@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   #get 'review_page', to: 'pages#review_page'
   get 'madrid', to: 'pages#madrid'
   get 'ibiza', to: 'pages#ibiza'
+  get 'costa-blanca', to: 'pages#costa_blanca'
   get 'spain-property-guide', to: 'pages#spain-property-guide'
   get 'free-consultation', to: 'pages#free_consultation'
   get 'consultation', to: 'pages#consultation'

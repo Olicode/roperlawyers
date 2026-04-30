@@ -12,6 +12,7 @@ class PagesController < ApplicationController
   def malaga; end
   def madrid; end
   def ibiza; end
+  def costa_blanca; end
   def reviews; end
   def our_story; end
   def services; end

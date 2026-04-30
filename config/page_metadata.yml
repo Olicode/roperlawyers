@@ -51,6 +51,11 @@ ibiza:
   description: "Find your dream home in Spain through our property solicitors in Ibiza. Experience expert legal advice from our English-speaking lawyers today."
   reviews: "reviews.json"
 
+costa_blanca:
+  title: "Costa Blanca Property Lawyers | Expert Conveyancing Solicitors"
+  description: "Expert English-speaking property lawyers in Costa Blanca. Buying or selling a property in Spain? Get trusted conveyancing advice from Roper Lawyers."
+  reviews: "reviews.json"
+
 reviews:
   title: "Client Reviews & Testimonials | Roper Lawyers"
   description: "Read genuine client reviews and testimonials for Roper Lawyers. See why UK, Irish & international clients trust our Spanish property law services."
