@@ -1,6 +1,8 @@
 <%= render_breadcrumb('selling_property', 'lanzarote', 'puerto_del_carmen') %>
 
 <main>
+  <%= render 'main_page_sections/page_h1', h1_text: service_page_h1('selling_property', 'Puerto del Carmen') %>
+
   <%= render 'main_page_sections/service_hero', locals: {
     location_display: 'Puerto del Carmen, Lanzarote',
     headline: 'Expert Selling Property Lawyers in Puerto del Carmen:<br>Trusted Legal Support for Property Sales'.html_safe,

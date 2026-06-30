@@ -1,6 +1,8 @@
 <%= render_breadcrumb('holiday_rental_license', 'lanzarote') %>
 
 <main>
+  <%= render 'main_page_sections/page_h1', h1_text: service_page_h1('holiday_rental_license', 'Lanzarote') %>
+
   <%= render 'main_page_sections/service_hero', locals: {
     location_display: 'Lanzarote',
     headline: 'Expert Holiday Rental License Lawyers in Lanzarote:<br>VV License & Tourism Law Specialists'.html_safe,

@@ -10,6 +10,8 @@
 <%= render_breadcrumb(service_key, island, location) %>
 
 <main>
+  <%= render 'main_page_sections/page_h1', h1_text: (data['h1'].presence || service_page_h1(service_key, location)) %>
+
   <%= render 'main_page_sections/service_hero', locals: {
     location_display: "#{location}, #{island}",
     headline: (data['headline'] || "Expert Property Lawyers in #{location}").html_safe,

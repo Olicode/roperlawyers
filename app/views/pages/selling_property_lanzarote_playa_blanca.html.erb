@@ -1,6 +1,8 @@
 <%= render_breadcrumb('selling_property', 'lanzarote', 'playa_blanca') %>
 
 <main>
+  <%= render 'main_page_sections/page_h1', h1_text: service_page_h1('selling_property', 'Playa Blanca') %>
+
   <%= render 'main_page_sections/service_hero', locals: {
     location_display: 'Playa Blanca, Lanzarote',
     headline: 'Expert Selling Property Lawyers in Playa Blanca:<br>Luxury Property Legal Services'.html_safe,

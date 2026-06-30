@@ -1,6 +1,8 @@
 <%= render_breadcrumb('wills', 'lanzarote', 'costa_teguise') %>
 
 <main>
+  <%= render 'main_page_sections/page_h1', h1_text: service_page_h1('wills', 'Costa Teguise') %>
+
   <%= render 'main_page_sections/service_hero', locals: {
     location_display: 'Costa Teguise, Lanzarote',
     headline: 'Expert Will Writing Lawyers in Costa Teguise:<br>Spanish Wills & Estate Planning'.html_safe,
