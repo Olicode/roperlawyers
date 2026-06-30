@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   
   get 'services', to: 'pages#services'
   get 'property-buying-guide', to: 'pages#property_buying_guide'
+  get 'cost-of-buying-property-canary-islands', to: 'pages#cost_of_buying_property_canary_islands'
+  get 'nie-number-spain-property', to: 'pages#nie_number_spain_property'
   get 'canary-islands-holiday-rental-laws', to: 'pages#canary_islands_holiday_rental_laws'
   get 'canary-islands-tourist-use-legal-trap', to: 'pages#tourist_use_trap'
   get 'n2-reporting-guide', to: redirect('/canary-islands-tourist-use-legal-trap', status: 301)

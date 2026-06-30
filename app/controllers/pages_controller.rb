@@ -17,6 +17,8 @@ class PagesController < ApplicationController
   def our_story; end
   def services; end
   def property_buying_guide; end
+  def cost_of_buying_property_canary_islands; end
+  def nie_number_spain_property; end
   def canary_islands_holiday_rental_laws; end
   def tourist_use_trap; end
   def blog; end

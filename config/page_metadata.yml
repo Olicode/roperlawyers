@@ -76,6 +76,16 @@ property_buying_guide:
   description: "Complete step-by-step guide for UK, Irish & European expats buying property in Spain. NIE numbers, legal checks, costs, taxes & common pitfalls explained."
   reviews: "reviews.json"
 
+cost_of_buying_property_canary_islands:
+  title: "Cost of Buying Property in the Canary Islands (2026) | Roper Lawyers"
+  description: "Accurate 2026 cost breakdown for buying property in the Canary Islands: 6.5% ITP on resales, IGIC on new-builds, notary, registry & legal fees. Budget 8–10% on top."
+  reviews: "reviews.json"
+
+nie_number_spain_property:
+  title: "NIE Number for Buying Property in Spain (2026) | Roper Lawyers"
+  description: "Every foreign buyer needs an NIE before completing a Spanish property purchase. How to get one in 2026 — in Spain, at a consulate, or remotely via power of attorney."
+  reviews: "reviews.json"
+
 canary_islands_holiday_rental_laws:
   title: "Canary Islands Holiday Rental Laws 2026 | NRA & N2 Compliance"
   description: "Stay compliant with Canary Islands rental laws in 2026. Learn about the mandatory March 2nd N2 reporting deadline, NRA numbers, and the Sustainable Planning Law."

@@ -38,6 +38,8 @@ class SitemapsController < ApplicationController
       '/why-choose-us',
       '/services',
       '/property-buying-guide',
+      '/cost-of-buying-property-canary-islands',
+      '/nie-number-spain-property',
       '/canary-islands-holiday-rental-laws',
       '/canary-islands-tourist-use-legal-trap',
       '/vv-license',
@@ -111,6 +113,10 @@ class SitemapsController < ApplicationController
       Date.parse('2026-03-04') # Last reviewed: Decree-Law 2/2025 / tourist-use trap guide
     when '/property-buying-guide'
       Date.parse('2025-09-21') # Last reviewed: expat property buying guide
+    when '/cost-of-buying-property-canary-islands'
+      Date.parse('2026-06-01') # Last reviewed: Canary Islands purchase cost guide
+    when '/nie-number-spain-property'
+      Date.parse('2026-06-01') # Last reviewed: NIE for property buyers guide
     else
       Date.current - 30.days # Default to 30 days ago for static content
     end
@@ -122,7 +128,7 @@ class SitemapsController < ApplicationController
       'weekly'
     when '/reviews', '/contact'
       'monthly'
-    when /canary-islands-holiday-rental-laws/, /canary-islands-tourist-use-legal-trap/, /property-buying-guide/
+    when /canary-islands-holiday-rental-laws/, /canary-islands-tourist-use-legal-trap/, /property-buying-guide/, /cost-of-buying-property-canary-islands/, /nie-number-spain-property/
       'yearly'
     else
       'monthly'
@@ -135,7 +141,7 @@ class SitemapsController < ApplicationController
       '1.0'
     when '/buying-property', '/selling-property', '/contact', '/free-consultation'
       '0.9'
-    when '/services', '/wills', '/inheritance', '/holiday-rental-license'
+    when '/services', '/wills', '/inheritance', '/holiday-rental-license', '/cost-of-buying-property-canary-islands', '/nie-number-spain-property'
       '0.8'
     when '/blog', '/reviews', '/our-story', '/team'
       '0.7'
