@@ -1,0 +1,70 @@
+<%
+  default_faqs = [
+    {
+      question: "Do I need an NIE number to buy property in Spain?",
+      answer: "Yes — every foreign buyer needs an NIE (Número de Identidad de Extranjero) before completing a property purchase in Spain. The NIE is required to sign at the notary, pay taxes, and register the title. We obtain NIEs for clients as part of the conveyancing process, including via power of attorney if you cannot travel to Spain."
+    },
+    {
+      question: "What taxes do I pay when buying property in the Canary Islands?",
+      answer: "When buying in the Canary Islands, resale property is subject to transfer tax (ITP) at 6.5% of the purchase price, plus notary fees and Land Registry charges. New-build homes pay IGIC instead of ITP. These rates differ from mainland Spain, so accurate cost planning before you commit to a property purchase is essential."
+    },
+    {
+      question: "Do I need to be in Spain to complete the purchase?",
+      answer: "No — you do not need to be in Spain to complete your purchase. Many overseas buyers grant us a power of attorney so we can represent them at the notary and finalise the conveyancing process on their behalf. We handle signing, tax payments, and Land Registry registration while keeping you informed at every stage."
+    },
+    {
+      question: "What is the contrato de arras?",
+      answer: "The contrato de arras is the Spanish deposit contract that reserves the property once your offer is accepted. Buyers typically pay around 10% earnest money at this stage. It binds both parties to the sale, and backing out without lawful cause can mean losing your deposit or paying compensation, so legal review before signing is strongly advised."
+    },
+    {
+      question: "How long does conveyancing take in Spain?",
+      answer: "The conveyancing process in Spain usually takes four to eight weeks from accepted offer to completion at the notary. Timing depends on due diligence, mortgage approval, NIE issuance, and how quickly sellers produce documentation. We coordinate each step so your property purchase progresses efficiently without unnecessary delays."
+    }
+  ]
+
+  faqs = local_assigns[:local_faqs].presence || default_faqs
+  midpoint = (faqs.size + 1) / 2
+  faq_schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map do |faq|
+      {
+        "@type": "Question",
+        "name": faq[:question] || faq["question"],
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq[:answer] || faq["answer"]
+        }
+      }
+    end
+  }
+%>
+
+<section id="faq">
+  <div class="container px-4 py-5">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="pb-4 m-3 text-center">Frequently Asked Questions</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <% faqs.first(midpoint).each do |faq| %>
+          <h3><%= faq[:question] || faq["question"] %></h3>
+          <p><%= faq[:answer] || faq["answer"] %></p>
+        <% end %>
+      </div>
+      <div class="col-md-6 col-12">
+        <% faqs.drop(midpoint).each do |faq| %>
+          <h3><%= faq[:question] || faq["question"] %></h3>
+          <p><%= faq[:answer] || faq["answer"] %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <script type="application/ld+json">
+      <%= json_escape(faq_schema.to_json).html_safe %>
+    </script>
+  </div>
+</section>
