@@ -5,7 +5,13 @@
   </div>
   <div class="row px-4 ">
     <% if @reviews.present? && @reviews["records"].present? %>
-      <% @reviews["records"].each do |review|%>
+      <%
+        all_reviews = @reviews["records"]
+        displayed_reviews = all_reviews
+          .sort_by { |r| [r["featured"] == true ? 0 : 1, r["id"].to_i] }
+          .first(12)
+      %>
+      <% displayed_reviews.each do |review|%>
       <div class="col-sm-3 px-2 py-2 d-flex align-items-stretch ">
         <div class="card p-2 card-shadow">
           <div class="card-body review-data text-start">
@@ -36,6 +42,11 @@
           </div>
         </div>
       </div>
+      <% end %>
+      <% if all_reviews.size > displayed_reviews.size %>
+        <div class="col-12 text-center pt-3">
+          <a href="/reviews" class="btn btn-outline-secondary rounded-pill px-4">View all reviews</a>
+        </div>
       <% end %>
     <% end %>
   </div>
