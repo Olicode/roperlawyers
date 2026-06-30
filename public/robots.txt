@@ -1,1 +1,124 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+# Production robots.txt for Roper Lawyers
+# https://www.roperlawyers.com
+
+User-agent: *
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
+User-agent: GPTBot
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
+User-agent: Bingbot
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
+Sitemap: https://www.roperlawyers.com/sitemap.xml
