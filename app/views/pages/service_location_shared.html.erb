@@ -7,7 +7,6 @@
   location = data['location_name'] || 'Local Area'
 %>
 
-<%= render_breadcrumb(service_key, island, location) %>
 
 <main>
   <%= render 'main_page_sections/page_h1', h1_text: (data['h1'].presence || service_page_h1(service_key, location)) %>

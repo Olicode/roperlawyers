@@ -54,6 +54,9 @@
   <%= render partial: "layouts/navigation"%>
   
   <main class="flex-grow-1 d-flex flex-column">
+    <% unless request.path == "/" %>
+      <%= render 'layouts/breadcrumbs' %>
+    <% end %>
     <%= yield %>
   </main>
 
