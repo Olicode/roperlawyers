@@ -24,6 +24,8 @@ module SchemaHelper
   def structured_data
     schema = FIRM.merge(
       "@context": "https://schema.org",
+      "@id": "https://www.roperlawyers.com/#organization",
+      "founder": { "@id": "https://www.roperlawyers.com/team/olivier-roper#person" },
       "description": @mdescription || FIRM[:description],
       "url": request.original_url,
       "image": image_url("roperlawyerslogo.png")

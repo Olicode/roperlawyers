@@ -1,0 +1,21 @@
+<%
+  reviewed_date = local_assigns[:reviewed_on].presence || Date.parse("2026-01-15")
+%>
+<section class="py-0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <aside class="author-byline mb-4" style="border-left: 3px solid #b29c84; padding-left: 1rem;">
+          <p class="mb-1 small text-muted">
+            Reviewed by
+            <%= link_to "Olivier Roper", "/team/olivier-roper", class: "text-decoration-none fw-medium", style: "color: #b29c84;" %>,
+            Ilustre Colegio de Abogados de Lanzarote (Reg. 507)
+          </p>
+          <p class="mb-0 small text-muted">
+            Last reviewed: <%= reviewed_date.strftime("%-d %B %Y") %>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

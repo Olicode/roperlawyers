@@ -1,23 +1,42 @@
 <% content_for :head do %>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Olivier Roper",
-  "jobTitle": "Founder & Lawyer",
-  "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Barcelona" },
-  "worksFor": {
-    "@type": "LegalService",
-    "name": "Roper Lawyers",
-    "url": "https://www.roperlawyers.com"
-  },
-  "url": "https://www.roperlawyers.com/team/olivier-roper",
-  "image": "https://www.roperlawyers.com/team/olivier-roper.jpg",
-  "sameAs": [
-    "https://www.linkedin.com/in/OLIVIER-LINK"
-  ]
-}
-</script>
+  <% person_schema = {
+    "@context" => "https://schema.org",
+    "@type" => "Person",
+    "@id" => "https://www.roperlawyers.com/team/olivier-roper#person",
+    "name" => "Olivier Roper",
+    "jobTitle" => "Property Lawyer",
+    "description" => "Registered with the Ilustre Colegio de Abogados de Lanzarote (bar registration number 507).",
+    "identifier" => {
+      "@type" => "PropertyValue",
+      "propertyID" => "Spanish Bar Registration Number",
+      "value" => "507"
+    },
+    "worksFor" => { "@id" => "https://www.roperlawyers.com/#organization" },
+    "knowsAbout" => [
+      "Spanish property law",
+      "Conveyancing in Spain",
+      "Holiday rental licences",
+      "Spanish inheritance law",
+      "Spanish wills"
+    ],
+    "alumniOf" => [
+      { "@type" => "CollegeOrUniversity", "name" => "University of Barcelona" },
+      { "@type" => "CollegeOrUniversity", "name" => "Universidad de La Laguna" }
+    ],
+    "memberOf" => {
+      "@type" => "Organization",
+      "name" => "Ilustre Colegio de Abogados de Lanzarote"
+    },
+    "knowsLanguage" => ["en", "es"],
+    "url" => "https://www.roperlawyers.com/team/olivier-roper",
+    "image" => image_url("Olivier-Roper-Solicitor-Roper-Lawyers.jpg"),
+    "sameAs" => [
+      "https://www.linkedin.com/in/olivier-roper-4850959b"
+    ]
+  } %>
+  <script type="application/ld+json">
+    <%= json_escape(person_schema.to_json).html_safe %>
+  </script>
 <% end %>
 
 <main>
