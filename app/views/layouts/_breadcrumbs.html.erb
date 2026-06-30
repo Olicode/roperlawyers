@@ -1,9 +1,4 @@
 <% breadcrumbs = breadcrumbs_from_path(request.path) %>
 <% if breadcrumbs.size > 1 %>
-  <section class="breadcrumb-section" style="background-color: #f8f9fa; border-bottom: 1px solid #e9ecef; padding: 0.75rem 0;">
-    <%= breadcrumb_schema_script(breadcrumbs) %>
-    <div class="container">
-      <%= breadcrumb_nav(breadcrumbs) %>
-    </div>
-  </section>
+  <%= breadcrumb_schema_script(breadcrumbs) %>
 <% end %>

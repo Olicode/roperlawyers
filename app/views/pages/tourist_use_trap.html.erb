@@ -1,32 +1,25 @@
 <% content_for :title, @mtitle %>
 <% content_for :meta_description, @mdescription %>
 
-<!-- Hero Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <h1 class="display-4 fw-bold mb-3">Buying a Property in the Canary Islands: The "Tourist Use" Legal Trap You Must Avoid</h1>
-        <h2 class="h5 text-muted mb-4">Protecting Your Investment in Tenerife, Gran Canaria, Lanzarote, and Fuerteventura</h2>
-        
-        <div class="ratio ratio-16x9 mb-4 shadow-sm rounded overflow-hidden">
-          <iframe
-            src="https://www.youtube.com/embed/5XAROjYLqy0"
-            title="Don't Buy Property in the Canaries Until You Watch This!"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy"></iframe>
-        </div>
-
-        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mt-4">
-          <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal" class="btn btn-lg rounded-pill px-4" style="background-color: #b39c84; border-color: #b39c84; color: white;">
-            Secure My Conveyancing
-          </a>
-        </div>
-      </div>
-    </div>
+<%= render layout: "main_page_sections/page_hero",
+           locals: {
+             title: "Buying a Property in the Canary Islands: The \"Tourist Use\" Legal Trap You Must Avoid",
+             subtitle: "Protecting Your Investment in Tenerife, Gran Canaria, Lanzarote, and Fuerteventura"
+           } do %>
+  <div class="ratio ratio-16x9 mb-4 shadow-sm rounded overflow-hidden">
+    <iframe
+      src="https://www.youtube.com/embed/5XAROjYLqy0"
+      title="Don't Buy Property in the Canaries Until You Watch This!"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"></iframe>
   </div>
-</section>
+  <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+    <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal" class="btn btn-lg rounded-pill px-4" style="background-color: #b39c84; border-color: #b39c84; color: white;">
+      Secure My Conveyancing
+    </a>
+  </div>
+<% end %>
 
 <%= render 'main_page_sections/author_byline', reviewed_on: Date.parse("2026-03-04") %>
 
@@ -40,7 +33,7 @@
         </p>
 
         <p class="mb-4">
-          My name is <strong>Olivier Roper</strong>, a lawyer and MBA specializing in <strong>Canary Islands property conveyancing</strong>. With over 15 years of experience and a unique background as a <strong>former Town Hall Counselor (Head of Business Licensing and Housing)</strong>, I provide my clients with an "insider" perspective on the complex urban planning laws that govern the islands.
+          My name is <strong>Olivier Roper</strong>, a lawyer and MBA specialising in <strong>Canary Islands property conveyancing</strong>. With over 15 years of experience and a unique background as a <strong>former Town Hall Councillor (Head of Business Licensing and Housing)</strong>, I provide my clients with an "insider" perspective on the complex urban planning laws that govern the islands.
         </p>
 
         <h2 class="h3 mb-4" style="color: #b39c84;">The Reality of "Suelo Turístico" (Touristic Land)</h2>
@@ -61,7 +54,7 @@
           In 2025 and 2026, the Canary Islands government introduced new measures to address the "residentialization" of tourist zones. Many sellers in <strong>Corralejo (Fuerteventura)</strong> or <strong>Costa Teguise (Lanzarote)</strong> are now claiming their properties have <strong>"Consolidated Residential Use."</strong>
         </p>
         <p class="mb-4">
-          They may tell you that a <strong>Change of Use (Cambio de Uso)</strong> is "in progress." However, as a former government official, I advise extreme caution. A "pending" application is not a guarantee. Until the change is finalized by the <strong>Ayuntamiento</strong> (Town Hall) and registered at the <strong>Land Registry</strong>, your investment is at risk.
+          They may tell you that a <strong>Change of Use (Cambio de Uso)</strong> is "in progress." However, as a former government official, I advise extreme caution. A "pending" application is not a guarantee. Until the change is finalised by the <strong>Ayuntamiento</strong> (Town Hall) and registered at the <strong>Land Registry</strong>, your investment is at risk.
         </p>
 
         <h2 class="h3 mb-4" style="color: #b39c84;">Key Risks for Property Buyers in the Canaries</h2>
@@ -139,7 +132,7 @@
 
 <%= video_schema({
   name: "Canary Islands Tourist Use Legal Trap Explained",
-  description: "Former Town Hall Counselor Olivier Roper explains the legal risks of 'Suelo Turístico' and modern rental laws in Tenerife, Gran Canaria, and Lanzarote.",
+  description: "Former Town Hall Councillor Olivier Roper explains the legal risks of 'Suelo Turístico' and modern rental laws in Tenerife, Gran Canaria, and Lanzarote.",
   thumbnail_url: "https://img.youtube.com/vi/9Bv_3f5y6mE/maxresdefault.jpg",
   upload_date: "2025-02-15",
   duration: "PT10M12S",

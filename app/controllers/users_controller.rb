@@ -120,13 +120,13 @@ class UsersController < ApplicationController
         
       if user_params[:vv_license_documents]&.reject(&:blank?)&.present?
         user_params[:vv_license_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "VV License"))
+          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "VV Licence"))
         end
       end
         
       if user_params[:first_occupation_license_documents]&.reject(&:blank?)&.present?
         user_params[:first_occupation_license_documents].reject(&:blank?).each do |document|
-          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "First Occupation License"))
+          SalesforceService.upload_file(sf_file_upload_attrs_map(@user, document, "First Occupation Licence"))
         end
       end
         

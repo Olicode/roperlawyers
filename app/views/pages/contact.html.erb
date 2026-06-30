@@ -1,30 +1,20 @@
 <% content_for :title, @mtitle %>
 <% content_for :meta_description, @mdescription %>
 
-<!-- Hero Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <h1 class="display-4 fw-bold mb-4">
-          Contact Our Expert Legal Team
-        </h1>
-        <p class="lead mb-4">
-          Get personalized legal advice from our experienced Spanish property lawyers. 
-          We're here to help with all your legal needs in Spain.
-        </p>
-        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-          <a href="#calendly-widget" class="btn btn-lg rounded-pill px-5" style="background-color: #b39c84; border-color: #b39c84; color: white;">
-            Schedule Free Consultation
-          </a>
-          <a href="#contact-info" class="btn btn-outline-secondary btn-lg rounded-pill px-5">
-            Contact Information
-          </a>
-        </div>
-      </div>
-    </div>
+<%= render layout: "main_page_sections/page_hero",
+           locals: {
+             title: "Contact Our Expert Legal Team",
+             intro: "Get personalised legal advice from our experienced Spanish property lawyers. We're here to help with all your legal needs in Spain."
+           } do %>
+  <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+    <a href="#calendly-widget" class="btn btn-lg rounded-pill px-5" style="background-color: #b39c84; border-color: #b39c84; color: white;">
+      Schedule Free Consultation
+    </a>
+    <a href="#contact-info" class="btn btn-outline-secondary btn-lg rounded-pill px-5">
+      Contact Information
+    </a>
   </div>
-</section>
+<% end %>
 
 <!-- Main Content -->
 <section class="py-5">
@@ -126,7 +116,7 @@
             <div class="d-flex flex-wrap gap-2">
               <span class="badge rounded-pill" style="background-color: #b39c84; color: white;">Property Buying</span>
               <span class="badge rounded-pill" style="background-color: #b39c84; color: white;">Property Selling</span>
-              <span class="badge rounded-pill" style="background-color: #b39c84; color: white;">VV Licenses</span>
+              <span class="badge rounded-pill" style="background-color: #b39c84; color: white;">VV Licences</span>
               <span class="badge rounded-pill" style="background-color: #b39c84; color: white;">Wills & Inheritance</span>
               <span class="badge rounded-pill" style="background-color: #b39c84; color: white;">NIE Applications</span>
               <span class="badge rounded-pill" style="background-color: #b39c84; color: white;">Tax Advice</span>

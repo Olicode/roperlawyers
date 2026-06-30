@@ -16,10 +16,10 @@
       },
       {
         "@type": "Question",
-        "name": "Can I transfer my VV license if I sell my property?",
+        "name": "Can I transfer my VV licence if I sell my property?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Under Ley 6/2025, VV licenses are generally not transferable. The new owner must apply for a new license, which is subject to the 10-year age rule and current municipal zoning caps."
+          "text": "Under Ley 6/2025, VV licences are generally not transferable. The new owner must apply for a new licence, which is subject to the 10-year age rule and current municipal zoning caps."
         }
       },
       {
@@ -43,54 +43,40 @@
   </script>
 <% end %>
 
-<!-- Hero Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <h1 class="display-4 fw-bold mb-3">Canary Islands Holiday Rental Laws: 2026 Compliance Guide</h1>
-        <h2 class="h5 text-muted mb-3">Navigating NRA Registration, N2 Reporting, and Sustainable Planning Regulations</h2>
-        <p class="text-muted mb-4"><strong>Last Updated:</strong> January 29, 2026 | <strong>Legal Review:</strong> Roper Lawyers</p>
-        <p class="lead mb-4">
-          The legal landscape for holiday home owners in Spain and the Canary Islands has shifted. Under
-          <strong>Real Decreto 1312/2024</strong> and the landmark <strong>Canarian Law on Sustainable Planning (Ley 6/2025)</strong>,
-          the era of informal registration has ended.
-        </p>
-        <p class="lead mb-4">
-          <strong>Are you ready for the March 2nd deadline?</strong> To keep your listings active on Airbnb, Booking.com, and Vrbo,
-          you must now move from simple registration into the mandatory Annual Reporting Phase.
-        </p>
-        <div class="row g-4 mb-4">
-          <div class="col-md-6">
-            <div class="ratio ratio-16x9">
-              <iframe
-                src="https://www.youtube.com/embed/eNsGdYoUuHE"
-                title="Canary Islands Holiday Rental Laws 2026 Video - Part 1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                loading="lazy"></iframe>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="ratio ratio-16x9">
-              <iframe
-                src="https://www.youtube.com/embed/5XAROjYLqy0"
-                title="Canary Islands Holiday Rental Laws 2026 Video - Part 2"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                loading="lazy"></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-          <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal" class="btn btn-lg rounded-pill px-4" style="background-color: #b39c84; border-color: #b39c84; color: white;">
-            Secure My 2026 Compliance
-          </a>
-        </div>
+<%= render layout: "main_page_sections/page_hero",
+           locals: {
+             title: "Canary Islands Holiday Rental Laws: 2026 Compliance Guide",
+             subtitle: "Navigating NRA Registration, N2 Reporting, and Sustainable Planning Regulations",
+             intro: ("<p class=\"text-muted mb-4\"><strong>Last Updated:</strong> January 29, 2026 | <strong>Legal Review:</strong> Roper Lawyers</p><p class=\"mb-4\">The legal landscape for holiday home owners in Spain and the Canary Islands has shifted. Under <strong>Real Decreto 1312/2024</strong> and the landmark <strong>Canarian Law on Sustainable Planning (Ley 6/2025)</strong>, the era of informal registration has ended.</p><p class=\"mb-0\"><strong>Are you ready for the March 2nd deadline?</strong> To keep your listings active on Airbnb, Booking.com, and Vrbo, you must now move from simple registration into the mandatory Annual Reporting Phase.</p>").html_safe
+           } do %>
+  <div class="row g-4 mb-4">
+    <div class="col-md-6">
+      <div class="ratio ratio-16x9">
+        <iframe
+          src="https://www.youtube.com/embed/eNsGdYoUuHE"
+          title="Canary Islands Holiday Rental Laws 2026 Video - Part 1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="ratio ratio-16x9">
+        <iframe
+          src="https://www.youtube.com/embed/5XAROjYLqy0"
+          title="Canary Islands Holiday Rental Laws 2026 Video - Part 2"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"></iframe>
       </div>
     </div>
   </div>
-</section>
+  <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+    <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal" class="btn btn-lg rounded-pill px-4" style="background-color: #b39c84; border-color: #b39c84; color: white;">
+      Secure My 2026 Compliance
+    </a>
+  </div>
+<% end %>
 
 <%= render 'main_page_sections/author_byline', reviewed_on: Date.parse("2026-01-29") %>
 
@@ -106,7 +92,7 @@
             (NRA/NRUA) must complete their first <strong>Annual Informative Declaration</strong> (the N2 "Data Deposit").
           </p>
           <ul class="mb-3">
-            <li><strong>Filing Window:</strong> February 1st – March 2nd, 2026.</li>
+            <li><strong>Filing Window:</strong> February 1st, March 2nd, 2026.</li>
             <li><strong>The Mandate:</strong> You must report all booking activity from the 2025 calendar year, including stay dates, guest counts, and the purpose of stay (Tourism, Work, Study, or Medical).</li>
             <li><strong>The Penalty:</strong> Failure to file results in the immediate revocation of your NRA number. Once revoked, online platforms are legally barred from hosting your listing.</li>
           </ul>
@@ -126,11 +112,11 @@
           </div>
 
           <div class="mb-4">
-            <h3 class="h5 mb-2">Pillar 2: The Regional Layer (VV License &amp; Classified Activity)</h3>
+            <h3 class="h5 mb-2">Pillar 2: The Regional Layer (VV Licence &amp; Classified Activity)</h3>
             <p>
-              The <strong>Decreto 113/2015</strong> remains the baseline. You must hold a valid <strong>Vivienda Vacacional (VV) License</strong>.
-              Crucially for 2026: Municipalities are now auditing for "Classified Activity" permits. Even if you have a VV license,
-              lacking this municipal permit can lead to license suspension.
+              The <strong>Decreto 113/2015</strong> remains the baseline. You must hold a valid <strong>Vivienda Vacacional (VV) Licence</strong>.
+              Crucially for 2026: Municipalities are now auditing for "Classified Activity" permits. Even if you have a VV licence,
+              lacking this municipal permit can lead to licence suspension.
             </p>
           </div>
 
@@ -138,8 +124,8 @@
             <h3 class="h5 mb-2">Pillar 3: The Sustainable Planning Layer (Ley 6/2025)</h3>
             <p class="mb-3">This new law introduces strict limits to protect local housing:</p>
             <ul class="mb-3">
-              <li><strong>10-Year Age Limit:</strong> Buildings must be 10+ years old to be eligible for <em>new</em> licenses.</li>
-              <li><strong>90% Residential Reserve:</strong> Licenses are capped at 10% of total housing in most municipalities.</li>
+              <li><strong>10-Year Age Limit:</strong> Buildings must be 10+ years old to be eligible for <em>new</em> licences.</li>
+              <li><strong>90% Residential Reserve:</strong> Licences are capped at 10% of total housing in most municipalities.</li>
               <li><strong>Community Veto:</strong> Under the <strong>Horizontal Property Law (LPH)</strong>, your community of owners can now prohibit rentals with a 3/5ths (60%) majority vote.</li>
             </ul>
           </div>
@@ -165,8 +151,8 @@
             <p>You are still required to file a "Zero Activity" (Sin Actividad) report by March 2nd to keep your NRA number active.</p>
           </div>
           <div class="mb-4">
-            <h3 class="h5 mb-2">Can I transfer my VV license if I sell my property?</h3>
-            <p>Under Ley 6/2025, VV licenses are generally not transferable. The new owner must apply for a new license, which will be subject to the 10-year age rule and current municipal zoning caps.</p>
+            <h3 class="h5 mb-2">Can I transfer my VV licence if I sell my property?</h3>
+            <p>Under Ley 6/2025, VV licences are generally not transferable. The new owner must apply for a new licence, which will be subject to the 10-year age rule and current municipal zoning caps.</p>
           </div>
           <div class="mb-4">
             <h3 class="h5 mb-2">Is N2 reporting a tax?</h3>

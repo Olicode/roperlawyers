@@ -3,7 +3,7 @@
 
 home:
   title: "Spanish Property Lawyers | Expert Legal Services | Roper Lawyers"
-  description: "Expert Spanish property lawyers with 15+ years' experience. Bilingual legal services for UK, Irish & international clients. Conveyancing, wills, inheritance & VV licenses."
+  description: "Expert Spanish property lawyers with 15+ years' experience. Bilingual legal services for UK, Irish & international clients. Conveyancing, wills, inheritance & VV licences."
   reviews: "reviews.json"
 
 lanzarote:
@@ -62,13 +62,13 @@ reviews:
   reviews: "reviews.json"
 
 our_story:
-  title: "Our Story – English-Speaking Property Lawyers in Spain | Roper Lawyers"
+  title: "Our Story, English-Speaking Property Lawyers in Spain | Roper Lawyers"
   description: "Meet Roper Lawyers: 15+ years helping UK, Irish & European clients with Spanish property law. Bilingual experts in conveyancing, inheritance & wills."
   reviews: "reviews.json"
 
 services:
   title: "Legal Services for Spanish Property Law | Roper Lawyers"
-  description: "Comprehensive Spanish property law services: conveyancing, wills, inheritance, holiday rental licenses, NIE numbers & tax advice for non-residents."
+  description: "Comprehensive Spanish property law services: conveyancing, wills, inheritance, holiday rental licences, NIE numbers & tax advice for non-residents."
   reviews: "reviews.json"
 
 property_buying_guide:
@@ -83,7 +83,7 @@ cost_of_buying_property_canary_islands:
 
 nie_number_spain_property:
   title: "NIE Number for Buying Property in Spain (2026) | Roper Lawyers"
-  description: "Every foreign buyer needs an NIE before completing a Spanish property purchase. How to get one in 2026 — in Spain, at a consulate, or remotely via power of attorney."
+  description: "Every foreign buyer needs an NIE before completing a Spanish property purchase. How to get one in 2026: in Spain, at a consulate, or remotely via power of attorney."
   reviews: "reviews.json"
 
 canary_islands_holiday_rental_laws:
@@ -98,7 +98,7 @@ blog:
 
 tourist_use_trap:
   title: "Canary Islands Tourist Use Legal Trap | Buying Property Law | Roper Lawyers"
-  description: "Former Town Hall Counselor Olivier Roper explains the risks of Suelo Turístico land and Decree-Law 2/2025. Don't buy in Tenerife, Gran Canaria or Lanzarote until you read this."
+  description: "Former Town Hall Councillor Olivier Roper explains the risks of Suelo Turístico land and Decree-Law 2/2025. Don't buy in Tenerife, Gran Canaria or Lanzarote until you read this."
   reviews: "lanzarote_reviews.json"
 
 buying_property:
@@ -127,9 +127,8 @@ new_build_registration:
   reviews: "reviews.json"
 
 holiday_rental_license:
-  title: "Holiday Rental License Spain | VV License Experts | Roper Lawyers"
-  description: "Expert holiday rental licensing in Spain. VV license applications, compliance, and legal support. Bilingual lawyers with 15+ years' experience."
-  reviews: "reviews.json"
+  title: "Holiday Rental Licence in Spain (VUT): 2026 Guide | Roper Lawyers"
+  description: "How to legally license a holiday rental (Vivienda de Uso Turístico) anywhere in Spain in 2026: regional licences, community consent, guest registration & tax. Reviewed by a Spanish lawyer."
 
 buying_property_lanzarote:
   title: "Buying Property in Lanzarote | Expert Legal Guidance | Roper Lawyers"
@@ -157,8 +156,8 @@ new_build_registration_lanzarote:
   reviews: "lanzarote_reviews.json"
 
 holiday_rental_license_lanzarote:
-  title: "Holiday Rental License Lanzarote | VV License Experts | Roper Lawyers"
-  description: "Expert holiday rental licensing in Lanzarote. VV license applications, compliance, and legal support. Bilingual lawyers with 15+ years' experience."
+  title: "Holiday Rental Licence Lanzarote | VV Licence Experts | Roper Lawyers"
+  description: "Expert holiday rental licensing in Lanzarote. VV licence applications, compliance, and legal support. Bilingual lawyers with 15+ years' experience."
   reviews: "lanzarote_reviews.json"
 
 # Puerto del Carmen
@@ -188,8 +187,8 @@ new_build_registration_lanzarote_puerto_del_carmen:
   reviews: "lanzarote_reviews.json"
 
 holiday_rental_license_lanzarote_puerto_del_carmen:
-  title: "Holiday Rental License Puerto del Carmen | VV License Experts | Roper Lawyers"
-  description: "Expert holiday rental licensing in Puerto del Carmen, Lanzarote. VV license applications and compliance support."
+  title: "Holiday Rental Licence Puerto del Carmen | VV Licence Experts | Roper Lawyers"
+  description: "Expert holiday rental licensing in Puerto del Carmen, Lanzarote. VV licence applications and compliance support."
   reviews: "lanzarote_reviews.json"
 
 # Playa Blanca
@@ -219,8 +218,8 @@ new_build_registration_lanzarote_playa_blanca:
   reviews: "lanzarote_reviews.json"
 
 holiday_rental_license_lanzarote_playa_blanca:
-  title: "Holiday Rental License Playa Blanca | VV License Experts | Roper Lawyers"
-  description: "Expert holiday rental licensing in Playa Blanca, Lanzarote. VV license applications and compliance support."
+  title: "Holiday Rental Licence Playa Blanca | VV Licence Experts | Roper Lawyers"
+  description: "Expert holiday rental licensing in Playa Blanca, Lanzarote. VV licence applications and compliance support."
   reviews: "lanzarote_reviews.json"
 
 # Costa Teguise
@@ -250,8 +249,8 @@ new_build_registration_lanzarote_costa_teguise:
   reviews: "lanzarote_reviews.json"
 
 holiday_rental_license_lanzarote_costa_teguise:
-  title: "Holiday Rental License Costa Teguise | VV License Experts | Roper Lawyers"
-  description: "Expert holiday rental licensing in Costa Teguise, Lanzarote. VV license applications and compliance support."
+  title: "Holiday Rental Licence Costa Teguise | VV Licence Experts | Roper Lawyers"
+  description: "Expert holiday rental licensing in Costa Teguise, Lanzarote. VV licence applications and compliance support."
   reviews: "lanzarote_reviews.json"
 
 thank_you:
@@ -264,7 +263,7 @@ propertybase_success:
 
 step2_contact:
   title: "Complete Your Legal Inquiry | Step 2 Contact Form | Roper Lawyers"
-  description: "Complete your legal inquiry with detailed information. Step 2 of our consultation process for personalized Spanish property law guidance."
+  description: "Complete your legal inquiry with detailed information. Step 2 of our consultation process for personalised Spanish property law guidance."
 
 team:
   title: "Meet the Team | Expert Spanish Property Lawyers | Roper Lawyers"
@@ -276,7 +275,7 @@ team_olivier_roper:
 
 team_rachel_jane_buckett:
   title: "Rachel Jane Buckett | Senior Legal Assistant | Roper Lawyers"
-  description: "Rachel Jane Buckett, experienced legal assistant specializing in Spanish property transactions and client support at Roper Lawyers."
+  description: "Rachel Jane Buckett, experienced legal assistant specialising in Spanish property transactions and client support at Roper Lawyers."
 
 why_choose_us:
   title: "Why Choose Roper Lawyers | Expert Spanish Property Law Specialists"
@@ -289,17 +288,17 @@ spain_property_guide:
 
 free_consultation:
   title: "Free Legal Consultation | Spanish Property Law | Roper Lawyers"
-  description: "Book your free consultation with expert Spanish property lawyers. Get personalized legal advice for buying, selling, wills, inheritance, and VV licenses."
+  description: "Book your free consultation with expert Spanish property lawyers. Get personalised legal advice for buying, selling, wills, inheritance, and VV licences."
   reviews: "reviews.json"
 
 consultation:
   title: "Legal Consultation Services | Spanish Property Law | Roper Lawyers"
-  description: "Professional legal consultation services for Spanish property law. Expert advice on conveyancing, inheritance, wills, and holiday rental licenses."
+  description: "Professional legal consultation services for Spanish property law. Expert advice on conveyancing, inheritance, wills, and holiday rental licences."
   reviews: "reviews.json"
 
 vv_license:
-  title: "VV License Services | Holiday Rental Licensing | Roper Lawyers"
-  description: "Expert VV license services for holiday rental properties in Spain. Complete licensing support, compliance guidance, and legal assistance."
+  title: "VV Licence Services | Holiday Rental Licensing | Roper Lawyers"
+  description: "Expert VV licence services for holiday rental properties in Spain. Complete licensing support, compliance guidance, and legal assistance."
   reviews: "reviews.json"
 
 privacy_policy:
@@ -318,7 +317,7 @@ contact:
 # Tenerife Hotspots - Buying Property
 buying_property_tenerife_adeje:
   title: "Property Lawyers in Adeje Tenerife | Expert Conveyancing | Roper Lawyers"
-  description: "Bilingual property lawyers specializing in Adeje, Tenerife. Expert legal support for luxury villa and apartment purchases in Costa Adeje and surrounding areas."
+  description: "Bilingual property lawyers specialising in Adeje, Tenerife. Expert legal support for luxury villa and apartment purchases in Costa Adeje and surrounding areas."
   use_shared_template: true
   island: "Tenerife"
   location_name: "Adeje"
@@ -333,7 +332,7 @@ buying_property_tenerife_adeje:
   features:
     - title: "Luxury Due Diligence"
       description: "Rigorous verification of building permits, habitability certificates, and urban compliance for high-end Adeje villas."
-    - title: "Tax Optimization"
+    - title: "Tax Optimisation"
       description: "Expert advice on ITP, AJD, and other Spanish property taxes specifically for luxury real estate acquisitions."
     - title: "Golden Visa Support"
       description: "Comprehensive legal assistance for investors seeking Spanish residency through property investment in Tenerife."
@@ -354,7 +353,7 @@ buying_property_tenerife_los_cristianos:
   service_key: "buying_property"
   headline: "Property Lawyers in Los Cristianos:<br>Expert Legal Support for Your Sunshine Home"
   subheadline: "Trusted legal guidance for property buyers in Los Cristianos, one of Tenerife's most beloved coastal towns."
-  intro_text: "Los Cristianos remains a perennial favorite for property buyers, offering a perfect blend of traditional charm and modern convenience. Our expert property lawyers in Los Cristianos guide you through every step of the purchase process, ensuring that your investment in this bustling port town is legally sound and fully compliant with local regulations."
+  intro_text: "Los Cristianos remains a perennial favourite for property buyers, offering a perfect blend of traditional charm and modern convenience. Our expert property lawyers in Los Cristianos guide you through every step of the purchase process, ensuring that your investment in this bustling port town is legally sound and fully compliant with local regulations."
   why_choose_headline: "Why Choose Los Cristianos for Your Property"
   why_choose_text1: "With its beautiful beaches, vibrant harbor, and year-round sunshine, Los Cristianos offers an exceptional quality of life. The property market here is diverse, ranging from holiday apartments to traditional townhouses. Its strong rental potential and steady demand make it an attractive location for both personal use and investment."
   why_choose_text2: "Our team understands the specific nuances of the Los Cristianos market, including historical building statuses and community of owners regulations. We provide clear, English-speaking legal advice to ensure you understand all aspects of your purchase, from initial deposit to final registration."
@@ -383,10 +382,10 @@ buying_property_tenerife_las_americas:
   service_key: "buying_property"
   headline: "Las Américas Property Experts:<br>Legal Security for Your Tenerife Investment"
   subheadline: "Professional conveyancing services for apartments and commercial units in Tenerife's premier holiday destination."
-  intro_text: "Playa de las Américas is the heart of Tenerife's tourism industry, offering high-yield investment opportunities. However, navigating the legalities of buying in this 'Tourist Zone' requires specialized knowledge of regional tourism laws and 'Suelo Turístico' restrictions. Our lawyers ensure your purchase in Las Américas is fully compliant and future-proofed."
+  intro_text: "Playa de las Américas is the heart of Tenerife's tourism industry, offering high-yield investment opportunities. However, navigating the legalities of buying in this 'Tourist Zone' requires specialised knowledge of regional tourism laws and 'Suelo Turístico' restrictions. Our lawyers ensure your purchase in Las Américas is fully compliant and future-proofed."
   why_choose_headline: "Investment Potential in Las Américas"
-  why_choose_text1: "Las Américas is known for its incredible atmosphere, world-class nightlife, and exceptional surfing. For property investors, the area offers high occupancy rates and excellent capital growth potential. Whether you're looking for a holiday studio or a luxury duplex, the demand in Las Américas remains consistently high among international travelers."
-  why_choose_text2: "We specialize in identifying 'Tourist Use' legal traps in Las Américas, advising you on the principle of 'Unity of Exploitation' and how it affects your right to stay in or rent your property. Our insider knowledge of Arona and Adeje municipal rules helps you avoid costly administrative infractions."
+  why_choose_text1: "Las Américas is known for its incredible atmosphere, world-class nightlife, and exceptional surfing. For property investors, the area offers high occupancy rates and excellent capital growth potential. Whether you're looking for a holiday studio or a luxury duplex, the demand in Las Américas remains consistently high among international travellers."
+  why_choose_text2: "We specialise in identifying 'Tourist Use' legal traps in Las Américas, advising you on the principle of 'Unity of Exploitation' and how it affects your right to stay in or rent your property. Our insider knowledge of Arona and Adeje municipal rules helps you avoid costly administrative infractions."
   reviews: "lanzarote_reviews.json"
   features:
     - title: "Tourism Law Review"
@@ -424,7 +423,7 @@ buying_property_grancanaria_maspalomas:
     - title: "Consolidated Residential Audit"
       description: "Determining whether a bungalow in a complex can be legally used as a permanent residence."
     - title: "Mortage Support"
-      description: "Liaising with Spanish banks to secure favorable lending terms for your Maspalomas home."
+      description: "Liaising with Spanish banks to secure favourable lending terms for your Maspalomas home."
   amenities:
     - title: "Maspalomas Dunes"
       description: "Breathtaking access to the 400 hectares of natural sand dunes and palm groves, a protected natural space."
@@ -471,10 +470,10 @@ buying_property_grancanaria_las_palmas:
   service_key: "buying_property"
   headline: "Las Palmas Property Experts:<br>Legal Guidance for the Gran Canaria Capital"
   subheadline: "Dedicated legal services for city living and urban investment in Las Palmas de Gran Canaria."
-  intro_text: "Las Palmas de Gran Canaria is a vibrant, cosmopolitan city that offers a unique real estate market—from historic 'Casas Terreras' in Vegueta to modern beachfront apartments at Las Canteras. Navigating the capital's urban planning rules and property registry requires a lawyer who understands the pulse of the city. We provide clear, secure legal paths for your urban investment."
+  intro_text: "Las Palmas de Gran Canaria is a vibrant, cosmopolitan city that offers a unique real estate market, from historic 'Casas Terreras' in Vegueta to modern beachfront apartments at Las Canteras. Navigating the capital's urban planning rules and property registry requires a lawyer who understands the pulse of the city. We provide clear, secure legal paths for your urban investment."
   why_choose_headline: "Life in Las Palmas de Gran Canaria"
   why_choose_text1: "Las Palmas is a major European city with an incredible beach (Las Canteras) right at its heart. It offers a rich cultural life, world-class restaurants, and a thriving business environment. For real estate buyers, it provides a stable market with strong demand for both long-term and short-term rentals, fueled by digital nomads and city lovers."
-  why_choose_text2: "We specialize in the legal complexities of urban properties, including 'Edificios' (entire buildings) and historical protection orders. Our team ensures that your city apartment or historic renovation project meets all municipal codes and registration requirements."
+  why_choose_text2: "We specialise in the legal complexities of urban properties, including 'Edificios' (entire buildings) and historical protection orders. Our team ensures that your city apartment or historic renovation project meets all municipal codes and registration requirements."
   reviews: "lanzarote_reviews.json"
   features:
     - title: "Historic Building Analysis"

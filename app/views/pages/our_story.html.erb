@@ -2,41 +2,28 @@
 <% content_for :description, @mdescription %>
 
 <div class="container-fluid px-0">
-  <!-- Hero Section -->
-  <section class="bg-light py-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-10">
-          <div class="text-center mb-5">
-            <h1 class="display-4 fw-bold mb-4">Property Lawyers in Spain: Trusted Experts for UK, Irish & European Clients</h1>
-            
-            <p class="lead mb-4">
-              Buying or selling a home in Spain should be exciting — not stressful. At Roper Lawyers, we provide clear, trusted legal advice for UK, Irish, and European clients so you can enjoy your Spanish property with complete peace of mind.
-            </p>
-            
-            <p class="mb-4">
-              With <strong>15+ years of experience</strong>, <strong>over 1,080 successful conveyancing cases</strong>, and a <strong>5.0 star Google reputation</strong>, we've helped hundreds of expats secure their dream homes in Spain and the Canary Islands.
-            </p>
-            
-            <!-- CTA Button -->
-            <div class="d-flex flex-column align-items-center gap-2">
-              <a href="/free-consultation" class="btn rounded-pill hero-primary-btn" 
-                 style="background-color: #b39c84; border: none; color: white; padding: 0.75rem 1.5rem; font-size: 1.125rem; text-decoration: none; min-height: 48px; transition: background-color 0.2s ease;">
-                <span style="font-size: 1.125rem; font-weight: 500; letter-spacing: 0.8px;">Book Free Consultation</span>
-              </a>
-              <small class="text-muted d-flex align-items-center">
-                <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg", 
-                    alt: "Olivier Roper", 
-                    class: "rounded-circle me-2",
-                    style: "width: 24px; height: 24px; object-fit: cover;") %>
-                Speak directly to Olivier Roper
-              </small>
-            </div>
-          </div>
-        </div>
-      </div>
+  <%= render layout: "main_page_sections/page_hero",
+             locals: {
+               title: "Property Lawyers in Spain: Trusted Experts for UK, Irish & European Clients",
+               intro: "Buying or selling a home in Spain should be exciting, not stressful. At Roper Lawyers, we provide clear, trusted legal advice for UK, Irish, and European clients so you can enjoy your Spanish property with complete peace of mind."
+             } do %>
+    <p class="mb-4">
+      With <strong>15+ years of experience</strong>, <strong>over 1,080 successful conveyancing cases</strong>, and a <strong>5.0 star Google reputation</strong>, we've helped hundreds of expats secure their dream homes in Spain and the Canary Islands.
+    </p>
+    <div class="d-flex flex-column align-items-center gap-2">
+      <a href="/free-consultation" class="btn rounded-pill hero-primary-btn"
+         style="background-color: #b39c84; border: none; color: white; padding: 0.75rem 1.5rem; font-size: 1.125rem; text-decoration: none; min-height: 48px; transition: background-color 0.2s ease;">
+        <span style="font-size: 1.125rem; font-weight: 500; letter-spacing: 0.8px;">Book Free Consultation</span>
+      </a>
+      <small class="text-muted d-flex align-items-center">
+        <%= image_tag("Olivier-Roper-Solicitor-Roper-Lawyers-head.jpg",
+            alt: "Olivier Roper",
+            class: "rounded-circle me-2",
+            style: "width: 24px; height: 24px; object-fit: cover;") %>
+        Speak directly to Olivier Roper
+      </small>
     </div>
-  </section>
+  <% end %>
 
   <!-- From Real Estate Roots to Property Law Specialists -->
   <section class="py-5">
@@ -46,7 +33,7 @@
           <h2 class="h3 mb-4">From Real Estate Roots to Property Law Specialists</h2>
           
           <p class="mb-3">
-            Our story began in 2015, but our family roots in Spanish real estate go back to 1983. Founder Olivier Roper initially trained as an API (Agente de la Propiedad Inmobiliaria) — Spain's official real estate qualification.
+            Our story began in 2015, but our family roots in Spanish real estate go back to 1983. Founder Olivier Roper initially trained as an API (Agente de la Propiedad Inmobiliaria), Spain's official real estate qualification.
           </p>
           
           <p class="mb-3">
@@ -54,7 +41,7 @@
           </p>
           
           <p class="mb-4">
-            After training at a top law firm, Olivier founded Roper Lawyers, focusing exclusively on property law for foreign buyers and sellers. Today, we are a boutique team that combines deep legal knowledge with practical real estate insight — a unique advantage for our clients.
+            After training at a top law firm, Olivier founded Roper Lawyers, focusing exclusively on property law for foreign buyers and sellers. Today, we are a boutique team that combines deep legal knowledge with practical real estate insight, a unique advantage for our clients.
           </p>
         </div>
       </div>
@@ -97,7 +84,7 @@
           </ul>
           
           <p class="mb-3">
-            We've embraced technology to make property transactions easier for expats abroad. From secure digital signatures to video calls and document sharing, we can now handle most of the process online — saving you flights, delays, and stress.
+            We've embraced technology to make property transactions easier for expats abroad. From secure digital signatures to video calls and document sharing, we can now handle most of the process online, saving you flights, delays, and stress.
           </p>
           
           <p class="mb-3">
@@ -234,7 +221,7 @@
                     <a href="/holiday-rental-license" class="text-decoration-none text-dark">Holiday Rental Licences & Letting Compliance</a>
                   </h5>
                   <p class="card-text text-muted">
-                    VV licenses and complete letting compliance for short-term rentals. Ensure your property meets all legal requirements for holiday letting.
+                    VV licences and complete letting compliance for short-term rentals. Ensure your property meets all legal requirements for holiday letting.
                   </p>
                 </div>
               </div>
@@ -302,7 +289,7 @@
                   </div>
                   <h5 class="card-title mb-3">Tax & Fiscal Advice for Non-Residents</h5>
                   <p class="card-text text-muted">
-                    Specialized tax and fiscal advice for non-resident property owners. Navigate Spanish tax obligations and optimize your fiscal position with expert guidance.
+                    Specialised tax and fiscal advice for non-resident property owners. Navigate Spanish tax obligations and optimise your fiscal position with expert guidance.
                   </p>
                 </div>
               </div>
@@ -323,10 +310,10 @@
           <ul class="mb-4">
             <li class="mb-2"><strong>15+ years' experience</strong> focused solely on property law.</li>
             <li class="mb-2"><strong>Over 1,080 conveyancing clients</strong> served.</li>
-            <li class="mb-2"><strong>Bilingual team</strong> – native English & Spanish.</li>
+            <li class="mb-2"><strong>Bilingual team</strong>, native English & Spanish.</li>
             <li class="mb-2"><strong>Fast, clear communication</strong>.</li>
-            <li class="mb-2"><strong>No hidden costs</strong> – transparent quotes every time.</li>
-            <li class="mb-2"><strong>End-to-end service</strong> – from reservation contract to utilities.</li>
+            <li class="mb-2"><strong>No hidden costs</strong>, transparent quotes every time.</li>
+            <li class="mb-2"><strong>End-to-end service</strong>, from reservation contract to utilities.</li>
             <li class="mb-2"><strong>5.0 star Google reputation</strong> with hundreds of client reviews.</li>
           </ul>
           
@@ -334,7 +321,7 @@
           <div class="bg-light p-4 rounded">
             <blockquote class="mb-0">
               <p class="mb-3 fst-italic">"Roper Lawyers made buying our villa stress-free. Everything was explained clearly, and they took care of every detail."</p>
-              <footer class="text-muted">— Satisfied Client</footer>
+              <footer class="text-muted">Satisfied Client</footer>
             </blockquote>
           </div>
         </div>
@@ -360,10 +347,10 @@
           <p class="mb-3">Our values guide everything we do:</p>
           
           <ul class="mb-4">
-            <li class="mb-2"><strong>Trustworthy</strong> – honest, client-first advice.</li>
-            <li class="mb-2"><strong>Efficient</strong> – we move quickly without cutting corners.</li>
-            <li class="mb-2"><strong>Personal</strong> – boutique service tailored to you.</li>
-            <li class="mb-2"><strong>Excellence</strong> – going further than other firms to protect your interests.</li>
+            <li class="mb-2"><strong>Trustworthy</strong>, honest, client-first advice.</li>
+            <li class="mb-2"><strong>Efficient</strong>, we move quickly without cutting corners.</li>
+            <li class="mb-2"><strong>Personal</strong>, boutique service tailored to you.</li>
+            <li class="mb-2"><strong>Excellence</strong>, going further than other firms to protect your interests.</li>
           </ul>
         </div>
       </div>

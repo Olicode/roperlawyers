@@ -1,0 +1,37 @@
+<%
+  review = local_assigns[:review]
+  rating = review["rating"].to_i.clamp(0, 5)
+  comment = review["comment"].to_s
+%>
+<div class="google-review-card h-100">
+  <div class="google-review-header d-flex align-items-center">
+    <div class="review-avatar flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center text-white"
+         style="background-color: <%= review_avatar_color(review['name']) %>;"
+         aria-hidden="true">
+      <%= review_initial(review["name"]) %>
+    </div>
+    <div class="google-review-name fw-bold text-truncate"><%= review["name"] %></div>
+  </div>
+
+  <div class="review-stars d-flex" role="img" aria-label="<%= rating %> out of 5 stars">
+    <% 5.times do |i| %>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="<%= i < rating ? '#FBBC04' : '#DADCE0' %>" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+    <% end %>
+  </div>
+
+  <div class="google-review-body"
+       data-controller="review"
+       data-review-full-text-value="<%= h(comment) %>">
+    <p class="review-comment" data-review-target="body">
+      <span data-review-target="text"></span><a href="#"
+        data-review-target="moreLink"
+        data-action="review#showFull"
+        class="review-more-link d-none"> More</a><a href="#"
+        data-review-target="lessLink"
+        data-action="review#showTruncated"
+        class="review-less-link d-none"> Less</a>
+    </p>
+  </div>
+</div>

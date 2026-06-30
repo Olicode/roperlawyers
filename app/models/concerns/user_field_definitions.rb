@@ -235,8 +235,8 @@ module UserFieldDefinitions
           email_label: "Seller Mortgage Status",
           type: :radio,
           options: [
-            { value: "outstanding", label: "Yes — the mortgage is still outstanding" },
-            { value: "paid_off", label: "Yes — but it has been paid off" },
+            { value: "outstanding", label: "Yes: the mortgage is still outstanding" },
+            { value: "paid_off", label: "Yes, but it has been paid off" },
             { value: "no_mortgage", label: "No" }
           ]
         }
@@ -330,7 +330,7 @@ module UserFieldDefinitions
       footer_info: "Under Spanish anti‑money‑laundering rules, the notary requires the bank name and IBAN of the account used for each payment (e.g. HSBC, IBAN GB29 MIDL 4012 3456 7890 12).<br>Please fill in the details below for each payment stage.",
       fields: {
         will_pay_reservation: {
-          label: "Have you paid—or will you pay—a reservation fee (under an estate‑agent agreement, if applicable)?",
+          label: "Have you paid, or will you pay, a reservation fee (under an estate‑agent agreement, if applicable)?",
           type: :radio,
           form_type: :inline,
           stimulus_target: "pay",
@@ -583,16 +583,16 @@ module UserFieldDefinitions
           conditional: true
         },
         vv_license_documents: {
-          label: "Upload VV License",
-          email_label: "VV License",
+          label: "Upload VV Licence",
+          email_label: "VV Licence",
           type: :attachments,
           file_types: "PDF, JPG, PNG",
           stimulus_target: "vvLicenseUploadSection",
           conditional_display_service: "VV Licence"
         },
         first_occupation_license_documents: {
-          label: "Upload First Occupation License",
-          email_label: "First Occupation License",
+          label: "Upload First Occupation Licence",
+          email_label: "First Occupation Licence",
           type: :attachments,
           file_types: "PDF, JPG, PNG",
           description: "If you do not have this document, our office can manage the application on your behalf and liaise with the relevant authorities.",

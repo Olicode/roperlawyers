@@ -61,6 +61,18 @@ Disallow: /thank-you
 Disallow: /propertybase-success
 Disallow: /step2-contact
 
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /users
+Disallow: /users/sign_in
+Disallow: /users/sign_up
+Disallow: /users/password
+Disallow: /users/confirmation
+Disallow: /users/unlock
+Disallow: /thank-you
+Disallow: /propertybase-success
+Disallow: /step2-contact
+
 User-agent: Claude-Web
 Allow: /
 Disallow: /users

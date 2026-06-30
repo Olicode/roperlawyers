@@ -1,24 +1,15 @@
 <% content_for :title, @mtitle %>
 <% content_for :meta_description, @mdescription %>
 
-<!-- Hero Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <h1 class="display-4 fw-bold mb-4">NIE Number for Buying Property in Spain (2026 Guide)</h1>
-        <p class="lead mb-4">
-          Every foreign buyer needs an <strong>NIE (Número de Identidad de Extranjero)</strong> before completing a property purchase in Spain.
-          UK and Irish buyers require the <strong>non-resident NIE</strong>.
-          We obtain it for you as part of conveyancing — including remotely via power of attorney, so you do not need to travel to Spain.
-        </p>
-        <a href="/free-consultation" class="btn btn-lg rounded-pill px-5" style="background-color: #b39c84; border-color: #b39c84; color: white;">
-          Get Help with Your NIE
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<%= render layout: "main_page_sections/page_hero",
+           locals: {
+             title: "NIE Number for Buying Property in Spain (2026 Guide)",
+             intro: ("Every foreign buyer needs an <strong>NIE (Número de Identidad de Extranjero)</strong> before completing a property purchase in Spain. UK and Irish buyers require the <strong>non-resident NIE</strong>. We obtain it for you as part of conveyancing, including remotely via power of attorney, so you do not need to travel to Spain.").html_safe
+           } do %>
+  <a href="/free-consultation" class="btn btn-lg rounded-pill px-5" style="background-color: #b39c84; border-color: #b39c84; color: white;">
+    Get Help with Your NIE
+  </a>
+<% end %>
 
 <%= render 'main_page_sections/author_byline', reviewed_on: Date.parse("2026-06-01") %>
 
@@ -37,7 +28,7 @@
           <p class="mb-4">
             The NIE is a <strong>permanent foreign identification and tax number</strong> issued by the Spanish National Police (<em>Policía Nacional</em>).
             It is valid for life and appears on a certificate or card bearing your name and number (e.g. X1234567L).
-            It identifies you to Spanish tax authorities, banks, and the Land Registry — but it is <strong>not</strong> proof of residency.
+            It identifies you to Spanish tax authorities, banks, and the Land Registry, but it is <strong>not</strong> proof of residency.
           </p>
 
           <div class="mb-4">
@@ -45,7 +36,7 @@
             <p class="mb-0">
               The <strong>NIE</strong> is a tax identification number for foreigners. The <strong>TIE</strong> (<em>Tarjeta de Identidad de Extranjero</em>) is a physical residence card for non-EU nationals who live in Spain under a visa or residence permit.
               A <strong>residence permit</strong> (or EU registration certificate for EU citizens) authorises you to reside in Spain; it is separate from the NIE.
-              Property buyers who do not live in Spain typically need only the <strong>non-resident NIE</strong> — not a TIE or residence permit.
+              Property buyers who do not live in Spain typically need only the <strong>non-resident NIE</strong>: not a TIE or residence permit.
               Since Brexit, <strong>UK citizens</strong> are non-EU nationals and apply for the non-resident NIE when buying property without relocating.
             </p>
           </div>
@@ -63,7 +54,7 @@
           </ul>
           <p class="mb-0">
             The notary will <strong>not complete the purchase</strong> if you do not hold a valid NIE.
-            Apply early — delays are common in 2026 and can hold up your entire conveyancing timeline.
+            Apply early; delays are common in 2026 and can hold up your entire conveyancing timeline.
             See our <a href="/buying-property">buying property in Spain</a> overview and <a href="/cost-of-buying-property-canary-islands">Canary Islands cost guide</a> for the full purchase process.
           </p>
         </div>
@@ -75,7 +66,7 @@
             <h3 class="h5 mb-3">1. In Person in Spain (Cita Previa)</h3>
             <p class="mb-0">
               You book an appointment online via the National Police <em>cita previa</em> system and attend in person with your documents.
-              <strong>Walk-ins are not accepted in 2026</strong> — you must have a confirmed appointment.
+              <strong>Walk-ins are not accepted in 2026</strong>: you must have a confirmed appointment.
               Wait times vary by province and season; in busy areas (Costa del Sol, Madrid, Barcelona, and popular Canary Islands offices), appointments can be <strong>several weeks to several months</strong> ahead.
               Suitable if you are already in Spain and can wait for a slot.
             </p>
@@ -96,7 +87,7 @@
             <p class="mb-0">
               The most common and reliable route for overseas buyers: you grant a Spanish lawyer a <strong>Power of Attorney (PoA)</strong> so they can apply on your behalf.
               You do <strong>not</strong> need to travel to Spain.
-              From receipt of a correctly <strong>apostilled PoA</strong>, expect roughly <strong>4–8 weeks</strong> for the NIE to be issued — often faster than consular or in-person queues.
+              From receipt of a correctly <strong>apostilled PoA</strong>, expect roughly <strong>4–8 weeks</strong> for the NIE to be issued, often faster than consular or in-person queues.
               This is the route we handle for clients across <a href="/lanzarote">Lanzarote</a>, <a href="/tenerife">Tenerife</a>, <a href="/grancanaria">Gran Canaria</a>, <a href="/fuerteventura">Fuerteventura</a>, and mainland Spain.
             </p>
           </div>
@@ -110,10 +101,10 @@
           <h2 class="h3 mb-4" style="color: #b39c84;">Documents Required for a Non-Resident NIE</h2>
           <p class="mb-4">Requirements are set by the National Police and may vary slightly by office. Typically you need:</p>
           <ul class="mb-4">
-            <li><strong>Form EX-15</strong> — the standard NIE application form, completed and signed</li>
-            <li><strong>Proof of fee payment</strong> — Form 790, Código 012 (NIE assignment fee), currently around <strong>€10</strong>, paid before submission</li>
-            <li><strong>Valid passport</strong> — original plus a photocopy of the biographical page</li>
-            <li><strong>Proof of reason for the application</strong> — e.g. a property reservation contract, <em>contrato de arras</em>, or a lawyer's letter confirming you are buying property in Spain</li>
+            <li><strong>Form EX-15</strong>: the standard NIE application form, completed and signed</li>
+            <li><strong>Proof of fee payment</strong>: Form 790, Código 012 (NIE assignment fee), currently around <strong>€10</strong>, paid before submission</li>
+            <li><strong>Valid passport</strong>: original plus a photocopy of the biographical page</li>
+            <li><strong>Proof of reason for the application</strong>: e.g. a property reservation contract, <em>contrato de arras</em>, or a lawyer's letter confirming you are buying property in Spain</li>
           </ul>
           <p class="mb-0">
             If applying via PoA, the lawyer's power of attorney must be notarised and <strong>apostilled</strong> (or legalised) in your home country before it is valid in Spain.
@@ -124,14 +115,14 @@
         <div class="mb-5">
           <h2 class="h3 mb-4" style="color: #b39c84;">How Roper Lawyers Helps</h2>
           <p class="mb-4">
-            NIE applications are bundled into our conveyancing service — we do not charge percentage fees for obtaining your number.
+            NIE applications are bundled into our conveyancing service; we do not charge percentage fees for obtaining your number.
             As your lawyer, we:
           </p>
           <ul class="mb-4">
             <li>Draft and advise on the <strong>Power of Attorney</strong> for use in the UK, Ireland, or your country of residence</li>
             <li>Guide you through <strong>apostille</strong> requirements so the PoA is accepted in Spain</li>
             <li>Complete and submit <strong>Form EX-15</strong>, fee payment, and supporting documents to the National Police</li>
-            <li>Obtain your NIE certificate and coordinate the rest of your purchase — due diligence, contract review, notary, and Land Registry</li>
+            <li>Obtain your NIE certificate and coordinate the rest of your purchase: due diligence, contract review, notary, and Land Registry</li>
           </ul>
           <p class="mb-0">
             Whether you are buying in the Canary Islands or on the mainland, we handle the NIE alongside your property transaction so you can proceed without flying to Spain for a police appointment.
@@ -141,7 +132,7 @@
         <div class="bg-light p-4 rounded text-center">
           <h2 class="h4 mb-3">Need an NIE Before You Buy?</h2>
           <p class="mb-4">
-            We obtain non-resident NIEs for UK, Irish, and international buyers as part of our fixed-fee conveyancing — remotely, via power of attorney.
+            We obtain non-resident NIEs for UK, Irish, and international buyers as part of our fixed-fee conveyancing, remotely, via power of attorney.
           </p>
           <a href="/free-consultation" class="btn btn-lg rounded-pill px-5 me-2 mb-2" style="background-color: #b39c84; border-color: #b39c84; color: white;">
             Book a Free Consultation
@@ -172,7 +163,7 @@
     },
     {
       question: "How long does it take to get an NIE?",
-      answer: "Timelines depend on the route. In-person cita previa appointments in busy areas can take several weeks to months to secure, plus processing time. Spanish consulates typically take 2–12 weeks. Via a lawyer with Power of Attorney, expect roughly 4–8 weeks from receipt of the apostilled PoA — often the quickest option for buyers who are not already in Spain."
+      answer: "Timelines depend on the route. In-person cita previa appointments in busy areas can take several weeks to months to secure, plus processing time. Spanish consulates typically take 2–12 weeks. Via a lawyer with Power of Attorney, expect roughly 4–8 weeks from receipt of the apostilled PoA, often the quickest option for buyers who are not already in Spain."
     }
   ]
 %>

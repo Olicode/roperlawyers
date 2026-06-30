@@ -1,151 +1,400 @@
-<main>
-  <section>
-    <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="pb-4 m-3 text-center">Expert Guidance on Short-Term Rentals Regulations in the Canary Islands</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <p class="lead">Welcome to our comprehensive guide on the evolving legal landscape of short-term rentals (viviendas vacacionales) in the Canary Islands. As specialists in tourism and real estate law, we provide up-to-date insights to help property owners, investors, and operators navigate these regulations. All information is sourced from official laws and judicial rulings.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<%# AI crawl verification: curl -A "GPTBot" https://www.roperlawyers.com/holiday-rental-licence must return full article HTML (no JS-rendered body). %>
+<% content_for :title, @mtitle %>
+<% content_for :description, @mdescription %>
+<% content_for :og_type, "article" %>
+<% content_for :og_image, image_url("roperlawyerslogo.png") %>
+<%
+  page_published = "2026-06-30"
+  page_modified = "2026-06-30"
+  page_url = "https://www.roperlawyers.com/holiday-rental-licence"
+  share_image = image_url("roperlawyerslogo.png")
 
-  <section>
-    <%= render 'main_page_sections/reviews', locals: { reviews: @reviews } %>
-  </section>
+  licence_faqs = [
+    {
+      id: "faq-licence-required",
+      question: "Do I need a licence to run a holiday rental in Spain?",
+      answer: "Yes. Every short-term tourist rental must be registered with the tourism authority of its autonomous community and display a valid registration number. Each region has its own licence (VUT, HUT, ETV, VV), and your town hall's planning rules must also permit tourist use at your address."
+    },
+    {
+      id: "faq-national-number",
+      question: "Is there a single national registration number?",
+      answer: "Not currently. A national number (NRA/NRUA) was introduced by Royal Decree 1312/2024 but annulled by the Supreme Court on 19 May 2026. Platforms now require your regional registration code instead."
+    },
+    {
+      id: "faq-community-consent",
+      question: "Do I need my community of owners' permission?",
+      answer: "For any new activity started after 3 April 2025, yes: express approval by three-fifths of owners under Organic Law 1/2025. Owners already operating legally before that date keep their rights."
+    },
+    {
+      id: "faq-non-resident-tax",
+      question: "What tax do non-residents pay?",
+      answer: "EU/EEA owners pay 19% on net income; non-EU owners (including UK residents) pay 24% on gross income with no deductions. Income is declared via Modelo 210."
+    },
+    {
+      id: "faq-penalties",
+      question: "What are the penalties for renting without a licence?",
+      answer: "Up to €500,000 in the Balearics and up to €600,000 for the most serious breaches in Catalonia, plus delisting from platforms and closure orders."
+    },
+    {
+      id: "faq-how-long",
+      question: "How long does it take to get a holiday rental licence in Spain?",
+      answer: "It varies by region and by how quickly the required documents and community consent can be obtained, from a few weeks where registration is a declaración responsable to several months where a municipal compatibility report or planning approval is needed. We give you a realistic timeline for your specific address at the feasibility stage."
+    }
+  ]
 
-  <section>
-    <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="pb-4 m-3 text-center">Past Regulations: The Foundation with Decreto 113/2015</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <p>The primary framework for short-term rentals in the Canary Islands was established by <strong>Decreto 113/2015, de 22 de mayo, por el que se aprueba el Reglamento de las viviendas vacacionales de la Comunidad Autónoma de Canarias</strong>. This decree defined viviendas vacacionales as fully furnished properties offered for temporary tourist accommodation on a remunerated basis, integrated into the broader Ley 7/1995 de Ordenación del Turismo de Canarias.</p>
-          
-          <p>Key original provisions included requirements for location in residential zones, minimum facilities, registration via a declaración responsable, and prohibitions on partial rentals or operations in exclusive tourist zones. The decree aimed to regulate the sector while protecting residential housing markets.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  licence_schema = {
+    "@context" => "https://schema.org",
+    "@graph" => [
+      {
+        "@type" => "LegalService",
+        "@id" => "https://www.roperlawyers.com/#firm",
+        "name" => "Roper Lawyers",
+        "url" => "https://www.roperlawyers.com",
+        "areaServed" => "ES",
+        "serviceType" => "Holiday rental licence (Vivienda de Uso Turístico) legal services",
+        "sameAs" => [SchemaHelper::GOOGLE_BUSINESS_PROFILE_URL]
+      },
+      {
+        "@type" => "Person",
+        "@id" => "https://www.roperlawyers.com/#author-olivier-roper",
+        "name" => "Olivier Roper",
+        "jobTitle" => "Property Lawyer",
+        "worksFor" => { "@id" => "https://www.roperlawyers.com/#firm" },
+        "url" => "https://www.roperlawyers.com/team/olivier-roper",
+        # TODO: add verified Lanzarote bar profile URL to sameAs if available
+        "sameAs" => [
+          "https://www.linkedin.com/in/olivier-roper-4850959b"
+        ]
+      },
+      {
+        "@type" => "Article",
+        "headline" => "Holiday Rental Licence in Spain (VUT): 2026 Guide for Property Owners",
+        "description" => "How to legally license and operate a holiday rental anywhere in Spain in 2026: regional licences, community-of-owners consent, guest registration and tax.",
+        "image" => share_image,
+        "author" => { "@id" => "https://www.roperlawyers.com/#author-olivier-roper" },
+        "reviewedBy" => { "@id" => "https://www.roperlawyers.com/#author-olivier-roper" },
+        "publisher" => { "@id" => "https://www.roperlawyers.com/#firm" },
+        "mainEntityOfPage" => page_url,
+        "datePublished" => page_published,
+        "dateModified" => page_modified,
+        "inLanguage" => "en"
+      },
+      {
+        "@type" => "BreadcrumbList",
+        "itemListElement" => [
+          { "@type" => "ListItem", "position" => 1, "name" => "Home", "item" => "https://www.roperlawyers.com" },
+          { "@type" => "ListItem", "position" => 2, "name" => "Holiday Rental Licence in Spain", "item" => page_url }
+        ]
+      },
+      {
+        "@type" => "FAQPage",
+        "mainEntity" => licence_faqs.map do |faq|
+          {
+            "@type" => "Question",
+            "name" => faq[:question],
+            "acceptedAnswer" => { "@type" => "Answer", "text" => faq[:answer] }
+          }
+        end
+      }
+    ]
+  }
+%>
+<% content_for :head do %>
+  <meta name="dateModified" content="<%= page_modified %>">
+  <meta property="article:modified_time" content="<%= page_modified %>">
+  <meta property="article:published_time" content="<%= page_published %>">
+  <script type="application/ld+json">
+    <%= licence_schema.to_json.html_safe %>
+  </script>
+<% end %>
 
-  <section class="bg-light">
-    <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="pb-4 m-3 text-center">Judicial Annulments: Key Court Rulings from 2017-2019</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <p>Several provisions of Decreto 113/2015 were challenged and annulled by the courts on grounds of restricting freedom of enterprise, violating EU service directives, and lacking sufficient legal basis. The Tribunal Superior de Justicia de Canarias (TSJC) issued pivotal sentences in 2017, later confirmed by the Tribunal Supremo (TS) in 2018 and 2019.</p>
-          
-          <div class="row mt-4">
-            <div class="col-md-6">
-              <h5>Key Court Decisions:</h5>
-              <ul>
-                <li><strong>Sentencia TSJC de 21 de marzo de 2017 (Rec. 94/2015):</strong> Annulled Article 3.2, which excluded short-term rentals from tourist zones or mixed tourist-residential areas, allowing operations in these locations.</li>
-                <li><strong>Sentencia TSJC de 25 de mayo de 2017 (Rec. 99/2015):</strong> Annulled Article 12.1, which required ceding the entire property, thus permitting partial rentals such as individual rooms, even with the owner present, subject to other rules.</li>
-              </ul>
+<div class="guide-article">
+<%= render layout: "main_page_sections/page_hero",
+           locals: {
+             eyebrow: "2026 Legal Guide",
+             align: "left",
+             col_class: "col-lg-8",
+             title: "Holiday Rental Licence in Spain (Vivienda de Uso Turístico)",
+             intro: ("<strong>Do you need a licence to rent your Spanish property to holidaymakers? Yes.</strong> Every short-term tourist rental in Spain must be registered with its regional tourism authority and display a valid registration number on every listing. The rules tightened sharply in 2025–2026, and operating without the correct licence now risks fines up to €600,000 and removal from Airbnb and Booking.com.").html_safe
+           } do %>
+  <a href="/free-consultation" class="guide-article__cta">
+    Book a free consultation
+  </a>
+<% end %>
+
+<%= render 'main_page_sections/author_byline', reviewed_on: Date.parse(page_modified) %>
+
+<section class="py-4 pb-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 guide-article__body">
+
+        <%# TODO: CONFIRM BEFORE PUBLISH - verify Olivier Roper's bar (Ilustre Colegio de Abogados de Lanzarote), registration number "Reg. 507", LinkedIn URL, and the phone number +34 928 97 42 41 are all accurate. These were auto-generated and must not be published if unverified. %>
+        <p class="guide-article__meta">
+          <time datetime="<%= page_modified %>">Last updated: <%= Date.parse(page_modified).strftime("%-d %B %Y") %></time>
+        </p>
+
+        <p class="guide-article__lead">
+          This guide explains exactly what you need, region by region, and how Roper Lawyers handles the whole process for you.
+          For Canary Islands-specific compliance, see our
+          <a href="/canary-islands-holiday-rental-laws">Canary Islands holiday rental laws</a> guide.
+        </p>
+
+        <nav class="guide-article__toc" aria-label="Table of contents">
+          <h2>On this page</h2>
+          <ol>
+            <li><a href="#what-is-a-holiday-rental-licence">What is a holiday rental licence?</a></li>
+            <li><a href="#the-2026-rules">The 2026 rules: what changed</a></li>
+            <li><a href="#licences-by-region">Holiday rental licences by region (comparison table)</a></li>
+            <li><a href="#community-consent">Do I need my community of owners' permission?</a></li>
+            <li><a href="#guest-registration">Guest registration &amp; day-to-day obligations</a></li>
+            <li><a href="#tax-obligations">Tax obligations for residents and non-residents</a></li>
+            <li><a href="#penalties">Penalties for renting without a licence</a></li>
+            <li><a href="#how-roper-lawyers-helps">How Roper Lawyers helps: step by step</a></li>
+            <li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+          </ol>
+        </nav>
+
+        <article>
+          <section id="what-is-a-holiday-rental-licence" class="guide-article__section">
+            <h2>What is a holiday rental licence?</h2>
+            <p class="mb-4">
+              A holiday rental licence (in Spanish, <em>Vivienda de Uso Turístico</em>, or <strong>VUT</strong>) is the official authorisation that lets you legally rent your property to tourists short-term.
+              In Spain it is granted at <strong>regional level</strong> by the tourism authority of the autonomous community where the property sits, so the licence, its name and its rules differ by region.
+            </p>
+            <p class="mb-0">
+              Once registered, your property receives a <strong>registration number</strong> that must appear on every listing: Airbnb, Booking.com, Vrbo and your own website.
+              Since 1 July 2025, platforms are legally required to display and verify this number and to remove listings without one.
+            </p>
+          </section>
+
+          <section id="the-2026-rules" class="guide-article__section">
+            <h2>The 2026 rules: what changed</h2>
+            <p class="mb-4">
+              <strong>Spanish holiday-let law has tightened faster than almost anywhere in Europe.</strong>
+              Three changes matter most for owners in 2026: the national registration number was struck down, community-of-owners consent became compulsory, and several regions effectively froze new licences.
+            </p>
+            <p class="mb-4">
+              <strong>The national registration number was annulled.</strong>
+              A single national number (NRA/NRUA), introduced by
+              <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2024-26931" rel="noopener noreferrer" target="_blank">Royal Decree 1312/2024</a>
+              and made mandatory on 1 July 2025, was struck down by the <strong>Spanish Supreme Court on 19 May 2026</strong>, which ruled the central state had no competence to run it.
+              The practical effect: <strong>your regional licence is what matters</strong>, and it is what booking platforms now check.
+              The national data-sharing gateway (Ventanilla Única Digital) and EU data rules remain in force.
+            </p>
+            <p class="mb-4">
+              <strong>Community consent is now compulsory.</strong>
+              Since <strong>3 April 2025</strong>, under
+              <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2025-1" rel="noopener noreferrer" target="_blank">Organic Law 1/2025</a>,
+              starting a <em>new</em> holiday rental in a shared building requires the express approval of <strong>three-fifths of the owners</strong>.
+            </p>
+            <p class="mb-4">
+              <strong>Regions are capping and banning.</strong>
+              The Canary Islands' new law (Ley 6/2025, in force December 2025) caps tourist use and blocks new registrations in many areas;
+              Barcelona will <strong>abolish all 10,101 tourist-flat licences by 2028</strong>;
+              the Balearics and central Madrid have effectively frozen new licences.
+            </p>
+            <p class="guide-article__callout">
+              The result is a patchwork that changes by region and even by street, which is why professional, address-specific advice is now essential.
+            </p>
+            <div class="guide-article__cta-row">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal" class="guide-article__cta guide-article__cta--outline">
+                Not sure if your property qualifies? Ask us free.
+              </a>
             </div>
-            <div class="col-md-6">
-              <h5>Supreme Court Confirmations:</h5>
-              <p>Also annulled Article 13.3 (delaying operations until registration) and related annexes, enabling immediate activity upon declaration.</p>
-              <p><strong>Confirmations by Tribunal Supremo:</strong> Sentences in 2018 and 2019, including STS of 12 December 2018, upheld these annulments, emphasizing proportionality and competition.</p>
+          </section>
+
+          <section id="licences-by-region" class="guide-article__section">
+            <h2>Holiday rental licences by region</h2>
+            <p class="mb-4">
+              <strong>Because tourism is devolved to Spain's 17 autonomous communities, the licence you need depends entirely on where your property is.</strong>
+              The table below summarises the major regions; each links to its official tourism registry where available.
+            </p>
+            <div class="guide-article__table-wrap table-responsive">
+              <table class="table guide-article__table align-middle">
+                <caption class="visually-hidden">Holiday rental licence types and restrictions by Spanish region in 2026</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Region</th>
+                    <th scope="col">Licence</th>
+                    <th scope="col">Registering authority</th>
+                    <th scope="col">Status / key restriction (2026)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Andalucía</th>
+                    <td>VUT</td>
+                    <td><a href="https://www.juntadeandalucia.es/turismoydeporte/web/turismo/registro-de-turismo" rel="noopener noreferrer" target="_blank">Registro de Turismo de Andalucía</a></td>
+                    <td>Open; <em>declaración responsable</em>; town halls can cap by area; max 15 guests</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Canary Islands</th>
+                    <td>VV</td>
+                    <td><a href="https://www.gobiernodecanarias.org/turismo/" rel="noopener noreferrer" target="_blank">Registro General Turístico de Canarias</a></td>
+                    <td>Restricted under Ley 6/2025; ≥90% residential reserve; homes generally 10+ yrs; new registrations blocked in many zones</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Balearic Islands</th>
+                    <td>ETV</td>
+                    <td>Consell Insular</td>
+                    <td>Most restrictive; limited <em>plazas turísticas</em>; no new places in apartment blocks; fines up to €500,000</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Catalonia</th>
+                    <td>HUT</td>
+                    <td><a href="https://empresa.gencat.cat/ca/ambits-actuacio/turisme/registre-turisme-catalunya/" rel="noopener noreferrer" target="_blank">Registre de Turisme de Catalunya</a></td>
+                    <td>Stressed-area licences need town-hall approval and expire after 5 yrs; <strong>Barcelona ends all licences in 2028</strong></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Valencian Community</th>
+                    <td>VUT</td>
+                    <td>Registre de Turisme</td>
+                    <td>Favourable municipal urban-compatibility report required since Aug 2024; whole-home lets ≤10 days; renew every 5 yrs</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Madrid</th>
+                    <td>VUT</td>
+                    <td>Comunidad de Madrid + city licence</td>
+                    <td>Double approval needed; under <em>Plan Reside</em> (2025) tourist use incompatible with residential buildings in the historic centre</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Other regions</th>
+                    <td>varies</td>
+                    <td>Regional registry</td>
+                    <td>Galicia, Basque Country (ETV), Aragón, Murcia, Asturias and others each run their own registry and standards</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </div>
-          
-          <p class="mt-3">These annulments created regulatory gaps, meaning the stricken provisions are void and not replaced automatically. The remaining parts of Decreto 113/2015 continue to apply, but operations like partial rentals are now feasible if compliant with urban planning and other laws.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+            <p class="mb-0">
+              Whatever the region, we confirm exactly what's permitted at your specific address before you commit.
+              For Lanzarote owners, see our
+              <a href="/holiday-rental-license/lanzarote">holiday rental licence in Lanzarote</a> service page.
+            </p>
+          </section>
 
-  <section>
-    <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="pb-4 m-3 text-center">Current Regulations and Modifications</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <p>As of September 21, 2025, the framework incorporates modifications to address housing shortages and sustainable tourism.</p>
-          
-          <div class="row mt-4">
-            <div class="col-md-6">
-              <h5>Decreto-ley 2/2025, de 17 de marzo:</h5>
-              <p>Introduces urgent measures on tourist use compliance, modifying Ley 2/2013. It consolidates pre-2017 residential uses in tourist zones, strengthens enforcement, and enhances inspections without banning short-term rentals outright.</p>
+          <section id="community-consent" class="guide-article__section">
+            <h2>Do I need my community of owners' permission?</h2>
+            <p class="mb-4">
+              <strong>If your property is a flat or part of a shared building, yes: for any new activity started after 3 April 2025.</strong>
+              A 2025 reform of the Horizontal Property Law (Organic Law 1/2025) requires express approval by <strong>three-fifths of the owners</strong>, representing 3/5 of quotas, before you can begin.
+            </p>
+            <p class="mb-0">
+              The same 3/5 majority can limit or prohibit the activity and add up to a 20% surcharge on community fees.
+              Owners who were already operating legally before 3 April 2025 keep their existing rights.
+              We obtain and properly document this consent so it is enforceable and binds future buyers.
+            </p>
+          </section>
+
+          <section id="guest-registration" class="guide-article__section">
+            <h2>Guest registration &amp; day-to-day obligations</h2>
+            <p class="mb-4">
+              <strong>Running a compliant rental means meeting ongoing legal duties, not just getting the licence.</strong>
+              The main ones are guest registration, minimum standards and insurance.
+            </p>
+            <ul class="guide-article__checklist mb-0">
+              <li class="mb-3">
+                <strong>Guest registration (SES Hospedajes).</strong>
+                Since December 2024, under Royal Decree 933/2021, you must report detailed guest data to the Ministry of the Interior within 24 hours of check-in.
+                Catalonia (Mossos d'Esquadra) and the Basque Country (Ertzaintza) use their own systems.
+              </li>
+              <li class="mb-3">
+                <strong>Minimum standards.</strong>
+                Habitability and energy certificates, the equipment required by your region (air conditioning/heating, first-aid kit, 24-hour contact), official complaint forms (<em>hojas de reclamaciones</em>), and display of your registration plate/number.
+              </li>
+              <li>
+                <strong>Insurance.</strong>
+                Civil-liability cover is required in several regions.
+              </li>
+            </ul>
+          </section>
+
+          <section id="tax-obligations" class="guide-article__section">
+            <h2>Tax obligations for residents and non-residents</h2>
+            <p class="mb-4">
+              <strong>Holiday-rental income is taxable in Spain, and how much you pay depends on your residence.</strong>
+              Non-resident owners are taxed quite differently from residents, and EU residents are treated far more favourably than non-EU residents.
+            </p>
+            <ul class="guide-article__checklist mb-4">
+              <li class="mb-2"><strong>EU/EEA residents:</strong> 19% on <strong>net</strong> income; you can deduct expenses such as IBI, community fees, insurance, interest and repairs.</li>
+              <li class="mb-2"><strong>Non-EU residents (including the UK post-Brexit):</strong> 24% on <strong>gross</strong> income, with no deductions.</li>
+            </ul>
+            <p class="mb-0">
+              Income is declared on <strong>Modelo 210</strong>, and platforms report your bookings directly to the Spanish tax authority (under DAC7 / Modelo 238), so declared income must match.
+              Depending on the services you offer, <strong>VAT</strong> may apply, and <strong>tourist taxes</strong> apply in regions such as the Balearics and Catalonia.
+              We make sure your filings are correct and your deductions maximised.
+            </p>
+          </section>
+
+          <section id="penalties" class="guide-article__section">
+            <h2>Penalties for renting without a licence</h2>
+            <p class="mb-4">
+              <strong>Operating without the correct licence is high-risk and increasingly enforced.</strong>
+              Fines reach the hundreds of thousands, and platforms are now forced to delist illegal properties.
+            </p>
+            <ul class="guide-article__checklist mb-4">
+              <li class="mb-2">Fines up to <strong>€500,000</strong> in the Balearics and up to <strong>€600,000</strong> for the most serious breaches in Catalonia.</li>
+              <li class="mb-2"><strong>Delisting:</strong> in 2025 the Spanish government forced Airbnb to remove over 65,000 illegal listings, with tens of thousands more flagged.</li>
+              <li><strong>Closure orders</strong> and, in some regions, multi-year bans on tourist use.</li>
+            </ul>
+            <p class="mb-0">The cost of getting this right is a fraction of the cost of getting it wrong.</p>
+          </section>
+
+          <section id="how-roper-lawyers-helps" class="guide-article__section">
+            <h2>How Roper Lawyers helps: step by step</h2>
+            <p class="mb-4">
+              <strong>We manage the whole process so you don't have to navigate Spanish bureaucracy in a foreign language.</strong>
+              A typical engagement runs as follows:
+            </p>
+            <ol class="guide-article__steps mb-4">
+              <li class="mb-2"><strong>Feasibility check</strong>: we confirm your municipality and building actually permit tourist use at your address <em>before</em> you spend a euro.</li>
+              <li class="mb-2"><strong>Community consent</strong>: we obtain and document the 3/5 owners' approval where required.</li>
+              <li class="mb-2"><strong>Documentation</strong>: habitability certificate, energy certificate, cadastral and urban-compatibility reports.</li>
+              <li class="mb-2"><strong>Registration</strong>: we file your regional licence and secure your registration number.</li>
+              <li class="mb-2"><strong>Compliance setup</strong>: guest registration, minimum standards, insurance and platform listings.</li>
+              <li><strong>Tax</strong>: we set up and file your Spanish tax obligations correctly.</li>
+            </ol>
+            <p class="mb-4">
+              Whether you own one apartment or a portfolio, we make your Spanish holiday rental fully legal, and keep it that way.
+            </p>
+            <div class="guide-article__cta-row">
+              <a href="/free-consultation" class="guide-article__cta">
+                Book your free consultation
+              </a>
+              <a href="tel:+34928974241" class="guide-article__cta guide-article__cta--outline">
+                +34 928 97 42 41
+              </a>
             </div>
-            <div class="col-md-6">
-              <h5>Real Decreto 1312/2024, de 23 de diciembre:</h5>
-              <p>A national decree creating a Unified Rental Registry and Digital Single Window for short-term rentals, effective July 1, 2025. It requires registration numbers for listings on platforms, data reporting, and compliance checks, applicable to the Canary Islands.</p>
+          </section>
+
+          <section id="frequently-asked-questions" class="guide-article__section guide-article__faq-section">
+            <div class="guide-article__faq-grid">
+              <div class="guide-article__faq-intro">
+                <h2>Frequently asked questions</h2>
+                <p class="guide-article__faq-support">
+                  Can't find the answer you're looking for? Reach out to our
+                  <%= link_to "customer support team", "/free-consultation" %>.
+                </p>
+              </div>
+              <div class="guide-article__faq-list">
+                <% licence_faqs.each do |faq| %>
+                  <div class="guide-article__faq-item" id="<%= faq[:id] %>">
+                    <h3><%= faq[:question] %></h3>
+                    <p><%= faq[:answer] %></p>
+                  </div>
+                <% end %>
+              </div>
             </div>
-          </div>
-          
-          <p class="mt-3">Local variations by Cabildos and municipalities may add stricter rules, including taxes and bans in specific areas.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+          </section>
 
-  <section class="bg-light">
-    <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="pb-4 m-3 text-center">Community Approvals and the 3/5 Majority Vote</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <p>Under Decreto 113/2015, short-term rentals are allowed if community statutes do not prohibit them, with no requirement for positive approval. However, <strong>Ley Orgánica 1/2025, de 2 de enero</strong>, amends Ley 49/1960 de Propiedad Horizontal, effective April 3, 2025, requiring prior express authorization from the community for short-term tourist rentals, approved by a <strong>3/5 majority vote</strong> of owners and participation quotas.</p>
-          
-          <p>This applies to new rentals post-April 3, 2025, with grandfathering for existing ones. Communities can impose conditions or bans with the same majority, including up to 20% surcharges on common expenses.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+          <p class="guide-article__disclaimer">
+            <em>This page is general information, not legal advice. Holiday-rental rules in Spain change frequently and vary by region and municipality; contact Roper Lawyers for advice on your specific property.</em>
+          </p>
+        </article>
 
-  <section>
-    <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="pb-4 m-3 text-center">Possible Future Regulations: Proyecto de Ley de Ordenación Sostenible del Uso Turístico de Viviendas</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <p>This bill, under review in the Parlamento de Canarias as of September 2025, aims to update the framework for sustainability. Key proposals include density caps (e.g., 10% of residential stock), bans in saturated zones, prior authorizations, owner limits, and transitional provisions for existing rentals. It strengthens community roles by requiring proof of no prohibitions in statutes and potential certificates of non-opposition.</p>
-          
-          <p>The bill is pending approval and may undergo amendments; we monitor developments closely.</p>
-        </div>
       </div>
     </div>
-  </section>
-
-  <section class="bg-light">
-    <div class="container px-4 py-5">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="pb-4 m-3 text-center">Contact Us for Personalized Advice</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-8 col-12 mx-auto text-center">
-          <p class="lead">Navigating these regulations can be complex. Our firm offers expert legal services for registration, compliance, and disputes. Contact us today for a consultation.</p>
-          
-          <div class="mt-4">
-            <%= link_to "Get Expert Legal Advice", "https://wa.me/+34649948377", class: "btn btn-primary btn-lg me-3", style: "background-color: #b29c84; border-color: #b29c84;" %>
-            <%= link_to "Free Consultation", "/free-consultation", class: "btn btn-outline-primary btn-lg", style: "color: #b29c84; border-color: #b29c84;" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+  </div>
+</section>
+</div>

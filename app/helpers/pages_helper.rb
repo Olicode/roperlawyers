@@ -5,7 +5,7 @@ module PagesHelper
     'wills' => 'Will Writing Lawyer',
     'inheritance' => 'Inheritance Lawyer',
     'new_build_registration' => 'New Build Registration Lawyer',
-    'holiday_rental_license' => 'Holiday Rental License Lawyer'
+    'holiday_rental_license' => 'Holiday Rental Licence Lawyer'
   }.freeze
 
   def service_page_h1(service_key, location_name)

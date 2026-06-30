@@ -25,9 +25,9 @@
   </div>
 </div>
 
-<nav class="navbar navbar-expand-lg fixed-top navbar-light" style="top: 38px; margin: 0; padding: 0.5rem 0; border: none; background-color: rgba(255, 255, 255, 0.75) !important; -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px);">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light site-navbar" style="top: 38px; margin: 0; padding: 0.5rem 0; border: none; background-color: rgba(255, 255, 255, 0.75) !important; -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px);">
     <div class="container">
-      <a class="navbar-brand" href="/" style="font-family: 'Times New Roman', serif; color: #b29c84 !important; font-weight: normal; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.2em;">Roper Lawyers</a>
+      <a class="navbar-brand" href="/" style="color: #b29c84 !important; font-weight: normal; text-transform: uppercase;">Roper Lawyers</a>
 
       <!-- Mobile controls: phone icon and hamburger menu -->
       <div class="d-flex align-items-center gap-3">
@@ -49,7 +49,7 @@
         <!-- Main navigation items (desktop left) -->
         <ul class="navbar-nav me-auto d-none d-lg-flex">
           <!-- About Us Dropdown -->
-          <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-dark" href="/our-story" id="aboutDropdown" role="button" 
                aria-expanded="false">
               About Us
@@ -74,7 +74,7 @@
           </li>
           
           <!-- Services Dropdown -->
-          <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-dark" href="/services" id="servicesDropdown" role="button" 
                aria-expanded="false">
               Services
@@ -88,7 +88,7 @@
           </li>
           
           <!-- Guides Dropdown -->
-          <li class="nav-item dropdown" onmouseover="showDropdown(this)" onmouseout="hideDropdown(this)">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-dark" href="#" id="guidesDropdown" role="button" 
                aria-expanded="false">
               Guides
@@ -160,7 +160,7 @@
             <a class="nav-link text-muted" href="/new-build-registration">New-Build Registration</a>
           </li>
           <li class="nav-item ps-3">
-            <a class="nav-link text-muted" href="/holiday-rental-license">Holiday Rental License (VV)</a>
+            <a class="nav-link text-muted" href="/holiday-rental-license">Holiday Rental Licence (VV)</a>
           </li>
           
           <!-- Guides -->
@@ -196,9 +196,9 @@
         <ul class="navbar-nav ms-auto d-none d-lg-flex">
           <li class="nav-item">
             <a href="/free-consultation"
-               class="btn rounded-pill d-flex align-items-center justify-content-center text-decoration-none" 
-               style="background-color: #b39c84; border: none; color: white; padding: 0.75rem 1.5rem; font-size: 1.125rem; width: fit-content; min-height: 48px; transition: background-color 0.2s ease;">
-              <span style="font-size: 1.125rem; font-weight: 500; letter-spacing: 0.8px;">Book Free Consultation</span>
+               class="btn rounded-pill d-flex align-items-center justify-content-center text-decoration-none site-nav-cta"
+               style="background-color: #b39c84; border: none; color: white; width: fit-content; transition: background-color 0.2s ease;">
+              <span>Book Free Consultation</span>
             </a>
           </li>
         </ul>
@@ -232,57 +232,30 @@
 </nav>
 
 <script>
-function showDropdown(element) {
-  const dropdown = element.querySelector('.dropdown-menu');
-  const toggle = element.querySelector('.dropdown-toggle');
-  
-  if (dropdown && toggle) {
-    dropdown.classList.add('show');
-    toggle.setAttribute('aria-expanded', 'true');
-  }
-}
-
-function hideDropdown(element) {
-  const dropdown = element.querySelector('.dropdown-menu');
-  const toggle = element.querySelector('.dropdown-toggle');
-  
-  if (dropdown && toggle) {
-    dropdown.classList.remove('show');
-    toggle.setAttribute('aria-expanded', 'false');
-  }
-}
-
-// Enhanced dropdown functionality
 document.addEventListener('DOMContentLoaded', function() {
-  const dropdowns = document.querySelectorAll('.dropdown-menu');
-  
-  dropdowns.forEach(function(dropdown) {
-    dropdown.addEventListener('mouseenter', function() {
-      this.classList.add('show');
-      const toggle = this.parentElement.querySelector('.dropdown-toggle');
-      if (toggle) {
+  // Desktop hover dropdowns - keep aria-expanded in sync for chevron rotation
+  if (window.matchMedia('(min-width: 992px)').matches) {
+    document.querySelectorAll('.site-navbar .navbar-nav.me-auto .nav-item.dropdown').forEach(function(item) {
+      const toggle = item.querySelector('.dropdown-toggle');
+      if (!toggle) return;
+
+      item.addEventListener('mouseenter', function() {
         toggle.setAttribute('aria-expanded', 'true');
-      }
-    });
-    
-    dropdown.addEventListener('mouseleave', function() {
-      this.classList.remove('show');
-      const toggle = this.parentElement.querySelector('.dropdown-toggle');
-      if (toggle) {
+      });
+
+      item.addEventListener('mouseleave', function() {
         toggle.setAttribute('aria-expanded', 'false');
-      }
+      });
     });
-  });
-  
+  }
+
   // Allow clicks on dropdown toggles with href attributes
   const dropdownToggles = document.querySelectorAll('.dropdown-toggle[href]:not([href="#"])');
   dropdownToggles.forEach(function(toggle) {
     toggle.addEventListener('click', function(e) {
-      // Only prevent default if the link is empty or just #
       if (!this.href || this.href.endsWith('#')) {
         e.preventDefault();
       }
-      // If it has a real href, let it navigate normally
     });
   });
 });

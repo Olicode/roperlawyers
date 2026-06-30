@@ -44,7 +44,7 @@ module BreadcrumbHelper
     'our-story' => 'Our Story',
     'why-choose-us' => 'Why Choose Us',
     'spain-property-guide' => 'Spain Property Guide',
-    'vv-license' => 'VV License',
+    'vv-license' => 'VV Licence',
     'privacy-policy' => 'Privacy Policy',
     'cookies-policy' => 'Cookies Policy'
   }.freeze
@@ -107,7 +107,7 @@ module BreadcrumbHelper
   end
 
   def render_breadcrumb_section(breadcrumbs)
-    content_tag :section, class: 'breadcrumb-section', style: 'background-color: #f8f9fa; border-bottom: 1px solid #e9ecef; padding: 0.75rem 0;' do
+    content_tag :div, class: 'site-breadcrumb-wrap' do
       breadcrumb_schema_script(breadcrumbs) +
         content_tag(:div, class: 'container') do
           breadcrumb_nav(breadcrumbs)
@@ -116,15 +116,15 @@ module BreadcrumbHelper
   end
 
   def breadcrumb_nav(breadcrumbs)
-    content_tag :nav, 'aria-label': 'breadcrumb' do
-      content_tag :ol, class: 'breadcrumb mb-0' do
+    content_tag :nav, 'aria-label': 'breadcrumb', class: 'site-breadcrumb-nav' do
+      content_tag :ol, class: 'site-breadcrumb list-unstyled d-flex flex-wrap align-items-center mb-0' do
         breadcrumbs.each_with_index.map do |crumb, index|
           is_current = index == breadcrumbs.length - 1
-          content_tag :li, class: "breadcrumb-item #{'active' if is_current}" do
+          content_tag :li, class: 'site-breadcrumb__item' do
             if crumb[:url]
-              link_to crumb[:name], crumb[:url], class: 'text-decoration-none', style: 'color: #b29c84;'
+              link_to crumb[:name], crumb[:url], class: 'site-breadcrumb__link'
             else
-              content_tag :span, crumb[:name], class: 'text-muted', **(is_current ? { 'aria-current': 'page' } : {})
+              content_tag :span, crumb[:name], class: 'site-breadcrumb__current', **(is_current ? { 'aria-current': 'page' } : {})
             end
           end
         end.join.html_safe
@@ -245,7 +245,7 @@ module BreadcrumbHelper
     when 'new-build-registration'
       'New Build Registration'
     when 'holiday-rental-license'
-      'Holiday Rental License'
+      'Holiday Rental Licence'
     else
       service.to_s.tr('_', ' ').split.map(&:capitalize).join(' ')
     end

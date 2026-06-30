@@ -1,23 +1,15 @@
 <% content_for :title, @mtitle %>
 <% content_for :meta_description, @mdescription %>
 
-<!-- Hero Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <h1 class="display-4 fw-bold mb-4">Cost of Buying Property in the Canary Islands (2026 Guide)</h1>
-        <p class="lead mb-4">
-          On a resale in the Canary Islands, budget approximately <strong>8–10% of the purchase price on top of the property price</strong> for taxes and professional fees.
-          Transfer tax (ITP) at <strong>6.5%</strong> is the largest single cost — and these rates differ from mainland Spain.
-        </p>
-        <a href="/free-consultation" class="btn btn-lg rounded-pill px-5" style="background-color: #b39c84; border-color: #b39c84; color: white;">
-          Get a Cost Estimate for Your Purchase
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<%= render layout: "main_page_sections/page_hero",
+           locals: {
+             title: "Cost of Buying Property in the Canary Islands (2026 Guide)",
+             intro: ("On a resale in the Canary Islands, budget approximately <strong>8–10% of the purchase price on top of the property price</strong> for taxes and professional fees. Transfer tax (ITP) at <strong>6.5%</strong> is the largest single cost, and these rates differ from mainland Spain.").html_safe
+           } do %>
+  <a href="/free-consultation" class="btn btn-lg rounded-pill px-5" style="background-color: #b39c84; border-color: #b39c84; color: white;">
+    Get a Cost Estimate for Your Purchase
+  </a>
+<% end %>
 
 <%= render 'main_page_sections/author_byline', reviewed_on: Date.parse("2026-06-01") %>
 
@@ -34,7 +26,7 @@
         <div class="mb-5">
           <h2 class="h3 mb-4" style="color: #b39c84;">Why Canary Islands Purchase Costs Differ from Mainland Spain</h2>
           <p class="mb-4">
-            The Canary Islands are an autonomous community with their own tax regime. Resale property is taxed under <strong>Impuesto de Transmisiones Patrimoniales (ITP)</strong> at a flat <strong>6.5%</strong> — not the sliding ITP scales used in most mainland regions (often 8–11% depending on price band).
+            The Canary Islands are an autonomous community with their own tax regime. Resale property is taxed under <strong>Impuesto de Transmisiones Patrimoniales (ITP)</strong> at a flat <strong>6.5%</strong>: not the sliding ITP scales used in most mainland regions (often 8–11% depending on price band).
             New-build homes pay <strong>IGIC</strong> (the Canaries' equivalent of mainland IVA) rather than ITP, plus stamp duty on the deed.
             If you are comparing quotes from a mainland-focused agent or mortgage broker, verify that their cost estimate uses Canarian rates.
           </p>
@@ -49,7 +41,7 @@
           <p class="mb-4">On a second-hand (resale) purchase, the buyer pays the following at or shortly after completion at the notary.</p>
 
           <div class="mb-4">
-            <h3 class="h5 mb-3">Transfer Tax (ITP) — 6.5%</h3>
+            <h3 class="h5 mb-3">Transfer Tax (ITP): 6.5%</h3>
             <p class="mb-0">
               ITP is the single largest cost on a resale. It is calculated on the <strong>higher of the declared purchase price or the Catastro <em>valor de referencia</em></strong> (reference value).
               The buyer must pay within 30 days of signing the notarial deed (<em>escritura pública</em>).
@@ -58,7 +50,7 @@
           </div>
 
           <div class="mb-4">
-            <h3 class="h5 mb-3">Notary Fees — approximately €600–€1,500</h3>
+            <h3 class="h5 mb-3">Notary Fees: approximately €600–€1,500</h3>
             <p class="mb-0">
               Notary fees are set by tariff and scale with the purchase price. For a typical apartment or villa in the €200,000–€400,000 range, expect roughly €800–€1,200.
               The notary authenticates the deed; their fee is paid by the buyer.
@@ -66,10 +58,10 @@
           </div>
 
           <div class="mb-4">
-            <h3 class="h5 mb-3">Land Registry Fees — approximately €350–€900</h3>
+            <h3 class="h5 mb-3">Land Registry Fees: approximately €350–€900</h3>
             <p class="mb-0">
               Registration of your title at the <em>Registro de la Propiedad</em> is mandatory and also scales with price.
-              Budget toward the upper end for higher-value coastal properties in Adeje, Maspalomas, or Puerto del Carmen.
+              Budget towards the upper end for higher-value coastal properties in Adeje, Maspalomas, or Puerto del Carmen.
             </p>
           </div>
 
@@ -77,7 +69,7 @@
             <h3 class="h5 mb-3">Legal / Conveyancing Fees</h3>
             <p class="mb-0">
               A qualified Spanish property lawyer conducts due diligence (debts, planning, title, community charges), reviews the <em>contrato de arras</em>, coordinates the notary, and handles tax filings.
-              Fees are typically a fixed quote or around 1% of the price — always confirm scope before instructing.
+              Fees are typically a fixed quote or around 1% of the price; always confirm scope before instructing.
             </p>
           </div>
 
@@ -100,7 +92,7 @@
           </p>
 
           <div class="mb-4">
-            <h3 class="h5 mb-3">IGIC — 7%</h3>
+            <h3 class="h5 mb-3">IGIC: 7%</h3>
             <p class="mb-0">
               The Canary Islands Impuesto General Indirecto Canario (IGIC) applies at <strong>7%</strong> on the purchase price of new residential property.
               This is the Canarian equivalent of mainland IVA (which is 10% on new homes in most of Spain).
@@ -108,7 +100,7 @@
           </div>
 
           <div class="mb-4">
-            <h3 class="h5 mb-3">AJD Stamp Duty — approximately 1%</h3>
+            <h3 class="h5 mb-3">AJD Stamp Duty: approximately 1%</h3>
             <p class="mb-0">
               <em>Actos Jurídicos Documentados</em> (AJD) stamp duty on the notarial deed is roughly <strong>1%</strong> in the Canaries (rate can vary slightly by island and deed type).
               Notary, registry, legal, and gestoría costs still apply on top.
@@ -116,7 +108,7 @@
           </div>
 
           <p class="mb-0">
-            New-build totals are often in a similar ballpark to resale once IGIC and AJD are combined with professional fees — but the tax line items are different, so do not assume a resale ITP quote applies to an off-plan purchase.
+            New-build totals are often in a similar ballpark to resale once IGIC and AJD are combined with professional fees, but the tax line items are different, so do not assume a resale ITP quote applies to an off-plan purchase.
           </p>
         </div>
 
@@ -162,7 +154,7 @@
           </div>
 
           <p class="mb-0">
-            That is approximately <strong>7.9%</strong> of €250,000 — within the typical <strong>8–10%</strong> range once mortgage arrangement fees, NIE costs, or a higher reference value are factored in.
+            That is approximately <strong>7.9%</strong> of €250,000, within the typical <strong>8–10%</strong> range once mortgage arrangement fees, NIE costs, or a higher reference value are factored in.
             <a href="/contact">Contact us</a> or <a href="/free-consultation">book a free consultation</a> for a quote tailored to your property and island.
           </p>
         </div>
@@ -208,7 +200,7 @@
     },
     {
       question: "Do new-builds pay the same tax as resales?",
-      answer: "No. New-build homes bought directly from a developer pay IGIC at 7% (the Canaries' equivalent of mainland IVA) plus AJD stamp duty of approximately 1% on the deed — not ITP. Notary, Land Registry, legal, and gestoría costs apply to both transaction types."
+      answer: "No. New-build homes bought directly from a developer pay IGIC at 7% (the Canaries' equivalent of mainland IVA) plus AJD stamp duty of approximately 1% on the deed, not ITP. Notary, Land Registry, legal, and gestoría costs apply to both transaction types."
     },
     {
       question: "How is ITP calculated if the Catastro value is higher than the price?",

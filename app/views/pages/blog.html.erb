@@ -1,22 +1,9 @@
 <% content_for :title, @mtitle %>
 <% content_for :meta_description, @mdescription %>
 
-<!-- Hero Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <h1 class="display-4 fw-bold mb-4">
-          Legal News & Insights
-        </h1>
-        <p class="lead mb-4">
-          Stay informed with the latest updates on Spanish property law, holiday rental regulations, 
-          and expert legal guidance from our experienced team at Roper Lawyers.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+<%= render "main_page_sections/page_hero",
+           title: "Legal News & Insights",
+           intro: "Stay informed with the latest updates on Spanish property law, holiday rental regulations, and expert legal guidance from our experienced team at Roper Lawyers." %>
 
 <%= render 'main_page_sections/author_byline' %>
 
@@ -41,7 +28,7 @@
             </h2>
             
             <p class="card-text mb-4">
-              Former Town Hall Counselor Olivier Roper explains the "Tourist Use" legal trap. In many popular areas, owning the title deed does not grant residential rights. Learn about Suelo Turístico and Decree-Law 2/2025 before you invest.
+              Former Town Hall Councillor Olivier Roper explains the "Tourist Use" legal trap. In many popular areas, owning the title deed does not grant residential rights. Learn about Suelo Turístico and Decree-Law 2/2025 before you invest.
             </p>
 
             <div class="ratio ratio-16x9 mb-4">
@@ -128,10 +115,10 @@
             <div class="mb-3 pb-3 border-bottom">
               <h6 class="mb-2">
                 <a href="/holiday-rental-license" class="text-decoration-none text-dark">
-                  VV License Application Process
+                  VV Licence Application Process
                 </a>
               </h6>
-              <small class="text-muted">Step-by-step guide to obtaining your holiday rental license in Spain</small>
+              <small class="text-muted">Step-by-step guide to obtaining your holiday rental licence in Spain</small>
             </div>
             
             <div class="mb-3 pb-3 border-bottom">

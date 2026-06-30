@@ -20,12 +20,14 @@ module SchemaHelper
   # Source: Google Business Profile. Update manually when GBP totals change. Maps badge rounds to 5.0; true average is 4.9.
   GBP_REVIEW_COUNT = 94
   GBP_RATING_VALUE = 4.9
+  GOOGLE_BUSINESS_PROFILE_URL = "https://www.google.com/maps/place/Roper+Lawyers/@28.9208706,-13.6682914,17z/data=!4m8!3m7!1s0xc4625151db852d7:0x4e4d25ec171214f4!8m2!3d28.9208706!4d-13.6657165!9m1!1b1!16s%2Fg%2F11hdxxw7zb?entry=ttu".freeze
 
   def structured_data
     schema = FIRM.merge(
       "@context": "https://schema.org",
       "@id": "https://www.roperlawyers.com/#organization",
       "founder": { "@id": "https://www.roperlawyers.com/team/olivier-roper#person" },
+      "sameAs": [GOOGLE_BUSINESS_PROFILE_URL],
       "description": @mdescription || FIRM[:description],
       "url": request.original_url,
       "image": image_url("roperlawyerslogo.png")

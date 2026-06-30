@@ -1,35 +1,25 @@
 <% content_for :title, @mtitle %>
 <% content_for :meta_description, @mdescription %>
 
-<!-- Hero Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 60vh; display: flex; align-items: center;">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <h1 class="display-4 fw-bold mb-4">Legal Services for Expats in Spain: English-Speaking Property Solicitors</h1>
-        <p class="lead mb-4">
-          Helping UK, Irish & European clients buy, sell, and protect property in Spain with trusted legal advice.
-        </p>
-        
-        <p class="mb-4" style="font-size: 1.1rem;">
-          With 15+ years' experience, 1,080+ successful transactions, and a 
-          <svg width="16" height="16" viewBox="0 0 24 24" class="d-inline" fill="#FBBC04">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
-          5.0 Google reputation, our bilingual team provides clear, professional support for expats investing, inheriting, or relocating in Spain.
-        </p>
-        
-        <p class="mb-4" style="font-size: 1.1rem;">
-          Each service is handled with professionalism and explained in plain English – so you'll always feel informed and confident. <a href="/team" class="text-decoration-none" style="color: #b29c84; font-weight: 500;">Meet our expert legal team</a> who will guide you through every step. <a href="/why-choose-us" class="text-decoration-none" style="color: #b29c84; font-weight: 500;">Discover why clients choose Roper Lawyers</a> for their Spanish property legal needs.
-        </p>
-        
-        <a href="/free-consultation" class="btn btn-lg rounded-pill px-5" style="background-color: #b39c84; border-color: #b39c84; color: white;">
-          Book Free Consultation
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<%= render layout: "main_page_sections/page_hero",
+           locals: {
+             title: "Legal Services for Expats in Spain: English-Speaking Property Solicitors",
+             intro: "Helping UK, Irish & European clients buy, sell, and protect property in Spain with trusted legal advice."
+           } do %>
+  <p class="mb-4" style="font-size: 1.1rem;">
+    With 15+ years' experience, 1,080+ successful transactions, and a
+    <svg width="16" height="16" viewBox="0 0 24 24" class="d-inline" fill="#FBBC04">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </svg>
+    5.0 Google reputation, our bilingual team provides clear, professional support for expats investing, inheriting, or relocating in Spain.
+  </p>
+  <p class="mb-4" style="font-size: 1.1rem;">
+    Each service is handled with professionalism and explained in plain English, so you'll always feel informed and confident. <a href="/team" class="text-decoration-none" style="color: #b29c84; font-weight: 500;">Meet our expert legal team</a> who will guide you through every step. <a href="/why-choose-us" class="text-decoration-none" style="color: #b29c84; font-weight: 500;">Discover why clients choose Roper Lawyers</a> for their Spanish property legal needs.
+  </p>
+  <a href="/free-consultation" class="btn btn-lg rounded-pill px-5" style="background-color: #b39c84; border-color: #b39c84; color: white;">
+    Book Free Consultation
+  </a>
+<% end %>
 
 <%= render 'main_page_sections/author_byline' %>
 
@@ -66,7 +56,7 @@
         </div>
         
         <p class="text-center mb-5">
-          Each service has its own dedicated team and is explained in plain English – so you'll never feel lost in translation.
+          Each service has its own dedicated team and is explained in plain English, so you'll never feel lost in translation.
         </p>
       </div>
     </div>
@@ -83,17 +73,17 @@
         <div class="row mb-5">
           <div class="col-lg-8 mx-auto">
             <h3 class="h4 mb-3" style="color: #b39c84;">Property Conveyancing (Buying & Selling in Spain)</h3>
-            <p class="mb-3">Buying or selling a property abroad can be daunting — we make it secure and stress-free.</p>
+            <p class="mb-3">Buying or selling a property abroad can be daunting; we make it secure and stress-free.</p>
             
             <ul class="mb-3">
-              <li><strong>Due Diligence</strong> – thorough title searches, licence checks, and debt clearance.</li>
-              <li><strong>Contracts</strong> – drafting & reviewing contracts to protect your interests.</li>
-              <li><strong>Completion</strong> – full notary coordination, or Power of Attorney if abroad.</li>
-              <li><strong>Aftercare</strong> – utilities, registry updates, town hall paperwork.</li>
+              <li><strong>Due Diligence</strong>, thorough title searches, licence checks, and debt clearance.</li>
+              <li><strong>Contracts</strong>, drafting & reviewing contracts to protect your interests.</li>
+              <li><strong>Completion</strong>, full notary coordination, or Power of Attorney if abroad.</li>
+              <li><strong>Aftercare</strong>, utilities, registry updates, town hall paperwork.</li>
             </ul>
             
             <div class="p-3 bg-white border-start border-4 mb-3" style="border-color: #b39c84 !important;">
-              <p class="mb-2"><em>"They handled our Lanzarote villa purchase flawlessly — clear advice and zero stress." – John & Sarah, UK Buyers</em></p>
+              <p class="mb-2"><em>"They handled our Lanzarote villa purchase flawlessly: clear advice and zero stress.", John & Sarah, UK Buyers</em></p>
             </div>
             
             <p><strong><a href="/buying-property" style="color: #b39c84;">Learn More About Buying Property in Spain →</a></strong></p>
@@ -113,7 +103,7 @@
             </ul>
             
             <div class="p-3 bg-white border-start border-4 mb-3" style="border-color: #b39c84 !important;">
-              <p class="mb-2"><em>"They explained everything in plain English and gave us real peace of mind." – Mark & Linda, Costa Blanca</em></p>
+              <p class="mb-2"><em>"They explained everything in plain English and gave us real peace of mind.", Mark & Linda, Costa Blanca</em></p>
             </div>
             
             <p><strong><a href="/wills" style="color: #b39c84;">Learn More About Spanish Wills →</a></strong></p>
@@ -134,7 +124,7 @@
             </ul>
             
             <div class="p-3 bg-white border-start border-4 mb-3" style="border-color: #b39c84 !important;">
-              <p class="mb-2"><em>"After my father passed, they took care of every detail. A difficult time made easier." – Claire, Tenerife</em></p>
+              <p class="mb-2"><em>"After my father passed, they took care of every detail. A difficult time made easier.", Claire, Tenerife</em></p>
             </div>
             
             <p><strong><a href="/inheritance" style="color: #b39c84;">Learn More About Inheritance in Spain →</a></strong></p>

@@ -1,0 +1,35 @@
+<%
+  title = local_assigns[:title]
+  subtitle = local_assigns[:subtitle]
+  intro = local_assigns[:intro]
+  eyebrow = local_assigns[:eyebrow]
+  col_class = local_assigns.fetch(:col_class, "col-lg-10")
+  title_html = local_assigns[:title_html]
+  align = local_assigns.fetch(:align, "center")
+  align_class = align == "left" ? "text-lg-start" : "text-center"
+%>
+<section class="page-hero py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="<%= col_class %> <%= align_class %>">
+        <% if eyebrow.present? %>
+          <p class="page-hero__eyebrow mb-0"><%= eyebrow %></p>
+        <% end %>
+        <h1 class="page-hero__title display-4 fw-bold mb-4">
+          <% if title_html %>
+            <%= title.html_safe %>
+          <% else %>
+            <%= title %>
+          <% end %>
+        </h1>
+        <% if subtitle.present? %>
+          <p class="page-hero__subtitle h5 text-muted mb-4"><%= subtitle %></p>
+        <% end %>
+        <% if intro.present? %>
+          <div class="page-hero__intro lead text-muted mb-4"><%= intro %></div>
+        <% end %>
+        <%= yield if block_given? %>
+      </div>
+    </div>
+  </div>
+</section>

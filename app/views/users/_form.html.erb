@@ -2,13 +2,13 @@
   <div class="row justify-content-center">
     <div class="col-11 col-md-10 col-lg-6 px-3 px-md-0">
 
-      <h1 style="font-family: 'Times New Roman', Times, serif; color: #b29c84; text-align: center; margin-top: 3rem; margin-bottom: 1rem; letter-spacing: 0.2em;">ROPER LAWYERS</h1>
+      <h1 class="wordmark" style="color: #b29c84; text-align: center; margin-top: 3rem; margin-bottom: 1rem; letter-spacing: 0.2em;">ROPER LAWYERS</h1>
 
       <div class="text-center m-3">
         <h2 class="mb-3" style="font-size: 1.6rem;">Information Required</h2>
         <p style="font-size: 1.05rem; line-height: 1.7; color: #555;">
           Please fill in the details below so we can handle your matter efficiently.<br>
-          Don't worry if you're unsure of anything — you can always log back in and update it later.<br>
+          Don't worry if you're unsure of anything; you can always log back in and update it later.<br>
           <strong>We'll be notified of any changes and will review them accordingly.</strong>
         </p>
       </div>
@@ -38,12 +38,12 @@
         </div>
       <% end %>
 
-      <!-- Step 1: Services — "What do you need?" -->
+      <!-- Step 1: Services - "What do you need?" -->
       <div data-progress-section="services">
         <%= render_user_form_section(form, :requested_services, user) %>
       </div>
 
-      <!-- Step 2: Identity — "Who are you?" -->
+      <!-- Step 2: Identity - "Who are you?" -->
       <div data-progress-section="identity">
         <%= render_user_form_section(form, :personal, user) %>
         <%= render_user_form_section(form, :passport, user) %>

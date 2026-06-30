@@ -1,0 +1,390 @@
+/* Long-form guide article layout — clean, editorial, single column */
+.guide-article {
+  --guide-accent: #b39c84;
+  --guide-text: #374151;
+  --guide-heading: #111827;
+  --guide-muted: #6b7280;
+  --guide-border: #e5e7eb;
+  --guide-max-width: 42rem;
+
+  color: var(--guide-text);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+
+  a {
+    color: var(--guide-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: #9d8670;
+    }
+  }
+
+  /* Hero — left-aligned editorial style */
+  .page-hero {
+    padding-top: 2.5rem;
+    padding-bottom: 2rem;
+    text-align: left;
+  }
+
+  .page-hero .row {
+    justify-content: center;
+  }
+
+  .page-hero .row > [class*="col-"] {
+    text-align: left;
+    max-width: var(--guide-max-width);
+  }
+
+  .page-hero__eyebrow {
+    color: var(--guide-accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero__title {
+    color: var(--guide-heading);
+    font-size: clamp(1.875rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  .page-hero__intro {
+    color: var(--guide-text);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    max-width: none;
+    margin-bottom: 1.5rem;
+  }
+
+  .guide-article__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 999px;
+    background-color: var(--guide-accent);
+    border: none;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #9d8670;
+      color: #fff;
+    }
+  }
+
+  .guide-article__cta--outline {
+    background-color: transparent;
+    border: 1.5px solid var(--guide-accent);
+    color: var(--guide-accent);
+
+    &:hover {
+      background-color: rgba(179, 156, 132, 0.08);
+      color: #9d8670;
+    }
+  }
+
+  /* Author / meta */
+  > section.py-0 .container .col-lg-10 {
+    flex: 0 0 100%;
+    max-width: var(--guide-max-width);
+  }
+
+  .author-byline {
+    border-left: 3px solid var(--guide-accent);
+    padding: 0.75rem 0 0.75rem 1rem;
+    margin-bottom: 2rem;
+    max-width: var(--guide-max-width);
+  }
+
+  .guide-article__body {
+    max-width: var(--guide-max-width);
+    margin: 0 auto;
+    padding-bottom: 4rem;
+  }
+
+  .guide-article__meta {
+    color: var(--guide-muted);
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .guide-article__lead {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--guide-text);
+    margin-bottom: 2.5rem;
+  }
+
+  /* Table of contents */
+  .guide-article__toc {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--guide-border);
+
+    h2 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--guide-muted);
+      margin-bottom: 1rem;
+    }
+
+    ol {
+      margin: 0;
+      padding-left: 1.25rem;
+      columns: 1;
+
+      @media (min-width: 576px) {
+        columns: 2;
+        column-gap: 2rem;
+      }
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      break-inside: avoid;
+    }
+
+    a {
+      color: var(--guide-heading);
+      text-decoration: none;
+      font-size: 0.9375rem;
+
+      &:hover {
+        color: var(--guide-accent);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  /* Sections */
+  .guide-article__section {
+    margin-bottom: 3.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .guide-article__section h2 {
+    color: var(--guide-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+  }
+
+  .guide-article__section p {
+    margin-bottom: 1.25rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  /* Checkmark icon lists */
+  .guide-article__checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+
+    li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 1rem;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.35rem;
+        width: 1.125rem;
+        height: 1.125rem;
+        border-radius: 50%;
+        background-color: var(--guide-accent);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3E%3Cpath d='M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0z'/%3E%3C/svg%3E");
+        background-size: 0.75rem;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+
+  /* Numbered steps */
+  .guide-article__steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: guide-step;
+
+    li {
+      position: relative;
+      padding-left: 2.75rem;
+      margin-bottom: 1rem;
+      counter-increment: guide-step;
+
+      &::before {
+        content: counter(guide-step);
+        position: absolute;
+        left: 0;
+        top: 0.1rem;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        background-color: rgba(179, 156, 132, 0.15);
+        color: var(--guide-accent);
+        font-size: 0.8125rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  /* Callout / blockquote */
+  .guide-article__callout {
+    margin: 2rem 0;
+    padding: 0 0 0 1.25rem;
+    border-left: 4px solid var(--guide-accent);
+    color: var(--guide-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  /* Table */
+  .guide-article__table-wrap {
+    margin: 1.5rem 0 2rem;
+    border: 1px solid var(--guide-border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .guide-article__table {
+    margin-bottom: 0;
+    font-size: 0.9375rem;
+
+    thead th {
+      background-color: #f9fafb;
+      color: var(--guide-heading);
+      font-weight: 600;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      border-bottom: 1px solid var(--guide-border);
+      padding: 0.875rem 1rem;
+    }
+
+    tbody th,
+    tbody td {
+      padding: 0.875rem 1rem;
+      vertical-align: top;
+      border-color: var(--guide-border);
+      color: var(--guide-text);
+    }
+
+    tbody th {
+      color: var(--guide-heading);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+  }
+
+  /* FAQ — two-column flat list */
+  .guide-article__faq-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .guide-article__faq-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: start;
+
+    @media (min-width: 768px) {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      gap: 3rem 4rem;
+    }
+  }
+
+  .guide-article__faq-intro {
+    h2 {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--guide-heading);
+      margin-bottom: 1rem;
+    }
+  }
+
+  .guide-article__faq-support {
+    color: var(--guide-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+
+    a {
+      font-weight: 500;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .guide-article__faq-list {
+    min-width: 0;
+  }
+
+  .guide-article__faq-item {
+    margin-bottom: 2.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--guide-heading);
+      margin-bottom: 0.625rem;
+    }
+
+    p {
+      color: var(--guide-muted);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.7;
+      margin: 0;
+    }
+  }
+
+  .guide-article__cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .guide-article__disclaimer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--guide-border);
+    color: var(--guide-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+}

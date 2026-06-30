@@ -1,27 +1,16 @@
 <% content_for :title, @mtitle %>
 <% content_for :meta_description, @mdescription %>
 
-<!-- Hero Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <h1 class="display-4 fw-bold mb-4">
-          How to Buy Property in Spain:<br>
-          A Guide for Expats
-        </h1>
-        <p class="lead mb-4">
-          Buying a home in Spain can be an exciting prospect for British, Irish, and other European expats, 
-          but it requires a solid understanding of local regulations. This guide walks you through each step—from 
-          initial planning to closing the sale—and explains the legal requirements, costs, and common pitfalls involved.
-        </p>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal" class="btn btn-lg rounded-pill px-5" style="background-color: #b39c84; border-color: #b39c84; color: white;">
-          Get Expert Legal Help
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<%= render layout: "main_page_sections/page_hero",
+           locals: {
+             title: "How to Buy Property in Spain:<br>A Guide for Expats",
+             title_html: true,
+             intro: "Buying a home in Spain can be an exciting prospect for British, Irish, and other European expats, but it requires a solid understanding of local regulations. This guide walks you through each step, from initial planning to closing the sale, and explains the legal requirements, costs, and common pitfalls involved."
+           } do %>
+  <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal" class="btn btn-lg rounded-pill px-5" style="background-color: #b39c84; border-color: #b39c84; color: white;">
+    Get Expert Legal Help
+  </a>
+<% end %>
 
 <%= render 'main_page_sections/author_byline', reviewed_on: Date.parse("2025-09-21") %>
 
@@ -84,7 +73,7 @@
             </div>
           </div>
           
-          <p class="mt-3">When viewing properties, try to visit in person, inspect the interior and exterior thoroughly, and talk to neighbors if possible. An independent lawyer can also help you vet deals from the outset.</p>
+          <p class="mt-3">When viewing properties, try to visit in person, inspect the interior and exterior thoroughly, and talk to neighbours if possible. An independent lawyer can also help you vet deals from the outset.</p>
         </div>
 
         <!-- Making an Offer -->
@@ -106,9 +95,9 @@
           
           <ul class="mb-4">
             <li class="mb-2"><strong>Property Title ("Nota Simple")</strong>: Your lawyer will get this official document from the Land Registry to verify the registered owner and check for any mortgages, liens, or debts on the property.</li>
-            <li class="mb-2"><strong>Building Legality</strong>: Ensure the property was built with the correct permits. For new builds, check for the licencia de primera ocupación (occupancy license). For older or rural homes, verify that any extensions or changes were legally permitted.</li>
+            <li class="mb-2"><strong>Building Legality</strong>: Ensure the property was built with the correct permits. For new builds, check for the licencia de primera ocupación (occupancy licence). For older or rural homes, verify that any extensions or changes were legally permitted.</li>
             <li class="mb-2"><strong>Physical Condition</strong>: Consider a structural survey or architectural inspection to identify any hidden defects.</li>
-            <li class="mb-2"><strong>Licenses and Certificates</strong>: Your lawyer will confirm all necessary documents are in place, such as the Energy Performance Certificate (Certificado Energético) and up-to-date municipal tax receipts (IBI).</li>
+            <li class="mb-2"><strong>Licences and Certificates</strong>: Your lawyer will confirm all necessary documents are in place, such as the Energy Performance Certificate (Certificado Energético) and up-to-date municipal tax receipts (IBI).</li>
           </ul>
           
           <p>The notary, an impartial government officer, will also verify this information at closing, but your lawyer is your personal representative and is essential for protecting your interests.</p>
@@ -117,7 +106,7 @@
         <!-- Signing Contracts -->
         <div class="mb-5">
           <h2 class="h3 mb-4" style="color: #b39c84;">Signing Contracts and Notary Completion</h2>
-          <p class="mb-3">The final step is to formalize the sale at a Notary's office. All property transfers in Spain must be done via a public deed (escritura pública) signed before a Notary.</p>
+          <p class="mb-3">The final step is to formalise the sale at a Notary's office. All property transfers in Spain must be done via a public deed (escritura pública) signed before a Notary.</p>
           
           <div class="mb-4">
             <h4 class="h5 mb-3">Mortgage (if any)</h4>
@@ -218,7 +207,7 @@
             <div class="col-md-6 mb-3">
               <div class="alert alert-danger" role="alert">
                 <h5 class="alert-heading">Skipping Due Diligence</h5>
-                <p class="mb-0">Always hire an independent lawyer to verify ownership, debts, and licenses.</p>
+                <p class="mb-0">Always hire an independent lawyer to verify ownership, debts, and licences.</p>
               </div>
             </div>
             <div class="col-md-6 mb-3">
@@ -229,8 +218,8 @@
             </div>
             <div class="col-md-6 mb-3">
               <div class="alert alert-danger" role="alert">
-                <h5 class="alert-heading">Ignoring Licenses</h5>
-                <p class="mb-0">Failing to check for proper building or rental licenses can lead to legal problems and heavy fines.</p>
+                <h5 class="alert-heading">Ignoring Licences</h5>
+                <p class="mb-0">Failing to check for proper building or rental licences can lead to legal problems and heavy fines.</p>
               </div>
             </div>
             <div class="col-md-6 mb-3">

@@ -1,11 +1,5 @@
+<% content_for :hide_breadcrumb, true %>
 <main>
-  <div class="flash flash-warning alert alert-dismissible fade show" role="alert">
-    <span>Due to wanting to give all our clients the best service possible we are only taking <%= pick_random_number_based_on_month %> more clients in <%= Date.current.strftime("%B") %>.</span>
-    <a data-bs-dismiss="alert" aria-label="Close">
-      <i class="fas fa-times"></i>
-    </a>
-  </div>
-  
   <div class="container p-4">
     <div class="row flex-lg-row-reverse align-items-center g-5">
       <div class="col-md-5 mx-auto col-lg-5 video-width">
@@ -15,6 +9,9 @@
       </div>
       
       <div class="col-lg-6">
+        <div class="mb-4">
+          <%= render "shared/hero_trust_badge" %>
+        </div>
         <h1 class="display-5 fw-bold lh-1 mb-3">Property Lawyers in <span class="gradient-text">Ibiza</span>.</h1>
         <p class="value-proposition">With over 12 years of experience, we can provide you with transparent and reliable legal guidance, ensuring a hassle-free process for your property purchase in Ibiza.</p>
         

@@ -103,7 +103,7 @@ class SitemapsController < ApplicationController
     # For dynamic content, use current date
     # In a real application, you might check file modification times or database timestamps
     #
-    # Legal guide last-reviewed dates — update these when you revise the page content.
+    # Legal guide last-reviewed dates - update these when you revise the page content.
     case path
     when '/blog', '/reviews'
       Date.current # These might be updated frequently
@@ -117,6 +117,8 @@ class SitemapsController < ApplicationController
       Date.parse('2026-06-01') # Last reviewed: Canary Islands purchase cost guide
     when '/nie-number-spain-property'
       Date.parse('2026-06-01') # Last reviewed: NIE for property buyers guide
+    when '/holiday-rental-license'
+      Date.parse('2026-06-30') # Last reviewed: Spain holiday rental licence (VUT) guide
     else
       Date.current - 30.days # Default to 30 days ago for static content
     end
@@ -128,7 +130,7 @@ class SitemapsController < ApplicationController
       'weekly'
     when '/reviews', '/contact'
       'monthly'
-    when /canary-islands-holiday-rental-laws/, /canary-islands-tourist-use-legal-trap/, /property-buying-guide/, /cost-of-buying-property-canary-islands/, /nie-number-spain-property/
+    when /canary-islands-holiday-rental-laws/, /canary-islands-tourist-use-legal-trap/, /property-buying-guide/, /cost-of-buying-property-canary-islands/, /nie-number-spain-property/, %r{/holiday-rental-license$}
       'yearly'
     else
       'monthly'
